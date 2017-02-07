@@ -1,0 +1,6 @@
+framework module Pods_Planning_Board {
+  umbrella header "Pods-Planning Board-umbrella.h"
+
+  export *
+  module * { export * }
+}

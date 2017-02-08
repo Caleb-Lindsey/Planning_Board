@@ -22,7 +22,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     //Outlets
     @IBOutlet weak var segmentTable: UITableView!
     @IBOutlet weak var elementTable: UITableView!
-    @IBOutlet weak var sectionTitle: UILabel!
+    @IBOutlet weak var productTable: UITableView!
     
     //Variables
     var arrayOfCellData = [cellData]()
@@ -33,17 +33,20 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.elementTable.tableFooterView = UIImageView()
+        self.segmentTable.tableFooterView = UIImageView()
+        self.productTable.tableFooterView = UIImageView()
+        
         elementArray = ["Element 1","Element 2","Element 3","Element 4","Element 5","Element 6","Element 7"]
         
         self.segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
         self.elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
+        self.productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
         
         if GlobalVariables.segmentArray != [] {
             
             currentLoaded = GlobalVariables.segmentArray[0]
             fillTable(tableName: GlobalVariables.segmentArray[0])
-            
-            sectionTitle.text = "\(GlobalVariables.segmentArray[0]) Elements"
             
             while count < GlobalVariables.segmentArray.count {
             
@@ -52,8 +55,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 count += 1
             
             }
-        } else {
-            sectionTitle.text = "No Existing Segments"
         }
         
         
@@ -79,7 +80,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return arrayOfCellData.count
         } else if tableView == elementTable {
             return elementArray.count
-        } else {
+        } else if tableView == productTable {
+            return 3
+        }else {
             return 0
         }
     }
@@ -114,8 +117,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             cell?.textLabel?.text = elementArray[indexPath.row]
             return cell!
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell") as UITableViewCell!
-            cell?.textLabel?.text = elementArray[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
+            cell?.textLabel?.text = "Howdy"
             return cell!
         }
         
@@ -136,7 +139,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == segmentTable {
             if GlobalVariables.segmentArray != [] {
-                sectionTitle.text = "\(GlobalVariables.segmentArray[indexPath.row]) Elements"
                 
                 if currentLoaded == GlobalVariables.segmentArray[indexPath.row] {
                     
@@ -181,28 +183,59 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView == elementTable {
+            return 1
+        } else {
+            return 1
+        }
+    }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == segmentTable {
+            return "Segments"
+        } else if tableView == elementTable {
+            if GlobalVariables.segmentArray != [] {
+                if currentLoaded.characters.count > 25 {
+                    return currentLoaded
+                } else {
+                    return "\(currentLoaded) Elements"
+                }
+            } else {
+                return nil
+            }
+        } else {
+            return "My Service"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if tableView == segmentTable {
+            if let header = view as? UITableViewHeaderFooterView {
+                header.textLabel!.font = UIFont.systemFont(ofSize: 13.0)
+                header.textLabel!.textColor = UIColor.white
+                header.tintColor = UIColor.darkGray
+                header.textLabel?.textAlignment = NSTextAlignment.center
+            }
+        } else if tableView == elementTable {
+            if let header = view as? UITableViewHeaderFooterView {
+                header.textLabel!.font = UIFont.systemFont(ofSize: 16.0)
+                header.textLabel!.textColor = UIColor.white
+                header.tintColor = UIColor.darkGray
+                header.textLabel?.textAlignment = NSTextAlignment.center
+            }
+        } else if tableView == productTable {
+            if let header = view as? UITableViewHeaderFooterView {
+                header.textLabel!.font = UIFont.systemFont(ofSize: 16.0)
+                header.textLabel!.textColor = UIColor.white
+                header.tintColor = UIColor.darkGray
+                header.textLabel?.textAlignment = NSTextAlignment.center
+            }
+        }
+    }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

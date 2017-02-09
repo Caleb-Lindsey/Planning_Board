@@ -432,7 +432,7 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pin-0f-iOH">
-                                <rect key="frame" x="386" y="136" width="362" height="724"/>
+                                <rect key="frame" x="386" y="182" width="362" height="724"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -457,6 +457,16 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCW-5g-UVm">
+                                <rect key="frame" x="386" y="143" width="362" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Service Order">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editServiceOrderPressed:" destination="UFb-Nl-dYL" eventType="touchUpInside" id="krb-OO-BFF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -466,6 +476,7 @@
                         <outlet property="elementTable" destination="yAN-Wc-qlq" id="Gcr-mf-3fH"/>
                         <outlet property="productTable" destination="Pin-0f-iOH" id="Ldm-b7-Bp5"/>
                         <outlet property="segmentTable" destination="3vL-1a-3l8" id="4i8-ck-rvF"/>
+                        <outlet property="topProductButton" destination="hCW-5g-UVm" id="OvC-ed-c3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oH5-0C-7Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>

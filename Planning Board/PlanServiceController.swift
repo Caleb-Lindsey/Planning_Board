@@ -23,6 +23,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var segmentTable: UITableView!
     @IBOutlet weak var elementTable: UITableView!
     @IBOutlet weak var productTable: UITableView!
+    @IBOutlet weak var topProductButton: UIButton!
     
     //Variables
     var arrayOfCellData = [cellData]()
@@ -33,7 +34,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.segmentTable.tableFooterView = UIImageView()
         self.elementTable.tableFooterView = UIImageView()
         
@@ -45,8 +45,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
         
         elementTable.layer.cornerRadius = 10
-        
-        
+        productTable.layer.cornerRadius = 10
         
         if GlobalVariables.segmentArray != [] {
             
@@ -78,6 +77,16 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    @IBAction func editServiceOrderPressed(_ sender: Any) {
+        
+        if productTable.isEditing {
+            productTable.setEditing(false, animated: true)
+            topProductButton.setTitle("Edit Service Order", for: .normal)
+        } else {
+            productTable.setEditing(true, animated: true)
+            topProductButton.setTitle("Done", for: .normal)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -134,7 +143,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         } else if tableView == segmentTable {
             return 90
         }else {
-            return 50
+            return 40
         }
     }
     
@@ -223,10 +232,18 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 productArray.remove(at: indexPath.row)
                 productTable.reloadData()
             }
-        } else if tableView == elementTable {
-            
-        } else if tableView == segmentTable {
-            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if productTable.isEditing == false {
+            return .delete
+        } else {
+            return .none
         }
     }
     
@@ -252,6 +269,28 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         })
         
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if tableView != productTable {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        
+        if tableView != productTable {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     
 }
 

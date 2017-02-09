@@ -34,18 +34,21 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.segmentTable.tableFooterView = UIImageView()
-        self.elementTable.tableFooterView = UIImageView()
+        
+        //Set up tables
+        segmentTable.tableFooterView = UIImageView()
+        segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
+        elementTable.tableFooterView = UIImageView()
+        elementTable.allowsMultipleSelection = true
+        elementTable.isScrollEnabled = false
+        elementTable.layer.cornerRadius = 10
+        elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
+        productTable.isScrollEnabled = false
+        productTable.layer.cornerRadius = 10
+        productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
         
         elementArray = ["Element 1","Element 2","Element 3","Element 4","Element 5","Element 6","Element 7"]
-        productArray = ["Hello", "My", "Name", "Is" , "Caleb"]
-        
-        self.segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
-        self.elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
-        self.productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
-        
-        elementTable.layer.cornerRadius = 10
-        productTable.layer.cornerRadius = 10
+        productArray = []
         
         if GlobalVariables.segmentArray != [] {
             
@@ -60,11 +63,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             }
         }
-        
-        
-        elementTable.allowsMultipleSelection = true
-        elementTable.isScrollEnabled = false
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,12 +70,13 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
         let indexPath = IndexPath(row: 0, section: 0)
         segmentTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
+    
     @IBAction func editServiceOrderPressed(_ sender: Any) {
         
         if productTable.isEditing {
@@ -87,6 +86,29 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             productTable.setEditing(true, animated: true)
             topProductButton.setTitle("Done", for: .normal)
         }
+    }
+    
+    func fillTable(tableName : String) {
+        
+        let databaseRef = FIRDatabase.database().reference()
+        var currentArray = [String]()
+        
+        databaseRef.child(GlobalVariables.userName).child("Service Parts").child(tableName).observe(.childAdded, with: {
+            snapshot in
+            
+            let value = snapshot.value!
+            currentArray.append(value as! String)
+            
+            self.elementArray = currentArray
+            if currentArray.count > 10 {
+                self.elementTable.isScrollEnabled = true
+            } else {
+                self.elementTable.isScrollEnabled = false
+            }
+            self.elementTable.reloadData()
+            
+        })
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,6 +153,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
             cell?.textLabel?.text = productArray[indexPath.row]
+            cell?.indentationWidth = 20.0
+            cell?.indentationLevel = 2
             return cell!
         }
         
@@ -162,6 +186,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         } else if tableView == elementTable {
             if elementArray != [] {
                 elementTable.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                productArray.append((elementTable.cellForRow(at: indexPath)?.textLabel?.text)!)
+                if productArray.count > 17 {
+                    productTable.isScrollEnabled = true
+                }
+                productTable.reloadData()
             }
         }
     }
@@ -169,10 +198,20 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView == elementTable {
             elementTable.cellForRow(at: indexPath)?.accessoryType = .none
+            
+            for num in 0..<productArray.count {
+                if productArray[num] == elementArray[indexPath.row] {
+                    productArray.remove(at: num)
+                    if productArray.count <= 17 {
+                        productTable.isScrollEnabled = false
+                    }
+                    productTable.reloadData()
+                    break
+                }
+            }
+            
         }
     }
-    
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == elementTable {
@@ -230,6 +269,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == productTable {
             if editingStyle == .delete {
                 productArray.remove(at: indexPath.row)
+                if productArray.count <= 17 {
+                    productTable.isScrollEnabled = false
+                }
                 productTable.reloadData()
             }
         }
@@ -247,28 +289,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func fillTable(tableName : String) {
-        
-        let databaseRef = FIRDatabase.database().reference()
-        var currentArray = [String]()
-        
-        databaseRef.child(GlobalVariables.userName).child("Service Parts").child(tableName).observe(.childAdded, with: {
-            snapshot in
-            
-            let value = snapshot.value!
-            currentArray.append(value as! String)
-            
-            self.elementArray = currentArray
-            if currentArray.count > 10 {
-                self.elementTable.isScrollEnabled = true
-            }
-            self.elementTable.reloadData()
-            
-            
-            
-        })
-        
-    }
+    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
@@ -290,7 +311,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return true
         }
     }
-    
     
 }
 

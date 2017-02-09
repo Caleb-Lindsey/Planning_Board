@@ -156,16 +156,7 @@
 				2E0FCD981E163CD700C8F1E3 /* Planning Board.entitlements */,
 				2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */,
 				2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */,
-				2E0FCD671E16367400C8F1E3 /* ViewController.swift */,
-				2E0FCD691E16367400C8F1E3 /* Main.storyboard */,
-				2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */,
-				2EFC56F41E1D841800BF9FB9 /* DivisionSetupController.swift */,
-				2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */,
-				2ED4F7FF1E25E1BA002FEC45 /* PopMenuController.swift */,
-				2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */,
-				2E04C4F31E4964A9005D4D56 /* BarOptionView.swift */,
-				2ED57CE61E25D7D5005763FC /* PopOverController.swift */,
-				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
+				2E1F75AD1E4CFD7800DEE534 /* ViewControllers */,
 				2E0FCD6F1E16367400C8F1E3 /* Assets.xcassets */,
 				2E943D541E26C5150059C689 /* TableViewCell1.swift */,
 				2E943D551E26C5150059C689 /* TableViewCell1.xib */,
@@ -193,6 +184,23 @@
 				2E0FCD8A1E16367400C8F1E3 /* Info.plist */,
 			);
 			path = "Planning BoardUITests";
+			sourceTree = "<group>";
+		};
+		2E1F75AD1E4CFD7800DEE534 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2E0FCD671E16367400C8F1E3 /* ViewController.swift */,
+				2E0FCD691E16367400C8F1E3 /* Main.storyboard */,
+				2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */,
+				2EFC56F41E1D841800BF9FB9 /* DivisionSetupController.swift */,
+				2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */,
+				2ED4F7FF1E25E1BA002FEC45 /* PopMenuController.swift */,
+				2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */,
+				2E04C4F31E4964A9005D4D56 /* BarOptionView.swift */,
+				2ED57CE61E25D7D5005763FC /* PopOverController.swift */,
+				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		2EE223641E22BD8E0054F407 /* Supporting Files */ = {

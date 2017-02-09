@@ -27,21 +27,26 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     //Variables
     var arrayOfCellData = [cellData]()
     var elementArray = [String]()
+    var productArray = [String]()
     var count : Int = 0
     var currentLoaded = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.elementTable.tableFooterView = UIImageView()
         self.segmentTable.tableFooterView = UIImageView()
-        self.productTable.tableFooterView = UIImageView()
+        self.elementTable.tableFooterView = UIImageView()
         
         elementArray = ["Element 1","Element 2","Element 3","Element 4","Element 5","Element 6","Element 7"]
+        productArray = ["Hello", "My", "Name", "Is" , "Caleb"]
         
         self.segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
         self.elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
         self.productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
+        
+        elementTable.layer.cornerRadius = 10
+        
+        
         
         if GlobalVariables.segmentArray != [] {
             
@@ -81,7 +86,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         } else if tableView == elementTable {
             return elementArray.count
         } else if tableView == productTable {
-            return 3
+            return productArray.count
         }else {
             return 0
         }
@@ -95,7 +100,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 cell.mainImageView.image = arrayOfCellData[indexPath.row].image
                 cell.mainLabel.text = arrayOfCellData[indexPath.row].text
-                
                 return cell
                 
             } else {
@@ -104,7 +108,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 cell.mainImageView.image = arrayOfCellData[indexPath.row].image
                 cell.mainLabel.text = arrayOfCellData[indexPath.row].text
-                
                 return cell
                 
             }
@@ -118,7 +121,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
-            cell?.textLabel?.text = "Howdy"
+            cell?.textLabel?.text = productArray[indexPath.row]
             return cell!
         }
         
@@ -139,7 +142,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == segmentTable {
             if GlobalVariables.segmentArray != [] {
-                
+    
                 if currentLoaded == GlobalVariables.segmentArray[indexPath.row] {
                     
                 } else {
@@ -160,28 +163,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func fillTable(tableName : String) {
-        
-        let databaseRef = FIRDatabase.database().reference()
-        var currentArray = [String]()
-        
-        databaseRef.child(GlobalVariables.userName).child("Service Parts").child(tableName).observe(.childAdded, with: {
-            snapshot in
-
-            let value = snapshot.value!
-            currentArray.append(value as! String)
-            
-            self.elementArray = currentArray
-            if currentArray.count > 10 {
-                self.elementTable.isScrollEnabled = true
-            }
-            self.elementTable.reloadData()
-            
-            
-            
-        })
-        
-    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == elementTable {
@@ -233,6 +215,42 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 header.textLabel?.textAlignment = NSTextAlignment.center
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if tableView == productTable {
+            if editingStyle == .delete {
+                productArray.remove(at: indexPath.row)
+                productTable.reloadData()
+            }
+        } else if tableView == elementTable {
+            
+        } else if tableView == segmentTable {
+            
+        }
+    }
+    
+    func fillTable(tableName : String) {
+        
+        let databaseRef = FIRDatabase.database().reference()
+        var currentArray = [String]()
+        
+        databaseRef.child(GlobalVariables.userName).child("Service Parts").child(tableName).observe(.childAdded, with: {
+            snapshot in
+            
+            let value = snapshot.value!
+            currentArray.append(value as! String)
+            
+            self.elementArray = currentArray
+            if currentArray.count > 10 {
+                self.elementTable.isScrollEnabled = true
+            }
+            self.elementTable.reloadData()
+            
+            
+            
+        })
+        
     }
     
 }

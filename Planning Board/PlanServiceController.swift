@@ -35,6 +35,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //Set up tables
         segmentTable.tableFooterView = UIImageView()
         segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
@@ -107,7 +108,35 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             }
             self.elementTable.reloadData()
             
+            //Apply Checkmarks to previously selected rows
+            for elementNum in 0..<self.elementArray.count {
+                for productNum in 0..<self.productArray.count {
+                    
+                    if self.elementArray[elementNum] == self.productArray[productNum] {
+                        self.elementTable.cellForRow(at: NSIndexPath(row: elementNum, section: 0) as IndexPath)?.accessoryType = .checkmark
+                        
+                    }
+                    
+                }
+                
+            }
+            
         })
+        
+    }
+    
+    func removeFromProduct(indexPath : IndexPath) {
+        
+        for num in 0..<productArray.count {
+            if productArray[num] == elementArray[indexPath.row] {
+                productArray.remove(at: num)
+                if productArray.count <= 17 {
+                    productTable.isScrollEnabled = false
+                }
+                productTable.reloadData()
+                break
+            }
+        }
         
     }
     
@@ -176,21 +205,26 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == segmentTable {
             if GlobalVariables.segmentArray != [] {
     
-                if currentLoaded == GlobalVariables.segmentArray[indexPath.row] {
+                if currentLoaded != GlobalVariables.segmentArray[indexPath.row] {
                     
-                } else {
+                    //Load the tableview using the element array
                     fillTable(tableName: GlobalVariables.segmentArray[indexPath.row])
                     currentLoaded = GlobalVariables.segmentArray[indexPath.row]
+                    
                 }
+                
             }
         } else if tableView == elementTable {
-            if elementArray != [] {
+            if elementArray != [] && elementTable.cellForRow(at: indexPath)?.accessoryType != .checkmark{
                 elementTable.cellForRow(at: indexPath)?.accessoryType = .checkmark
                 productArray.append((elementTable.cellForRow(at: indexPath)?.textLabel?.text)!)
                 if productArray.count > 17 {
                     productTable.isScrollEnabled = true
                 }
                 productTable.reloadData()
+            } else {
+                elementTable.cellForRow(at: indexPath)?.accessoryType = .none
+                removeFromProduct(indexPath: indexPath)
             }
         }
     }
@@ -199,16 +233,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == elementTable {
             elementTable.cellForRow(at: indexPath)?.accessoryType = .none
             
-            for num in 0..<productArray.count {
-                if productArray[num] == elementArray[indexPath.row] {
-                    productArray.remove(at: num)
-                    if productArray.count <= 17 {
-                        productTable.isScrollEnabled = false
-                    }
-                    productTable.reloadData()
-                    break
-                }
-            }
+            removeFromProduct(indexPath: indexPath)
             
         }
     }
@@ -268,6 +293,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if tableView == productTable {
             if editingStyle == .delete {
+                fillTable(tableName: currentLoaded) 
                 productArray.remove(at: indexPath.row)
                 if productArray.count <= 17 {
                     productTable.isScrollEnabled = false

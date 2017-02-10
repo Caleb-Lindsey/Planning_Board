@@ -44,7 +44,7 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
         checkTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(checkOption), userInfo: nil, repeats: true)
         
         let VC = storyboard?.instantiateViewController(withIdentifier: "popOver") as! PopOverController
-        VC.preferredContentSize = CGSize(width: 350, height: 200)
+        VC.preferredContentSize = CGSize(width: 350, height: 120)
         let navController = UINavigationController(rootViewController: VC)
         navController.modalPresentationStyle = UIModalPresentationStyle.popover
         let popOver = navController.popoverPresentationController
@@ -73,13 +73,9 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
                 checkTimer.invalidate()
                 performSegue(withIdentifier: "toService", sender: Any?.self)
                 GlobalVariables.popoverChoice = ""
-            case "Segment":
+            case "Resource":
                 checkTimer.invalidate()
-                performSegue(withIdentifier: "addSegOrEl", sender: Any?.self)
-            GlobalVariables.popoverChoice = ""
-            case "Element":
-                checkTimer.invalidate()
-                performSegue(withIdentifier: "addSegOrEl", sender: Any?.self)
+                performSegue(withIdentifier: "addResource", sender: Any?.self)
             GlobalVariables.popoverChoice = ""
         case nil:
             print("nada")

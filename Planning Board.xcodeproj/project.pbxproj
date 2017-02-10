@@ -189,8 +189,8 @@
 		2E1F75AD1E4CFD7800DEE534 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2E0FCD671E16367400C8F1E3 /* ViewController.swift */,
 				2E0FCD691E16367400C8F1E3 /* Main.storyboard */,
+				2E0FCD671E16367400C8F1E3 /* ViewController.swift */,
 				2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */,
 				2EFC56F41E1D841800BF9FB9 /* DivisionSetupController.swift */,
 				2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */,

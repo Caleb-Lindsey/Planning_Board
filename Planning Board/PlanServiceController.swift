@@ -31,10 +31,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var productArray = [String]()
     var count : Int = 0
     var currentLoaded = String()
+    var elementDict = Dictionary<String,Array<String>>()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         //Set up tables
         segmentTable.tableFooterView = UIImageView()
@@ -99,6 +100,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             let value = snapshot.value!
             currentArray.append(value as! String)
+            self.elementDict[tableName]?.append(value as! String)
             
             self.elementArray = currentArray
             if currentArray.count > 10 {
@@ -294,6 +296,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == productTable {
             if editingStyle == .delete {
                 productArray.remove(at: indexPath.row)
+                fillTable(tableName: currentLoaded)
                 if productArray.count <= 17 {
                     productTable.isScrollEnabled = false
                 }
@@ -326,6 +329,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    
+        let itemToMove:String = productArray[sourceIndexPath.row]
+        productArray.remove(at: sourceIndexPath.row)
+        productArray.insert(itemToMove, at: destinationIndexPath.row)
+        
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {

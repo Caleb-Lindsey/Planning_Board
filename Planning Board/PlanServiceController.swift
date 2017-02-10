@@ -293,7 +293,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if tableView == productTable {
             if editingStyle == .delete {
-                fillTable(tableName: currentLoaded) 
                 productArray.remove(at: indexPath.row)
                 if productArray.count <= 17 {
                     productTable.isScrollEnabled = false

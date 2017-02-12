@@ -14,6 +14,7 @@ struct GlobalVariables {
     static var userName = String()
     static var segmentArray = [String]()
     static var popoverChoice = String()
+    static var resourceDict = [String : [String]]()
 }
 
 class SignUpController : UIViewController {

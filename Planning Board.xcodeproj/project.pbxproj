@@ -18,9 +18,13 @@
 		2E0FCD7E1E16367400C8F1E3 /* Planning_BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FCD7D1E16367400C8F1E3 /* Planning_BoardTests.swift */; };
 		2E0FCD891E16367400C8F1E3 /* Planning_BoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FCD881E16367400C8F1E3 /* Planning_BoardUITests.swift */; };
 		2E0FCD971E1636DE00C8F1E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */; };
+		2E1D7E671E4FF73E00A648C3 /* ResourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */; };
+		2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */; };
+		2E1D7E6B1E4FF7EB00A648C3 /* memberCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */; };
 		2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */; };
 		2E3011AB1E1C205F0067DFA8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */; };
 		2E341ACC1E230A7500DB924A /* SettingsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */; };
+		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
 		2E943D571E26C5150059C689 /* TableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E943D551E26C5150059C689 /* TableViewCell1.xib */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
@@ -69,9 +73,13 @@
 		2E0FCD8A1E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E0FCD981E163CD700C8F1E3 /* Planning Board.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Planning Board.entitlements"; sourceTree = "<group>"; };
+		2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceController.swift; sourceTree = "<group>"; };
+		2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = memberCell1.swift; sourceTree = "<group>"; };
+		2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = memberCell1.xib; sourceTree = "<group>"; };
 		2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementSetupController.swift; sourceTree = "<group>"; };
 		2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuController.swift; sourceTree = "<group>"; };
+		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
 		2E943D551E26C5150059C689 /* TableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell1.xib; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
@@ -157,10 +165,13 @@
 				2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */,
 				2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */,
 				2E1F75AD1E4CFD7800DEE534 /* ViewControllers */,
+				2E7EA1DD1E4FE1F200911AD7 /* Helpers */,
 				2E0FCD6F1E16367400C8F1E3 /* Assets.xcassets */,
+				2E0FCD711E16367400C8F1E3 /* LaunchScreen.storyboard */,
 				2E943D541E26C5150059C689 /* TableViewCell1.swift */,
 				2E943D551E26C5150059C689 /* TableViewCell1.xib */,
-				2E0FCD711E16367400C8F1E3 /* LaunchScreen.storyboard */,
+				2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */,
+				2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */,
 				2E0FCD741E16367400C8F1E3 /* Info.plist */,
 				2E0FCD6C1E16367400C8F1E3 /* Planning_Board.xcdatamodeld */,
 				2EE223641E22BD8E0054F407 /* Supporting Files */,
@@ -199,8 +210,17 @@
 				2E04C4F31E4964A9005D4D56 /* BarOptionView.swift */,
 				2ED57CE61E25D7D5005763FC /* PopOverController.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
+				2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2E7EA1DD1E4FE1F200911AD7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		2EE223641E22BD8E0054F407 /* Supporting Files */ = {
@@ -353,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E943D571E26C5150059C689 /* TableViewCell1.xib in Resources */,
+				2E1D7E6B1E4FF7EB00A648C3 /* memberCell1.xib in Resources */,
 				2E0FCD731E16367400C8F1E3 /* LaunchScreen.storyboard in Resources */,
 				2E0FCD971E1636DE00C8F1E3 /* GoogleService-Info.plist in Resources */,
 				2E0FCD701E16367400C8F1E3 /* Assets.xcassets in Resources */,
@@ -524,8 +545,11 @@
 				2ED57CE71E25D7D5005763FC /* PopOverController.swift in Sources */,
 				2E04C4F41E4964A9005D4D56 /* BarOptionView.swift in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
+				2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */,
 				2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */,
+				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,
 				2E341ACC1E230A7500DB924A /* SettingsMenuController.swift in Sources */,
+				2E1D7E671E4FF73E00A648C3 /* ResourceController.swift in Sources */,
 				2EE223681E22BE100054F407 /* SWRevealViewController.m in Sources */,
 				2EFC56F51E1D841800BF9FB9 /* DivisionSetupController.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,

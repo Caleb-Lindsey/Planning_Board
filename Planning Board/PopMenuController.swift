@@ -25,7 +25,7 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
         GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
         
         // Pull from Firebase to fill Variables
-        fillSegmentArray()
+        Datasource().fillSegmentArray()
         
         Open.target = self.revealViewController()
         Open.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -86,23 +86,7 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
-    func fillSegmentArray() {
-        
-        let databaseReference = FIRDatabase.database().reference()
-        
-        databaseReference.child(GlobalVariables.userName).child("ZZZ_DeveloperTools_ZZZ").observe(.childAdded, with: {
-            snapshot in
-            
-            let dataDict = snapshot.value as! [String : String]
-            
-            DispatchQueue.main.async {
-                GlobalVariables.segmentArray.append(dataDict["Segment"]! as String)
-            }
-            
-            
-        })
-        
-    }
+    
     
     
 }

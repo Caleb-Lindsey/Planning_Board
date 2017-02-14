@@ -24,6 +24,7 @@
 		2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */; };
 		2E3011AB1E1C205F0067DFA8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */; };
 		2E341ACC1E230A7500DB924A /* SettingsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */; };
+		2E6166261E52BBA5009138D8 /* ResourceAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6166251E52BBA5009138D8 /* ResourceAddition.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
 		2E943D571E26C5150059C689 /* TableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E943D551E26C5150059C689 /* TableViewCell1.xib */; };
@@ -79,6 +80,7 @@
 		2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementSetupController.swift; sourceTree = "<group>"; };
 		2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuController.swift; sourceTree = "<group>"; };
+		2E6166251E52BBA5009138D8 /* ResourceAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceAddition.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
 		2E943D551E26C5150059C689 /* TableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell1.xib; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
+				2E6166251E52BBA5009138D8 /* ResourceAddition.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				2ED57CE71E25D7D5005763FC /* PopOverController.swift in Sources */,
 				2E04C4F41E4964A9005D4D56 /* BarOptionView.swift in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
+				2E6166261E52BBA5009138D8 /* ResourceAddition.swift in Sources */,
 				2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */,
 				2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */,
 				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,

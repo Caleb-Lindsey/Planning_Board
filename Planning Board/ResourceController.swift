@@ -34,6 +34,11 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
         
     }
  
+    @IBAction func addButtonsPressed(_ sender: Any) {
+        
+        ResourceAddition().launchAdditionView()
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == memberTable {
@@ -73,4 +78,24 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

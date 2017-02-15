@@ -16,7 +16,7 @@ class ResourceAddition : NSObject {
         rv.backgroundColor = UIColor.gray
         rv.layer.cornerRadius = 10
         rv.layer.borderWidth = 2
-        rv.isUserInteractionEnabled = true
+        rv.isUserInteractionEnabled = false
         return rv
         
     }()
@@ -41,14 +41,13 @@ class ResourceAddition : NSObject {
             
             let width : CGFloat = window.frame.width - 200
             let height : CGFloat = window.frame.height / 2
-            
+            let method = #selector(handleDismiss)
             addResourceView.frame = CGRect(x: window.center.x - (width / 2), y: window.frame.height , width: width , height: height)
             addResourceView.layer.opacity = 0
             
             addResourceView.addSubview(doneButton)
-            doneButton.addTarget(self, action: #selector(ResourceAddition.handleDismiss), for: .touchUpInside)
+            doneButton.addTarget(self, action: method, for: .touchUpInside)
             doneButton.frame = CGRect(x: addResourceView.frame.width - 100, y: 60, width: 50, height: 50)
-            
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 

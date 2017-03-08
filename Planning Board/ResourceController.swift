@@ -20,8 +20,9 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
     //Outlets
     @IBOutlet weak var memberTable: UITableView!
     
-    
+    //Variables
     var arrayOfMemberData = [memberCellData]()
+    let resourceMenu = ResourceAddition(type: "Member")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
  
     @IBAction func addButtonsPressed(_ sender: Any) {
         
-        ResourceAddition().launchAdditionView()
+        resourceMenu.launchMemberView()
         
     }
     
@@ -76,8 +77,6 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65.0
     }
-    
-    
     
 }
 

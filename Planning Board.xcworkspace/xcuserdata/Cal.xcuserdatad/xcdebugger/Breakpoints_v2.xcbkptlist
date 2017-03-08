@@ -154,13 +154,124 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Planning Board/ResourceAddition.swift"
-            timestampString = "508778204.771668"
+            timestampString = "510687179.465305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "launchAdditionView()"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "launchMemberView()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Planning Board/ResourceAddition.swift"
+            timestampString = "510621128.218211"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "ResourceAddition"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.ResourceAddition.addResourceView.getter : __ObjC.UIView"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/ResourceAddition.swift"
+                  timestampString = "510620951.15255"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.ResourceAddition.init () -&gt; Planning_Board.ResourceAddition"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/ResourceAddition.swift"
+                  timestampString = "510620951.155906"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.ResourceAddition.(addResourceView : __ObjC.UIView).(variable initialization expression).(closure #1)"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/ResourceAddition.swift"
+                  timestampString = "510620951.157359"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Planning Board/ResourceAddition.swift"
+            timestampString = "510687179.465305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "launchMemberView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.ResourceAddition.launchAdditionView () -&gt; ()"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/ResourceAddition.swift"
+                  timestampString = "510681220.178"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "3092">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.ResourceAddition.(launchAdditionView () -&gt; ()).(closure #1)"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/ResourceAddition.swift"
+                  timestampString = "510681220.179631"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

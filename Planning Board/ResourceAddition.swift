@@ -6,15 +6,17 @@
 //  Copyright © 2017 KlubCo. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class ResourceAddition : NSObject {
+class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
+    //Variables
     var additionType = String()
     
     init(type: String) {
         self.additionType = type
     }
+    
     
     let addResourceView : UIView = {
         
@@ -102,6 +104,12 @@ class ResourceAddition : NSObject {
             addResourceView.frame = CGRect(x: window.center.x - (width / 2), y: window.frame.height , width: width , height: height)
             addResourceView.layer.opacity = 0
             
+            //Setup for BoxLabel
+            addResourceView.addSubview(boxLabel)
+            boxLabel.frame = CGRect(x: 0, y: 15, width: addResourceView.frame.width, height: 40)
+            boxLabel.backgroundColor = UIColor.darkGray
+            boxLabel.text = "New Member"
+            
             //Setup for Done Button
             addResourceView.addSubview(doneButton)
             let buttonWidth = 50
@@ -141,13 +149,14 @@ class ResourceAddition : NSObject {
             lastTextBox.leftViewMode = UITextFieldViewMode.always
             
             //Setup for Segments Table
+            addResourceView.addSubview(segmentTable)
+            segmentTable.frame = CGRect(x: addResourceView.frame.width / 2.5, y: 195, width: 250, height: 285)
+            segmentTable.layer.cornerRadius = 5
+            segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
+            segmentTable.delegate = self
+            segmentTable.dataSource = self
             
-            
-            
-            //Setup for BoxLabel
-            addResourceView.addSubview(boxLabel)
-            boxLabel.frame = CGRect(x: 0, y: 15, width: addResourceView.frame.width, height: 35)
-            boxLabel.text = "New Member"
+           
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 
@@ -187,4 +196,32 @@ class ResourceAddition : NSObject {
         
     }
     
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = segmentTable.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return GlobalVariables.segmentArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Which segments can they host?"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            
+            header.textLabel?.font = UIFont(name: "Helvetica", size: 14)
+            header.textLabel?.textAlignment = .center
+        }
+    }
+    
 }
+

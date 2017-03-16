@@ -21,7 +21,7 @@ class Datasource {
             let dataDict = snapshot.value as! [String : String]
             
             GlobalVariables.segmentArray.append(dataDict["Segment"]! as String)
-            GlobalVariables.resourceDict["Segments"] = GlobalVariables.segmentArray 
+            //GlobalVariables.resourceDict["Segments"] = GlobalVariables.segmentArray
 
         })
         

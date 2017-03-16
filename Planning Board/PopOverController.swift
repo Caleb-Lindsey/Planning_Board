@@ -28,10 +28,6 @@ class PopOverController : UIViewController {
             print("Service")
             GlobalVariables.popoverChoice = "Service"
             self.dismiss(animated: true, completion: nil)
-        case 1:
-            print("Resource")
-            GlobalVariables.popoverChoice = "Resource"
-            self.dismiss(animated: true, completion: nil)
         default:
             print("oops")
         }

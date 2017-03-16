@@ -35,11 +35,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
    
     @IBAction func signInPressed(_ sender: Any) {
-        print("SignIN pressed")
         signInButton.isUserInteractionEnabled = false
-        self.userName.resignFirstResponder()
-        self.userPassword.resignFirstResponder()
-        
+        self.view.endEditing(true)
         verifyUserName()
         
     }
@@ -59,7 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.signInButton.isUserInteractionEnabled = true
             } else {
                 self.signInWarning.text = ""
-                print("Successful Sign In!")
                 UserDefaults.standard.set(true, forKey: "logged_in")
                 UserDefaults.standard.synchronize()
                 self.performSegue(withIdentifier: "mySegueID", sender: nil)

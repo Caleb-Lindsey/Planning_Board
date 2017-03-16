@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         // Override point for customization after application launch.
         var userLogginStatus = Bool()
+
+        
         if UserDefaults.standard.value(forKey: "logged_in") != nil {
             userLogginStatus = UserDefaults.standard.value(forKey: "logged_in") as! Bool
         }
@@ -32,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
-        
+ 
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

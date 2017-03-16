@@ -31,7 +31,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     let doneButton : UIButton = {
         
         let bttn = UIButton()
-        bttn.setTitle("Done", for: .normal)
+        bttn.setTitle("Add", for: .normal)
         return bttn
         
     }()

@@ -14,6 +14,9 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
     
     //Outlets
     @IBOutlet weak var Open: UIBarButtonItem!
+    @IBOutlet weak var serviceButton: UIButton!
+    @IBOutlet weak var segmentsButton: UIButton!
+    @IBOutlet weak var peopleButton: UIButton!
     
     //Variable
     var checkTimer = Timer()
@@ -21,11 +24,21 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GlobalVariables.segmentArray.removeAll()
+        self.serviceButton.isUserInteractionEnabled = false
+        self.segmentsButton.isUserInteractionEnabled = false
+        self.peopleButton.isUserInteractionEnabled = false
+        
         GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
         
         // Pull from Firebase to fill Variables
-        Datasource().fillSegmentArray()
+        Datasource().fillData {
+            print(GlobalVariables.resourceDict)
+            GlobalVariables.segmentArray = Array(GlobalVariables.resourceDict.keys)
+            //Try turning off the buttons so no one clicks on them before they are loaded and add a spin wheel
+            self.serviceButton.isUserInteractionEnabled = true
+            self.segmentsButton.isUserInteractionEnabled = true
+            self.peopleButton.isUserInteractionEnabled = true
+        }
         
         Open.target = self.revealViewController()
         Open.action = #selector(SWRevealViewController.revealToggle(_:))

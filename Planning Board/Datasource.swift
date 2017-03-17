@@ -11,20 +11,25 @@ import Firebase
 
 class Datasource {
     
-    func fillSegmentArray() {
+    func fillData(completion : @escaping () -> ()) {
         
         let databaseReference = FIRDatabase.database().reference()
         
-        databaseReference.child(GlobalVariables.userName).child("ZZZ_DeveloperTools_ZZZ").observe(.childAdded, with: {
+        
+        databaseReference.child(GlobalVariables.userName).child("Service Parts").observe(.childAdded, with: {
             snapshot in
             
             let dataDict = snapshot.value as! [String : String]
+            let dataKey : String = snapshot.key
             
-            GlobalVariables.segmentArray.append(dataDict["Segment"]! as String)
-            //GlobalVariables.resourceDict["Segments"] = GlobalVariables.segmentArray
-
+            GlobalVariables.resourceDict[dataKey] = Array(dataDict.values)
+            
+            DispatchQueue.main.async {
+                completion()
+            }
+            
         })
-        
+
     }
     
 }

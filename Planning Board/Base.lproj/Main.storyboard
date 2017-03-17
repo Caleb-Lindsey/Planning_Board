@@ -275,6 +275,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="Open" destination="nXA-Dr-Agc" id="13w-l6-pgQ"/>
+                        <outlet property="peopleButton" destination="IFz-i6-rIR" id="IU9-mG-RAW"/>
+                        <outlet property="segmentsButton" destination="IwU-QA-7VT" id="pxq-YM-eFD"/>
+                        <outlet property="serviceButton" destination="YbY-Vd-a58" id="xe7-RR-3Fm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dda-8r-CFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -338,6 +341,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="New Service"/>
+                                <connections>
+                                    <segue destination="UFb-Nl-dYL" kind="show" id="XC4-Ud-umu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1358,5 +1364,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="y4N-IW-Mu7"/>
         <segue reference="dUR-JZ-Pek"/>
+        <segue reference="XC4-Ud-umu"/>
     </inferredMetricsTieBreakers>
 </document>

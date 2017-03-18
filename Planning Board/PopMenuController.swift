@@ -17,6 +17,7 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var serviceButton: UIButton!
     @IBOutlet weak var segmentsButton: UIButton!
     @IBOutlet weak var peopleButton: UIButton!
+    @IBOutlet weak var plusButton: UIBarButtonItem!
     
     //Variable
     var checkTimer = Timer()
@@ -27,25 +28,25 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
         self.serviceButton.isUserInteractionEnabled = false
         self.segmentsButton.isUserInteractionEnabled = false
         self.peopleButton.isUserInteractionEnabled = false
+        self.plusButton.isEnabled = false
         
         GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
         
         // Pull from Firebase to fill Variables
         Datasource().fillData {
-            print(GlobalVariables.resourceDict)
+            
             GlobalVariables.segmentArray = Array(GlobalVariables.resourceDict.keys)
-            //Try turning off the buttons so no one clicks on them before they are loaded and add a spin wheel
+            
             self.serviceButton.isUserInteractionEnabled = true
             self.segmentsButton.isUserInteractionEnabled = true
             self.peopleButton.isUserInteractionEnabled = true
+            self.plusButton.isEnabled = true
         }
         
         Open.target = self.revealViewController()
         Open.action = #selector(SWRevealViewController.revealToggle(_:))
         
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,7 +58,7 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
         checkTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(checkOption), userInfo: nil, repeats: true)
         
         let VC = storyboard?.instantiateViewController(withIdentifier: "popOver") as! PopOverController
-        VC.preferredContentSize = CGSize(width: 350, height: 120)
+        VC.preferredContentSize = CGSize(width: 350, height: 70)
         let navController = UINavigationController(rootViewController: VC)
         navController.modalPresentationStyle = UIModalPresentationStyle.popover
         let popOver = navController.popoverPresentationController

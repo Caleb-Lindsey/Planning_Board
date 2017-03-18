@@ -24,7 +24,8 @@ class SettingsMenuController : UITableViewController {
         
         
         self.tableView.tableFooterView = UIImageView()
-        
+        self.tableView.isScrollEnabled = false
+    
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,13 +76,13 @@ class SettingsMenuController : UITableViewController {
         case "Notifications":
             print("Notifications Chosen")
         case "Account":
-            print("")
+            print("Account Chosen")
         case "About":
-            print("")
+            print("About Chosen")
         case "Feedback":
-            print("")
+            print("Feedback Chosen")
         case "Logout":
-            print("")
+            print("Logout Chosen")
         default:
             print("error")
         }

@@ -18,6 +18,7 @@
 		2E0FCD7E1E16367400C8F1E3 /* Planning_BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FCD7D1E16367400C8F1E3 /* Planning_BoardTests.swift */; };
 		2E0FCD891E16367400C8F1E3 /* Planning_BoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FCD881E16367400C8F1E3 /* Planning_BoardUITests.swift */; };
 		2E0FCD971E1636DE00C8F1E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */; };
+		2E1153AB1E7CE255000A933B /* ManageSegmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1153AA1E7CE255000A933B /* ManageSegmentsController.swift */; };
 		2E1D7E671E4FF73E00A648C3 /* ResourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */; };
 		2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */; };
 		2E1D7E6B1E4FF7EB00A648C3 /* memberCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */; };
@@ -74,6 +75,7 @@
 		2E0FCD8A1E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E0FCD981E163CD700C8F1E3 /* Planning Board.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Planning Board.entitlements"; sourceTree = "<group>"; };
+		2E1153AA1E7CE255000A933B /* ManageSegmentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSegmentsController.swift; sourceTree = "<group>"; };
 		2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceController.swift; sourceTree = "<group>"; };
 		2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = memberCell1.swift; sourceTree = "<group>"; };
 		2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = memberCell1.xib; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				2ED57CE61E25D7D5005763FC /* PopOverController.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 				2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */,
+				2E1153AA1E7CE255000A933B /* ManageSegmentsController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				2EE223681E22BE100054F407 /* SWRevealViewController.m in Sources */,
 				2EFC56F51E1D841800BF9FB9 /* DivisionSetupController.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,
+				2E1153AB1E7CE255000A933B /* ManageSegmentsController.swift in Sources */,
 				2ED4F8001E25E1BA002FEC45 /* PopMenuController.swift in Sources */,
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
 				2E3011AB1E1C205F0067DFA8 /* SignUpController.swift in Sources */,

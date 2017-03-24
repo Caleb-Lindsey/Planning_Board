@@ -12,6 +12,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     //Variables
     var additionType = String()
+    var tempArray = [String]()
     
     init(type: String) {
         self.additionType = type
@@ -39,6 +40,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let bttn = UIButton()
         bttn.setTitle("Add", for: .normal)
+        bttn.isUserInteractionEnabled = false
         return bttn
         
     }()
@@ -70,7 +72,6 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     let lastTextBox : UITextField = {
         
         let lastField = UITextField()
-        lastField.placeholder = "Last Name"
         lastField.backgroundColor = UIColor.white
         return lastField
         
@@ -86,10 +87,18 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         
     }()
     
-    let segmentTable : UITableView = {
+    let resourceTable : UITableView = {
         
         let segtable = UITableView()
         return segtable
+        
+    }()
+    
+    let elementButton : UIButton = {
+       
+        let elBttn = UIButton()
+        elBttn.setImage(#imageLiteral(resourceName: "Plus Icon"), for: .normal)
+        return elBttn
         
     }()
     
@@ -125,25 +134,17 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             addResourceView.addSubview(doneButton)
             let buttonWidth = 50
             let buttonHeight = 50
-            doneButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+            doneButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
             doneButton.frame = CGRect(x: Int(addResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
             
             //Setup for Cancel
             addResourceView.addSubview(cancelButton)
-            cancelButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+            cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
             let CanbuttonWidth = 60
             let CanbuttonHeight = 50
             cancelButton.frame = CGRect(x: 20, y: 8, width: CanbuttonWidth, height: CanbuttonHeight)
             
-            //Setup for Profile Place
-            addResourceView.addSubview(profilePic)
-            let picWidth = addResourceView.frame.width / 4
-            let picHeight = addResourceView.frame.width / 4
-            profilePic.frame = CGRect(x: 70, y: 75, width: picWidth, height: picHeight)
-            profilePic.layer.masksToBounds = true
-            profilePic.layer.cornerRadius = CGFloat(picWidth) / 2
-            
-            //Setup for First Name
+            //Setup for First Label
             addResourceView.addSubview(firstTextBox)
             firstTextBox.frame = CGRect(x: addResourceView.frame.width / 2.5, y: 115, width: 200 , height: 30)
             firstTextBox.center.x = addResourceView.center.x
@@ -152,6 +153,15 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             firstTextBox.leftView = paddingView
             firstTextBox.leftViewMode = UITextFieldViewMode.always
             
+            //Setup for Picture
+            addResourceView.addSubview(profilePic)
+            let picWidth = addResourceView.frame.width / 4
+            let picHeight = addResourceView.frame.width / 4
+            profilePic.frame = CGRect(x: 60, y: 75, width: picWidth, height: picHeight)
+            profilePic.layer.masksToBounds = true
+            profilePic.layer.cornerRadius = CGFloat(picWidth) / 2
+            
+            
             //Setup for Last Name
             lastTextBox.frame = CGRect(x: addResourceView.frame.width / 2.5, y: 115 + 30 + 10, width: 200 , height: 30)
             lastTextBox.center.x = addResourceView.center.x
@@ -159,23 +169,33 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
             lastTextBox.leftView = paddingView2
             lastTextBox.leftViewMode = UITextFieldViewMode.always
+            addResourceView.addSubview(lastTextBox)
             
             //Setup for Segments Table
-            addResourceView.addSubview(segmentTable)
-            segmentTable.frame = CGRect(x: firstTextBox.frame.origin.x, y: 195, width: 250, height: 285)
-            segmentTable.layer.cornerRadius = 5
-            segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
-            segmentTable.delegate = self
-            segmentTable.dataSource = self
+            addResourceView.addSubview(resourceTable)
+            resourceTable.frame = CGRect(x: firstTextBox.frame.origin.x, y: 195, width: 250, height: 285)
+            resourceTable.layer.cornerRadius = 5
+            resourceTable.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
+            resourceTable.delegate = self
+            resourceTable.dataSource = self
+            
+            //Setup for Element Button
+            elementButton.frame = CGRect(x: lastTextBox.frame.origin.x + 200 + 10, y: lastTextBox.frame.origin.y - 5, width: 40, height: 40)
+            elementButton.addTarget(self, action: #selector(elementButtonPressed), for: .touchUpInside)
+            
             
             
             if additionType == "Member" {
                 boxLabel.text = "New Member"
                 firstTextBox.placeholder = "First Name"
-                addResourceView.addSubview(lastTextBox)
+                lastTextBox.placeholder = "Last Name"
+                profilePic.setImage(#imageLiteral(resourceName: "blank_profile"), for: .normal)
             } else if additionType == "Segment" {
                 boxLabel.text = "New Segment"
                 firstTextBox.placeholder = "Segment Name"
+                lastTextBox.placeholder = "Add Element"
+                profilePic.setImage(#imageLiteral(resourceName: "firebackground"), for: .normal)
+                addResourceView.addSubview(elementButton)
             }
            
             
@@ -192,12 +212,41 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    func elementButtonPressed() {
+        
+        if lastTextBox.text != "" {
+            
+            tempArray.append(lastTextBox.text!)
+            resourceTable.reloadData()
+            lastTextBox.text = ""
+            
+        }
+        
+    }
+    
+    func addPressed() {
+        
+        if firstTextBox.text != "" {
+            
+        }
+        
+        handleDismiss()
+    }
+    
+    
+    func cancelPressed() {
+        
+        firstTextBox.text = ""
+        
+        handleDismiss()
+    }
+    
     func handleDismiss() {
         if let window = UIApplication.shared.keyWindow {
             
             window.endEditing(true)
             
-            let width : CGFloat = window.frame.width //- 200
+            let width : CGFloat = window.frame.width
             let height : CGFloat = window.frame.height / 2
             
             UIView.animate(withDuration: 0.5, animations: {
@@ -227,20 +276,29 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = segmentTable.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
+        let cell = resourceTable.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        if additionType == "Member" {
+            cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
+
+        } else {
+            cell.textLabel?.text = tempArray[indexPath.row]
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GlobalVariables.segmentArray.count
+        if additionType == "Member" {
+            return GlobalVariables.segmentArray.count
+        } else {
+            return tempArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if additionType == "Member" {
             return "Which segments can they host?"
         } else {
-            return "List elements here"
+            return "Elements"
         }
     }
     

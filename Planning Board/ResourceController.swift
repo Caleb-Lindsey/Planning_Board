@@ -78,10 +78,6 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
         return 65.0
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        resourceMenu.handleDismiss()
-    }
-    
 }
 
 

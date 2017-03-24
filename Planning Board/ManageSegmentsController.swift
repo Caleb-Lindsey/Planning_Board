@@ -10,12 +10,21 @@ import Foundation
 import UIKit
 import Firebase
 
-class ManageSegmentsController : UIViewController {
+class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //Variables
     let segmentMenu = ResourceAddition(type: "Segment")
+    let segmentArray = Array(GlobalVariables.resourceDict.keys)
+    
+    //Outlets
+    @IBOutlet weak var segTable: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,6 +35,22 @@ class ManageSegmentsController : UIViewController {
         
         segmentMenu.launchMemberView()
         
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = segTable.dequeueReusableCell(withIdentifier: "manageSegCell", for: indexPath)
+        cell.textLabel?.text = segmentArray[indexPath.row]
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return segmentArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
 }

@@ -9,6 +9,13 @@
 import UIKit
 import Firebase
 
+struct GlobalVariables {
+    static var userName = String()
+    static var segmentArray = [String]()
+    static var popoverChoice = String()
+    static var resourceDict = [String : [String]]()
+}
+
 class Datasource {
     
     func fillData(completion : @escaping () -> ()) {

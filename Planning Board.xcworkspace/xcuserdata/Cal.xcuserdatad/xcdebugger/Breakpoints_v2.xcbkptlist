@@ -201,11 +201,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Planning Board/ResourceAddition.swift"
-            timestampString = "512012861.309314"
+            timestampString = "512022496.892166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "launchMemberView()"
             landmarkType = "7">
             <Locations>
@@ -255,6 +255,22 @@
             startingLineNumber = "61"
             endingLineNumber = "61"
             landmarkName = "login()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Planning Board/ResourceAddition.swift"
+            timestampString = "512055677.546639"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "addPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

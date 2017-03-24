@@ -36,11 +36,10 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         
     }()
     
-    let doneButton : UIButton = {
+    let addButton : UIButton = {
         
         let bttn = UIButton()
         bttn.setTitle("Add", for: .normal)
-        bttn.isUserInteractionEnabled = false
         return bttn
         
     }()
@@ -131,15 +130,15 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             boxLabel.backgroundColor = UIColor.darkGray
             
             //Setup for Done Button
-            addResourceView.addSubview(doneButton)
+            addResourceView.addSubview(addButton)
             let buttonWidth = 50
             let buttonHeight = 50
-            doneButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
-            doneButton.frame = CGRect(x: Int(addResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
+            addButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+            addButton.frame = CGRect(x: Int(addResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
             
             //Setup for Cancel
             addResourceView.addSubview(cancelButton)
-            cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
+            cancelButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
             let CanbuttonWidth = 60
             let CanbuttonHeight = 50
             cancelButton.frame = CGRect(x: 20, y: 8, width: CanbuttonWidth, height: CanbuttonHeight)
@@ -217,8 +216,8 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         if lastTextBox.text != "" {
             
             tempArray.append(lastTextBox.text!)
-            resourceTable.reloadData()
             lastTextBox.text = ""
+            resourceTable.reloadData()
             
         }
         
@@ -226,20 +225,15 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func addPressed() {
         
-        if firstTextBox.text != "" {
+        if firstTextBox.text != "" && tempArray != [] {
+            
+            GlobalVariables.resourceDict[firstTextBox.text!] = tempArray
+            handleDismiss()
             
         }
         
-        handleDismiss()
     }
     
-    
-    func cancelPressed() {
-        
-        firstTextBox.text = ""
-        
-        handleDismiss()
-    }
     
     func handleDismiss() {
         if let window = UIApplication.shared.keyWindow {
@@ -257,6 +251,10 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                 
             })
             
+            firstTextBox.text = ""
+            lastTextBox.text = ""
+            tempArray.removeAll()
+            resourceTable.reloadData()
             
         }
         
@@ -308,6 +306,17 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             header.textLabel?.font = UIFont(name: "Helvetica", size: 14)
             header.textLabel?.textAlignment = .center
         }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tempArray.remove(at: indexPath.row)
+            resourceTable.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
     }
     
 }

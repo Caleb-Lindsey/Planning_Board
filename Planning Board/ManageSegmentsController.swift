@@ -23,8 +23,6 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,6 +49,10 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func loadList() {
+        self.segTable.reloadData()
     }
     
 }

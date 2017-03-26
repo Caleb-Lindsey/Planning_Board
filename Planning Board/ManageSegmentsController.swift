@@ -57,10 +57,4 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
         segmentMenu.checkAnimation.checkImageView.removeFromSuperview()
     }
     
-    func loadList() {
-        
-        segTable.reloadData()
-        
-    }
-    
 }

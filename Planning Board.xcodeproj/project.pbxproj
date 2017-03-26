@@ -29,6 +29,9 @@
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
 		2E943D571E26C5150059C689 /* TableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E943D551E26C5150059C689 /* TableViewCell1.xib */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
+		2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB821E873D3C0039B0EE /* PBAnimations.swift */; };
+		2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB861E875CF00039B0EE /* SegmentObject.swift */; };
+		2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB88CF81E858639001F85C2 /* MemberObject.swift */; };
 		2ED4F8001E25E1BA002FEC45 /* PopMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED4F7FF1E25E1BA002FEC45 /* PopMenuController.swift */; };
 		2ED57CE71E25D7D5005763FC /* PopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED57CE61E25D7D5005763FC /* PopOverController.swift */; };
 		2EE223681E22BE100054F407 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE223671E22BE100054F407 /* SWRevealViewController.m */; };
@@ -85,6 +88,9 @@
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
 		2E943D551E26C5150059C689 /* TableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell1.xib; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
+		2E99BB821E873D3C0039B0EE /* PBAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBAnimations.swift; sourceTree = "<group>"; };
+		2E99BB861E875CF00039B0EE /* SegmentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentObject.swift; sourceTree = "<group>"; };
+		2EB88CF81E858639001F85C2 /* MemberObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberObject.swift; sourceTree = "<group>"; };
 		2ED4F7FF1E25E1BA002FEC45 /* PopMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopMenuController.swift; sourceTree = "<group>"; };
 		2ED57CE61E25D7D5005763FC /* PopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverController.swift; sourceTree = "<group>"; };
 		2EE223651E22BE0F0054F407 /* Planning Board-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planning Board-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -222,6 +228,9 @@
 			children = (
 				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
 				2E6166251E52BBA5009138D8 /* ResourceAddition.swift */,
+				2E99BB821E873D3C0039B0EE /* PBAnimations.swift */,
+				2EB88CF81E858639001F85C2 /* MemberObject.swift */,
+				2E99BB861E875CF00039B0EE /* SegmentObject.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -547,6 +556,7 @@
 				2E0FCD681E16367400C8F1E3 /* ViewController.swift in Sources */,
 				2ED57CE71E25D7D5005763FC /* PopOverController.swift in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
+				2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */,
 				2E6166261E52BBA5009138D8 /* ResourceAddition.swift in Sources */,
 				2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */,
 				2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */,
@@ -559,6 +569,8 @@
 				2E1153AB1E7CE255000A933B /* ManageSegmentsController.swift in Sources */,
 				2ED4F8001E25E1BA002FEC45 /* PopMenuController.swift in Sources */,
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
+				2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */,
+				2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */,
 				2E3011AB1E1C205F0067DFA8 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

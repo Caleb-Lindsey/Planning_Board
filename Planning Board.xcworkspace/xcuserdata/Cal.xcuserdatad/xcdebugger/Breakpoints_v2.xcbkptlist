@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Planning Board/SignUpController.swift"
-            timestampString = "508556215.030945"
+            timestampString = "512066576.590622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "SignUpController"
             landmarkType = "3">
          </BreakpointContent>
@@ -201,11 +201,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Planning Board/ResourceAddition.swift"
-            timestampString = "512022496.892166"
+            timestampString = "512185777.752282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "launchMemberView()"
             landmarkType = "7">
             <Locations>
@@ -264,13 +264,76 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Planning Board/ResourceAddition.swift"
-            timestampString = "512055677.546639"
+            filePath = "Planning Board/PBAnimations.swift"
+            timestampString = "512181188.031649"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "addPressed()"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "PBAnimations"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.PBAnimations.init () -&gt; Planning_Board.PBAnimations"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/PBAnimations.swift"
+                  timestampString = "512181265.883091"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.PBAnimations.checkImages.getter : Swift.Array&lt;__ObjC.UIImage&gt;"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/PBAnimations.swift"
+                  timestampString = "512181265.885749"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Planning_Board.PBAnimations.checkImages.setter : Swift.Array&lt;__ObjC.UIImage&gt;"
+                  moduleName = "Planning Board"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cal/Documents/Programming/xCode/Planning%20Board/Planning%20Board/PBAnimations.swift"
+                  timestampString = "512181265.889947"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Planning Board/PBAnimations.swift"
+            timestampString = "512190430.021443"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

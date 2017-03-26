@@ -23,6 +23,8 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,9 +52,15 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        segmentMenu.checkAnimation.checkImageView.removeFromSuperview()
+    }
     
     func loadList() {
-        self.segTable.reloadData()
+        
+        segTable.reloadData()
+        
     }
     
 }

@@ -18,10 +18,10 @@ struct GlobalVariables {
 
 class Datasource {
     
+    //Variables
+    let databaseReference = FIRDatabase.database().reference()
+    
     func fillData(completion : @escaping () -> ()) {
-        
-        let databaseReference = FIRDatabase.database().reference()
-        
         
         databaseReference.child(GlobalVariables.userName).child("Service Parts").observe(.childAdded, with: {
             snapshot in
@@ -39,4 +39,35 @@ class Datasource {
 
     }
     
+    func uploadSegment(segmentName : String, elementArray : [String]) {
+        
+        var elementCount : Int = 1
+        
+        for index in 0..<elementArray.count {
+            let post : [String : AnyObject] = ["element\(elementCount)" : elementArray[index] as AnyObject]
+            databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentName).updateChildValues(post)
+            elementCount += 1
+        }
+        
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

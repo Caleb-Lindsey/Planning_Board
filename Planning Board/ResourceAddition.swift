@@ -13,6 +13,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     //Variables
     var additionType = String()
     var tempArray = [String]()
+    let checkAnimation = PBAnimations()
     
     init(type: String) {
         self.additionType = type
@@ -182,7 +183,9 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             elementButton.frame = CGRect(x: lastTextBox.frame.origin.x + 200 + 10, y: lastTextBox.frame.origin.y - 5, width: 40, height: 40)
             elementButton.addTarget(self, action: #selector(elementButtonPressed), for: .touchUpInside)
             
-            
+            //Setup for Check Gif
+            window.addSubview(checkAnimation.checkImageView)
+            checkAnimation.checkImageView.frame = CGRect(x: window.frame.width / 2 - 175, y: window.frame.height / 2 - 175, width: 350, height: 350)
             
             if additionType == "Member" {
                 boxLabel.text = "New Member"
@@ -196,7 +199,6 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                 profilePic.setImage(#imageLiteral(resourceName: "firebackground"), for: .normal)
                 addResourceView.addSubview(elementButton)
             }
-           
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 
@@ -225,15 +227,22 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func addPressed() {
         
-        if firstTextBox.text != "" && tempArray != [] {
+        if additionType == "Segment" {
+            if firstTextBox.text != "" && tempArray != [] {
+                
+                GlobalVariables.resourceDict[firstTextBox.text!] = tempArray
+                
+                Datasource().uploadSegment(segmentName: firstTextBox.text!, elementArray: tempArray)
+                
+                handleDismiss()
+                
+            }
+        } else if additionType == "Member" {
             
-            GlobalVariables.resourceDict[firstTextBox.text!] = tempArray
-            handleDismiss()
+            
             
         }
-        
     }
-    
     
     func handleDismiss() {
         if let window = UIApplication.shared.keyWindow {
@@ -243,12 +252,12 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             let width : CGFloat = window.frame.width
             let height : CGFloat = window.frame.height / 2
             
-            UIView.animate(withDuration: 0.5, animations: {
-                
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
                 self.blurView.alpha = 0
-                //self.dimmerView.alpha = 0
                 self.addResourceView.frame = CGRect(x: window.center.x - (width / 2), y: window.frame.height , width: width , height: height)
+            }, completion: { (finished: Bool) in
                 
+                self.checkAnimation.playCheckGif()
             })
             
             firstTextBox.text = ""
@@ -318,6 +327,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
     }
+    
     
 }
 

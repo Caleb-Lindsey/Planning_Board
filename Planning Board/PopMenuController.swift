@@ -35,12 +35,11 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
         // Pull from Firebase to fill Variables
         Datasource().fillData {
             
-            GlobalVariables.segmentArray = Array(GlobalVariables.resourceDict.keys)
-            
             self.serviceButton.isUserInteractionEnabled = true
             self.segmentsButton.isUserInteractionEnabled = true
             self.peopleButton.isUserInteractionEnabled = true
             self.plusButton.isEnabled = true
+            
         }
         
         Open.target = self.revealViewController()

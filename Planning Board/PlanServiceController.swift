@@ -31,8 +31,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var productArray = [String]()
     var count : Int = 0
     var currentLoaded = String()
-    var elementDict = Dictionary<String,Array<String>>()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +98,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             let value = snapshot.value!
             currentArray.append(value as! String)
-            self.elementDict[tableName]?.append(value as! String)
             
             self.elementArray = currentArray
             if currentArray.count > 10 {

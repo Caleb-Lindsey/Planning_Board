@@ -217,8 +217,8 @@
 				2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */,
 				2ED57CE61E25D7D5005763FC /* PopOverController.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
-				2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */,
 				2E1153AA1E7CE255000A933B /* ManageSegmentsController.swift */,
+				2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -13,7 +13,8 @@ struct GlobalVariables {
     static var userName = String()
     static var segmentArray = [String]()
     static var popoverChoice = String()
-    static var resourceDict = [String : [String]]()
+    //static var resourceDict = [String : [String]]()
+    static var segObjArr = [SegmentObject]()
 }
 
 class Datasource {
@@ -29,7 +30,12 @@ class Datasource {
             let dataDict = snapshot.value as! [String : String]
             let dataKey : String = snapshot.key
             
-            GlobalVariables.resourceDict[dataKey] = Array(dataDict.values)
+            //GlobalVariables.resourceDict[dataKey] = Array(dataDict.values)
+            
+            let newSegObj = SegmentObject(Name: dataKey, Elements: Array(dataDict.values), IconImage: #imageLiteral(resourceName: "fire_icon"), Duration: 0)
+            GlobalVariables.segObjArr.append(newSegObj)
+            
+            GlobalVariables.segmentArray.append(newSegObj.name)
             
             DispatchQueue.main.async {
                 completion()
@@ -48,6 +54,9 @@ class Datasource {
             databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentName).updateChildValues(post)
             elementCount += 1
         }
+        
+        let newSegObj = SegmentObject(Name: segmentName, Elements: elementArray, IconImage: #imageLiteral(resourceName: "fire_icon"), Duration: 0)
+        GlobalVariables.segObjArr.append(newSegObj)
         
     }
     

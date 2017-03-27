@@ -230,8 +230,6 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         if additionType == "Segment" {
             if firstTextBox.text != "" && tempArray != [] {
                 
-                GlobalVariables.resourceDict[firstTextBox.text!] = tempArray
-                
                 Datasource().uploadSegment(segmentName: firstTextBox.text!, elementArray: tempArray)
                 
                 handleDismiss()

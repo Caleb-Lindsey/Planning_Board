@@ -14,7 +14,6 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     
     //Variables
     let segmentMenu = ResourceAddition(type: "Segment")
-    let segmentArray = Array(GlobalVariables.resourceDict.keys)
     
     //Outlets
     @IBOutlet weak var segTable: UITableView!
@@ -40,13 +39,13 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = segTable.dequeueReusableCell(withIdentifier: "manageSegCell", for: indexPath)
-        cell.textLabel?.text = segmentArray[indexPath.row]
+        cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return segmentArray.count
+        return GlobalVariables.segmentArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

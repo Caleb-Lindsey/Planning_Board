@@ -31,6 +31,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var productArray = [String]()
     var count : Int = 0
     var currentLoaded = String()
+    var currentSeg = SegmentObject()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,17 +48,18 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         productTable.layer.cornerRadius = 10
         productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
         
-        elementArray = ["Element 1","Element 2","Element 3","Element 4","Element 5","Element 6","Element 7"]
+        elementArray = ["No Elements Available"]
         productArray = []
         
         if GlobalVariables.segmentArray != [] {
             
-            currentLoaded = GlobalVariables.segmentArray[0]
-            fillTable(tableName: GlobalVariables.segmentArray[0])
+            currentLoaded = GlobalVariables.segObjArr[0].name
+            currentSeg = GlobalVariables.segObjArr[0]
+            fillTable(segment: GlobalVariables.segObjArr[0])
             
             while count < GlobalVariables.segmentArray.count {
             
-                arrayOfCellData.append(cellData(cell: 1, text: GlobalVariables.segmentArray[count], image: UIImage.init(named: "dove")))
+                arrayOfCellData.append(cellData(cell: 1, text: GlobalVariables.segObjArr[count].name, image: GlobalVariables.segObjArr[count].iconImage))
                 
                 count += 1
             
@@ -88,39 +90,25 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func fillTable(tableName : String) {
+    func fillTable(segment : SegmentObject) {
         
-        let databaseRef = FIRDatabase.database().reference()
-        var currentArray = [String]()
+        elementArray = segment.elements
+        currentLoaded = segment.name
+        currentSeg = segment
+        elementTable.reloadData()
         
-        databaseRef.child(GlobalVariables.userName).child("Service Parts").child(tableName).observe(.childAdded, with: {
-            snapshot in
-            
-            let value = snapshot.value!
-            currentArray.append(value as! String)
-            
-            self.elementArray = currentArray
-            if currentArray.count > 10 {
-                self.elementTable.isScrollEnabled = true
-            } else {
-                self.elementTable.isScrollEnabled = false
-            }
-            self.elementTable.reloadData()
-            
-            //Apply Checkmarks to previously selected rows
-            for elementNum in 0..<self.elementArray.count {
-                for productNum in 0..<self.productArray.count {
-                    
-                    if self.elementArray[elementNum] == self.productArray[productNum] {
-                        self.elementTable.cellForRow(at: NSIndexPath(row: elementNum, section: 0) as IndexPath)?.accessoryType = .checkmark
-                        
-                    }
-                    
+        
+        //Apply Checkmarks to previously selected rows
+        for elementNum in 0..<self.elementArray.count {
+            for productNum in 0..<self.productArray.count {
+                
+                if self.elementArray[elementNum] == self.productArray[productNum] {
+                    self.elementTable.cellForRow(at: NSIndexPath(row: elementNum, section: 0) as IndexPath)?.accessoryType = .checkmark
                 }
                 
             }
             
-        })
+        }
         
     }
     
@@ -207,8 +195,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 if currentLoaded != GlobalVariables.segmentArray[indexPath.row] {
                     
                     //Load the tableview using the element array
-                    fillTable(tableName: GlobalVariables.segmentArray[indexPath.row])
-                    currentLoaded = GlobalVariables.segmentArray[indexPath.row]
+                    fillTable(segment: GlobalVariables.segObjArr[indexPath.row])
                     
                 }
                 
@@ -231,7 +218,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView == elementTable {
             elementTable.cellForRow(at: indexPath)?.accessoryType = .none
-            
             removeFromProduct(indexPath: indexPath)
             
         }
@@ -293,7 +279,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == productTable {
             if editingStyle == .delete {
                 productArray.remove(at: indexPath.row)
-                fillTable(tableName: currentLoaded)
+                fillTable(segment: currentSeg)
                 if productArray.count <= 17 {
                     productTable.isScrollEnabled = false
                 }

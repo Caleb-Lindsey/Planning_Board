@@ -37,7 +37,7 @@ class ResourceController : UIViewController, UITableViewDataSource, UITableViewD
  
     @IBAction func addButtonsPressed(_ sender: Any) {
         
-        resourceMenu.launchMemberView()
+        //resourceMenu.launchResourceView()
         
     }
     

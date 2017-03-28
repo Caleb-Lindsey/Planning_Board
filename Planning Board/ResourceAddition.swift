@@ -11,27 +11,19 @@ import UIKit
 class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     //Variables
-    var additionType = String()
+    var menuType = String()
     var tempArray = [String]()
+    var segmentObject = SegmentObject()
     let checkAnimation = PBAnimations()
     
     init(type: String) {
-        self.additionType = type
+        self.menuType = type
     }
-    
-    let blurView : UIVisualEffectView = {
-        
-        let blurEff = UIBlurEffect(style: .dark)
-        let blurV = UIVisualEffectView(effect: blurEff)
-        return blurV
-        
-    }()
     
     let addResourceView : UIView = {
         
         let rv = UIView()
-        rv.backgroundColor = UIColor.gray
-        rv.layer.cornerRadius = 10
+        rv.backgroundColor = UIColor.lightGray
         rv.layer.borderWidth = 2
         return rv
         
@@ -104,48 +96,34 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     
     
-    func launchMemberView() {
+    func launchResourceView() {
         
         if let window = UIApplication.shared.keyWindow {
             
-            //Setup BlurView
-            blurView.frame = window.frame
-            blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
-            blurView.alpha = 0
-            window.addSubview(blurView)
-            
+            //Setup ResourceView
             window.addSubview(addResourceView)
             let touch = UITapGestureRecognizer(target:self, action: #selector(resignResponder))
             addResourceView.addGestureRecognizer(touch)
-            
-            
-            let width : CGFloat = window.frame.width //- 200
-            let height : CGFloat = window.frame.height / 2
-            
-            addResourceView.frame = CGRect(x: window.center.x - (width / 2), y: window.frame.height , width: width , height: height)
-            addResourceView.layer.opacity = 0
+            let width : CGFloat = 360
+            let height : CGFloat = 600
+            addResourceView.frame = CGRect(x: width, y: 250 , width: width , height: height)
             
             //Setup for BoxLabel
-            addResourceView.addSubview(boxLabel)
             boxLabel.frame = CGRect(x: 0, y: 15, width: addResourceView.frame.width, height: 40)
             boxLabel.backgroundColor = UIColor.darkGray
             
             //Setup for Done Button
-            addResourceView.addSubview(addButton)
             let buttonWidth = 50
             let buttonHeight = 50
             addButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
             addButton.frame = CGRect(x: Int(addResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
             
             //Setup for Cancel
-            addResourceView.addSubview(cancelButton)
-            cancelButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
             let CanbuttonWidth = 60
             let CanbuttonHeight = 50
             cancelButton.frame = CGRect(x: 20, y: 8, width: CanbuttonWidth, height: CanbuttonHeight)
             
             //Setup for First Label
-            addResourceView.addSubview(firstTextBox)
             firstTextBox.frame = CGRect(x: addResourceView.frame.width / 2.5, y: 115, width: 200 , height: 30)
             firstTextBox.center.x = addResourceView.center.x
             firstTextBox.layer.cornerRadius = 10
@@ -154,13 +132,11 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             firstTextBox.leftViewMode = UITextFieldViewMode.always
             
             //Setup for Picture
-            addResourceView.addSubview(profilePic)
             let picWidth = addResourceView.frame.width / 4
             let picHeight = addResourceView.frame.width / 4
-            profilePic.frame = CGRect(x: 60, y: 75, width: picWidth, height: picHeight)
+            profilePic.frame = CGRect(x: 40, y: 75, width: picWidth, height: picHeight)
             profilePic.layer.masksToBounds = true
             profilePic.layer.cornerRadius = CGFloat(picWidth) / 2
-            
             
             //Setup for Last Name
             lastTextBox.frame = CGRect(x: addResourceView.frame.width / 2.5, y: 115 + 30 + 10, width: 200 , height: 30)
@@ -169,11 +145,9 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
             lastTextBox.leftView = paddingView2
             lastTextBox.leftViewMode = UITextFieldViewMode.always
-            addResourceView.addSubview(lastTextBox)
             
             //Setup for Segments Table
-            addResourceView.addSubview(resourceTable)
-            resourceTable.frame = CGRect(x: firstTextBox.frame.origin.x, y: 195, width: 250, height: 285)
+            resourceTable.frame = CGRect(x: profilePic.frame.origin.x - 12, y: profilePic.frame.origin.y + picWidth + 20, width: addResourceView.frame.width - 35, height: 385)
             resourceTable.layer.cornerRadius = 5
             resourceTable.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
             resourceTable.delegate = self
@@ -187,29 +161,64 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             window.addSubview(checkAnimation.checkImageView)
             checkAnimation.checkImageView.frame = CGRect(x: window.frame.width / 2 - 175, y: window.frame.height / 2 - 175, width: 350, height: 350)
             
-            if additionType == "Member" {
-                boxLabel.text = "New Member"
-                firstTextBox.placeholder = "First Name"
-                lastTextBox.placeholder = "Last Name"
-                profilePic.setImage(#imageLiteral(resourceName: "blank_profile"), for: .normal)
-            } else if additionType == "Segment" {
-                boxLabel.text = "New Segment"
-                firstTextBox.placeholder = "Segment Name"
-                lastTextBox.placeholder = "Add Element"
-                profilePic.setImage(#imageLiteral(resourceName: "firebackground"), for: .normal)
-                addResourceView.addSubview(elementButton)
+            
+            if menuType == "Segment" {
+                
+                segmentObject = GlobalVariables.segObjArr[0]
+                
+                addResourceView.addSubview(boxLabel)
+                boxLabel.text = GlobalVariables.segObjArr[0].name
+                addResourceView.addSubview(profilePic)
+                profilePic.setImage(GlobalVariables.segObjArr[0].iconImage, for: .normal)
+                addResourceView.addSubview(resourceTable)
+                
+                
             }
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                
-                self.blurView.alpha = 1
-                
-                self.addResourceView.frame = CGRect(x: window.center.x - (width / 2), y: window.center.y - (height / 2 + 30), width: width , height: height)
-                self.addResourceView.layer.opacity = 1
-                
-            }, completion: nil)
             
         }
+        
+        
+    }
+    
+    func slideSegment(segment : SegmentObject) {
+        
+        segmentObject = segment
+        
+        let width : CGFloat = 360
+        let height : CGFloat = 600
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.addResourceView.frame = CGRect(x: 24 , y: 250 , width: width , height: height)
+            
+        }, completion: { (finished: Bool) in
+            
+            //Change anything when view is hidden
+            self.boxLabel.text = segment.name
+            self.profilePic.setImage(segment.iconImage, for: .normal)
+            self.resourceTable.reloadData()
+            
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseIn, animations: {
+                
+                self.addResourceView.frame = CGRect(x: width + 24, y: 250 , width: width , height: height)
+                
+            }, completion: { (finished: Bool) in
+                
+                
+                UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+                    
+                    self.addResourceView.frame = CGRect(x: width, y: 250 , width: width , height: height)
+                    
+                }, completion: { (finished: Bool) in
+                    
+                    
+                    
+                })
+                
+            })
+            
+        })
         
     }
     
@@ -227,44 +236,20 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func addPressed() {
         
-        if additionType == "Segment" {
+        if menuType == "Segment" {
             if firstTextBox.text != "" && tempArray != [] {
                 
                 Datasource().uploadSegment(segmentName: firstTextBox.text!, elementArray: tempArray)
+                checkAnimation.playCheckGif()
                 
-                handleDismiss()
-                
+            } else {
+                print("Display Alert")
             }
-        } else if additionType == "Member" {
+        } else if menuType == "Member" {
             
             
             
         }
-    }
-    
-    func handleDismiss() {
-        if let window = UIApplication.shared.keyWindow {
-            
-            window.endEditing(true)
-            
-            let width : CGFloat = window.frame.width
-            let height : CGFloat = window.frame.height / 2
-            
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.blurView.alpha = 0
-                self.addResourceView.frame = CGRect(x: window.center.x - (width / 2), y: window.frame.height , width: width , height: height)
-            }, completion: { (finished: Bool) in
-                
-                self.checkAnimation.playCheckGif()
-            })
-            
-            firstTextBox.text = ""
-            lastTextBox.text = ""
-            tempArray.removeAll()
-            resourceTable.reloadData()
-            
-        }
-        
     }
     
     func resignResponder() {
@@ -282,25 +267,25 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = resourceTable.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        if additionType == "Member" {
+        if menuType == "Member" {
             cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
 
-        } else {
-            cell.textLabel?.text = tempArray[indexPath.row]
+        } else if menuType == "Segment" {
+            cell.textLabel?.text = segmentObject.elements[indexPath.row]
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if additionType == "Member" {
+        if menuType == "Member" {
             return GlobalVariables.segmentArray.count
         } else {
-            return tempArray.count
+            return segmentObject.elements.count
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if additionType == "Member" {
+        if menuType == "Member" {
             return "Which segments can they host?"
         } else {
             return "Elements"

@@ -32,5 +32,11 @@ class SegmentObject {
         self.duration = Duration
         
     }
+    init() {
+        self.name = ""
+        self.elements = [String]()
+        self.iconImage = UIImage()
+        self.duration = 0
+    }
     
 }

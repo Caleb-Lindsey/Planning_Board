@@ -29,6 +29,14 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
         return segTab
     }()
     
+    let addSegmentButton : UIButton = {
+       
+        let addSegBttn = UIButton()
+        addSegBttn.setImage(#imageLiteral(resourceName: "compose_button"), for: .normal)
+        return addSegBttn
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -63,11 +71,17 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
         if let window = UIApplication.shared.keyWindow {
             
             window.addSubview(segmentView)
-            segmentView.frame = CGRect(x: 0, y: 200, width: 360, height: window.frame.height - 200)
+            segmentView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.maxY)!, width: 360, height: window.frame.height - (navigationController?.navigationBar.frame.maxY)!)
+            segmentView.layer.borderWidth = 2
             
             segmentView.addSubview(segTable)
-            segTable.frame = CGRect(x: 0, y: 60, width: 360, height: segmentView.frame.height - 60)
-        }
+            segTable.frame = CGRect(x: 0, y: 75, width: 360, height: segmentView.frame.height - 75)
+            
+            segmentView.addSubview(addSegmentButton)
+            addSegmentButton.frame = CGRect(x: segmentView.frame.width - 15 - 30, y: (segmentView.frame.height - segTable.frame.height) / 2 - 15, width: 30, height: 30)
+            //addSegmentButton.addTarget(self, action: #selector(), for: .touchUpInside)
+            
+            }
         
     }
 
@@ -97,7 +111,9 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
         elementMenu.slideSegment(segment: GlobalVariables.segObjArr[indexPath.row])
+        
         
     }
     

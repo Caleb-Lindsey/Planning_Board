@@ -21,24 +21,32 @@ class PopMenuController : UIViewController, UIPopoverPresentationControllerDeleg
     
     //Variable
     var checkTimer = Timer()
-
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    var dimmerView : UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.serviceButton.isUserInteractionEnabled = false
-        self.segmentsButton.isUserInteractionEnabled = false
-        self.peopleButton.isUserInteractionEnabled = false
-        self.plusButton.isEnabled = false
+        dimmerView.backgroundColor = UIColor.black
+        dimmerView.layer.opacity = 0.5
+        dimmerView.frame = view.frame
+        view.addSubview(dimmerView)
         
         GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         // Pull from Firebase to fill Variables
         Datasource().fillData {
             
-            self.serviceButton.isUserInteractionEnabled = true
-            self.segmentsButton.isUserInteractionEnabled = true
-            self.peopleButton.isUserInteractionEnabled = true
-            self.plusButton.isEnabled = true
+            self.dimmerView.removeFromSuperview()
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             
         }
         

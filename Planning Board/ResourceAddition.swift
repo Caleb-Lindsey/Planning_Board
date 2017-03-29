@@ -15,6 +15,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     var tempArray = [String]()
     var segmentObject = SegmentObject()
     let checkAnimation = PBAnimations()
+    let width : CGFloat = 360
     
     init(type: String) {
         self.menuType = type
@@ -103,8 +104,8 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             window.addSubview(addResourceView)
             let touch = UITapGestureRecognizer(target:self, action: #selector(resignResponder))
             addResourceView.addGestureRecognizer(touch)
-            let width : CGFloat = 360
-            addResourceView.frame = CGRect(x: width, y: 260 , width: width , height: window.frame.height - 250)
+
+            addResourceView.frame = CGRect(x: width, y: 65 , width: window.frame.width - width , height: window.frame.height - 65)
             
             //Setup for BoxLabel
             boxLabel.frame = CGRect(x: 0, y: 15, width: addResourceView.frame.width, height: 40)
@@ -130,7 +131,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             //Setup for Picture
             let picWidth = addResourceView.frame.width / 4
             let picHeight = addResourceView.frame.width / 4
-            profilePic.frame = CGRect(x: 40, y: boxLabel.frame.maxY + 5, width: picWidth, height: picHeight)
+            profilePic.frame = CGRect(x: 40, y: boxLabel.frame.maxY + 25, width: picWidth, height: picHeight)
             profilePic.layer.masksToBounds = true
             profilePic.layer.cornerRadius = CGFloat(picWidth) / 2
             
@@ -143,7 +144,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             lastTextBox.leftViewMode = UITextFieldViewMode.always
             
             //Setup for Resource Table
-            resourceTable.frame = CGRect(x: profilePic.frame.origin.x - 12, y: profilePic.frame.origin.y + picWidth + 60, width: addResourceView.frame.width - 35, height: (addResourceView.frame.height / 4) * 2.7)
+            resourceTable.frame = CGRect(x: profilePic.frame.origin.x - 12, y: boxLabel.frame.maxY + picWidth * 2, width: addResourceView.frame.width - 35, height: (addResourceView.frame.height / 4) * 2.7)
             resourceTable.center.x = boxLabel.center.x
             resourceTable.layer.cornerRadius = 5
             resourceTable.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
@@ -187,12 +188,20 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         if self.boxLabel.text != segment.name {
             if let window = UIApplication.shared.keyWindow {
                 segmentObject = segment
-                
-                let width : CGFloat = 360
+                self.elementButton.layer.opacity = 0
                 
                 UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
                     
-                    self.addResourceView.frame = CGRect(x: 24 , y: 260 , width: width , height: window.frame.height - 250)
+                    self.addResourceView.frame.size.width = 0
+                    self.boxLabel.frame.size.width = 0
+                    self.profilePic.layer.opacity = 0
+                    self.profilePic.frame.origin.x = -40
+                    self.resourceTable.layer.opacity = 0
+                    self.resourceTable.frame.origin.x = -(self.resourceTable.frame.width)
+                    self.firstTextBox.layer.opacity = 0
+                    self.firstTextBox.frame.origin.x = -(self.resourceTable.frame.width - 40 - 10)
+                    self.elementButton.frame.origin.x = -50
+                    
                     
                 }, completion: { (finished: Bool) in
                     
@@ -203,14 +212,24 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                     
                     UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseIn, animations: {
                         
-                        self.addResourceView.frame = CGRect(x: width + 24, y: 260 , width: width , height: window.frame.height - 250)
+                        self.addResourceView.frame.size.width = window.frame.width - self.width
+                        self.boxLabel.frame.size.width = self.addResourceView.frame.width
+                        self.profilePic.layer.opacity = 1
+                        self.profilePic.frame.origin.x = 40
+                        self.resourceTable.layer.opacity = 1
+                        self.resourceTable.center.x = self.boxLabel.center.x
+                        self.firstTextBox.layer.opacity = 1
+                        self.firstTextBox.frame.origin.x = self.resourceTable.frame.origin.x
+                        self.elementButton.layer.opacity = 1
+                        self.elementButton.frame.origin.x = self.addResourceView.frame.width - 40 - 25
+
                         
                     }, completion: { (finished: Bool) in
                         
                         
                         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
                             
-                            self.addResourceView.frame = CGRect(x: width, y: 260 , width: width , height: window.frame.height - 250)
+                            
                             
                         }, completion: { (finished: Bool) in
                             

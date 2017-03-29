@@ -37,6 +37,17 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
         
     }()
     
+    let segmentLabel : UILabel = {
+       
+        let segLab = UILabel()
+        segLab.text = "Segments"
+        segLab.textColor = UIColor.black
+        segLab.font = UIFont(name: "Helvetica", size: 30)
+        segLab.textAlignment = .center
+        return segLab
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -79,6 +90,10 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
             
             segmentView.addSubview(addSegmentButton)
             addSegmentButton.frame = CGRect(x: segmentView.frame.width - 15 - 30, y: (segmentView.frame.height - segTable.frame.height) / 2 - 15, width: 30, height: 30)
+            
+            segmentView.addSubview(segmentLabel)
+            segmentLabel.frame = CGRect(x: 0, y: 15, width: segmentView.frame.width, height: 40)
+            
             //addSegmentButton.addTarget(self, action: #selector(), for: .touchUpInside)
             
             }

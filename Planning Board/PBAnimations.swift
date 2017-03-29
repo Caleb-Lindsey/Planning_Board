@@ -33,5 +33,6 @@ class PBAnimations {
         checkImageView.startAnimating()
         
     }
+
     
 }

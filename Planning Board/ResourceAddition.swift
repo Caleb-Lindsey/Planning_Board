@@ -15,6 +15,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     var tempArray = [String]()
     var segmentObject = SegmentObject()
     let checkAnimation = PBAnimations()
+    let dataSource = Datasource()
     let width : CGFloat = 360
     
     init(type: String) {
@@ -104,7 +105,6 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             window.addSubview(addResourceView)
             let touch = UITapGestureRecognizer(target:self, action: #selector(resignResponder))
             addResourceView.addGestureRecognizer(touch)
-
             addResourceView.frame = CGRect(x: width, y: 65 , width: window.frame.width - width , height: window.frame.height - 65)
             
             //Setup for BoxLabel
@@ -114,7 +114,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             //Setup for Done Button
             let buttonWidth = 50
             let buttonHeight = 50
-            addButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+            addButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
             addButton.frame = CGRect(x: Int(addResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
             
             //Setup for Cancel
@@ -186,10 +186,43 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     func slideSegment(segment : SegmentObject) {
         
         if self.boxLabel.text != segment.name {
-            if let window = UIApplication.shared.keyWindow {
-                segmentObject = segment
-                self.elementButton.layer.opacity = 0
+            
+            segmentObject = segment
+            self.elementButton.layer.opacity = 0
                 
+            animateMenu(type: "Segment")
+            
+        }
+    }
+    
+    func slideNewSegment() {
+        
+        // Slide out the menu with proper placements for buttons and labels to add a new segment
+        animateMenu(type: "New Segment")
+    }
+    
+    func elementButtonPressed() {
+        
+        if firstTextBox.text != "" {
+            
+            segmentObject.elements.append(firstTextBox.text!)
+            resourceTable.reloadData()
+            dataSource.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: firstTextBox.text!)
+            firstTextBox.text = ""
+            
+        } else {
+            print("Show Alert")
+        }
+        
+    }
+    
+    func animateMenu(type : String) {
+        
+        if let window = UIApplication.shared.keyWindow {
+
+            if type == "New Segment" {
+                
+            } else {
                 UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
                     
                     self.addResourceView.frame.size.width = 0
@@ -206,8 +239,8 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                 }, completion: { (finished: Bool) in
                     
                     //Change anything when view is hidden
-                    self.boxLabel.text = segment.name
-                    self.profilePic.setImage(segment.iconImage, for: .normal)
+                    self.boxLabel.text = self.segmentObject.name
+                    self.profilePic.setImage(self.segmentObject.iconImage, for: .normal)
                     self.resourceTable.reloadData()
                     
                     UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseIn, animations: {
@@ -222,20 +255,11 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                         self.firstTextBox.frame.origin.x = self.resourceTable.frame.origin.x
                         self.elementButton.layer.opacity = 1
                         self.elementButton.frame.origin.x = self.addResourceView.frame.width - 40 - 25
-
+                        
                         
                     }, completion: { (finished: Bool) in
                         
                         
-                        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-                            
-                            
-                            
-                        }, completion: { (finished: Bool) in
-                            
-                            
-                            
-                        })
                         
                     })
                     
@@ -244,19 +268,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func elementButtonPressed() {
-        
-        if lastTextBox.text != "" {
-            
-            tempArray.append(lastTextBox.text!)
-            lastTextBox.text = ""
-            resourceTable.reloadData()
-            
-        }
-        
-    }
-    
-    func addPressed() {
+    func donePressed() {
         
         if menuType == "Segment" {
             if firstTextBox.text != "" && tempArray != [] {

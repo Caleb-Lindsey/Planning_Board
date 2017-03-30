@@ -70,10 +70,9 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
         segTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
     
-    
-    @IBAction func newSegmentPressed(_ sender: Any) {
+    func newSegmentPressed() {
         
-        
+        elementMenu.slideNewSegment()
         
     }
     
@@ -90,11 +89,10 @@ class ManageSegmentsController : UIViewController, UITableViewDelegate, UITableV
             
             segmentView.addSubview(addSegmentButton)
             addSegmentButton.frame = CGRect(x: segmentView.frame.width - 15 - 30, y: (segmentView.frame.height - segTable.frame.height) / 2 - 15, width: 30, height: 30)
+            addSegmentButton.addTarget(self, action: #selector(newSegmentPressed), for: .touchUpInside)
             
             segmentView.addSubview(segmentLabel)
             segmentLabel.frame = CGRect(x: 0, y: 15, width: segmentView.frame.width, height: 40)
-            
-            //addSegmentButton.addTarget(self, action: #selector(), for: .touchUpInside)
             
             }
         

@@ -60,6 +60,13 @@ class Datasource {
         
     }
     
+    func addElement(row : Int,segment : SegmentObject ,newElement : String) {
+        
+        let post : [String : AnyObject] = ["element\(row)" : newElement as AnyObject]
+        databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segment.name).updateChildValues(post)
+        
+    }
+    
 }
 
 

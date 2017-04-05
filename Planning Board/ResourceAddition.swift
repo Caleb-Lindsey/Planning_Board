@@ -22,7 +22,9 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         self.menuType = type
     }
     
-    let addResourceView : UIView = {
+    
+    // Create features of the right menu
+    let rightResourceView : UIView = {
         
         let rv = UIView()
         rv.backgroundColor = UIColor.lightGray
@@ -95,27 +97,60 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         
     }()
     
+    // Create features of the left menu
+    let segmentView : UIView = {
+        let segView = UIView()
+        segView.backgroundColor = UIColor.lightGray
+        segView.layer.zPosition = 10
+        return segView
+    }()
     
+    let leftTable : UITableView = {
+        let segTab = UITableView()
+        segTab.layer.zPosition = 12
+        return segTab
+    }()
     
-    func launchResourceView() {
+    let addSegmentButton : UIButton = {
+        
+        let addSegBttn = UIButton()
+        addSegBttn.setImage(#imageLiteral(resourceName: "compose_button"), for: .normal)
+        return addSegBttn
+        
+    }()
+    
+    let segmentLabel : UILabel = {
+        
+        let segLab = UILabel()
+        segLab.text = "Segments"
+        segLab.textColor = UIColor.black
+        segLab.font = UIFont(name: "Helvetica", size: 30)
+        segLab.textAlignment = .center
+        return segLab
+        
+    }()
+    
+    // Place the features of the right menu
+    func createMenus() {
         
         if let window = UIApplication.shared.keyWindow {
             
+            //SETUP FOR RIGHT MENU
             //Setup ResourceView
-            window.addSubview(addResourceView)
+            window.addSubview(rightResourceView)
             let touch = UITapGestureRecognizer(target:self, action: #selector(resignResponder))
-            addResourceView.addGestureRecognizer(touch)
-            addResourceView.frame = CGRect(x: width, y: 65 , width: window.frame.width - width , height: window.frame.height - 65)
+            rightResourceView.addGestureRecognizer(touch)
+            rightResourceView.frame = CGRect(x: width, y: 65 , width: window.frame.width - width , height: window.frame.height - 65)
             
             //Setup for BoxLabel
-            boxLabel.frame = CGRect(x: 0, y: 15, width: addResourceView.frame.width, height: 40)
+            boxLabel.frame = CGRect(x: 0, y: 15, width: rightResourceView.frame.width, height: 40)
             boxLabel.backgroundColor = UIColor.darkGray
             
             //Setup for Done Button
             let buttonWidth = 50
             let buttonHeight = 50
             addButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
-            addButton.frame = CGRect(x: Int(addResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
+            addButton.frame = CGRect(x: Int(rightResourceView.frame.width) - buttonWidth - 20, y: 8, width: buttonWidth, height: buttonHeight)
             
             //Setup for Cancel
             let CanbuttonWidth = 60
@@ -129,22 +164,22 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             firstTextBox.leftViewMode = UITextFieldViewMode.always
             
             //Setup for Picture
-            let picWidth = addResourceView.frame.width / 4
-            let picHeight = addResourceView.frame.width / 4
+            let picWidth = rightResourceView.frame.width / 4
+            let picHeight = rightResourceView.frame.width / 4
             profilePic.frame = CGRect(x: 40, y: boxLabel.frame.maxY + 25, width: picWidth, height: picHeight)
             profilePic.layer.masksToBounds = true
             profilePic.layer.cornerRadius = CGFloat(picWidth) / 2
             
-            //Setup for Last Name
-            lastTextBox.frame = CGRect(x: addResourceView.frame.width / 2.5, y: 115 + 30 + 10, width: 200 , height: 30)
-            lastTextBox.center.x = addResourceView.center.x
+            //Setup for Second Text Box
+            lastTextBox.frame = CGRect(x: rightResourceView.frame.width / 2.5, y: 115 + 30 + 10, width: 200 , height: 30)
+            lastTextBox.center.x = rightResourceView.center.x
             lastTextBox.layer.cornerRadius = 10
             let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
             lastTextBox.leftView = paddingView2
             lastTextBox.leftViewMode = UITextFieldViewMode.always
             
             //Setup for Resource Table
-            resourceTable.frame = CGRect(x: profilePic.frame.origin.x - 12, y: boxLabel.frame.maxY + picWidth * 2, width: addResourceView.frame.width - 35, height: (addResourceView.frame.height / 4) * 2.7)
+            resourceTable.frame = CGRect(x: profilePic.frame.origin.x - 12, y: boxLabel.frame.maxY + picWidth * 2, width: rightResourceView.frame.width - 35, height: (rightResourceView.frame.height / 4) * 2.7)
             resourceTable.center.x = boxLabel.center.x
             resourceTable.layer.cornerRadius = 5
             resourceTable.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
@@ -152,9 +187,30 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             resourceTable.dataSource = self
             
             //Setup for Element Button
-            elementButton.frame = CGRect(x: addResourceView.frame.width - 40 - 25, y: resourceTable.frame.origin.y - 40 - 5, width: 40, height: 40)
+            elementButton.frame = CGRect(x: rightResourceView.frame.width - 40 - 25, y: resourceTable.frame.origin.y - 40 - 5, width: 40, height: 40)
             elementButton.addTarget(self, action: #selector(elementButtonPressed), for: .touchUpInside)
             
+            //SETUP FOR LEFT MENU
+            //Setup for leftTable
+            leftTable.register(UITableViewCell.self, forCellReuseIdentifier: "leftTableCell")
+            leftTable.delegate = self
+            leftTable.dataSource = self
+            
+            window.addSubview(segmentView)
+            segmentView.frame = CGRect(x: 0, y: rightResourceView.frame.origin.y, width: 360, height: window.frame.height - rightResourceView.frame.origin.y)
+            segmentView.layer.borderWidth = 2
+            
+            segmentView.addSubview(leftTable)
+            leftTable.frame = CGRect(x: 0, y: 75, width: 360, height: segmentView.frame.height - 75)
+            
+            segmentView.addSubview(addSegmentButton)
+            addSegmentButton.frame = CGRect(x: segmentView.frame.width - 15 - 30, y: (segmentView.frame.height - leftTable.frame.height) / 2 - 15, width: 30, height: 30)
+            
+            segmentView.addSubview(segmentLabel)
+            segmentLabel.frame = CGRect(x: 0, y: 15, width: segmentView.frame.width, height: 40)
+            
+            
+            //ADDITIONAL SETUP
             //Setup for Check Gif
             window.addSubview(checkAnimation.checkImageView)
             checkAnimation.checkImageView.frame = CGRect(x: window.frame.width / 2 - 175, y: window.frame.height / 2 - 175, width: 350, height: 350)
@@ -164,13 +220,13 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                 
                 segmentObject = GlobalVariables.segObjArr[0]
                 
-                addResourceView.addSubview(boxLabel)
+                rightResourceView.addSubview(boxLabel)
                 boxLabel.text = GlobalVariables.segObjArr[0].name
-                addResourceView.addSubview(profilePic)
+                rightResourceView.addSubview(profilePic)
                 profilePic.setImage(GlobalVariables.segObjArr[0].iconImage, for: .normal)
-                addResourceView.addSubview(resourceTable)
-                addResourceView.addSubview(elementButton)
-                addResourceView.addSubview(firstTextBox)
+                rightResourceView.addSubview(resourceTable)
+                rightResourceView.addSubview(elementButton)
+                rightResourceView.addSubview(firstTextBox)
                 firstTextBox.frame = CGRect(x: resourceTable.frame.origin.x, y: resourceTable.frame.origin.y - 40, width: resourceTable.frame.width - 40 - 10 , height: 30)
                 firstTextBox.placeholder = "Add New Element"
                 
@@ -188,8 +244,6 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
         if self.boxLabel.text != segment.name {
             
             segmentObject = segment
-            self.elementButton.layer.opacity = 0
-                
             animateMenu(type: "Segment")
             
         }
@@ -223,9 +277,12 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             if type == "New Segment" {
                 
             } else {
+                
+                self.elementButton.layer.opacity = 0
+                
                 UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
                     
-                    self.addResourceView.frame.size.width = 0
+                    self.rightResourceView.frame.size.width = 0
                     self.boxLabel.frame.size.width = 0
                     self.profilePic.layer.opacity = 0
                     self.profilePic.frame.origin.x = -40
@@ -245,8 +302,8 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                     
                     UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseIn, animations: {
                         
-                        self.addResourceView.frame.size.width = window.frame.width - self.width
-                        self.boxLabel.frame.size.width = self.addResourceView.frame.width
+                        self.rightResourceView.frame.size.width = window.frame.width - self.width
+                        self.boxLabel.frame.size.width = self.rightResourceView.frame.width
                         self.profilePic.layer.opacity = 1
                         self.profilePic.frame.origin.x = 40
                         self.resourceTable.layer.opacity = 1
@@ -254,7 +311,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
                         self.firstTextBox.layer.opacity = 1
                         self.firstTextBox.frame.origin.x = self.resourceTable.frame.origin.x
                         self.elementButton.layer.opacity = 1
-                        self.elementButton.frame.origin.x = self.addResourceView.frame.width - 40 - 25
+                        self.elementButton.frame.origin.x = self.rightResourceView.frame.width - 40 - 25
                         
                         
                     }, completion: { (finished: Bool) in
@@ -300,51 +357,96 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = resourceTable.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        if menuType == "Member" {
-            cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
+        
+        if tableView == resourceTable {
+            let cell = resourceTable.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+            if menuType == "Member" {
+                cell.textLabel?.text = GlobalVariables.segmentArray[indexPath.row]
 
-        } else if menuType == "Segment" {
-            cell.textLabel?.text = segmentObject.elements[indexPath.row]
+            } else if menuType == "Segment" {
+                cell.textLabel?.text = segmentObject.elements[indexPath.row]
+            }
+            return cell
+        } else {
+            
+            let cell = leftTable.dequeueReusableCell(withIdentifier: "leftTableCell", for: indexPath)
+            cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
+            return cell
+            
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if menuType == "Member" {
-            return GlobalVariables.segmentArray.count
-        } else {
+        
+        if tableView == resourceTable {
             return segmentObject.elements.count
+        } else {
+            return GlobalVariables.segObjArr.count
         }
+        
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if menuType == "Member" {
-            return "Which segments can they host?"
-        } else {
-            return "Elements"
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if tableView == leftTable {
+            slideSegment(segment: GlobalVariables.segObjArr[indexPath.row])
         }
+        
+    }
+
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if tableView == resourceTable {
+            if menuType == "Segment" {
+                return "Elements"
+            } else {
+                return "Which segments can they host?"
+            }
+        } else {
+            return nil
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let header = view as? UITableViewHeaderFooterView {
-            
-            header.textLabel?.font = UIFont(name: "Helvetica", size: 14)
-            header.textLabel?.textAlignment = .center
+        
+        if tableView == resourceTable {
+            if let header = view as? UITableViewHeaderFooterView {
+                
+                header.textLabel?.font = UIFont(name: "Helvetica", size: 14)
+                header.textLabel?.textAlignment = .center
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tempArray.remove(at: indexPath.row)
-            resourceTable.reloadData()
+        
+        if tableView == resourceTable {
+            if editingStyle == .delete {
+                tempArray.remove(at: indexPath.row)
+                resourceTable.reloadData()
+            }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .delete
+        
+        if tableView == resourceTable {
+            return .delete
+        } else {
+            return .none
+        }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == resourceTable {
+            return 50
+        } else {
+            return 100
+        }
+    }
     
 }
 

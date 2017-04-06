@@ -24,6 +24,11 @@
 		2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */; };
 		2E3011AB1E1C205F0067DFA8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */; };
 		2E341ACC1E230A7500DB924A /* SettingsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */; };
+		2E3D15E31E96DDEF003AD783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15E21E96DDEF003AD783 /* AppDelegate.swift */; };
+		2E3D15E51E96DDEF003AD783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D15E41E96DDEF003AD783 /* Assets.xcassets */; };
+		2E3D15E81E96DDEF003AD783 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D15E61E96DDEF003AD783 /* MainMenu.xib */; };
+		2E3D15F31E96DDEF003AD783 /* Planning_Board_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15F21E96DDEF003AD783 /* Planning_Board_MacTests.swift */; };
+		2E3D15FE1E96DDEF003AD783 /* Planning_Board_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */; };
 		2E6166261E52BBA5009138D8 /* ResourceAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6166251E52BBA5009138D8 /* ResourceAddition.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
@@ -55,6 +60,20 @@
 			remoteGlobalIDString = 2E0FCD611E16367400C8F1E3;
 			remoteInfo = "Planning Board";
 		};
+		2E3D15EF1E96DDEF003AD783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E0FCD5A1E16367400C8F1E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E3D15DF1E96DDEF003AD783;
+			remoteInfo = "Planning Board Mac";
+		};
+		2E3D15FA1E96DDEF003AD783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E0FCD5A1E16367400C8F1E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E3D15DF1E96DDEF003AD783;
+			remoteInfo = "Planning Board Mac";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +102,17 @@
 		2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementSetupController.swift; sourceTree = "<group>"; };
 		2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2E341ACB1E230A7500DB924A /* SettingsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuController.swift; sourceTree = "<group>"; };
+		2E3D15E01E96DDEF003AD783 /* Planning Board Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planning Board Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E3D15E21E96DDEF003AD783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2E3D15E41E96DDEF003AD783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E3D15E71E96DDEF003AD783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2E3D15E91E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E3D15EE1E96DDEF003AD783 /* Planning Board MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning Board MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E3D15F21E96DDEF003AD783 /* Planning_Board_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_Board_MacTests.swift; sourceTree = "<group>"; };
+		2E3D15F41E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning Board MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_Board_MacUITests.swift; sourceTree = "<group>"; };
+		2E3D15FF1E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E6166251E52BBA5009138D8 /* ResourceAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceAddition.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
@@ -131,6 +161,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2E3D15DD1E96DDEF003AD783 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15EB1E96DDEF003AD783 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15F61E96DDEF003AD783 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -150,6 +201,9 @@
 				2E0FCD641E16367400C8F1E3 /* Planning Board */,
 				2E0FCD7C1E16367400C8F1E3 /* Planning BoardTests */,
 				2E0FCD871E16367400C8F1E3 /* Planning BoardUITests */,
+				2E3D15E11E96DDEF003AD783 /* Planning Board Mac */,
+				2E3D15F11E96DDEF003AD783 /* Planning Board MacTests */,
+				2E3D15FC1E96DDEF003AD783 /* Planning Board MacUITests */,
 				2E0FCD631E16367400C8F1E3 /* Products */,
 				F37976C29C02219586CEB06E /* Pods */,
 				18ECF417663948AF5E02501B /* Frameworks */,
@@ -162,6 +216,9 @@
 				2E0FCD621E16367400C8F1E3 /* Planning Board.app */,
 				2E0FCD791E16367400C8F1E3 /* Planning BoardTests.xctest */,
 				2E0FCD841E16367400C8F1E3 /* Planning BoardUITests.xctest */,
+				2E3D15E01E96DDEF003AD783 /* Planning Board Mac.app */,
+				2E3D15EE1E96DDEF003AD783 /* Planning Board MacTests.xctest */,
+				2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +278,35 @@
 				2E1D7E661E4FF73E00A648C3 /* ResourceController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2E3D15E11E96DDEF003AD783 /* Planning Board Mac */ = {
+			isa = PBXGroup;
+			children = (
+				2E3D15E21E96DDEF003AD783 /* AppDelegate.swift */,
+				2E3D15E41E96DDEF003AD783 /* Assets.xcassets */,
+				2E3D15E61E96DDEF003AD783 /* MainMenu.xib */,
+				2E3D15E91E96DDEF003AD783 /* Info.plist */,
+			);
+			path = "Planning Board Mac";
+			sourceTree = "<group>";
+		};
+		2E3D15F11E96DDEF003AD783 /* Planning Board MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E3D15F21E96DDEF003AD783 /* Planning_Board_MacTests.swift */,
+				2E3D15F41E96DDEF003AD783 /* Info.plist */,
+			);
+			path = "Planning Board MacTests";
+			sourceTree = "<group>";
+		};
+		2E3D15FC1E96DDEF003AD783 /* Planning Board MacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */,
+				2E3D15FF1E96DDEF003AD783 /* Info.plist */,
+			);
+			path = "Planning Board MacUITests";
 			sourceTree = "<group>";
 		};
 		2E7EA1DD1E4FE1F200911AD7 /* Helpers */ = {
@@ -324,6 +410,59 @@
 			productReference = 2E0FCD841E16367400C8F1E3 /* Planning BoardUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E3D16061E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board Mac" */;
+			buildPhases = (
+				2E3D15DC1E96DDEF003AD783 /* Sources */,
+				2E3D15DD1E96DDEF003AD783 /* Frameworks */,
+				2E3D15DE1E96DDEF003AD783 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Planning Board Mac";
+			productName = "Planning Board Mac";
+			productReference = 2E3D15E01E96DDEF003AD783 /* Planning Board Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2E3D15ED1E96DDEF003AD783 /* Planning Board MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E3D16071E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacTests" */;
+			buildPhases = (
+				2E3D15EA1E96DDEF003AD783 /* Sources */,
+				2E3D15EB1E96DDEF003AD783 /* Frameworks */,
+				2E3D15EC1E96DDEF003AD783 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E3D15F01E96DDEF003AD783 /* PBXTargetDependency */,
+			);
+			name = "Planning Board MacTests";
+			productName = "Planning Board MacTests";
+			productReference = 2E3D15EE1E96DDEF003AD783 /* Planning Board MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2E3D15F81E96DDEF003AD783 /* Planning Board MacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E3D16081E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacUITests" */;
+			buildPhases = (
+				2E3D15F51E96DDEF003AD783 /* Sources */,
+				2E3D15F61E96DDEF003AD783 /* Frameworks */,
+				2E3D15F71E96DDEF003AD783 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E3D15FB1E96DDEF003AD783 /* PBXTargetDependency */,
+			);
+			name = "Planning Board MacUITests";
+			productName = "Planning Board MacUITests";
+			productReference = 2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -357,6 +496,23 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2E0FCD611E16367400C8F1E3;
 					};
+					2E3D15DF1E96DDEF003AD783 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = WC4V23B6MJ;
+						ProvisioningStyle = Automatic;
+					};
+					2E3D15ED1E96DDEF003AD783 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = WC4V23B6MJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2E3D15DF1E96DDEF003AD783;
+					};
+					2E3D15F81E96DDEF003AD783 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = WC4V23B6MJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2E3D15DF1E96DDEF003AD783;
+					};
 				};
 			};
 			buildConfigurationList = 2E0FCD5D1E16367400C8F1E3 /* Build configuration list for PBXProject "Planning Board" */;
@@ -375,6 +531,9 @@
 				2E0FCD611E16367400C8F1E3 /* Planning Board */,
 				2E0FCD781E16367400C8F1E3 /* Planning BoardTests */,
 				2E0FCD831E16367400C8F1E3 /* Planning BoardUITests */,
+				2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */,
+				2E3D15ED1E96DDEF003AD783 /* Planning Board MacTests */,
+				2E3D15F81E96DDEF003AD783 /* Planning Board MacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -401,6 +560,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2E0FCD821E16367400C8F1E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15DE1E96DDEF003AD783 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E3D15E51E96DDEF003AD783 /* Assets.xcassets in Resources */,
+				2E3D15E81E96DDEF003AD783 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15EC1E96DDEF003AD783 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15F71E96DDEF003AD783 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -591,6 +773,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2E3D15DC1E96DDEF003AD783 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E3D15E31E96DDEF003AD783 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15EA1E96DDEF003AD783 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E3D15F31E96DDEF003AD783 /* Planning_Board_MacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E3D15F51E96DDEF003AD783 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E3D15FE1E96DDEF003AD783 /* Planning_Board_MacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -603,6 +809,16 @@
 			isa = PBXTargetDependency;
 			target = 2E0FCD611E16367400C8F1E3 /* Planning Board */;
 			targetProxy = 2E0FCD851E16367400C8F1E3 /* PBXContainerItemProxy */;
+		};
+		2E3D15F01E96DDEF003AD783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */;
+			targetProxy = 2E3D15EF1E96DDEF003AD783 /* PBXContainerItemProxy */;
+		};
+		2E3D15FB1E96DDEF003AD783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */;
+			targetProxy = 2E3D15FA1E96DDEF003AD783 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -621,6 +837,14 @@
 				2E0FCD721E16367400C8F1E3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2E3D15E61E96DDEF003AD783 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E3D15E71E96DDEF003AD783 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -818,6 +1042,114 @@
 			};
 			name = Release;
 		};
+		2E3D16001E96DDEF003AD783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WC4V23B6MJ;
+				INFOPLIST_FILE = "Planning Board Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		2E3D16011E96DDEF003AD783 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WC4V23B6MJ;
+				INFOPLIST_FILE = "Planning Board Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2E3D16021E96DDEF003AD783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WC4V23B6MJ;
+				INFOPLIST_FILE = "Planning Board MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planning Board Mac.app/Contents/MacOS/Planning Board Mac";
+			};
+			name = Debug;
+		};
+		2E3D16031E96DDEF003AD783 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WC4V23B6MJ;
+				INFOPLIST_FILE = "Planning Board MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planning Board Mac.app/Contents/MacOS/Planning Board Mac";
+			};
+			name = Release;
+		};
+		2E3D16041E96DDEF003AD783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WC4V23B6MJ;
+				INFOPLIST_FILE = "Planning Board MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Planning Board Mac";
+			};
+			name = Debug;
+		};
+		2E3D16051E96DDEF003AD783 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WC4V23B6MJ;
+				INFOPLIST_FILE = "Planning Board MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Planning Board Mac";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -856,6 +1188,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2E3D16061E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E3D16001E96DDEF003AD783 /* Debug */,
+				2E3D16011E96DDEF003AD783 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2E3D16071E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E3D16021E96DDEF003AD783 /* Debug */,
+				2E3D16031E96DDEF003AD783 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2E3D16081E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E3D16041E96DDEF003AD783 /* Debug */,
+				2E3D16051E96DDEF003AD783 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

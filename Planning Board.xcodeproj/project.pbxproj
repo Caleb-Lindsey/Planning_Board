@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E837CCF55AE513AEE85343E /* Pods_Planning_Board.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F6F1C7B63B79D24FF25344 /* Pods_Planning_Board.framework */; };
+		2E06563B1E987EFF00D22150 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E06563A1E987EFF00D22150 /* SignInController.swift */; };
 		2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */; };
 		2E0FCD681E16367400C8F1E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FCD671E16367400C8F1E3 /* ViewController.swift */; };
 		2E0FCD6B1E16367400C8F1E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FCD691E16367400C8F1E3 /* Main.storyboard */; };
@@ -29,8 +30,10 @@
 		2E3D15E81E96DDEF003AD783 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D15E61E96DDEF003AD783 /* MainMenu.xib */; };
 		2E3D15F31E96DDEF003AD783 /* Planning_Board_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15F21E96DDEF003AD783 /* Planning_Board_MacTests.swift */; };
 		2E3D15FE1E96DDEF003AD783 /* Planning_Board_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */; };
+		2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E44E1E01E97222400C70049 /* SignInViewController.swift */; };
 		2E6166261E52BBA5009138D8 /* ResourceAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6166251E52BBA5009138D8 /* ResourceAddition.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
+		2E889BC11EBEE46300F2C85E /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* LandingView.swift */; };
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
 		2E943D571E26C5150059C689 /* TableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E943D551E26C5150059C689 /* TableViewCell1.xib */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
@@ -79,6 +82,7 @@
 /* Begin PBXFileReference section */
 		097D033BA8A1428D60140E0D /* Pods-Planning Board.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning Board.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Planning Board/Pods-Planning Board.debug.xcconfig"; sourceTree = "<group>"; };
 		0D75B45D891E1E1D216E0A68 /* Pods-Planning Board.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning Board.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planning Board/Pods-Planning Board.release.xcconfig"; sourceTree = "<group>"; };
+		2E06563A1E987EFF00D22150 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2E0FCD621E16367400C8F1E3 /* Planning Board.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planning Board.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E0FCD671E16367400C8F1E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,8 +117,10 @@
 		2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning Board MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_Board_MacUITests.swift; sourceTree = "<group>"; };
 		2E3D15FF1E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E44E1E01E97222400C70049 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2E6166251E52BBA5009138D8 /* ResourceAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceAddition.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		2E889BC01EBEE46300F2C85E /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
 		2E943D551E26C5150059C689 /* TableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell1.xib; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 			children = (
 				2E0FCD691E16367400C8F1E3 /* Main.storyboard */,
 				2E0FCD671E16367400C8F1E3 /* ViewController.swift */,
+				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
+				2E889BC01EBEE46300F2C85E /* LandingView.swift */,
 				2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */,
 				2EFC56F41E1D841800BF9FB9 /* DivisionSetupController.swift */,
 				2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */,
@@ -287,6 +295,7 @@
 				2E3D15E41E96DDEF003AD783 /* Assets.xcassets */,
 				2E3D15E61E96DDEF003AD783 /* MainMenu.xib */,
 				2E3D15E91E96DDEF003AD783 /* Info.plist */,
+				2E06563A1E987EFF00D22150 /* SignInController.swift */,
 			);
 			path = "Planning Board Mac";
 			sourceTree = "<group>";
@@ -748,11 +757,13 @@
 				2EE223681E22BE100054F407 /* SWRevealViewController.m in Sources */,
 				2EFC56F51E1D841800BF9FB9 /* DivisionSetupController.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,
+				2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */,
 				2E1153AB1E7CE255000A933B /* ManageSegmentsController.swift in Sources */,
 				2ED4F8001E25E1BA002FEC45 /* PopMenuController.swift in Sources */,
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
 				2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */,
 				2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */,
+				2E889BC11EBEE46300F2C85E /* LandingView.swift in Sources */,
 				2E3011AB1E1C205F0067DFA8 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -778,6 +789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E3D15E31E96DDEF003AD783 /* AppDelegate.swift in Sources */,
+				2E06563B1E987EFF00D22150 /* SignInController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1196,6 +1208,7 @@
 				2E3D16011E96DDEF003AD783 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2E3D16071E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacTests" */ = {
 			isa = XCConfigurationList;
@@ -1204,6 +1217,7 @@
 				2E3D16031E96DDEF003AD783 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2E3D16081E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacUITests" */ = {
 			isa = XCConfigurationList;
@@ -1212,6 +1226,7 @@
 				2E3D16051E96DDEF003AD783 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

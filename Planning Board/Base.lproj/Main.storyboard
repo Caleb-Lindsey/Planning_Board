@@ -42,22 +42,12 @@
                                     <segue destination="O2x-fO-VPw" kind="show" id="Z5v-Zb-FPR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90Z-4j-Lqd">
-                                <rect key="frame" x="311" y="545" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="ZSn-6y-HOy" kind="show" identifier="mySegueID" id="y4N-IW-Mu7"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-9P-d1S">
                                 <rect key="frame" x="265" y="417" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5FR-BT-vSf"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hIh-Eb-qp3">
                                 <rect key="frame" x="265" y="460" width="254" height="30"/>
@@ -65,9 +55,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="BFN-CA-gf7"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1k-qr-jaw">
                                 <rect key="frame" x="178" y="465" width="79" height="21"/>
@@ -129,9 +116,6 @@
                                 <rect key="frame" x="339" y="544" width="90" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <action selector="signInPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WRI-3t-eBl"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTT-Gx-GSH">
                                 <rect key="frame" x="330" y="511" width="109" height="17"/>
@@ -159,7 +143,6 @@
                     <navigationItem key="navigationItem" id="22G-wO-VOr"/>
                     <connections>
                         <outlet property="signInButton" destination="cj5-7L-Dx4" id="twm-9f-fRm"/>
-                        <outlet property="signInWarning" destination="hK3-KC-bUZ" id="1Qf-xn-P1e"/>
                         <outlet property="userName" destination="TO1-9P-d1S" id="Vjh-Ho-gmo"/>
                         <outlet property="userPassword" destination="hIh-Eb-qp3" id="NlL-5H-v2X"/>
                     </connections>
@@ -1303,7 +1286,6 @@
         <image name="gray" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="y4N-IW-Mu7"/>
         <segue reference="dUR-JZ-Pek"/>
         <segue reference="XC4-Ud-umu"/>
     </inferredMetricsTieBreakers>

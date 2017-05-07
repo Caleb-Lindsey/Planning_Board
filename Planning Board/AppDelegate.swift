@@ -15,20 +15,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //Firebase
         FIRApp.configure()
+        
+        // Ignore the Storyboard
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        let homeController = SignInViewController()
+        
+        window?.rootViewController = UINavigationController(rootViewController: homeController)
+        
         // Override point for customization after application launch.
         var userLogginStatus = Bool()
 
-        
         if UserDefaults.standard.value(forKey: "logged_in") != nil {
             userLogginStatus = UserDefaults.standard.value(forKey: "logged_in") as! Bool
         }
-        
+
         if (userLogginStatus) {
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signedInView")
+
+            let landingView : UIViewController = LandingView()
+            self.window?.rootViewController?.present(landingView, animated: true, completion: {})
             print("Logged in as \(UserDefaults.standard.value(forKey: "username")!)")
+            
         } else {
             print("Not Logged In")
         }

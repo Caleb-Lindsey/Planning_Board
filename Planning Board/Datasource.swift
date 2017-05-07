@@ -13,7 +13,8 @@ struct GlobalVariables {
     static var userName = String()
     static var segmentArray = [String]()
     static var popoverChoice = String()
-    //static var resourceDict = [String : [String]]()
+    static var greenColor = UIColor(colorLiteralRed: 75/255.0, green: 118/255.0, blue: 35/255.0, alpha: 1)
+    static var grayColor = UIColor(colorLiteralRed: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var segObjArr = [SegmentObject]()
 }
 

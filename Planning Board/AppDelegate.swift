@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if (userLogginStatus) {
 
-            let landingView : UIViewController = LandingView()
+            let landingView : UIViewController = CustomTabBar()
             self.window?.rootViewController?.present(landingView, animated: true, completion: {})
             print("Logged in as \(UserDefaults.standard.value(forKey: "username")!)")
             

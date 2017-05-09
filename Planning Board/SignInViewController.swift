@@ -53,6 +53,13 @@ class SignInViewController : UIViewController {
         return warning
     }()
     
+    let signUpBar : UIButton = {
+        let button = UIButton()
+        button.setTitle("Don't have an account? | Sign up", for: .normal)
+        button.backgroundColor = GlobalVariables.greenColor
+        return button
+    }()
+    
     //Variables
     var userEmail = String()
     
@@ -106,6 +113,10 @@ class SignInViewController : UIViewController {
             signInWarning.center.x = window.center.x
             view.addSubview(signInWarning)
             
+            //Place signup bar
+            signUpBar.frame = CGRect(x: 0, y: window.frame.maxY - 60, width: window.frame.width, height: 60)
+            view.addSubview(signUpBar)
+            
         }
         
     }
@@ -138,8 +149,9 @@ class SignInViewController : UIViewController {
                 UserDefaults.standard.set(true, forKey: "logged_in")
                 UserDefaults.standard.synchronize()
                 
-                let landingView : UIViewController = LandingView()
+                let landingView : UIViewController = CustomTabBar()
                 self.navigationController?.pushViewController(landingView, animated: true)
+
                 
             }
             
@@ -176,10 +188,6 @@ class SignInViewController : UIViewController {
             signInButton.isUserInteractionEnabled = true
         }
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

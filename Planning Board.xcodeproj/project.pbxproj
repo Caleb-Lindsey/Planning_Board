@@ -39,6 +39,10 @@
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
 		2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB821E873D3C0039B0EE /* PBAnimations.swift */; };
 		2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB861E875CF00039B0EE /* SegmentObject.swift */; };
+		2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */; };
+		2EAA78741EC17B9E00E4102D /* SegmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78731EC17B9E00E4102D /* SegmentsView.swift */; };
+		2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78751EC17DEE00E4102D /* PeopleView.swift */; };
+		2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78771EC1849C00E4102D /* PBViewController.swift */; };
 		2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB88CF81E858639001F85C2 /* MemberObject.swift */; };
 		2ED4F8001E25E1BA002FEC45 /* PopMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED4F7FF1E25E1BA002FEC45 /* PopMenuController.swift */; };
 		2ED57CE71E25D7D5005763FC /* PopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED57CE61E25D7D5005763FC /* PopOverController.swift */; };
@@ -126,6 +130,10 @@
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
 		2E99BB821E873D3C0039B0EE /* PBAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBAnimations.swift; sourceTree = "<group>"; };
 		2E99BB861E875CF00039B0EE /* SegmentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentObject.swift; sourceTree = "<group>"; };
+		2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		2EAA78731EC17B9E00E4102D /* SegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsView.swift; sourceTree = "<group>"; };
+		2EAA78751EC17DEE00E4102D /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
+		2EAA78771EC1849C00E4102D /* PBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBViewController.swift; sourceTree = "<group>"; };
 		2EB88CF81E858639001F85C2 /* MemberObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberObject.swift; sourceTree = "<group>"; };
 		2ED4F7FF1E25E1BA002FEC45 /* PopMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopMenuController.swift; sourceTree = "<group>"; };
 		2ED57CE61E25D7D5005763FC /* PopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverController.swift; sourceTree = "<group>"; };
@@ -271,10 +279,9 @@
 		2E1F75AD1E4CFD7800DEE534 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2EAA78701EC018E300E4102D /* Revised */,
 				2E0FCD691E16367400C8F1E3 /* Main.storyboard */,
 				2E0FCD671E16367400C8F1E3 /* ViewController.swift */,
-				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
-				2E889BC01EBEE46300F2C85E /* LandingView.swift */,
 				2E3011AA1E1C205F0067DFA8 /* SignUpController.swift */,
 				2EFC56F41E1D841800BF9FB9 /* DivisionSetupController.swift */,
 				2E2DF69E1E1EB26F00093C48 /* ElementSetupController.swift */,
@@ -321,13 +328,26 @@
 		2E7EA1DD1E4FE1F200911AD7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2EAA78771EC1849C00E4102D /* PBViewController.swift */,
+				2E99BB821E873D3C0039B0EE /* PBAnimations.swift */,
 				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
 				2E6166251E52BBA5009138D8 /* ResourceAddition.swift */,
-				2E99BB821E873D3C0039B0EE /* PBAnimations.swift */,
 				2EB88CF81E858639001F85C2 /* MemberObject.swift */,
 				2E99BB861E875CF00039B0EE /* SegmentObject.swift */,
+				2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		2EAA78701EC018E300E4102D /* Revised */ = {
+			isa = PBXGroup;
+			children = (
+				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
+				2E889BC01EBEE46300F2C85E /* LandingView.swift */,
+				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
+				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
+			);
+			name = Revised;
 			sourceTree = "<group>";
 		};
 		2EE223641E22BD8E0054F407 /* Supporting Files */ = {
@@ -748,8 +768,12 @@
 				2ED57CE71E25D7D5005763FC /* PopOverController.swift in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
 				2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */,
+				2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */,
+				2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */,
+				2EAA78741EC17B9E00E4102D /* SegmentsView.swift in Sources */,
 				2E6166261E52BBA5009138D8 /* ResourceAddition.swift in Sources */,
 				2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */,
+				2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */,
 				2E2DF69F1E1EB26F00093C48 /* ElementSetupController.swift in Sources */,
 				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,
 				2E341ACC1E230A7500DB924A /* SettingsMenuController.swift in Sources */,

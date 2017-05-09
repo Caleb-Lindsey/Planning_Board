@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LandingView : UIViewController {
+class LandingView : PBViewController {
     
     //Variables
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
@@ -19,10 +19,8 @@ class LandingView : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = GlobalVariables.grayColor
-        self.navigationItem.hidesBackButton = true
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        statusBar.backgroundColor = GlobalVariables.greenColor
+        statusBar.backgroundColor = UIColor.clear
         
         dimmerView.backgroundColor = UIColor.black
         dimmerView.layer.opacity = 0.5
@@ -48,7 +46,6 @@ class LandingView : UIViewController {
         }
         
     }
-
     
 }
 

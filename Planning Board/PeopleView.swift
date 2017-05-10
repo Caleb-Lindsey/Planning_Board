@@ -13,8 +13,6 @@ class PeopleView : PBViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
     }
     
 }

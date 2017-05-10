@@ -19,7 +19,6 @@ class LandingView : PBViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor.clear
         
         dimmerView.backgroundColor = UIColor.black

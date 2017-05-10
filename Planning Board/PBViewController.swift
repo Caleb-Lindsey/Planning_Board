@@ -10,6 +10,8 @@ import UIKit
 
 class PBViewController : UIViewController {
     
+    let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,7 +19,7 @@ class PBViewController : UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        statusBar.backgroundColor = UIColor.clear
+        statusBar.backgroundColor = UIColor.black
         
     }
     

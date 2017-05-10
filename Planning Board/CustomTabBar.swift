@@ -16,6 +16,7 @@ class CustomTabBar : UITabBarController {
         self.tabBar.barTintColor = GlobalVariables.greenColor
         self.tabBar.unselectedItemTintColor = UIColor.black
         self.tabBar.tintColor = UIColor.white
+        self.tabBar.itemSpacing = 100
         
         //Setup view controllers
         let serviceController = LandingView()

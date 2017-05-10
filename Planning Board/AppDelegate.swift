@@ -23,26 +23,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let homeController = SignInViewController()
-        
-        window?.rootViewController = UINavigationController(rootViewController: homeController)
-        
         // Override point for customization after application launch.
         var userLogginStatus = Bool()
-
+        let homeController : UIViewController!
+        
         if UserDefaults.standard.value(forKey: "logged_in") != nil {
             userLogginStatus = UserDefaults.standard.value(forKey: "logged_in") as! Bool
         }
 
         if (userLogginStatus) {
 
-            let landingView : UIViewController = CustomTabBar()
-            self.window?.rootViewController?.present(landingView, animated: true, completion: {})
+            homeController = CustomTabBar()
             print("Logged in as \(UserDefaults.standard.value(forKey: "username")!)")
             
         } else {
+            homeController = SignInViewController()
             print("Not Logged In")
         }
+        
+        window?.rootViewController = UINavigationController(rootViewController: homeController)
+        homeController.navigationController?.isNavigationBarHidden = true
         
         return true
  

@@ -140,7 +140,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             window.addSubview(rightResourceView)
             let touch = UITapGestureRecognizer(target:self, action: #selector(resignResponder))
             rightResourceView.addGestureRecognizer(touch)
-            rightResourceView.frame = CGRect(x: width, y: 65 , width: window.frame.width - width , height: window.frame.height - 65)
+            rightResourceView.frame = CGRect(x: width, y: 65 , width: window.frame.width - width , height: window.frame.height - 200)
             
             //Setup for BoxLabel
             boxLabel.frame = CGRect(x: 0, y: 15, width: rightResourceView.frame.width, height: 40)
@@ -197,7 +197,7 @@ class ResourceAddition : NSObject, UITableViewDataSource, UITableViewDelegate {
             leftTable.dataSource = self
             
             window.addSubview(segmentView)
-            segmentView.frame = CGRect(x: 0, y: rightResourceView.frame.origin.y, width: 360, height: window.frame.height - rightResourceView.frame.origin.y)
+            segmentView.frame = CGRect(x: 0, y: rightResourceView.frame.origin.y, width: 360, height: window.frame.height - rightResourceView.frame.origin.y - 100)
             segmentView.layer.borderWidth = 2
             
             segmentView.addSubview(leftTable)

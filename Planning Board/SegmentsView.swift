@@ -26,12 +26,20 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         label.textColor = UIColor.white
         label.layer.borderColor = UIColor.white.cgColor
         label.layer.borderWidth = 0.3
+        label.isUserInteractionEnabled = true
         return label
     }()
     
     let leftTableView : UITableView = {
         let tableView = UITableView()
         return tableView
+    }()
+    
+    let newSegmentButton : UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "plus4"), for: .normal)
+        button.addTarget(self, action: #selector(newSegment), for: .touchUpInside)
+        return button
     }()
     
     //Right side
@@ -73,7 +81,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         button.setImage(#imageLiteral(resourceName: "Plus Icon"), for: .normal)
         button.frame.size = CGSize(width: 35, height: 35)
         button.backgroundColor = UIColor.lightGray
-        button.addTarget(self, action: #selector(testTarget), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addElement), for: .touchUpInside)
         return button
     }()
     
@@ -104,7 +112,10 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             view.addSubview(leftTableView)
             leftTableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
             
-            //Place add segment button
+            //Place new segment button
+            newSegmentButton.frame = CGRect(x: leftTopLabel.frame.width - 35 - 20, y: 0, width: 35, height: 35)
+            newSegmentButton.center.y = leftTopLabel.frame.height / 2
+            leftTopLabel.addSubview(newSegmentButton)
             
             //Place right top label
             rightTopLabel.frame = CGRect(x: leftTopLabel.frame.maxX, y: statusBarHeight, width: window.frame.width * (6/10), height: 75)
@@ -142,6 +153,21 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             
             
         }
+    }
+    
+    
+    func addElement() {
+        if newElementField.text != "" {
+            segmentObject.elements.append(newElementField.text!)
+            rightTableView.reloadData()
+            dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
+            newElementField.text = ""
+            
+        }
+    }
+    
+    func newSegment() {
+        print("It works")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -185,15 +211,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func testTarget() {
-        if newElementField.text != "" {
-            segmentObject.elements.append(newElementField.text!)
-            rightTableView.reloadData()
-            dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
-            newElementField.text = ""
-        
-        }
-    }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         
@@ -209,6 +226,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         if tableView == rightTableView {
             if editingStyle == .delete {
                 segmentObject.elements.remove(at: indexPath.row)
+                dataHandle.removeElement(segmentObject: segmentObject)
                 rightTableView.reloadData()
             }
         }

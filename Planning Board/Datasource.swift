@@ -70,8 +70,14 @@ class Datasource {
     
     func removeElement(segmentObject : SegmentObject) {
         
-        databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentObject.name).removeValue()
+        removeSegment(segmentObject: segmentObject)
         uploadSegment(segmentName: segmentObject.name , elementArray: segmentObject.elements)
+        
+    }
+    
+    func removeSegment(segmentObject : SegmentObject) {
+        
+        databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentObject.name).removeValue()
         
     }
     

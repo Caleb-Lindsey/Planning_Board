@@ -11,9 +11,11 @@ import UIKit
 class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource{
     
     //Variables
-    let indexPath = IndexPath(row: 0, section: 0)
+    let myIndexPath = IndexPath(row: 0, section: 0)
     var segmentObject = SegmentObject()
     var dataHandle = Datasource()
+    var newSegmentMode : Bool = false
+    var tempArray = [String]()
     
     //Left Side
     let leftTopLabel : UILabel = {
@@ -51,17 +53,18 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         label.textAlignment = .center
         label.layer.borderColor = UIColor.white.cgColor
         label.layer.borderWidth = 0.3
+        label.isUserInteractionEnabled = true
         return label
     }()
     
-    let segmentImage : UIButton = {
+    var segmentImage : UIButton = {
         let image = UIButton()
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
         return image
     }()
     
-    let elementLabel : UILabel = {
+    let segmentLabel : UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 20)
@@ -90,6 +93,29 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return tableView
     }()
     
+    let newSegmentField : UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Segment name"
+        textField.backgroundColor = UIColor.white
+        return textField
+    }()
+    
+    let cancelButton : UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "RedX"), for: .normal)
+        button.frame.size = CGSize(width: 35, height: 35)
+        button.addTarget(self, action: #selector(cancelCreate), for: .touchUpInside)
+        return button
+    }()
+    
+    let doneButton : UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "Check_00040"), for: .normal)
+        button.frame.size = CGSize(width: 35, height: 35)
+        button.addTarget(self, action: #selector(doneCreate), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +125,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             
             let statusBarHeight = statusBar.frame.height
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
+            let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
             
             //Place left top label
             leftTopLabel.frame = CGRect(x: 0, y: statusBarHeight, width: window.frame.width * (4/10), height: 75)
@@ -110,7 +137,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             leftTableView.dataSource = self
             leftTableView.delegate = self
             view.addSubview(leftTableView)
-            leftTableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
             
             //Place new segment button
             newSegmentButton.frame = CGRect(x: leftTopLabel.frame.width - 35 - 20, y: 0, width: 35, height: 35)
@@ -126,11 +153,11 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             segmentImage.layer.cornerRadius = segmentImage.frame.width / 2
             view.addSubview(segmentImage)
             
-            //Place element label
-            elementLabel.frame = CGRect(x: segmentImage.frame.maxX + 20, y: 0, width: 100, height: 100)
-            elementLabel.center.y = segmentImage.center.y
-            elementLabel.text = segmentObject.name
-            view.addSubview(elementLabel)
+            //Place segment label
+            segmentLabel.frame = CGRect(x: segmentImage.frame.maxX + 20, y: 0, width: 200, height: 100)
+            segmentLabel.center.y = segmentImage.center.y
+            segmentLabel.text = segmentObject.name
+            view.addSubview(segmentLabel)
             
             //Place new element field
             newElementField.frame = CGRect(x: segmentImage.frame.origin.x, y: segmentImage.frame.maxY + 45, width: window.frame.width * (6/10) - 75, height: 35)
@@ -148,6 +175,11 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             rightTableView.delegate = self
             view.addSubview(rightTableView)
             
+            //New segment field
+            newSegmentField.frame = newElementField.frame
+            newSegmentField.leftView = paddingView2
+            newSegmentField.leftViewMode = UITextFieldViewMode.always
+            
             //Additional
             newElementField.frame.origin.x = rightTableView.frame.origin.x
             
@@ -158,23 +190,108 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func addElement() {
         if newElementField.text != "" {
-            segmentObject.elements.append(newElementField.text!)
-            rightTableView.reloadData()
-            dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
+            if newSegmentMode {
+                tempArray.append(newElementField.text!)
+            } else {
+                segmentObject.elements.append(newElementField.text!)
+                dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
+            }
             newElementField.text = ""
-            
+            rightTableView.reloadData()
         }
     }
     
     func newSegment() {
-        print("It works")
+        
+        newSegmentButton.isUserInteractionEnabled = false
+        newSegmentMode = true
+        leftTableView.isUserInteractionEnabled = false
+        
+        //Segment image
+        segmentImage.setImage(nil, for: .normal)
+        segmentImage.setTitle("Add Image", for: .normal)
+        
+        //Segment label
+        segmentLabel.text = "New Segment"
+        
+        //New segment title
+        newSegmentField.frame.origin.x = rightTableView.frame.origin.x
+        view.addSubview(newSegmentField)
+        
+        //Element field
+        
+        //Element table view
+        rightTableView.reloadData()
+        
+        //Cancel button
+        cancelButton.frame = CGRect(x: 20, y: 0, width: 35, height: 35)
+        cancelButton.center.y = rightTopLabel.frame.height / 2
+        rightTopLabel.addSubview(cancelButton)
+        
+        //Done button
+        doneButton.frame = CGRect(x: rightTopLabel.frame.width - 35 - 20, y: 0, width: 35, height: 35)
+        doneButton.center.y = rightTopLabel.frame.height / 2
+        rightTopLabel.addSubview(doneButton)
+        
+        //Animations
+        UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseOut, animations: {
+            
+            self.newElementField.frame.origin.y = self.newElementField.frame.origin.y + 50
+            self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y + 50
+            self.newSegmentButton.layer.opacity = 0.3
+            self.leftTableView.layer.opacity = 0.3
+            self.leftTopLabel.layer.opacity = 0.3
+            
+        }, completion: {(finished: Bool) in
+            
+            
+        })
+        
+        
+    }
+    
+    func cancelCreate() {
+        
+        newSegmentMode = false
+        cancelButton.removeFromSuperview()
+        doneButton.removeFromSuperview()
+        
+        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
+            
+            self.newElementField.frame.origin.y = self.newElementField.frame.origin.y - 50
+            self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y - 50
+            
+        }, completion: {(finished: Bool) in
+            
+            self.newSegmentField.removeFromSuperview()
+            self.segmentLabel.text = self.segmentObject.name
+            self.segmentImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
+            self.rightTableView.reloadData()
+            self.newSegmentButton.isUserInteractionEnabled = true
+            self.newSegmentButton.layer.opacity = 1
+            self.leftTableView.isUserInteractionEnabled = true
+            self.newSegmentButton.layer.opacity = 1
+            self.leftTableView.layer.opacity = 1
+            self.leftTopLabel.layer.opacity = 1
+            
+        })
+        
+        
+    }
+    
+    func doneCreate() {
+        print("it works")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == leftTableView {
             return GlobalVariables.segObjArr.count
         } else {
-            return segmentObject.elements.count
+            if newSegmentMode {
+                return tempArray.count
+            } else {
+                return segmentObject.elements.count
+            }
         }
     }
     
@@ -186,7 +303,11 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
-            cell.textLabel?.text = segmentObject.elements[indexPath.row]
+            if newSegmentMode {
+                cell.textLabel?.text = tempArray[indexPath.row]
+            } else {
+                cell.textLabel?.text = segmentObject.elements[indexPath.row]
+            }
             cell.selectionStyle = .none
             return cell
         }
@@ -196,7 +317,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
             segmentObject = GlobalVariables.segObjArr[indexPath.row]
-            elementLabel.text = segmentObject.name
+            segmentLabel.text = segmentObject.name
             rightTableView.reloadData()
         } else {
             
@@ -213,22 +334,28 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        
-        if tableView == rightTableView {
             return .delete
-        } else {
-            return .none
-        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if tableView == rightTableView {
             if editingStyle == .delete {
-                segmentObject.elements.remove(at: indexPath.row)
-                dataHandle.removeElement(segmentObject: segmentObject)
+                if newSegmentMode {
+                    tempArray.remove(at: indexPath.row)
+                } else {
+                    segmentObject.elements.remove(at: indexPath.row)
+                    dataHandle.removeElement(segmentObject: segmentObject)
+                }
                 rightTableView.reloadData()
             }
+        } else {
+            dataHandle.removeSegment(segmentObject: GlobalVariables.segObjArr[indexPath.row])
+            GlobalVariables.segObjArr.remove(at: indexPath.row)
+            segmentObject = GlobalVariables.segObjArr[0]
+            leftTableView.reloadData()
+            leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
+            
         }
         
     }

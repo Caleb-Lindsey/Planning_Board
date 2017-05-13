@@ -22,21 +22,18 @@ class SegmentObject {
     var name = String()
     var elements = [String]()
     var iconImage = UIImage()
-    var duration = Float()
     
-    init(Name: String, Elements: [String], IconImage: UIImage, Duration: Float) {
+    init(Name: String, Elements: [String], IconImage: UIImage) {
         
         self.name = Name
         self.elements = Elements
         self.iconImage = IconImage
-        self.duration = Duration
         
     }
     init() {
         self.name = ""
         self.elements = [String]()
         self.iconImage = UIImage()
-        self.duration = 0
     }
     
 }

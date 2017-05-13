@@ -33,7 +33,7 @@ class Datasource {
             
             //GlobalVariables.resourceDict[dataKey] = Array(dataDict.values)
             
-            let newSegObj = SegmentObject(Name: dataKey, Elements: Array(dataDict.values), IconImage: #imageLiteral(resourceName: "fire_icon"), Duration: 0)
+            let newSegObj = SegmentObject(Name: dataKey, Elements: Array(dataDict.values), IconImage: #imageLiteral(resourceName: "fire_icon"))
             GlobalVariables.segObjArr.append(newSegObj)
             
             GlobalVariables.segmentArray.append(newSegObj.name)
@@ -56,7 +56,7 @@ class Datasource {
             elementCount += 1
         }
         
-        let newSegObj = SegmentObject(Name: segmentName, Elements: elementArray, IconImage: #imageLiteral(resourceName: "fire_icon"), Duration: 0)
+        let newSegObj = SegmentObject(Name: segmentName, Elements: elementArray, IconImage: #imageLiteral(resourceName: "fire_icon"))
         GlobalVariables.segObjArr.append(newSegObj)
         
     }

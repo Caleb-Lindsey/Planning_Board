@@ -217,6 +217,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         //New segment title
         newSegmentField.frame.origin.x = rightTableView.frame.origin.x
         view.addSubview(newSegmentField)
+        view.bringSubview(toFront: newElementField)
         
         //Element field
         
@@ -234,7 +235,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         rightTopLabel.addSubview(doneButton)
         
         //Animations
-        UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             
             self.newElementField.frame.origin.y = self.newElementField.frame.origin.y + 50
             self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y + 50
@@ -255,24 +256,33 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         newSegmentMode = false
         cancelButton.removeFromSuperview()
         doneButton.removeFromSuperview()
+        self.segmentImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
+        self.segmentLabel.text = self.segmentObject.name
+        tempArray.removeAll()
+        newSegmentField.text = ""
+        newElementField.text = ""
+        rightTableView.layer.borderWidth = 0
+        rightTableView.layer.borderColor = UIColor.clear.cgColor
+        newSegmentField.layer.borderWidth = 0
+        newSegmentField.layer.borderColor = UIColor.clear.cgColor
+        
         
         UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
             
             self.newElementField.frame.origin.y = self.newElementField.frame.origin.y - 50
             self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y - 50
+            self.newSegmentButton.layer.opacity = 1
+            self.leftTableView.layer.opacity = 1
+            self.leftTopLabel.layer.opacity = 1
+            self.newSegmentButton.layer.opacity = 1
             
         }, completion: {(finished: Bool) in
             
             self.newSegmentField.removeFromSuperview()
-            self.segmentLabel.text = self.segmentObject.name
-            self.segmentImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
             self.rightTableView.reloadData()
             self.newSegmentButton.isUserInteractionEnabled = true
-            self.newSegmentButton.layer.opacity = 1
             self.leftTableView.isUserInteractionEnabled = true
-            self.newSegmentButton.layer.opacity = 1
-            self.leftTableView.layer.opacity = 1
-            self.leftTopLabel.layer.opacity = 1
+            
             
         })
         
@@ -280,7 +290,33 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func doneCreate() {
-        print("it works")
+
+        if newSegmentField.text != "" && tempArray != [] {
+            dataHandle.uploadSegment(segmentName: newSegmentField.text!, elementArray: tempArray)
+            leftTableView.reloadData()
+            cancelCreate()
+        } else {
+            
+            let alert = UIAlertController(title: "Not Enough Data", message: "Requiered fields marked in red.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            if newSegmentField.text == "" {
+                newSegmentField.layer.borderWidth = 3
+                newSegmentField.layer.borderColor = UIColor.red.cgColor
+            } else {
+                newSegmentField.layer.borderWidth = 0
+                newSegmentField.layer.borderColor = UIColor.clear.cgColor
+            }
+            if tempArray == [] {
+                rightTableView.layer.borderWidth = 3
+                rightTableView.layer.borderColor = UIColor.red.cgColor
+            } else {
+                rightTableView.layer.borderWidth = 0
+                rightTableView.layer.borderColor = UIColor.clear.cgColor
+            }
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

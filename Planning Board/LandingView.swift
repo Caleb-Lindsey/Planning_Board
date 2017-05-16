@@ -38,9 +38,12 @@ class LandingView : PBViewController {
         // Pull from Firebase to fill Variables
         Datasource().fillData {
             
-            self.dimmerView.removeFromSuperview()
-            self.activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
+            Datasource().fillMemberData {
+                self.dimmerView.removeFromSuperview()
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
+            }
             
         }
         

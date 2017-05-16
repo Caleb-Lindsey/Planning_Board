@@ -32,6 +32,12 @@ class Member {
         self.profilePic = ProfilePic
         
     }
+    init() {
+        self.firstName = ""
+        self.lastName = ""
+        self.canHost = [String]()
+        self.profilePic = UIImage()
+    }
 }
 
 

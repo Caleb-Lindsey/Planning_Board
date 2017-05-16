@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource{
+class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
@@ -118,7 +118,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         segmentObject = GlobalVariables.segObjArr[0]
         
         if let window = UIApplication.shared.keyWindow {
@@ -297,13 +297,13 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             cancelCreate()
         } else {
             
-            let alert = UIAlertController(title: "Not Enough Data", message: "Requiered fields marked in red.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            let alertTitle : String = "Not Enough Data"
+            var alertMessage : String = ""
             
             if newSegmentField.text == "" {
                 newSegmentField.layer.borderWidth = 3
                 newSegmentField.layer.borderColor = UIColor.red.cgColor
+                alertMessage += "- Missing Segment Name."
             } else {
                 newSegmentField.layer.borderWidth = 0
                 newSegmentField.layer.borderColor = UIColor.clear.cgColor
@@ -311,10 +311,16 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             if tempArray == [] {
                 rightTableView.layer.borderWidth = 3
                 rightTableView.layer.borderColor = UIColor.red.cgColor
+                alertMessage += "\n- Need at least one element."
             } else {
                 rightTableView.layer.borderWidth = 0
                 rightTableView.layer.borderColor = UIColor.clear.cgColor
             }
+            
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
         }
         
     }

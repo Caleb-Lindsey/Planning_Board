@@ -16,6 +16,7 @@ struct GlobalVariables {
     static var greenColor = UIColor(colorLiteralRed: 75/255.0, green: 108/255.0, blue: 35/255.0, alpha: 1)
     static var grayColor = UIColor(colorLiteralRed: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var segObjArr = [SegmentObject]()
+    static var memberArr = [Member]()
 }
 
 class Datasource {
@@ -27,23 +28,42 @@ class Datasource {
         
         databaseReference.child(GlobalVariables.userName).child("Service Parts").observe(.childAdded, with: {
             snapshot in
-            
             let dataDict = snapshot.value as! [String : String]
             let dataKey : String = snapshot.key
-            
-            //GlobalVariables.resourceDict[dataKey] = Array(dataDict.values)
             
             let newSegObj = SegmentObject(Name: dataKey, Elements: Array(dataDict.values), IconImage: #imageLiteral(resourceName: "fire_icon"))
             GlobalVariables.segObjArr.append(newSegObj)
             
             GlobalVariables.segmentArray.append(newSegObj.name)
             
+            
+        })
+        
+        completion()
+    }
+    
+    func fillMemberData(completion : @escaping () -> ()) {
+        
+        databaseReference.child(GlobalVariables.userName).child("Members").queryOrdered(byChild: "first").observe(.childAdded, with: {
+            snapshot in
+        
+            var dataDict = snapshot.value as! [String : String]
+            
+            let first : String = dataDict["firstName"]!
+            dataDict.removeValue(forKey: "firstName")
+            let last : String = dataDict["lastName"]!
+            dataDict.removeValue(forKey: "lastName")
+            
+            let newMember = Member(FirstName: first, LastName: last, CanHost: Array(dataDict.values), ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
+            GlobalVariables.memberArr.append(newMember)
+            
             DispatchQueue.main.async {
                 completion()
             }
             
         })
-
+        
+        
     }
     
     func uploadSegment(segmentName : String, elementArray : [String]) {
@@ -80,6 +100,40 @@ class Datasource {
         databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentObject.name).removeValue()
         
     }
+    
+    
+    func uploadMember(firstName : String, lastName : String, hostables : [String]) {
+        
+        let firstPost : [String : AnyObject] = ["firstName" : firstName as AnyObject]
+        let lastPost : [String : AnyObject] = ["lastName" : lastName as AnyObject]
+        
+        databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(firstPost)
+        databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(lastPost)
+        
+        for index in 0..<hostables.count {
+            let post : [String : AnyObject] = ["segment\(index + 1)" : hostables[index] as AnyObject]
+            databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(post)
+        
+        }
+        
+        let newMemberObject = Member(FirstName: firstName, LastName: lastName, CanHost: hostables, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
+        GlobalVariables.memberArr.append(newMemberObject)
+        
+    }
+    
+    func removeMember(member : Member) {
+        
+        databaseReference.child(GlobalVariables.userName).child("Members").child("\(member.firstName) \(member.lastName)").removeValue()
+        
+    }
+    
+    func removeHostable(member : Member) {
+        
+        removeMember(member: member)
+        uploadMember(firstName: member.firstName, lastName: member.lastName, hostables: member.canHost)
+        
+    }
+    
     
 }
 

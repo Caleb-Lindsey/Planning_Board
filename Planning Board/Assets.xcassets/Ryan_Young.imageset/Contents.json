@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "Ryan_Young.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Ryan_Young.jpg",
       "scale" : "2x"
     },
     {

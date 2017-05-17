@@ -44,7 +44,7 @@ class Datasource {
     
     func fillMemberData(completion : @escaping () -> ()) {
         
-        databaseReference.child(GlobalVariables.userName).child("Members").queryOrdered(byChild: "first").observe(.childAdded, with: {
+        databaseReference.child(GlobalVariables.userName).child("Members").observe(.childAdded, with: {
             snapshot in
         
             var dataDict = snapshot.value as! [String : String]
@@ -106,18 +106,20 @@ class Datasource {
         
         let firstPost : [String : AnyObject] = ["firstName" : firstName as AnyObject]
         let lastPost : [String : AnyObject] = ["lastName" : lastName as AnyObject]
+        var hostCount : Int = 1
         
         databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(firstPost)
         databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(lastPost)
         
         for index in 0..<hostables.count {
-            let post : [String : AnyObject] = ["segment\(index + 1)" : hostables[index] as AnyObject]
+            let post : [String : AnyObject] = ["segment\(hostCount)" : hostables[index] as AnyObject]
             databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(post)
-        
+            hostCount += 1
         }
         
         let newMemberObject = Member(FirstName: firstName, LastName: lastName, CanHost: hostables, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
         GlobalVariables.memberArr.append(newMemberObject)
+        
         
     }
     

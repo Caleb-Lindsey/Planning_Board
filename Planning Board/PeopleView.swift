@@ -247,6 +247,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if tableView == leftTableView {
             return GlobalVariables.memberArr.count
         } else {
@@ -256,6 +257,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
                 return memberObject.canHost.count
             }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -282,6 +284,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             memberObject = GlobalVariables.memberArr[indexPath.row]
             memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
             rightTableView.reloadData()
+            
         } else {
             
         }

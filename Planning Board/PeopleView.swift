@@ -40,7 +40,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     let newMemberButton : UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "plus4"), for: .normal)
-        button.addTarget(self, action: #selector(newSegment), for: .touchUpInside)
+        button.addTarget(self, action: #selector(newMember), for: .touchUpInside)
         return button
     }()
     
@@ -93,6 +93,20 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         return button
     }()
     
+    let newFirstName : UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = UIColor.white
+        textField.placeholder = "first name"
+        return textField
+    }()
+    
+    let newLastName : UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = UIColor.white
+        textField.placeholder = "last name"
+        return textField
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,8 +115,6 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         if let window = UIApplication.shared.keyWindow {
             
             let statusBarHeight = statusBar.frame.height
-            //let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
-            //let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
             
             //Place left top label
             leftTopLabel.frame = CGRect(x: 0, y: statusBarHeight, width: window.frame.width * (4/10), height: 75)
@@ -137,7 +149,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             view.addSubview(memberLabel)
             
             //Place right table view
-            rightTableView.frame = CGRect(x: 0, y: profileImage.frame.maxY + 15, width: window.frame.width * (6/10) - 75, height: window.frame.height / 2)
+            rightTableView.frame = CGRect(x: 0, y: profileImage.frame.maxY + 25, width: window.frame.width * (6/10) - 75, height: window.frame.height / 2)
             rightTableView.center.x = rightTopLabel.center.x
             rightTableView.register(UITableViewCell.self, forCellReuseIdentifier: "rightCell")
             rightTableView.dataSource = self
@@ -148,20 +160,21 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     
-    func newSegment() {
+    func newMember() {
         
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
+        let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
+
         newMemberButton.isUserInteractionEnabled = false
         newMemberMode = true
         leftTableView.isUserInteractionEnabled = false
         
-        //Segment image
+        //Profile image
         profileImage.setImage(nil, for: .normal)
         profileImage.setTitle("Add Image", for: .normal)
         
-        //Segment label
+        //Member label
         memberLabel.text = "New Member"
-        
-        //Element field
         
         //Element table view
         rightTableView.reloadData()
@@ -176,10 +189,23 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         doneButton.center.y = rightTopLabel.frame.height / 2
         rightTopLabel.addSubview(doneButton)
         
+        //First name field
+        newFirstName.frame = CGRect(x: rightTableView.frame.origin.x, y: profileImage.frame.maxY + 25, width: rightTableView.frame.width, height: 35)
+        newFirstName.leftView = paddingView
+        newFirstName.leftViewMode = UITextFieldViewMode.always
+        view.addSubview(newFirstName)
+        
+        //Last name field
+        newLastName.frame = CGRect(x: rightTableView.frame.origin.x, y: newFirstName.frame.maxY + 15, width: rightTableView.frame.width, height: 35)
+        newLastName.leftView = paddingView2
+        newLastName.leftViewMode = UITextFieldViewMode.always
+        view.addSubview(newLastName)
+        
+        
         //Animations
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             
-            self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y + 50
+            self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y + 125
             self.newMemberButton.layer.opacity = 0.3
             self.leftTableView.layer.opacity = 0.3
             self.leftTopLabel.layer.opacity = 0.3
@@ -206,7 +232,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         
         UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
             
-            self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y - 50
+            self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y - 125
             self.newMemberButton.layer.opacity = 1
             self.leftTableView.layer.opacity = 1
             self.leftTopLabel.layer.opacity = 1

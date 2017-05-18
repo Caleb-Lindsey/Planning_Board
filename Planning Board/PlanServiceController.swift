@@ -45,6 +45,10 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     let topProductButton : UIButton = {
         let button = UIButton()
+        button.setTitle("Edit Service Order", for: .normal)
+        button.titleLabel?.textColor = UIColor.white
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(editServiceOrder), for: .touchUpInside)
         return button
     }()
     
@@ -99,14 +103,21 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             elementTable.dataSource = self
             view.addSubview(elementTable)
             
+            //Place edit button
+            topProductButton.frame = CGRect(x: elementTable.frame.maxX + 25, y: topBorder, width: 300, height: 30)
+            view.addSubview(topProductButton)
+            
             //Place product table
-            productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: topBorder, width: 300, height: window.frame.height)
+            productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: topProductButton.frame.maxY + 15, width: 300, height: window.frame.height)
             productTable.isScrollEnabled = false
             productTable.layer.cornerRadius = 10
             productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
             productTable.delegate = self
             productTable.dataSource = self
             view.addSubview(productTable)
+            
+            //Additional
+            elementTable.frame.origin.y = productTable.frame.origin.y
             
         }
     }
@@ -124,11 +135,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func editServiceOrderPressed(_ sender: Any) {
+    func editServiceOrder() {
         
         if productTable.isEditing {
             productTable.setEditing(false, animated: true)
@@ -137,6 +144,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             productTable.setEditing(true, animated: true)
             topProductButton.setTitle("Done", for: .normal)
         }
+        
     }
     
     func fillTable(segment : SegmentObject) {

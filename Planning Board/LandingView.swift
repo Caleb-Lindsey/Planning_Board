@@ -15,6 +15,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     var dimmerView : UIView = UIView()
     let myIndexPath = IndexPath(row: 0, section: 0)
+    let dataHandle = Datasource()
 
     //Left Side
     let leftTopLabel : UILabel = {
@@ -124,7 +125,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
             view.addSubview(dateLabel)
             
             //Place summary view
-            summaryView.frame = CGRect(x: 0, y: dateLabel.frame.maxY + 35, width: window.frame.width * (5/10), height: window.frame.height / 1.5)
+            summaryView.frame = CGRect(x: 0, y: dateLabel.frame.maxY, width: window.frame.width * (5/10), height: window.frame.height / 1.4)
             summaryView.center.x = rightTopLabel.center.x
             view.addSubview(summaryView)
             
@@ -158,13 +159,13 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
         }
         
         // Pull from Firebase to fill Variables
-        Datasource().fillData {
+        dataHandle.fillData {
             
-            Datasource().fillMemberData {
+            self.dataHandle.fillMemberData {
                 self.dimmerView.removeFromSuperview()
                 self.activityIndicator.stopAnimating()
                 UIApplication.shared.endIgnoringInteractionEvents()
-                
+                GlobalVariables.initialLoadComplete = true
             }
             
         }

@@ -18,6 +18,7 @@ struct GlobalVariables {
     static var grayColor = UIColor(colorLiteralRed: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var segObjArr = [SegmentObject]()
     static var memberArr = [Member]()
+    static var initialLoadComplete : Bool = false
 }
 
 class Datasource {
@@ -45,25 +46,24 @@ class Datasource {
     
     func fillMemberData(completion : @escaping () -> ()) {
         
-        databaseReference.child(GlobalVariables.userName).child("Members").observe(.childAdded, with: {
-            snapshot in
-        
-            var dataDict = snapshot.value as! [String : String]
-            
-            let first : String = dataDict["firstName"]!
-            dataDict.removeValue(forKey: "firstName")
-            let last : String = dataDict["lastName"]!
-            dataDict.removeValue(forKey: "lastName")
-            
-            let newMember = Member(FirstName: first, LastName: last, CanHost: Array(dataDict.values), ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
-            GlobalVariables.memberArr.append(newMember)
-            
-            DispatchQueue.main.async {
-                completion()
-            }
-            
-        })
-        
+            databaseReference.child(GlobalVariables.userName).child("Members").observe(.childAdded, with: {
+                snapshot in
+                if GlobalVariables.initialLoadComplete == false {
+                    var dataDict = snapshot.value as! [String : String]
+                    print("heyo")
+                    let first : String = dataDict["firstName"]!
+                    dataDict.removeValue(forKey: "firstName")
+                    let last : String = dataDict["lastName"]!
+                    dataDict.removeValue(forKey: "lastName")
+                    
+                    let newMember = Member(FirstName: first, LastName: last, CanHost: Array(dataDict.values), ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
+                    GlobalVariables.memberArr.append(newMember)
+                    
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            })
         
     }
     
@@ -111,7 +111,7 @@ class Datasource {
         
         databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(firstPost)
         databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(lastPost)
-        
+
         for index in 0..<hostables.count {
             let post : [String : AnyObject] = ["segment\(hostCount)" : hostables[index] as AnyObject]
             databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(post)
@@ -135,7 +135,6 @@ class Datasource {
         uploadMember(firstName: member.firstName, lastName: member.lastName, hostables: member.canHost)
         
     }
-    
     
 }
 

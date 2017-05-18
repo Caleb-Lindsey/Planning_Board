@@ -118,7 +118,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         segmentObject = GlobalVariables.segObjArr[0]
         
         if let window = UIApplication.shared.keyWindow {

@@ -253,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				2EAA78701EC018E300E4102D /* Revised */,
-				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -306,6 +305,7 @@
 			children = (
 				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
 				2E889BC01EBEE46300F2C85E /* LandingView.swift */,
+				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
 				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
 			);

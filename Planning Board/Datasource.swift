@@ -14,6 +14,7 @@ struct GlobalVariables {
     static var segmentArray = [String]()
     static var popoverChoice = String()
     static var greenColor = UIColor(colorLiteralRed: 75/255.0, green: 108/255.0, blue: 35/255.0, alpha: 1)
+    static var lighterGreenColor = UIColor(colorLiteralRed: 85/255.0, green: 142/255.0, blue: 25/255.0, alpha: 1)
     static var grayColor = UIColor(colorLiteralRed: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var segObjArr = [SegmentObject]()
     static var memberArr = [Member]()
@@ -119,7 +120,6 @@ class Datasource {
         
         let newMemberObject = Member(FirstName: firstName, LastName: lastName, CanHost: hostables, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
         GlobalVariables.memberArr.append(newMemberObject)
-        
         
     }
     

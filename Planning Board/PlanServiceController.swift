@@ -19,12 +19,6 @@ struct cellData {
 
 class PlanServiceController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //Outlets
-    @IBOutlet weak var segmentTable: UITableView!
-    @IBOutlet weak var elementTable: UITableView!
-    @IBOutlet weak var productTable: UITableView!
-    @IBOutlet weak var topProductButton: UIButton!
-    
     //Variables
     var arrayOfCellData = [cellData]()
     var elementArray = [String]()
@@ -32,21 +26,37 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var count : Int = 0
     var currentLoaded = String()
     var currentSeg = SegmentObject()
+    let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+    
+    let segmentTable : UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    let elementTable : UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    let productTable : UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    let topProductButton : UIButton = {
+        let button = UIButton()
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Set up tables
-        segmentTable.tableFooterView = UIImageView()
-        segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
-        elementTable.tableFooterView = UIImageView()
-        elementTable.allowsMultipleSelection = true
-        elementTable.isScrollEnabled = false
-        elementTable.layer.cornerRadius = 10
-        elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
-        productTable.isScrollEnabled = false
-        productTable.layer.cornerRadius = 10
-        productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
+        //Setup View
+        view.backgroundColor = GlobalVariables.grayColor
+        self.navigationItem.title = "Create Service"
+        self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
+        self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         elementArray = ["No Elements Available"]
         productArray = []
@@ -65,10 +75,49 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             }
         }
+        
+        if let window = UIApplication.shared.keyWindow {
+            
+            let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
+            
+            //Place segment table
+            segmentTable.frame = CGRect(x: 0, y: topBorder, width: 100, height: window.frame.height)
+            segmentTable.tableFooterView = UIImageView()
+            segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
+            segmentTable.delegate = self
+            segmentTable.dataSource = self
+            view.addSubview(segmentTable)
+            
+            //Place element table
+            elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: topBorder, width: 250, height: window.frame.height)
+            elementTable.tableFooterView = UIImageView()
+            elementTable.allowsMultipleSelection = true
+            elementTable.isScrollEnabled = false
+            elementTable.layer.cornerRadius = 10
+            elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
+            elementTable.delegate = self
+            elementTable.dataSource = self
+            view.addSubview(elementTable)
+            
+            //Place product table
+            productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: topBorder, width: 300, height: window.frame.height)
+            productTable.isScrollEnabled = false
+            productTable.layer.cornerRadius = 10
+            productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
+            productTable.delegate = self
+            productTable.dataSource = self
+            view.addSubview(productTable)
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationItem.hidesBackButton = false
+        statusBar.backgroundColor = GlobalVariables.grayColor
         
         let indexPath = IndexPath(row: 0, section: 0)
         segmentTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -327,6 +376,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return true
         }
     }
+    
     
 }
 

@@ -47,8 +47,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     //Right side
     let rightTopLabel : UILabel = {
         let label = UILabel()
-        label.text = "Info"
-        label.font = UIFont(name: "Helvetica", size: 30)
+        label.text = "Information"
+        label.font = UIFont(name: "Helvetica", size: 22)
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.layer.borderColor = UIColor.white.cgColor

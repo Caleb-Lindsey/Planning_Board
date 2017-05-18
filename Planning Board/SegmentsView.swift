@@ -48,7 +48,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     let rightTopLabel : UILabel = {
         let label = UILabel()
         label.text = "Elements"
-        label.font = UIFont(name: "Helvetica", size: 30)
+        label.font = UIFont(name: "Helvetica", size: 22)
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.layer.borderColor = UIColor.white.cgColor
@@ -118,7 +118,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //dataHandle.uploadMember(firstName: "Matt", lastName: "Mckinnon", hostables: ["yo", "whats", "up"])
+        
         segmentObject = GlobalVariables.segObjArr[0]
         
         if let window = UIApplication.shared.keyWindow {

@@ -44,6 +44,14 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
         return button
     }()
     
+    let detailButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("View Service Detail", for: .normal)
+        button.backgroundColor = GlobalVariables.greenColor
+        button.titleLabel?.textColor = UIColor.white
+        return button
+    }()
+    
     //Right side
     let rightTopLabel : UILabel = {
         let label = UILabel()
@@ -128,6 +136,10 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
             summaryView.frame = CGRect(x: 0, y: dateLabel.frame.maxY, width: window.frame.width * (5/10), height: window.frame.height / 1.4)
             summaryView.center.x = rightTopLabel.center.x
             view.addSubview(summaryView)
+            
+            //Place detail button
+            detailButton.frame = CGRect(x: summaryView.frame.maxX - summaryView.frame.width / 2, y: summaryView.frame.maxY + 25, width: summaryView.frame.width / 2, height: 35)
+            view.addSubview(detailButton)
             
             //MOCK
             let tab : String = "    "

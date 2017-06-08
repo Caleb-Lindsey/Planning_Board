@@ -15,11 +15,19 @@ struct cellData {
     var image : UIImage!
     
 }
+struct productCellData {
+    var cell: Int!
+    var title: String!
+    var hostButton: UIButton!
+    var descriptionButton: UIButton!
+    var timeButton: UIButton!
+}
 
 class PlanServiceController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Variables
     var arrayOfCellData = [cellData]()
+    var arrayOfProductData = [productCellData]()
     var elementArray = [String]()
     var productArray = [String]()
     var count : Int = 0
@@ -117,7 +125,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: segmentTable.frame.origin.y, width: window.frame.width * (4.5/10), height: window.frame.height * (7.5/10))
             productTable.isScrollEnabled = false
             productTable.layer.cornerRadius = 10
-            productTable.register(ProductCell.self, forCellReuseIdentifier: "customCell")
+            productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
             productTable.delegate = self
             productTable.dataSource = self
             view.addSubview(productTable)
@@ -239,9 +247,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             cell?.textLabel?.text = elementArray[indexPath.row]
             return cell!
         } else {
-            let cell = ProductCell()
-            cell.textLabel?.text = productArray[indexPath.row]
-            return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
+            cell?.textLabel?.text = productArray[indexPath.row]
+            return cell!
         }
         
     }
@@ -350,32 +358,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if tableView == productTable {
-            if editingStyle == .delete {
-                productArray.remove(at: indexPath.row)
-                fillTable(segment: currentSeg)
-                if productArray.count <= 17 {
-                    productTable.isScrollEnabled = false
-                }
-                productTable.reloadData()
-            }
-        }
-    }
-    
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if productTable.isEditing == false {
-            return .delete
-        } else {
-            return .none
-        }
-    }
-    
-    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
@@ -403,7 +388,57 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let timeAction = UITableViewRowAction(style: .normal, title: "time") { (rowAction, indexPath) in
+            //TODO: edit the row at indexPath here
+            print("time pressed")
+        }
+        timeAction.backgroundColor = .lightGray
+        
+        let hostAction = UITableViewRowAction(style: .normal, title: "Host") { (rowAction, indexPath) in
+            //TODO: Delete the row at indexPath here
+            
+        }
+        hostAction.backgroundColor = .lightGray
+        
+        let removeAction = UITableViewRowAction(style: .normal, title: "Remove") { (rowAction, indexPath) in
+            //TODO: Delete the row at indexPath here
+            self.productArray.remove(at: indexPath.row)
+            self.fillTable(segment: self.currentSeg)
+            self.productTable.reloadData()
+        }
+        removeAction.backgroundColor = .red
+        
+        return [removeAction,timeAction,hostAction]    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

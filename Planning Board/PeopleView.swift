@@ -74,6 +74,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     
     let rightTableView : UITableView = {
         let tableView = UITableView()
+        tableView.layer.zPosition = 10
+        tableView.allowsMultipleSelection = true
         return tableView
     }()
     
@@ -226,9 +228,17 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         self.profileImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         self.memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
         tempArray.removeAll()
-        
+        newFirstName.text = ""
+        newLastName.text = ""
         rightTableView.layer.borderWidth = 0
         rightTableView.layer.borderColor = UIColor.clear.cgColor
+        newFirstName.layer.borderWidth = 0
+        newFirstName.layer.borderColor = UIColor.clear.cgColor
+        newLastName.layer.borderWidth = 0
+        newLastName.layer.borderColor = UIColor.clear.cgColor
+        rightTableView.layer.borderWidth = 0
+        rightTableView.layer.borderColor = UIColor.clear.cgColor
+        
         
         UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
             
@@ -243,6 +253,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             self.rightTableView.reloadData()
             self.newMemberButton.isUserInteractionEnabled = true
             self.leftTableView.isUserInteractionEnabled = true
+            self.newLastName.removeFromSuperview()
+            self.newFirstName.removeFromSuperview()
             
             
         })
@@ -252,22 +264,53 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     
     func doneCreate() {
         
-        if tempArray != [] {
+        //Add selected cells to tempArray
+        for cell in rightTableView.visibleCells {
+            if cell.accessoryType == .checkmark {
+                tempArray.append((cell.textLabel?.text)!)
+            }
+            
+        }
+        
+        if tempArray != [] && newFirstName.text != "" && newLastName.text != "" {
+            
+            dataHandle.uploadMember(firstName: newFirstName.text!, lastName: newLastName.text!, hostables: tempArray)
             leftTableView.reloadData()
             cancelCreate()
+            
         } else {
             
-            let alert = UIAlertController(title: "Not Enough Data", message: "Requiered fields marked in red.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            let alertTitle : String = "Not Enough Data"
+            var alertMessage : String = ""
             
+            if newFirstName.text == "" {
+                newFirstName.layer.borderWidth = 3
+                newFirstName.layer.borderColor = UIColor.red.cgColor
+                alertMessage += "- Missing First Name."
+            } else {
+                newFirstName.layer.borderWidth = 0
+                newFirstName.layer.borderColor = UIColor.clear.cgColor
+            }
+            if newLastName.text == "" {
+                newLastName.layer.borderWidth = 3
+                newLastName.layer.borderColor = UIColor.red.cgColor
+                alertMessage += "\n- Missing Last Name."
+            } else {
+                newLastName.layer.borderWidth = 0
+                newLastName.layer.borderColor = UIColor.clear.cgColor
+            }
             if tempArray == [] {
                 rightTableView.layer.borderWidth = 3
                 rightTableView.layer.borderColor = UIColor.red.cgColor
+                alertMessage += "\n- Need at least one segment to host."
             } else {
                 rightTableView.layer.borderWidth = 0
                 rightTableView.layer.borderColor = UIColor.clear.cgColor
             }
+            
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
     }
@@ -278,7 +321,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             return GlobalVariables.memberArr.count
         } else {
             if newMemberMode {
-                return tempArray.count
+                return GlobalVariables.segObjArr.count
             } else {
                 return memberObject.canHost.count
             }
@@ -295,9 +338,11 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
             if newMemberMode {
-                cell.textLabel?.text = tempArray[indexPath.row]
+                cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
+                cell.accessoryType = (cell.isSelected) ? .checkmark : .none
             } else {
                 cell.textLabel?.text = memberObject.canHost[indexPath.row]
+                cell.accessoryType = .none
             }
             cell.selectionStyle = .none
             return cell
@@ -312,6 +357,19 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             rightTableView.reloadData()
             
         } else {
+            if newMemberMode {
+                rightTableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            } else {
+                rightTableView.cellForRow(at: indexPath)?.accessoryType = .none
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView == rightTableView {
+            
+            rightTableView.cellForRow(at: indexPath)?.accessoryType = .none
+            
             
         }
     }
@@ -351,6 +409,29 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == rightTableView {
+            if newMemberMode {
+                return "Select segments to host"
+            } else {
+                return ""
+            }
+        } else {
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if tableView == rightTableView {
+            if let header = view as? UITableViewHeaderFooterView {
+                header.textLabel!.font = UIFont.systemFont(ofSize: 13.0)
+                header.textLabel!.textColor = UIColor.white
+                header.tintColor = UIColor.darkGray
+                header.textLabel?.textAlignment = NSTextAlignment.center
+            }
+        }
     }
     
 }

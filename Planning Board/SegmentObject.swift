@@ -14,7 +14,7 @@ import UIKit
     - Element Array
     - Icon Image
     - Default Duration
-    - Date Property to distinguish when it was last used
+    - Last Used Date
 */
 
 class SegmentObject {

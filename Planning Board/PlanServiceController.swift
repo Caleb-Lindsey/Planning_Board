@@ -6,8 +6,7 @@
 //  Copyright © 2017 KlubCo. All rights reserved.
 //
 
-import Foundation
-import Firebase
+import UIKit
 
 struct cellData {
     
@@ -27,6 +26,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var currentLoaded = String()
     var currentSeg = SegmentObject()
     let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+    var segmentPath : Int = Int()
     
     let segmentTable : UITableView = {
         let table = UITableView()
@@ -40,6 +40,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     let productTable : UITableView = {
         let table = UITableView()
+        table.separatorStyle = .none
         return table
     }()
     
@@ -52,8 +53,18 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         return button
     }()
     
+    let previewButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Preview", for: .normal)
+        button.titleLabel?.textColor = UIColor.white
+        button.backgroundColor = GlobalVariables.greenColor
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         //Setup View
         view.backgroundColor = GlobalVariables.grayColor
@@ -85,7 +96,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
             
             //Place segment table
-            segmentTable.frame = CGRect(x: 0, y: topBorder, width: 100, height: window.frame.height)
+            segmentTable.frame = CGRect(x: 0, y: topBorder + 65, width: 100, height: window.frame.height - topBorder - 65)
             segmentTable.tableFooterView = UIImageView()
             segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
             segmentTable.delegate = self
@@ -93,28 +104,32 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             view.addSubview(segmentTable)
             
             //Place element table
-            elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: topBorder, width: 250, height: window.frame.height)
+            elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: segmentTable.frame.origin.y, width: 250, height: segmentTable.frame.height)
             elementTable.tableFooterView = UIImageView()
             elementTable.allowsMultipleSelection = true
             elementTable.isScrollEnabled = false
-            elementTable.layer.cornerRadius = 10
             elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
             elementTable.delegate = self
             elementTable.dataSource = self
             view.addSubview(elementTable)
             
-            //Place edit button
-            topProductButton.frame = CGRect(x: elementTable.frame.maxX + 25, y: topBorder, width: 300, height: 30)
-            view.addSubview(topProductButton)
-            
             //Place product table
-            productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: topProductButton.frame.maxY + 15, width: 300, height: window.frame.height)
+            productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: segmentTable.frame.origin.y, width: window.frame.width * (4.5/10), height: window.frame.height * (7.5/10))
             productTable.isScrollEnabled = false
             productTable.layer.cornerRadius = 10
-            productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
+            productTable.register(ProductCell.self, forCellReuseIdentifier: "customCell")
             productTable.delegate = self
             productTable.dataSource = self
             view.addSubview(productTable)
+            
+            //Place edit button
+            topProductButton.frame = CGRect(x: elementTable.frame.maxX + 25, y: topBorder + 32.5, width: 300, height: 30)
+            topProductButton.center.x = productTable.center.x
+            view.addSubview(topProductButton)
+            
+            //Place complete button
+            previewButton.frame = CGRect(x: productTable.frame.origin.x, y: productTable.frame.maxY + 15, width: productTable.frame.width, height: 30)
+            view.addSubview(previewButton)
             
             //Additional
             elementTable.frame.origin.y = productTable.frame.origin.y
@@ -224,11 +239,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             cell?.textLabel?.text = elementArray[indexPath.row]
             return cell!
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
-            cell?.textLabel?.text = productArray[indexPath.row]
-            cell?.indentationWidth = 20.0
-            cell?.indentationLevel = 2
-            return cell!
+            let cell = ProductCell()
+            cell.textLabel?.text = productArray[indexPath.row]
+            return cell
         }
         
     }
@@ -248,7 +261,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == segmentTable {
             if GlobalVariables.segmentArray != [] {
-    
+                
+                segmentPath = indexPath.row
+                
                 if currentLoaded != GlobalVariables.segmentArray[indexPath.row] {
                     
                     //Load the tableview using the element array
@@ -260,6 +275,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         } else if tableView == elementTable {
             if elementArray != [] && elementTable.cellForRow(at: indexPath)?.accessoryType != .checkmark{
                 elementTable.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                
                 productArray.append((elementTable.cellForRow(at: indexPath)?.textLabel?.text)!)
                 if productArray.count > 17 {
                     productTable.isScrollEnabled = true
@@ -269,6 +285,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 elementTable.cellForRow(at: indexPath)?.accessoryType = .none
                 removeFromProduct(indexPath: indexPath)
             }
+        } else if tableView == productTable {
+            print("hello")
         }
     }
     
@@ -384,7 +402,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return true
         }
     }
-    
     
 }
 

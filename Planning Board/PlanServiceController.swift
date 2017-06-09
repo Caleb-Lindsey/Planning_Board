@@ -15,21 +15,13 @@ struct cellData {
     var image : UIImage!
     
 }
-struct productCellData {
-    var cell: Int!
-    var title: String!
-    var hostButton: UIButton!
-    var descriptionButton: UIButton!
-    var timeButton: UIButton!
-}
 
 class PlanServiceController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Variables
     var arrayOfCellData = [cellData]()
-    var arrayOfProductData = [productCellData]()
     var elementArray = [String]()
-    var productArray = [String]()
+    var productArray = [ProductItem]()
     var count : Int = 0
     var currentLoaded = String()
     var currentSeg = SegmentObject()
@@ -182,7 +174,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         for elementNum in 0..<self.elementArray.count {
             for productNum in 0..<self.productArray.count {
                 
-                if self.elementArray[elementNum] == self.productArray[productNum] {
+                if self.elementArray[elementNum] == self.productArray[productNum].title {
                     self.elementTable.cellForRow(at: NSIndexPath(row: elementNum, section: 0) as IndexPath)?.accessoryType = .checkmark
                 }
                 
@@ -195,7 +187,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func removeFromProduct(indexPath : IndexPath) {
         
         for num in 0..<productArray.count {
-            if productArray[num] == elementArray[indexPath.row] {
+            if productArray[num].title == elementArray[indexPath.row] {
                 productArray.remove(at: num)
                 if productArray.count <= 17 {
                     productTable.isScrollEnabled = false
@@ -248,7 +240,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
-            cell?.textLabel?.text = productArray[indexPath.row]
+            cell?.textLabel?.text = productArray[indexPath.row].title
             return cell!
         }
         
@@ -284,7 +276,10 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             if elementArray != [] && elementTable.cellForRow(at: indexPath)?.accessoryType != .checkmark{
                 elementTable.cellForRow(at: indexPath)?.accessoryType = .checkmark
                 
-                productArray.append((elementTable.cellForRow(at: indexPath)?.textLabel?.text)!)
+                let newProduct = ProductItem()
+                newProduct.title = (elementTable.cellForRow(at: indexPath)?.textLabel?.text!)!
+                productArray.append(newProduct)
+                
                 if productArray.count > 17 {
                     productTable.isScrollEnabled = true
                 }
@@ -294,7 +289,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 removeFromProduct(indexPath: indexPath)
             }
         } else if tableView == productTable {
-            print("hello")
+            
+            
+            
         }
     }
     
@@ -303,14 +300,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             elementTable.cellForRow(at: indexPath)?.accessoryType = .none
             removeFromProduct(indexPath: indexPath)
             
-        }
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView == elementTable {
-            return 1
-        } else {
-            return 1
         }
     }
     
@@ -364,43 +353,23 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        if tableView != productTable {
-            return false
-        } else {
-            return true
-        }
+        return tableView == productTable
+        
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     
-        let itemToMove:String = productArray[sourceIndexPath.row]
-        productArray.remove(at: sourceIndexPath.row)
+        let itemToMove : ProductItem = productArray.remove(at: sourceIndexPath.row)
         productArray.insert(itemToMove, at: destinationIndexPath.row)
         
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         
-        if tableView != productTable {
-            return false
-        } else {
-            return true
-        }
+        return tableView == productTable
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let timeAction = UITableViewRowAction(style: .normal, title: "time") { (rowAction, indexPath) in
-            //TODO: edit the row at indexPath here
-            print("time pressed")
-        }
-        timeAction.backgroundColor = .lightGray
-        
-        let hostAction = UITableViewRowAction(style: .normal, title: "Host") { (rowAction, indexPath) in
-            //TODO: Delete the row at indexPath here
-            
-        }
-        hostAction.backgroundColor = .lightGray
         
         let removeAction = UITableViewRowAction(style: .normal, title: "Remove") { (rowAction, indexPath) in
             //TODO: Delete the row at indexPath here
@@ -410,7 +379,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
         removeAction.backgroundColor = .red
         
-        return [removeAction,timeAction,hostAction]    }
+        return [removeAction]    }
     
 }
 

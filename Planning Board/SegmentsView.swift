@@ -297,13 +297,13 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             cancelCreate()
         } else {
             
-            let alertTitle : String = "Not Enough Data"
+            let alertTitle : String = "Missing Requiered Fields"
             var alertMessage : String = ""
             
             if newSegmentField.text == "" {
                 newSegmentField.layer.borderWidth = 3
                 newSegmentField.layer.borderColor = UIColor.red.cgColor
-                alertMessage += "- Missing Segment Name."
+                alertMessage += "- Segment Name."
             } else {
                 newSegmentField.layer.borderWidth = 0
                 newSegmentField.layer.borderColor = UIColor.clear.cgColor
@@ -311,7 +311,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             if tempArray == [] {
                 rightTableView.layer.borderWidth = 3
                 rightTableView.layer.borderColor = UIColor.red.cgColor
-                alertMessage += "\n- Need at least one element."
+                alertMessage += "\n- Elements."
             } else {
                 rightTableView.layer.borderWidth = 0
                 rightTableView.layer.borderColor = UIColor.clear.cgColor

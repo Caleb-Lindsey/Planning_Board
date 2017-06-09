@@ -18,6 +18,7 @@
 		2E0FCD971E1636DE00C8F1E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */; };
 		2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */; };
 		2E1D7E6B1E4FF7EB00A648C3 /* memberCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */; };
+		2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E390D741EEA0CBC004C83CC /* ProductItem.swift */; };
 		2E3D15E31E96DDEF003AD783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15E21E96DDEF003AD783 /* AppDelegate.swift */; };
 		2E3D15E51E96DDEF003AD783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D15E41E96DDEF003AD783 /* Assets.xcassets */; };
 		2E3D15E81E96DDEF003AD783 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D15E61E96DDEF003AD783 /* MainMenu.xib */; };
@@ -93,6 +94,7 @@
 		2E0FCD981E163CD700C8F1E3 /* Planning Board.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Planning Board.entitlements"; sourceTree = "<group>"; };
 		2E1D7E681E4FF7EB00A648C3 /* memberCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = memberCell1.swift; sourceTree = "<group>"; };
 		2E1D7E691E4FF7EB00A648C3 /* memberCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = memberCell1.xib; sourceTree = "<group>"; };
+		2E390D741EEA0CBC004C83CC /* ProductItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		2E3D15E01E96DDEF003AD783 /* Planning Board Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planning Board Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E3D15E21E96DDEF003AD783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E3D15E41E96DDEF003AD783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */,
 				2EB88CF81E858639001F85C2 /* MemberObject.swift */,
 				2E99BB861E875CF00039B0EE /* SegmentObject.swift */,
+				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 			files = (
 				2E0FCD6E1E16367400C8F1E3 /* Planning_Board.xcdatamodeld in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
+				2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */,
 				2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */,
 				2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */,
 				2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */,

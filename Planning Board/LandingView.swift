@@ -49,6 +49,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
         button.setTitle("View Service Detail", for: .normal)
         button.backgroundColor = GlobalVariables.greenColor
         button.titleLabel?.textColor = UIColor.white
+        button.layer.cornerRadius = 10
         return button
     }()
     

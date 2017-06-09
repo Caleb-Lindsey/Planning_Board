@@ -280,13 +280,13 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             
         } else {
             
-            let alertTitle : String = "Not Enough Data"
+            let alertTitle : String = "Missing Required Fields"
             var alertMessage : String = ""
             
             if newFirstName.text == "" {
                 newFirstName.layer.borderWidth = 3
                 newFirstName.layer.borderColor = UIColor.red.cgColor
-                alertMessage += "- Missing First Name."
+                alertMessage += "- First Name."
             } else {
                 newFirstName.layer.borderWidth = 0
                 newFirstName.layer.borderColor = UIColor.clear.cgColor
@@ -294,7 +294,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             if newLastName.text == "" {
                 newLastName.layer.borderWidth = 3
                 newLastName.layer.borderColor = UIColor.red.cgColor
-                alertMessage += "\n- Missing Last Name."
+                alertMessage += "\n- Last Name."
             } else {
                 newLastName.layer.borderWidth = 0
                 newLastName.layer.borderColor = UIColor.clear.cgColor
@@ -302,7 +302,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             if tempArray == [] {
                 rightTableView.layer.borderWidth = 3
                 rightTableView.layer.borderColor = UIColor.red.cgColor
-                alertMessage += "\n- Need at least one segment to host."
+                alertMessage += "\n- Segments."
             } else {
                 rightTableView.layer.borderWidth = 0
                 rightTableView.layer.borderColor = UIColor.clear.cgColor

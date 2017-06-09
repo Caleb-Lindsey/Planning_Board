@@ -50,7 +50,6 @@ class Datasource {
                 snapshot in
                 if GlobalVariables.initialLoadComplete == false {
                     var dataDict = snapshot.value as! [String : String]
-                    print("heyo")
                     let first : String = dataDict["firstName"]!
                     dataDict.removeValue(forKey: "firstName")
                     let last : String = dataDict["lastName"]!

@@ -14,24 +14,28 @@ import UIKit
  - Time
  - Host
  - Description
+ - Song Key
  */
 
 class ProductItem {
     
     var title : String = String()
+    var type : String = String()
     var hours : Int? = Int()
     var minutes : Int? = Int()
     var host : Member? = Member()
-    var description : String = String()
+    var PBdescription : String = String()
+    var songKey : String = String()
     
     init() {
         
         self.title = ""
+        self.type = "element"
         self.hours = nil
         self.minutes = nil
         self.host = nil
-        self.description = ""
-        
+        self.PBdescription = ""
+        self.songKey = ""
     }
     
 }

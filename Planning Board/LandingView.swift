@@ -81,6 +81,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
         textView.backgroundColor = UIColor.clear
         textView.textColor = UIColor.white
         textView.font = UIFont(name: "Helvetica", size: 16)
+        textView.isEditable = false
         return textView
     }()
     

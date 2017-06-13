@@ -388,6 +388,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 } else {
                     segmentObject.elements.remove(at: indexPath.row)
                     dataHandle.removeElement(segmentObject: segmentObject)
+                    tempArray.removeAll()
+                    rightTableView.reloadData()
+                
                 }
                 rightTableView.reloadData()
             }

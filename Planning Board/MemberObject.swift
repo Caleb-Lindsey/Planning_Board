@@ -38,6 +38,11 @@ class Member {
         self.canHost = [String]()
         self.profilePic = UIImage()
     }
+    
+    func fullName() -> String {
+        return firstName + " " + lastName
+    }
+    
 }
 
 

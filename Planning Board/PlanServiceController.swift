@@ -31,6 +31,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     let minutes = Array(0...59)
     var detailsViewIsVisible : Bool = false
     var selectedItem : ProductItem!
+    var selectedHost : Member?
+    let paddingView = UIEdgeInsetsMake(5, 10, 5, 10)
+    var hostArray : [Member] = [Member]()
     let keys : [String] = [
         "none",
         "A Major",
@@ -131,6 +134,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     let detailDescription : UITextView = {
         let textView = UITextView()
+        textView.text = "Additional notes...."
+        textView.textColor = UIColor.lightGray
         textView.layer.cornerRadius = 8
         return textView
     }()
@@ -156,9 +161,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
         self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        
-        elementArray = ["No Elements Available"]
-        productArray = []
         
         if GlobalVariables.segmentArray != [] {
             
@@ -223,8 +225,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             backButton.frame = CGRect(x: 5, y: 25, width: 60, height: 35)
             detailsView.addSubview(backButton)
             
-            //Place detail time picker
-            timePicker.frame = CGRect(x: detailsView.frame.width - 80 - 25, y: backButton.frame.maxY + 15, width: 85, height: 50)
+            //Place time picker
+            timePicker.frame = CGRect(x: detailsView.frame.width - 85 - 25, y: backButton.frame.maxY + 15, width: 85, height: 50)
             timePicker.delegate = self
             timePicker.dataSource = self
             detailsView.addSubview(timePicker)
@@ -233,23 +235,25 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             detailsView.addSubview(durationLabel)
             detailsView.addSubview(keyLabel)
             
-            //Place detail key picker
-            keyPicker.frame = CGRect(x: detailsView.frame.width - 125 - 25, y: timePicker.frame.maxY + 15, width: 125, height: 50)
-            keyPicker.delegate = self
-            keyPicker.dataSource = self
-            detailsView.addSubview(keyPicker)
-            
             //Place detail host table
-            hostTable.frame = CGRect(x: 0, y: keyPicker.frame.maxY + 15, width: detailsView.frame.width - 30, height: 200)
+            hostTable.frame = CGRect(x: 0, y: timePicker.frame.maxY + 15, width: detailsView.frame.width - 30, height: 200)
             hostTable.center.x = detailsView.frame.width / 2
+            hostTable.register(UITableViewCell.self, forCellReuseIdentifier: "hostCell")
             hostTable.delegate = self
             hostTable.dataSource = self
             detailsView.addSubview(hostTable)
             
             //Place detail description
             detailDescription.frame = CGRect(x: 0, y: hostTable.frame.maxY + 15, width: hostTable.frame.width, height: hostTable.frame.height)
+            detailDescription.textContainerInset = paddingView
             detailDescription.center.x = hostTable.center.x
             detailsView.addSubview(detailDescription)
+            
+            //Place detail key picker
+            keyPicker.frame = CGRect(x: detailsView.frame.width - 125 - 25, y: detailDescription.frame.maxY + 15, width: 125, height: 50)
+            keyPicker.delegate = self
+            keyPicker.dataSource = self
+            detailsView.addSubview(keyPicker)
             
             //Place sync button
             syncButton.frame = CGRect(x: detailsView.frame.width - 10 - 75, y: detailsView.frame.height - 45 - 10, width: 75, height: 45)
@@ -257,9 +261,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             //Additional
             elementTable.frame.origin.y = productTable.frame.origin.y
-            timePicker.frame.origin.x = keyPicker.frame.origin.x
             durationLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 80 , y: timePicker.frame.midY - 15, width: 80, height: 30)
-            keyLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 125 , y: keyPicker.frame.midY - 15, width: 125, height: 30)
+            keyLabel.frame = CGRect(x: keyPicker.frame.origin.x - 125 - 15 , y: keyPicker.frame.midY - 15, width: 125, height: 30)
         }
     }
     
@@ -290,11 +293,10 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func fillTable(segment : SegmentObject) {
         
-        elementArray = segment.elements
         currentLoaded = segment.name
         currentSeg = segment
+        elementArray = [currentSeg.name] + segment.elements
         elementTable.reloadData()
-        
         
         //Apply Checkmarks to previously selected rows
         for elementNum in 0..<self.elementArray.count {
@@ -339,6 +341,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             self.timePicker.selectRow(0, inComponent: 0, animated: false)
             self.timePicker.selectRow(0, inComponent: 1, animated: false)
             self.keyPicker.selectRow(0, inComponent: 0, animated: false)
+            self.hostArray.removeAll()
+            self.selectedHost = nil
+            self.detailDescription.text = "Additional notes...."
             
         })
         
@@ -349,20 +354,22 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         //Sync Time
         selectedItem.hours = hours[timePicker.selectedRow(inComponent: 0)]
         selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 1)]
-        print("\(selectedItem.hours!)")
-        print("\(selectedItem.minutes!)")
         
         //Sync Key
         selectedItem.songKey = keys[keyPicker.selectedRow(inComponent: 0)]
-        print("\(selectedItem.songKey)")
         
         //Sync Host
+        selectedItem.host = selectedHost
         
         //Sync Description
         selectedItem.PBdescription = detailDescription.text
-        print("\(selectedItem.PBdescription)")
         
         //Dismiss
+        print("\(selectedItem.hours!)")
+        print("\(selectedItem.minutes!)")
+        print("\(selectedItem.host?.fullName())")
+        print("\(selectedItem.PBdescription)")
+        print("\(selectedItem.songKey)")
         dismissDetails()
         
     }
@@ -375,11 +382,12 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         } else if tableView == productTable {
             return productArray.count
         }else {
-            return 0
+            return hostArray.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if tableView == segmentTable {
             if arrayOfCellData[indexPath.row].cell == 1 {
                 
@@ -405,10 +413,28 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             cell?.selectionStyle = .none
             
             cell?.textLabel?.text = elementArray[indexPath.row]
+            
+            if indexPath.row == 0 {
+                cell?.textLabel?.textAlignment = .center
+            }
+            
+            return cell!
+        } else if tableView == productTable {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
+            
+            if productArray[indexPath.row].type == "Segment" {
+                cell?.textLabel?.text = productArray[indexPath.row].title
+            } else {
+                cell?.indentationWidth = 20
+                cell?.indentationLevel = 2
+                cell?.textLabel?.text = "- " + productArray[indexPath.row].title
+                cell?.textLabel?.textColor = UIColor.darkGray
+            }
+            
             return cell!
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
-            cell?.textLabel?.text = productArray[indexPath.row].title
+            let cell = tableView.dequeueReusableCell(withIdentifier: "hostCell") as UITableViewCell!
+            cell?.textLabel?.text = hostArray[indexPath.row].fullName()
             return cell!
         }
         
@@ -446,6 +472,14 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 let newProduct = ProductItem()
                 newProduct.title = (elementTable.cellForRow(at: indexPath)?.textLabel?.text!)!
+                newProduct.parentSegment = currentSeg.name
+                
+                if indexPath.row == 0 {
+                    newProduct.type = "Segment"
+                } else {
+                    newProduct.type = "Element"
+                }
+                
                 productArray.append(newProduct)
                 
                 if productArray.count > 17 {
@@ -460,7 +494,20 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             selectedItem = productArray[indexPath.row]
             detailsViewIsVisible = true
+            
+            //Find Hosts
+            for host in GlobalVariables.memberArr {
+                
+                for segment in host.canHost {
+                    if segment == selectedItem.parentSegment {
+                        hostArray.append(host)
+                    }
+                }
+                
+            }
+            
             tableView.reloadData()
+            hostTable.reloadData()
             
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 
@@ -472,6 +519,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
             })
             
+        } else {
+            selectedHost = hostArray[indexPath.row]
         }
     }
     
@@ -632,6 +681,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
         return label
     }
+    
     
 }
     

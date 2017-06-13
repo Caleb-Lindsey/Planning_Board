@@ -15,6 +15,7 @@ import UIKit
  - Host
  - Description
  - Song Key
+ - Parent Segment
  */
 
 class ProductItem {
@@ -26,6 +27,7 @@ class ProductItem {
     var host : Member? = Member()
     var PBdescription : String = String()
     var songKey : String = String()
+    var parentSegment : String = String()
     
     init() {
         
@@ -36,6 +38,7 @@ class ProductItem {
         self.host = nil
         self.PBdescription = ""
         self.songKey = ""
+        self.parentSegment = ""
     }
     
 }

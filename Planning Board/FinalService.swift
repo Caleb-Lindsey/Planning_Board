@@ -99,12 +99,23 @@ class FinalService : UIViewController {
     func formatSummary(serviceArray : [ProductItem]) -> String {
         
         var summary = String()
+        var line = String()
+        let tab = "     "
         
         for item in 0..<serviceArray.count {
             
+            line = serviceArray[item].title
             
+            //Add a host
+            if serviceArray[item].host != nil {
+                line += " | (" + "\((serviceArray[item].host?.fullName())!)" + ")"
+            }
             
-            summary += "\(serviceArray[item].title)\n"
+            if serviceArray[item].minutes != 0 {
+                line = "[\((serviceArray[item].minutes)!):00]\(tab)\(line)"
+            }
+            
+            summary += "\(line)\n"
             
         }
         

@@ -22,23 +22,34 @@ class ProductItem {
     
     var title : String = String()
     var type : String = String()
-    var hours : Int? = Int()
     var minutes : Int? = Int()
     var host : Member? = Member()
     var PBdescription : String = String()
     var songKey : String = String()
     var parentSegment : String = String()
     
+    
     init() {
         
         self.title = ""
         self.type = "element"
-        self.hours = nil
-        self.minutes = nil
+        self.minutes = 0
         self.host = nil
         self.PBdescription = ""
         self.songKey = ""
         self.parentSegment = ""
+        
     }
     
+    
+    
 }
+
+
+
+
+
+
+
+
+

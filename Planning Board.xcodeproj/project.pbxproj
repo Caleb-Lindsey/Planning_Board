@@ -24,6 +24,8 @@
 		2E3D15E81E96DDEF003AD783 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D15E61E96DDEF003AD783 /* MainMenu.xib */; };
 		2E3D15F31E96DDEF003AD783 /* Planning_Board_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15F21E96DDEF003AD783 /* Planning_Board_MacTests.swift */; };
 		2E3D15FE1E96DDEF003AD783 /* Planning_Board_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */; };
+		2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC71EF1A4C500801415 /* FinalService.swift */; };
+		2E3E1ACA1EF1A6CF00801415 /* ServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */; };
 		2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E44E1E01E97222400C70049 /* SignInViewController.swift */; };
 		2E5DA6261EE9E3FB0084E8EA /* productCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5DA6241EE9E3FB0084E8EA /* productCell.swift */; };
 		2E5DA6271EE9E3FB0084E8EA /* productCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DA6251EE9E3FB0084E8EA /* productCell.xib */; };
@@ -106,6 +108,8 @@
 		2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning Board MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_Board_MacUITests.swift; sourceTree = "<group>"; };
 		2E3D15FF1E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E3E1AC71EF1A4C500801415 /* FinalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalService.swift; sourceTree = "<group>"; };
+		2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceObject.swift; sourceTree = "<group>"; };
 		2E44E1E01E97222400C70049 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2E5DA6241EE9E3FB0084E8EA /* productCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = productCell.swift; sourceTree = "<group>"; };
 		2E5DA6251EE9E3FB0084E8EA /* productCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = productCell.xib; sourceTree = "<group>"; };
@@ -260,7 +264,7 @@
 		2E1F75AD1E4CFD7800DEE534 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2EAA78701EC018E300E4102D /* Revised */,
+				2EAA78701EC018E300E4102D /* Views */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -305,11 +309,12 @@
 				2EB88CF81E858639001F85C2 /* MemberObject.swift */,
 				2E99BB861E875CF00039B0EE /* SegmentObject.swift */,
 				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
+				2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		2EAA78701EC018E300E4102D /* Revised */ = {
+		2EAA78701EC018E300E4102D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
@@ -317,8 +322,9 @@
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
 				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
+				2E3E1AC71EF1A4C500801415 /* FinalService.swift */,
 			);
-			name = Revised;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		F37976C29C02219586CEB06E /* Pods */ = {
@@ -725,7 +731,9 @@
 			files = (
 				2E0FCD6E1E16367400C8F1E3 /* Planning_Board.xcdatamodeld in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
+				2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */,
 				2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */,
+				2E3E1ACA1EF1A6CF00801415 /* ServiceObject.swift in Sources */,
 				2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */,
 				2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */,
 				2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */,

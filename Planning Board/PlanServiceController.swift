@@ -19,16 +19,15 @@ struct cellData {
 class PlanServiceController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //Variables
+    let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
     var arrayOfCellData = [cellData]()
     var elementArray = [String]()
     var productArray = [ProductItem]()
     var count : Int = 0
     var currentLoaded = String()
     var currentSeg = SegmentObject()
-    let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
     var segmentPath : Int = Int()
-    let hours = Array(0...24)
-    let minutes = Array(0...59)
+    let minutes = Array(0...90)
     var detailsViewIsVisible : Bool = false
     var selectedItem : ProductItem!
     var selectedHost : Member?
@@ -79,6 +78,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         button.setTitle("Continue", for: .normal)
         button.titleLabel?.textColor = UIColor.white
         button.backgroundColor = GlobalVariables.greenColor
+        button.addTarget(self, action: #selector(continueToFinal), for: .touchUpInside)
         return button
     }()
     
@@ -134,10 +134,18 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     let detailDescription : UITextView = {
         let textView = UITextView()
-        textView.text = "Additional notes...."
+        textView.text = ""
         textView.textColor = UIColor.lightGray
         textView.layer.cornerRadius = 8
         return textView
+    }()
+    
+    let notesLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Notes"
+        label.textColor = UIColor.white
+        label.textAlignment = .left
+        return label
     }()
     
     let syncButton : UIButton = {
@@ -193,7 +201,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: segmentTable.frame.origin.y, width: 250, height: segmentTable.frame.height)
             elementTable.tableFooterView = UIImageView()
             elementTable.allowsMultipleSelection = true
-            elementTable.isScrollEnabled = false
             elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
             elementTable.delegate = self
             elementTable.dataSource = self
@@ -201,7 +208,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             //Place product table
             productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: segmentTable.frame.origin.y, width: window.frame.width * (4.5/10), height: window.frame.height * (7.5/10))
-            productTable.isScrollEnabled = false
             productTable.layer.cornerRadius = 10
             productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
             productTable.delegate = self
@@ -243,8 +249,12 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             hostTable.dataSource = self
             detailsView.addSubview(hostTable)
             
+            //Place notes label
+            notesLabel.frame = CGRect(x: hostTable.frame.origin.x, y: hostTable.frame.maxY + 15, width: hostTable.frame.width / 2, height: 15)
+            detailsView.addSubview(notesLabel)
+            
             //Place detail description
-            detailDescription.frame = CGRect(x: 0, y: hostTable.frame.maxY + 15, width: hostTable.frame.width, height: hostTable.frame.height)
+            detailDescription.frame = CGRect(x: 0, y: notesLabel.frame.maxY + 2, width: hostTable.frame.width, height: hostTable.frame.height)
             detailDescription.textContainerInset = paddingView
             detailDescription.center.x = hostTable.center.x
             detailsView.addSubview(detailDescription)
@@ -269,6 +279,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        GlobalVariables.serviceDetailArray.removeAll()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationItem.hidesBackButton = false
@@ -317,9 +328,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         for num in 0..<productArray.count {
             if productArray[num].title == elementArray[indexPath.row] {
                 productArray.remove(at: num)
-                if productArray.count <= 17 {
-                    productTable.isScrollEnabled = false
-                }
                 productTable.reloadData()
                 break
             }
@@ -339,7 +347,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }, completion: {(finished: Bool) in
             
             self.timePicker.selectRow(0, inComponent: 0, animated: false)
-            self.timePicker.selectRow(0, inComponent: 1, animated: false)
             self.keyPicker.selectRow(0, inComponent: 0, animated: false)
             self.hostArray.removeAll()
             self.selectedHost = nil
@@ -352,8 +359,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func syncDetails() {
         
         //Sync Time
-        selectedItem.hours = hours[timePicker.selectedRow(inComponent: 0)]
-        selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 1)]
+        selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 0)]
         
         //Sync Key
         selectedItem.songKey = keys[keyPicker.selectedRow(inComponent: 0)]
@@ -365,12 +371,12 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         selectedItem.PBdescription = detailDescription.text
         
         //Dismiss
-        print("\(selectedItem.hours!)")
         print("\(selectedItem.minutes!)")
         print("\(selectedItem.host?.fullName())")
         print("\(selectedItem.PBdescription)")
         print("\(selectedItem.songKey)")
         dismissDetails()
+        productTable.reloadData()
         
     }
     
@@ -420,16 +426,50 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             return cell!
         } else if tableView == productTable {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
             
             if productArray[indexPath.row].type == "Segment" {
+                cell?.indentationWidth = 5
+                cell?.indentationLevel = 1
                 cell?.textLabel?.text = productArray[indexPath.row].title
+                cell?.textLabel?.textColor = UIColor.black
             } else {
                 cell?.indentationWidth = 20
                 cell?.indentationLevel = 2
                 cell?.textLabel?.text = "- " + productArray[indexPath.row].title
                 cell?.textLabel?.textColor = UIColor.darkGray
             }
+            
+            if productArray[indexPath.row].host != nil {
+                let title = (cell?.textLabel?.text)! + " (" + (productArray[indexPath.row].host?.fullName())! + ") "
+                cell?.textLabel?.text = title
+            }
+            
+            if productArray[indexPath.row].songKey != "none" && productArray[indexPath.row].songKey != "" {
+                let title = (cell?.textLabel?.text)! + " (" + (productArray[indexPath.row].songKey) + ") "
+                cell?.textLabel?.text = title
+            }
+            
+            if productArray[indexPath.row].minutes != 0 {
+                
+                let title = "[\((productArray[indexPath.row].minutes)!):00] | " + (cell?.textLabel?.text)!
+                cell?.textLabel?.text = title
+                
+            } else {
+                
+                if productArray[indexPath.row].type == "Segment" {
+                    let title = "        " + (cell?.textLabel?.text)!
+                    cell?.textLabel?.text = title
+                } else {
+                    let title = "      " + (cell?.textLabel?.text)!
+                    cell?.textLabel?.text = title
+                }
+                
+            }
+            
+            cell?.textLabel?.font = UIFont(name: "Helvetica", size: 14)
+            cell?.textLabel?.numberOfLines = 2
             
             return cell!
         } else {
@@ -481,11 +521,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 }
                 
                 productArray.append(newProduct)
-                
-                if productArray.count > 17 {
-                    productTable.isScrollEnabled = true
-                }
                 productTable.reloadData()
+                
             } else {
                 elementTable.cellForRow(at: indexPath)?.accessoryType = .none
                 removeFromProduct(indexPath: indexPath)
@@ -614,12 +651,19 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }
         removeAction.backgroundColor = .red
         
-        return [removeAction]
+        let duplicateAction = UITableViewRowAction(style: .normal, title: "duplicate") { (rowAction, indexPath) in
+            
+            self.productArray.append(self.productArray[indexPath.row])
+            self.productTable.reloadData()
+
+        }
+        
+        return [removeAction, duplicateAction]
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView == timePicker {
-            return 2
+            return 1
         } else {
             return 1
         }
@@ -629,11 +673,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         if pickerView == timePicker {
-            if component == 0 {
-                return hours.count
-            } else {
-                return minutes.count
-            }
+            return minutes.count
         } else {
             return keys.count
         }
@@ -643,12 +683,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == timePicker {
-            if component == 0 {
-                return String(hours[row])
-            } else {
-                
-                return String(minutes[row])
-            }
+            return String(minutes[row])
         } else {
             return keys[row]
         }
@@ -668,13 +703,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         label.textAlignment = .center
         label.font = UIFont(name: "SanFranciscoText-Light", size: 11)
         
-        // where data is an Array of String
         if pickerView == timePicker {
-            if component == 0 {
-                label.text = "\(hours[row])"
-            } else {
-                label.text = "\(minutes[row])"
-            }
+            label.text = "\(minutes[row])"
         } else {
             label.text = keys[row]
         }
@@ -682,6 +712,15 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         return label
     }
     
+    func continueToFinal() {
+        
+        for line in 0..<productArray.count {
+            GlobalVariables.serviceDetailArray.append(productArray[line])
+        }
+        
+        self.navigationController?.pushViewController(FinalService(), animated: true)
+        
+    }
     
 }
     

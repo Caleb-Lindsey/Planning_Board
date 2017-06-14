@@ -141,7 +141,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
             
             //Place detail button
             detailButton.frame = CGRect(x: summaryView.frame.maxX - summaryView.frame.width / 2, y: summaryView.frame.maxY + 25, width: summaryView.frame.width / 2, height: 35)
-            view.addSubview(detailButton)
+            //view.addSubview(detailButton)
             
             //MOCK
             let tab : String = "    "

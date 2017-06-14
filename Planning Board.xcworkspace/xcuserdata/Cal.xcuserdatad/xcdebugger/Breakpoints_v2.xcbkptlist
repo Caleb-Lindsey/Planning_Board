@@ -82,11 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Planning Board/ProductItem.swift"
-            timestampString = "519068335.01646"
+            timestampString = "519150834.767512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>

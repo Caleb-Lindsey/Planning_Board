@@ -8,12 +8,12 @@
 
 import UIKit
 
-class FinalService : UIViewController {
+class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
     
     //Variables
     let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
-
+    var interactionController: UIDocumentInteractionController?
     
     let serviceTitle : UITextField = {
         let textfield = UITextField()
@@ -33,6 +33,7 @@ class FinalService : UIViewController {
         textView.layer.borderWidth = 0.8
         textView.font = UIFont(name: "Helvetica", size: 16)
         textView.isEditable = false
+        textView.isScrollEnabled = true
         return textView
     }()
     
@@ -54,6 +55,23 @@ class FinalService : UIViewController {
         return textfield
     }()
     
+    let saveToApp : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = GlobalVariables.greenColor
+        button.setTitle("Save to Planning Board", for: .normal)
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
+    let exportButton : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = GlobalVariables.greenColor
+        button.setTitle("Export", for: .normal)
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(writeToFile), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,7 +81,7 @@ class FinalService : UIViewController {
         self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
         self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-    
+        
         serviceView.text = formatSummary(serviceArray: GlobalVariables.serviceDetailArray)
         
         if let window = UIApplication.shared.keyWindow {
@@ -91,6 +109,14 @@ class FinalService : UIViewController {
             serviceType.leftViewMode = .always
             view.addSubview(serviceType)
             
+            //Place save to app button
+            saveToApp.frame = CGRect(x: serviceType.frame.origin.x, y: serviceType.frame.maxY + 25, width: serviceType.frame.width, height: serviceType.frame.height * 1.5)
+            view.addSubview(saveToApp)
+            
+            //Place export button
+            exportButton.frame = CGRect(x: saveToApp.frame.origin.x, y: saveToApp.frame.maxY + 10, width: saveToApp.frame.width, height: saveToApp.frame.height)
+            view.addSubview(exportButton)
+            
             
         }
         
@@ -100,26 +126,108 @@ class FinalService : UIViewController {
         
         var summary = String()
         var line = String()
-        let tab = "     "
         
         for item in 0..<serviceArray.count {
             
             line = serviceArray[item].title
             
-            //Add a host
-            if serviceArray[item].host != nil {
-                line += " | (" + "\((serviceArray[item].host?.fullName())!)" + ")"
+           if serviceArray[item].type == "Segment" {
+            
+                //Add Host
+                if serviceArray[item].host != nil {
+                    line = "\(line)  (\((serviceArray[item].host?.fullName())!))"
+                }
+            
+                //Add Time
+                if serviceArray[item].minutes != 0 {
+                    
+                    if serviceArray[item].minutes! >= 10 {
+                        line = "  \((serviceArray[item].minutes)!):00 | \(line)"
+                    } else {
+                        line = "  \((serviceArray[item].minutes)!):00   | \(line)"
+                    }
+                    
+                } else {
+                    
+                    line = "           |  \(line)"
+                    
+                }
+            
+                //Add Key
+                if serviceArray[item].songKey != "none" {
+                    
+                    line = "\(line) {\(serviceArray[item].songKey)}"
+                    
+                }
+            
+           } else {
+            
+                line = "                      - \(line)"
+            
+                //Add Host
+                if serviceArray[item].host != nil {
+                    line = "\(line)  (\((serviceArray[item].host?.fullName())!))"
+                }
+            
+                //Add Time
+                if serviceArray[item].minutes != 0 {
+                    
+                    line = "\(line) [\((serviceArray[item].minutes)!):00]"
+                    
+                }
+            
+                //Add Key
+                if serviceArray[item].songKey != "none" {
+                    
+                    line = "\(line) {\(serviceArray[item].songKey)}"
+                    
+                }
+            
             }
             
-            if serviceArray[item].minutes != 0 {
-                line = "[\((serviceArray[item].minutes)!):00]\(tab)\(line)"
-            }
-            
-            summary += "\(line)\n"
-            
+            summary += "\(line)\n\n"
+        
         }
         
         return summary
+    }
+    
+    func writeToFile() {
+        
+        let file = "\((serviceTitle.text)!).txt" //this is the file. we will write to and read from it
+        
+        let text = serviceView.text! //just a text
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let path = dir.appendingPathComponent(file)
+            
+            //writing
+            do {
+                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
+                try openInPages(body: serviceView.text, title: file)
+            }
+            catch {
+                print("nope")
+            }
+            
+        }
+        
+    }
+    
+    func openInPages(body: String, title: String) throws {
+        // create a file path in a temporary directory
+        let fileName = "\(title)"
+        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(fileName)
+        
+        // save the body to the file
+        try body.write(toFile: filePath, atomically: true, encoding: String.Encoding.utf8)
+        
+        interactionController?.delegate = self
+        
+        // present Open In menu
+        interactionController = UIDocumentInteractionController(url: NSURL(fileURLWithPath: filePath) as URL)
+        interactionController?.presentOptionsMenu(from: exportButton.frame, in: self.view, animated: true)
     }
     
 }

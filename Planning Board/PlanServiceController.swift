@@ -35,18 +35,18 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var hostArray : [Member] = [Member]()
     let keys : [String] = [
         "none",
-        "A Major",
-        "A#/Bb Major",
-        "B Major",
-        "C Major",
-        "C#/Db Major",
-        "D Major",
-        "D#/Eb Major",
-        "E Major",
-        "F Major",
-        "F#/Gb Major",
-        "G Major",
-        "G#/Ab Major"]
+        "A",
+        "A#/Bb",
+        "B",
+        "C",
+        "C#/Db",
+        "D",
+        "D#/Eb",
+        "E",
+        "F",
+        "F#/Gb",
+        "G",
+        "G#/Ab"]
     
     let segmentTable : UITableView = {
         let table = UITableView()
@@ -371,10 +371,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         selectedItem.PBdescription = detailDescription.text
         
         //Dismiss
-        print("\(selectedItem.minutes!)")
-        print("\(selectedItem.host?.fullName())")
-        print("\(selectedItem.PBdescription)")
-        print("\(selectedItem.songKey)")
         dismissDetails()
         productTable.reloadData()
         

@@ -36,7 +36,7 @@ class ProductItem {
         self.minutes = 0
         self.host = nil
         self.PBdescription = ""
-        self.songKey = ""
+        self.songKey = "none"
         self.parentSegment = ""
         
     }

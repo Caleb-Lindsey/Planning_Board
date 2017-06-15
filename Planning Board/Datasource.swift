@@ -20,6 +20,7 @@ struct GlobalVariables {
     static var memberArr = [Member]()
     static var initialLoadComplete : Bool = false
     static var serviceDetailArray : [ProductItem] = [ProductItem]()
+    static var arrayOfServices : [ServiceObject] = [ServiceObject]()
 }
 
 class Datasource {

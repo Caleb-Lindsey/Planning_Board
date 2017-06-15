@@ -118,7 +118,6 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
             leftTableView.dataSource = self
             leftTableView.delegate = self
             view.addSubview(leftTableView)
-            leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
             
             //Place new segment button
             newSegmentButton.frame = CGRect(x: leftTopLabel.frame.width - 35 - 20, y: 0, width: 35, height: 35)
@@ -143,32 +142,6 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
             detailButton.frame = CGRect(x: summaryView.frame.maxX - summaryView.frame.width / 2, y: summaryView.frame.maxY + 25, width: summaryView.frame.width / 2, height: 35)
             //view.addSubview(detailButton)
             
-            //MOCK
-            let tab : String = "    "
-            summaryView.text = "8:25am\(tab) | Locker Room" +
-                            "\n\n8:45am\(tab) | Walk-In\n" +
-                            "\n\n9:02am\(tab) | Worship Bumper" +
-                            "\n\n9:02am\(tab) | Worship Set" +
-                                "\n\(tab)- Only Wanna Sing (Vinny)" +
-                                "\n\(tab) Welcome (Melissa)" +
-                                "\n\(tab)- Love So Great (Vinny)" +
-                                "\n\(tab)- Open Heaven (Vinny/Melissa)" +
-                                "\n\(tab)- Nothing But the Blood Tag (Melissa)" +
-                            "\n\n9:20am\(tab) | Transition / Prayer & Praise (P.Nate)" +
-                            "\n\n9:24am\(tab) | Highlights (P.Jordan)" +
-                            "\n\(tab)Speaker Notes:" +
-                                "\n\(tab)- Connect Card" +
-                                "\n\(tab)- Growth Track (9am Only)" +
-                                "\n\(tab)- Elevate" +
-                                "\n\(tab)- Easter Service" +
-                            "\n\n9:28am\(tab) | Offering (P.Steve)" +
-                            "\n\n9:31am\(tab) | Highlight Videos" +
-                            "\n\n9:34am\(tab) | Grace To Grace (Melissa)" +
-                            "\n\n9:39am\(tab) | Preching: Pastor Jordan Boyce (35mins)" +
-                            "\n\n10:14am\(tab)| Transition To Campuses / Closing Prayer (P. Jordan)" +
-                            "\n\n10:15am\(tab)| Open Heaven Tag (Vinny/Melissa)" +
-                            "\n\n10:18am\(tab)| Salvation Call (P. Jordan)" +
-                            "\n\n10:21am\(tab)| Release"
             
         }
         
@@ -194,13 +167,14 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return GlobalVariables.arrayOfServices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = leftTableView.dequeueReusableCell(withIdentifier: "leftCell", for: indexPath)
-        cell.textLabel?.text = "Samson - #PushPrayPioneer"
+        cell.textLabel?.text = GlobalVariables.arrayOfServices[indexPath.row].title
         cell.textLabel?.textAlignment = .center
+        cell.textLabel?.numberOfLines = 2
         return cell
     }
     
@@ -208,8 +182,16 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
         return 80
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        summaryView.text = GlobalVariables.arrayOfServices[indexPath.row].summary
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+//        if GlobalVariables.arrayOfServices != nil {
+//            summaryView.text = GlobalVariables.arrayOfServices[0].summary
+//        }
+        leftTableView.reloadData()
     }
     
 }

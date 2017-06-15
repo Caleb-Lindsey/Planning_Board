@@ -22,18 +22,23 @@ class SegmentObject {
     var name = String()
     var elements = [String]()
     var iconImage = UIImage()
+    var lastUsed = Date()
     
     init(Name: String, Elements: [String], IconImage: UIImage) {
         
         self.name = Name
         self.elements = Elements
         self.iconImage = IconImage
+        self.lastUsed = Date()
         
     }
     init() {
         self.name = ""
         self.elements = [String]()
         self.iconImage = UIImage()
+        self.lastUsed = Date()
     }
     
 }
+
+

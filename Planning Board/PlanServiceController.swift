@@ -542,6 +542,23 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             tableView.reloadData()
             hostTable.reloadData()
             
+            //Fill detail view
+            timePicker.selectRow(productArray[indexPath.row].minutes!, inComponent: 0, animated: false)
+            for item in hostArray {
+                
+                if item.fullName() == productArray[indexPath.row].host?.fullName() {
+                    hostTable.selectRow(at: indexPath, animated: false, scrollPosition: .top)
+                }
+                
+            }
+            for item in keys {
+                
+                if item == productArray[indexPath.row].songKey {
+                    keyPicker.selectRow(0, inComponent: 0, animated: false)
+                }
+                
+            }
+            
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 
                 self.detailsView.frame.origin.x = 0

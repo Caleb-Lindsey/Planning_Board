@@ -60,6 +60,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         button.backgroundColor = GlobalVariables.greenColor
         button.setTitle("Save to Planning Board", for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(saveService), for: .touchUpInside)
         return button
     }()
     
@@ -228,6 +229,14 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         // present Open In menu
         interactionController = UIDocumentInteractionController(url: NSURL(fileURLWithPath: filePath) as URL)
         interactionController?.presentOptionsMenu(from: exportButton.frame, in: self.view, animated: true)
+    }
+    
+    
+    func saveService() {
+        
+        let service : ServiceObject = ServiceObject(title: serviceTitle.text!, type: serviceType.text!, date: Date(), summary: serviceView.text!, fullDetail: "")
+        GlobalVariables.arrayOfServices.append(service)
+        
     }
     
 }

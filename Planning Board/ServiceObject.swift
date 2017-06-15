@@ -21,11 +21,11 @@ class ServiceObject {
     
     var title : String = String()
     var type : String = String()
-    var date : NSDate = NSDate()
+    var date : Date = Date()
     var summary : String = String()
     var fullDetail : String = String()
     
-    init(title: String, type: String, date: NSDate, summary: String, fullDetail: String) {
+    init(title: String, type: String, date: Date, summary: String, fullDetail: String) {
         
         self.title = title
         self.type = type

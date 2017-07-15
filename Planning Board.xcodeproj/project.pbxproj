@@ -30,7 +30,7 @@
 		2E5DA6261EE9E3FB0084E8EA /* productCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5DA6241EE9E3FB0084E8EA /* productCell.swift */; };
 		2E5DA6271EE9E3FB0084E8EA /* productCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DA6251EE9E3FB0084E8EA /* productCell.xib */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
-		2E889BC11EBEE46300F2C85E /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* LandingView.swift */; };
+		2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServiceView.swift */; };
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
 		2E943D571E26C5150059C689 /* TableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E943D551E26C5150059C689 /* TableViewCell1.xib */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
@@ -114,7 +114,7 @@
 		2E5DA6241EE9E3FB0084E8EA /* productCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = productCell.swift; sourceTree = "<group>"; };
 		2E5DA6251EE9E3FB0084E8EA /* productCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = productCell.xib; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
-		2E889BC01EBEE46300F2C85E /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
 		2E943D551E26C5150059C689 /* TableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell1.xib; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
@@ -318,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
-				2E889BC01EBEE46300F2C85E /* LandingView.swift */,
+				2E889BC01EBEE46300F2C85E /* ServiceView.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
 				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
@@ -747,7 +747,7 @@
 				2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */,
 				2E5DA6261EE9E3FB0084E8EA /* productCell.swift in Sources */,
 				2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */,
-				2E889BC11EBEE46300F2C85E /* LandingView.swift in Sources */,
+				2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

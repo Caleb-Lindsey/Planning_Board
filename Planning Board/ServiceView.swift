@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource {
+class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource {
     
     //Variables
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
@@ -56,7 +56,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
     //Right side
     let rightTopLabel : UILabel = {
         let label = UILabel()
-        label.text = "Samson - #PushPrayPioneer"
+        label.text = ""
         label.font = UIFont(name: "Helvetica", size: 22)
         label.textColor = UIColor.white
         label.textAlignment = .center
@@ -68,7 +68,7 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
     
     let dateLabel : UILabel = {
         let label = UILabel()
-        label.text = "3 • 5 • 17"
+        label.text = "[Date]"
         label.textColor = UIColor.white
         label.textAlignment = .right
         label.layer.borderColor = UIColor.white.cgColor
@@ -153,6 +153,8 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
                 self.activityIndicator.stopAnimating()
                 UIApplication.shared.endIgnoringInteractionEvents()
                 GlobalVariables.initialLoadComplete = true
+
+                
             }
             
         }
@@ -184,13 +186,11 @@ class LandingView : PBViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         summaryView.text = GlobalVariables.arrayOfServices[indexPath.row].summary
+        rightTopLabel.text = GlobalVariables.arrayOfServices[indexPath.row].title
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
-//        if GlobalVariables.arrayOfServices != nil {
-//            summaryView.text = GlobalVariables.arrayOfServices[0].summary
-//        }
         leftTableView.reloadData()
     }
     

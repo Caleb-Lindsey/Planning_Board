@@ -19,7 +19,7 @@ class CustomTabBar : UITabBarController {
         self.tabBar.itemSpacing = 100
         
         //Setup view controllers
-        let serviceController = LandingView()
+        let serviceController = ServiceView()
         let serviceNavController = UINavigationController(rootViewController: serviceController)
         serviceNavController.tabBarItem.title = "Services"
         serviceNavController.tabBarItem.image = UIImage(named: "service")

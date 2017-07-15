@@ -137,9 +137,15 @@ class Datasource {
         
     }
     
+    func uploadService(service : ServiceObject) {
+        
+        let post : [String : AnyObject] = [service.title : service.summary as AnyObject]
+        databaseReference.child(GlobalVariables.userName).child("Services").updateChildValues(post)
+        print("Service Uploaded")
+
+    }
+    
 }
-
-
 
 
 

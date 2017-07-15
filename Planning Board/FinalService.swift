@@ -14,6 +14,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
     let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     var interactionController: UIDocumentInteractionController?
+    let dataHandle = Datasource()
     
     let serviceTitle : UITextField = {
         let textfield = UITextField()
@@ -237,6 +238,8 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         let service : ServiceObject = ServiceObject(title: serviceTitle.text!, type: serviceType.text!, date: Date(), summary: serviceView.text!, fullDetail: "")
         GlobalVariables.arrayOfServices.append(service)
         
+        dataHandle.uploadService(service: service)
+        print("Prepare to upload")
     }
     
 }

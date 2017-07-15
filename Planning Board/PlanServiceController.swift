@@ -60,7 +60,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     let productTable : UITableView = {
         let table = UITableView()
-        table.separatorStyle = .none
         return table
     }()
     
@@ -200,7 +199,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             //Place element table
             elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: segmentTable.frame.origin.y, width: 250, height: segmentTable.frame.height)
             elementTable.tableFooterView = UIImageView()
-            elementTable.allowsMultipleSelection = true
             elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
             elementTable.delegate = self
             elementTable.dataSource = self
@@ -309,35 +307,26 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         elementArray = [currentSeg.name] + segment.elements
         elementTable.reloadData()
         
-        //Apply Checkmarks to previously selected rows
-        for elementNum in 0..<self.elementArray.count {
-            for productNum in 0..<self.productArray.count {
-                
-                if self.elementArray[elementNum] == self.productArray[productNum].title {
-                    self.elementTable.cellForRow(at: NSIndexPath(row: elementNum, section: 0) as IndexPath)?.accessoryType = .checkmark
-                }
-                
-            }
-            
-        }
         
     }
     
-    func removeFromProduct(indexPath : IndexPath) {
-        
-        for num in 0..<productArray.count {
-            if productArray[num].title == elementArray[indexPath.row] {
-                productArray.remove(at: num)
-                productTable.reloadData()
-                break
-            }
-        }
-        
-    }
+//    func removeFromProduct(indexPath : IndexPath) {
+//        
+//        for num in 0..<productArray.count {
+//            if productArray[num].title == elementArray[indexPath.row] {
+//                productArray.remove(at: num)
+//                productTable.reloadData()
+//                break
+//            }
+//        }
+//        
+//    }
     
     func dismissDetails() {
         
         detailsViewIsVisible = false
+        self.productTable.isScrollEnabled = true
+
         productTable.reloadData()
         
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
@@ -503,8 +492,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
             }
         } else if tableView == elementTable {
-            if elementArray != [] && elementTable.cellForRow(at: indexPath)?.accessoryType != .checkmark{
-                elementTable.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            if elementArray != [] {
                 
                 let newProduct = ProductItem()
                 newProduct.title = (elementTable.cellForRow(at: indexPath)?.textLabel?.text!)!
@@ -519,10 +507,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 productArray.append(newProduct)
                 productTable.reloadData()
                 
-            } else {
-                elementTable.cellForRow(at: indexPath)?.accessoryType = .none
-                removeFromProduct(indexPath: indexPath)
             }
+            
         } else if tableView == productTable {
             
             selectedItem = productArray[indexPath.row]
@@ -562,6 +548,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 
                 self.detailsView.frame.origin.x = 0
+                self.productTable.isScrollEnabled = false
                 
             }, completion: {(finished: Bool) in
                 
@@ -575,11 +562,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if tableView == elementTable {
-            elementTable.cellForRow(at: indexPath)?.accessoryType = .none
-            removeFromProduct(indexPath: indexPath)
-            
-        }
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

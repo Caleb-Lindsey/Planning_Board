@@ -63,8 +63,11 @@ class Datasource {
                     DispatchQueue.main.async {
                         completion()
                     }
+                    
                 }
             })
+        
+        
         
     }
     
@@ -137,12 +140,19 @@ class Datasource {
         
     }
     
-    func uploadService(service : ServiceObject) {
+    func uploadService() {
         
-        let post : [String : AnyObject] = [service.title : service.summary as AnyObject]
-        databaseReference.child(GlobalVariables.userName).child("Services").updateChildValues(post)
-        print("Service Uploaded")
-
+        let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.arrayOfServices)
+        UserDefaults.standard.set(data, forKey: "ServiceList")
+        print("Service Saved")
+    }
+    
+    func fillServiceData()
+    {
+        print("Filling")
+        if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
+            GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [ServiceObject]
+        }
     }
     
 }

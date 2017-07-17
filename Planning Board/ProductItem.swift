@@ -25,7 +25,6 @@ class ProductItem {
     var minutes : Int? = Int()
     var host : Member? = Member()
     var PBdescription : String = String()
-    var songKey : String = String()
     var parentSegment : String = String()
     
     
@@ -36,7 +35,6 @@ class ProductItem {
         self.minutes = 0
         self.host = nil
         self.PBdescription = ""
-        self.songKey = "none"
         self.parentSegment = ""
         
     }

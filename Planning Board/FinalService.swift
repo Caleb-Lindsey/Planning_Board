@@ -15,6 +15,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
     let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     var interactionController: UIDocumentInteractionController?
     let dataHandle = Datasource()
+    let checkMark = PBAnimations()
     
     let serviceTitle : UITextField = {
         let textfield = UITextField()
@@ -60,6 +61,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         let button = UIButton()
         button.backgroundColor = GlobalVariables.greenColor
         button.setTitle("Save to Planning Board", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(saveService), for: .touchUpInside)
         return button
@@ -69,8 +71,30 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         let button = UIButton()
         button.backgroundColor = GlobalVariables.greenColor
         button.setTitle("Export", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(writeToFile), for: .touchUpInside)
+        return button
+    }()
+    
+    let savedLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Upload Complete"
+        label.textColor = UIColor.white
+        label.font = UIFont(name: "Helvetica", size: 18)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let doneButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.backgroundColor = GlobalVariables.greenColor
+        button.setTitleColor(UIColor.gray, for: .highlighted)
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(returnToMain), for: .touchUpInside)
+        button.isUserInteractionEnabled = false
+        button.layer.opacity = 0.5
         return button
     }()
     
@@ -119,6 +143,10 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
             exportButton.frame = CGRect(x: saveToApp.frame.origin.x, y: saveToApp.frame.maxY + 10, width: saveToApp.frame.width, height: saveToApp.frame.height)
             view.addSubview(exportButton)
             
+            //Place return button
+            doneButton.frame = CGRect(x: exportButton.frame.maxX - 150, y: exportButton.frame.maxY + 10, width: 150, height: 35)
+            view.addSubview(doneButton)
+            
             
         }
         
@@ -155,13 +183,6 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
                     
                 }
             
-                //Add Key
-                if serviceArray[item].songKey != "none" {
-                    
-                    line = "\(line) {\(serviceArray[item].songKey)}"
-                    
-                }
-            
            } else {
             
                 line = "                      - \(line)"
@@ -175,13 +196,6 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
                 if serviceArray[item].minutes != 0 {
                     
                     line = "\(line) [\((serviceArray[item].minutes)!):00]"
-                    
-                }
-            
-                //Add Key
-                if serviceArray[item].songKey != "none" {
-                    
-                    line = "\(line) {\(serviceArray[item].songKey)}"
                     
                 }
             
@@ -208,6 +222,8 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
             do {
                 try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
                 try openInPages(body: serviceView.text, title: file)
+                doneButton.isUserInteractionEnabled = true
+                doneButton.layer.opacity = 1
             }
             catch {
                 print("nope")
@@ -235,11 +251,49 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
     
     func saveService() {
         
-        let service : ServiceObject = ServiceObject(title: serviceTitle.text!, type: serviceType.text!, date: Date(), summary: serviceView.text!, fullDetail: "")
-        GlobalVariables.arrayOfServices.append(service)
+        if serviceTitle.text == "" {
+            serviceTitle.layer.borderWidth = 3
+            serviceTitle.layer.borderColor = UIColor.red.cgColor
+        } else {
+            
+            serviceTitle.layer.borderWidth = 0
+            serviceTitle.layer.borderColor = UIColor.red.cgColor
+            
+            let service : ServiceObject = ServiceObject(title: serviceTitle.text!, type: serviceType.text!, date: datePicker.date, summary: serviceView.text!, fullDetail: "")
+            GlobalVariables.arrayOfServices.append(service)
+            
+            dataHandle.uploadService()
         
-        dataHandle.uploadService(service: service)
-        print("Prepare to upload")
+            saveToApp.isUserInteractionEnabled = false
+            saveToApp.layer.opacity = 0.8
+            
+            saveToApp.addSubview(checkMark.checkImageView)
+            savedLabel.frame = CGRect(x: saveToApp.frame.width / 2 - 100, y: saveToApp.frame.height, width: 200, height: 50)
+            checkMark.checkImageView.frame = CGRect(x: savedLabel.frame.maxX, y: savedLabel.frame.origin.y, width: 50, height: 50)
+            saveToApp.addSubview(savedLabel)
+            saveToApp.setTitle("", for: .normal)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                
+                self.checkMark.checkImageView.frame.origin.y = self.saveToApp.frame.height / 2 - 25
+                self.savedLabel.frame.origin.y = self.saveToApp.frame.height / 2 - 25
+                
+            }, completion: {(finished: Bool) in
+                
+                self.checkMark.playCheckGif()
+                self.doneButton.isUserInteractionEnabled = true
+                self.doneButton.layer.opacity = 1
+                
+            })
+            
+        }
+        
+    }
+    
+    func returnToMain() {
+        
+        self.navigationController?.pushViewController(ServiceView(), animated: true)
+        
     }
     
 }

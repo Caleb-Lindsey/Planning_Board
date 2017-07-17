@@ -33,20 +33,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var selectedHost : Member?
     let paddingView = UIEdgeInsetsMake(5, 10, 5, 10)
     var hostArray : [Member] = [Member]()
-    let keys : [String] = [
-        "none",
-        "A",
-        "A#/Bb",
-        "B",
-        "C",
-        "C#/Db",
-        "D",
-        "D#/Eb",
-        "E",
-        "F",
-        "F#/Gb",
-        "G",
-        "G#/Ab"]
     
     let segmentTable : UITableView = {
         let table = UITableView()
@@ -75,6 +61,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     let continueButton : UIButton = {
         let button = UIButton()
         button.setTitle("Continue", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.titleLabel?.textColor = UIColor.white
         button.backgroundColor = GlobalVariables.greenColor
         button.addTarget(self, action: #selector(continueToFinal), for: .touchUpInside)
@@ -108,21 +95,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         let picker = UIPickerView()
         picker.layer.borderColor = UIColor.black.cgColor
         picker.layer.borderWidth = 1
-        return picker
-    }()
-    
-    let keyLabel : UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.text = "In the key of:"
-        return label
-    }()
-    
-    let keyPicker : UIPickerView = {
-        let picker = UIPickerView()
-        picker.layer.borderColor = UIColor.black.cgColor
-        picker.layer.borderWidth = 1
-        
         return picker
     }()
     
@@ -235,10 +207,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             timePicker.dataSource = self
             detailsView.addSubview(timePicker)
             
-            //Place duration and key label
-            detailsView.addSubview(durationLabel)
-            detailsView.addSubview(keyLabel)
-            
             //Place detail host table
             hostTable.frame = CGRect(x: 0, y: timePicker.frame.maxY + 15, width: detailsView.frame.width - 30, height: 200)
             hostTable.center.x = detailsView.frame.width / 2
@@ -257,12 +225,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             detailDescription.center.x = hostTable.center.x
             detailsView.addSubview(detailDescription)
             
-            //Place detail key picker
-            keyPicker.frame = CGRect(x: detailsView.frame.width - 125 - 25, y: detailDescription.frame.maxY + 15, width: 125, height: 50)
-            keyPicker.delegate = self
-            keyPicker.dataSource = self
-            detailsView.addSubview(keyPicker)
-            
             //Place sync button
             syncButton.frame = CGRect(x: detailsView.frame.width - 10 - 75, y: detailsView.frame.height - 45 - 10, width: 75, height: 45)
             detailsView.addSubview(syncButton)
@@ -270,7 +232,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             //Additional
             elementTable.frame.origin.y = productTable.frame.origin.y
             durationLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 80 , y: timePicker.frame.midY - 15, width: 80, height: 30)
-            keyLabel.frame = CGRect(x: keyPicker.frame.origin.x - 125 - 15 , y: keyPicker.frame.midY - 15, width: 125, height: 30)
         }
     }
     
@@ -336,7 +297,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }, completion: {(finished: Bool) in
             
             self.timePicker.selectRow(0, inComponent: 0, animated: false)
-            self.keyPicker.selectRow(0, inComponent: 0, animated: false)
             self.hostArray.removeAll()
             self.selectedHost = nil
             self.detailDescription.text = "Additional notes...."
@@ -349,9 +309,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
         //Sync Time
         selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 0)]
-        
-        //Sync Key
-        selectedItem.songKey = keys[keyPicker.selectedRow(inComponent: 0)]
         
         //Sync Host
         selectedItem.host = selectedHost
@@ -428,11 +385,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             if productArray[indexPath.row].host != nil {
                 let title = (cell?.textLabel?.text)! + " (" + (productArray[indexPath.row].host?.fullName())! + ") "
-                cell?.textLabel?.text = title
-            }
-            
-            if productArray[indexPath.row].songKey != "none" && productArray[indexPath.row].songKey != "" {
-                let title = (cell?.textLabel?.text)! + " (" + (productArray[indexPath.row].songKey) + ") "
                 cell?.textLabel?.text = title
             }
             
@@ -534,13 +486,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 if item.fullName() == productArray[indexPath.row].host?.fullName() {
                     hostTable.selectRow(at: indexPath, animated: false, scrollPosition: .top)
-                }
-                
-            }
-            for item in keys {
-                
-                if item == productArray[indexPath.row].songKey {
-                    keyPicker.selectRow(0, inComponent: 0, animated: false)
                 }
                 
             }
@@ -668,21 +613,15 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        if pickerView == timePicker {
-            return minutes.count
-        } else {
-            return keys.count
-        }
+        return minutes.count
+         
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        if pickerView == timePicker {
-            return String(minutes[row])
-        } else {
-            return keys[row]
-        }
+        return String(minutes[row])
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -699,11 +638,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         label.textAlignment = .center
         label.font = UIFont(name: "SanFranciscoText-Light", size: 11)
         
-        if pickerView == timePicker {
-            label.text = "\(minutes[row])"
-        } else {
-            label.text = keys[row]
-        }
+        label.text = "\(minutes[row])"
+        
         
         return label
     }

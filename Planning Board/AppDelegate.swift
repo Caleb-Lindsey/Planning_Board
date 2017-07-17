@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             homeController = SignInViewController()
             print("Not Logged In")
         }
-        
         window?.rootViewController = UINavigationController(rootViewController: homeController)
         homeController.navigationController?.isNavigationBarHidden = true
         

@@ -16,6 +16,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     var dimmerView : UIView = UIView()
     let myIndexPath = IndexPath(row: 0, section: 0)
     let dataHandle = Datasource()
+    let formatter = DateFormatter()
 
     //Left Side
     let leftTopLabel : UILabel = {
@@ -30,6 +31,15 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         label.layer.borderWidth = 0.3
         label.isUserInteractionEnabled = true
         return label
+    }()
+    
+    let segmentControl : UISegmentedControl = {
+        let controller = UISegmentedControl(items: ["Most Recent","Type" ,"ABC"])
+        controller.selectedSegmentIndex = 0
+        controller.tintColor = GlobalVariables.greenColor
+        controller.backgroundColor = GlobalVariables.grayColor
+        controller.addTarget(self, action: #selector(orderServiceArray), for: .valueChanged)
+        return controller
     }()
     
     let leftTableView : UITableView = {
@@ -89,20 +99,9 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         
         statusBar.backgroundColor = UIColor.clear
-        
-        dimmerView.backgroundColor = UIColor.black
-        dimmerView.layer.opacity = 0.5
-        dimmerView.frame = view.frame
-        view.addSubview(dimmerView)
+        formatter.dateFormat = "MM-dd-yyyy"
         
         GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
-        
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
         
         if let window = UIApplication.shared.keyWindow {
         
@@ -112,8 +111,12 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             leftTopLabel.frame = CGRect(x: 0, y: statusBarHeight, width: window.frame.width * (4/10), height: 75)
             view.addSubview(leftTopLabel)
             
+            //Place segment control
+            segmentControl.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: 50)
+            view.addSubview(segmentControl)
+            
             //Place left table view
-            leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)!)
+            leftTableView.frame = CGRect(x: 0, y: segmentControl.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)!)
             leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
             leftTableView.dataSource = self
             leftTableView.delegate = self
@@ -145,18 +148,34 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             
         }
         
-        // Pull from Firebase to fill Variables
-        dataHandle.fillData {
+        if GlobalVariables.initialLoadComplete == false {
             
-            self.dataHandle.fillMemberData {
-                self.dimmerView.removeFromSuperview()
-                self.activityIndicator.stopAnimating()
-                UIApplication.shared.endIgnoringInteractionEvents()
-                GlobalVariables.initialLoadComplete = true
-
+            dimmerView.backgroundColor = UIColor.black
+            dimmerView.layer.opacity = 0.5
+            dimmerView.frame = view.frame
+            view.addSubview(dimmerView)
+            
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = .whiteLarge
+            view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            
+            // Pull from Firebase to fill Variables
+            dataHandle.fillData {
+                
+                self.dataHandle.fillMemberData {
+                    self.dimmerView.removeFromSuperview()
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    GlobalVariables.initialLoadComplete = true
+                    self.loadServices()
+                    
+                }
                 
             }
-            
+        
         }
         
     }
@@ -187,11 +206,72 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         summaryView.text = GlobalVariables.arrayOfServices[indexPath.row].summary
         rightTopLabel.text = GlobalVariables.arrayOfServices[indexPath.row].title
+        
+        let dateString = formatter.string(from: GlobalVariables.arrayOfServices[indexPath.row].date)
+        dateLabel.text = dateString
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         leftTableView.reloadData()
+    }
+    
+    func loadServices() {
+        
+        dataHandle.fillServiceData()
+        leftTableView.reloadData()
+        leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
+        
+        if GlobalVariables.arrayOfServices != [] {
+            
+            summaryView.text = GlobalVariables.arrayOfServices[0].summary
+            let dateString = formatter.string(from: GlobalVariables.arrayOfServices[0].date)
+            dateLabel.text = dateString
+            rightTopLabel.text = GlobalVariables.arrayOfServices[0].title
+            if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
+                orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
+            }
+            
+        }
+        
+    }
+    
+    func orderServiceArray() {
+        
+        if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
+            orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
+        } else if segmentControl.selectedSegmentIndex == 2 && GlobalVariables.arrayOfServices.count > 2 {
+            orderServiceArrayAlphabetically()
+        }
+        
+        leftTableView.reloadData()
+        
+    }
+    
+    func orderServiceArrayByDate(array:inout [ServiceObject]) {
+        
+        let arrayCount = array.count
+        
+        for index in 0...arrayCount {
+            for value in 1...arrayCount - 1 {
+                if array[value - 1].date > array[value].date {
+                    let largerValue = array[value - 1]
+                    array[value - 1] = array[value]
+                    array[value] = largerValue
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    func orderServiceArrayAlphabetically() {
+        
+        GlobalVariables.arrayOfServices.sort { $0.title < $1.title }
+        
+        
     }
     
 }

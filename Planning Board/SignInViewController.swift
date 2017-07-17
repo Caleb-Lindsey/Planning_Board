@@ -57,6 +57,7 @@ class SignInViewController : UIViewController {
         let button = UIButton()
         button.setTitle("Don't have an account? | Sign up", for: .normal)
         button.backgroundColor = GlobalVariables.greenColor
+        button.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
         return button
     }()
     
@@ -192,6 +193,12 @@ class SignInViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    func signUpPressed() {
+        
+        self.present(SignUpView(), animated: true, completion: nil)
+        
     }
     
 }

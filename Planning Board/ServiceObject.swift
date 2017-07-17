@@ -17,7 +17,7 @@ import UIKit
     - Full Detail
 */
 
-class ServiceObject {
+class ServiceObject : NSObject, NSCoding {
     
     var title : String = String()
     var type : String = String()
@@ -35,4 +35,55 @@ class ServiceObject {
         
     }
     
+    required init(coder aDecoder: NSCoder) {
+        
+        self.title = aDecoder.decodeObject(forKey: "Title") as! String
+        self.type = aDecoder.decodeObject(forKey: "Type") as! String
+        self.date = (aDecoder.decodeObject(forKey: "Date") as! NSDate) as Date
+        self.summary = aDecoder.decodeObject(forKey: "Summary") as! String
+        self.fullDetail = aDecoder.decodeObject(forKey: "FullDetail") as! String
+        
+    }
+    
+    func initWithCoder(aDecoder: NSCoder) -> ServiceObject {
+        
+        self.title = aDecoder.decodeObject(forKey: "Title") as! String
+        self.type = aDecoder.decodeObject(forKey: "Type") as! String
+        self.date = (aDecoder.decodeObject(forKey: "Date") as! NSDate) as Date
+        self.summary = aDecoder.decodeObject(forKey: "Summary") as! String
+        self.fullDetail = aDecoder.decodeObject(forKey: "FullDetail") as! String
+        
+        
+        return self
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: "Title")
+        aCoder.encode(type, forKey: "Type")
+        aCoder.encode(date, forKey: "Date")
+        aCoder.encode(summary, forKey: "Summary")
+        aCoder.encode(fullDetail, forKey: "FullDetail")
+        
+    }
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

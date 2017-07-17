@@ -118,8 +118,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        segmentObject = GlobalVariables.segObjArr[0]
         
         if let window = UIApplication.shared.keyWindow {
             
@@ -397,7 +395,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         } else {
             dataHandle.removeSegment(segmentObject: GlobalVariables.segObjArr[indexPath.row])
             GlobalVariables.segObjArr.remove(at: indexPath.row)
-            segmentObject = GlobalVariables.segObjArr[0]
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
             

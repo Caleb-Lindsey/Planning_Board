@@ -24,6 +24,7 @@ class SignInViewController : UIViewController {
         
         let button : UIButton = UIButton()
         button.setTitle("Sign In", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.backgroundColor = GlobalVariables.greenColor
         return button
         
@@ -56,6 +57,7 @@ class SignInViewController : UIViewController {
     let signUpBar : UIButton = {
         let button = UIButton()
         button.setTitle("Don't have an account? | Sign up", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.backgroundColor = GlobalVariables.greenColor
         button.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
         return button

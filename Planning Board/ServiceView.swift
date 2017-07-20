@@ -112,7 +112,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             view.addSubview(leftTopLabel)
             
             //Place segment control
-            segmentControl.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: 50)
+            segmentControl.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: 35)
             view.addSubview(segmentControl)
             
             //Place left table view

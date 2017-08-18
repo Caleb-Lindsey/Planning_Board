@@ -402,6 +402,12 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
+    func segmentImagePressed() {
+    
+        
+        
+    }
+    
 }
 
 

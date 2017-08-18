@@ -127,9 +127,20 @@ class SignUpView : PBViewController {
             
             GlobalVariables.userName = passwordField.text!
             userDefaults.set(GlobalVariables.userName, forKey: "username")
+            
+    
+            
             self.present(CustomTabBar(), animated: true, completion: nil)
             
+        } else {
+            
+            let alert = UIAlertController(title: "Requiered Fields", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
         }
+        
+        
         
     }
     

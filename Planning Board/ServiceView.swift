@@ -288,19 +288,3 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

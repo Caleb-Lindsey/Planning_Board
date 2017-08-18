@@ -28,11 +28,13 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var currentSeg = SegmentObject()
     var segmentPath : Int = Int()
     let minutes = Array(0...90)
+    let seconds = Array(0...59)
     var detailsViewIsVisible : Bool = false
     var selectedItem : ProductItem!
     var selectedHost : Member?
     let paddingView = UIEdgeInsetsMake(5, 10, 5, 10)
     var hostArray : [Member] = [Member]()
+    var initialIndexPath : IndexPath!
     
     let segmentTable : UITableView = {
         let table = UITableView()
@@ -47,15 +49,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     let productTable : UITableView = {
         let table = UITableView()
         return table
-    }()
-    
-    let topProductButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("Edit Service Order", for: .normal)
-        button.titleLabel?.textColor = UIColor.white
-        button.titleLabel?.textAlignment = .center
-        button.addTarget(self, action: #selector(editServiceOrder), for: .touchUpInside)
-        return button
     }()
     
     let continueButton : UIButton = {
@@ -121,7 +114,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     let syncButton : UIButton = {
         let button = UIButton()
-        button.setTitle("Sync", for: .normal)
+        button.setTitle("Done", for: .normal)
         button.backgroundColor = UIColor.gray
         button.titleLabel?.textColor = UIColor.white
         button.layer.cornerRadius = 8
@@ -129,8 +122,19 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         return button
     }()
     
+    let ElementSegmentControl : UISegmentedControl = {
+        let controller = UISegmentedControl(items: ["Most Recent","ABC"])
+        controller.selectedSegmentIndex = 0
+        controller.tintColor = GlobalVariables.greenColor
+        controller.backgroundColor = GlobalVariables.grayColor
+        return controller
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
+        productTable.addGestureRecognizer(longpress)
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -184,11 +188,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             productTable.dataSource = self
             view.addSubview(productTable)
             
-            //Place edit button
-            topProductButton.frame = CGRect(x: elementTable.frame.maxX + 25, y: topBorder + 32.5, width: 300, height: 30)
-            topProductButton.center.x = productTable.center.x
-            view.addSubview(topProductButton)
-            
             //Place complete button
             continueButton.frame = CGRect(x: productTable.frame.origin.x, y: productTable.frame.maxY + 15, width: productTable.frame.width, height: 30)
             view.addSubview(continueButton)
@@ -229,6 +228,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             syncButton.frame = CGRect(x: detailsView.frame.width - 10 - 75, y: detailsView.frame.height - 45 - 10, width: 75, height: 45)
             detailsView.addSubview(syncButton)
             
+            //Place element segment control
+            ElementSegmentControl.frame = CGRect(x: elementTable.frame.origin.x, y: elementTable.frame.origin.y - 30, width: elementTable.frame.width, height: 35)
+            ElementSegmentControl.layer.zPosition = elementTable.layer.zPosition - 1
+            view.addSubview(ElementSegmentControl)
+            
             //Additional
             elementTable.frame.origin.y = productTable.frame.origin.y
             durationLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 80 , y: timePicker.frame.midY - 15, width: 80, height: 30)
@@ -238,6 +242,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        elementTable.reloadData()
         GlobalVariables.serviceDetailArray.removeAll()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
@@ -246,18 +251,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
         let indexPath = IndexPath(row: 0, section: 0)
         segmentTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        
-    }
-    
-    func editServiceOrder() {
-        
-        if productTable.isEditing {
-            productTable.setEditing(false, animated: true)
-            topProductButton.setTitle("Edit Service Order", for: .normal)
-        } else {
-            productTable.setEditing(true, animated: true)
-            topProductButton.setTitle("Done", for: .normal)
-        }
         
     }
     
@@ -271,20 +264,9 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-//    func removeFromProduct(indexPath : IndexPath) {
-//        
-//        for num in 0..<productArray.count {
-//            if productArray[num].title == elementArray[indexPath.row] {
-//                productArray.remove(at: num)
-//                productTable.reloadData()
-//                break
-//            }
-//        }
-//        
-//    }
-    
     func dismissDetails() {
         
+        productTable.separatorStyle = .singleLine
         detailsViewIsVisible = false
         self.productTable.isScrollEnabled = true
 
@@ -297,6 +279,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         }, completion: {(finished: Bool) in
             
             self.timePicker.selectRow(0, inComponent: 0, animated: false)
+            self.timePicker.selectRow(0, inComponent: 1, animated: false)
             self.hostArray.removeAll()
             self.selectedHost = nil
             self.detailDescription.text = "Additional notes...."
@@ -309,6 +292,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
         //Sync Time
         selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 0)]
+        selectedItem.seconds = seconds[timePicker.selectedRow(inComponent: 1)]
         
         //Sync Host
         selectedItem.host = selectedHost
@@ -391,6 +375,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             if productArray[indexPath.row].minutes != 0 {
                 
                 let title = "[\((productArray[indexPath.row].minutes)!):00] | " + (cell?.textLabel?.text)!
+        
                 cell?.textLabel?.text = title
                 
             } else {
@@ -463,6 +448,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
         } else if tableView == productTable {
             
+            productTable.separatorStyle = .none
             selectedItem = productArray[indexPath.row]
             detailsViewIsVisible = true
             
@@ -482,6 +468,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             //Fill detail view
             timePicker.selectRow(productArray[indexPath.row].minutes!, inComponent: 0, animated: false)
+            timePicker.selectRow(productArray[indexPath.row].seconds!, inComponent: 1, animated: false)
+            
             for item in hostArray {
                 
                 if item.fullName() == productArray[indexPath.row].host?.fullName() {
@@ -604,7 +592,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView == timePicker {
-            return 1
+            return 2
         } else {
             return 1
         }
@@ -613,14 +601,22 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return minutes.count
+        if component == 0 {
+            return minutes.count
+        } else {
+            return seconds.count
+        }
          
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return String(minutes[row])
+        if component == 0 {
+            return String(minutes[row])
+        } else {
+            return String(seconds[row])
+        }
         
     }
     
@@ -638,8 +634,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         label.textAlignment = .center
         label.font = UIFont(name: "SanFranciscoText-Light", size: 11)
         
-        label.text = "\(minutes[row])"
-        
+        if component == 0 {
+            label.text = "\(minutes[row])"
+        } else {
+            label.text = "\(seconds[row])"
+        }
         
         return label
     }
@@ -654,19 +653,131 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    func orderElementArray() {
+        
+        if ElementSegmentControl.selectedSegmentIndex == 0 {
+            orderElementsByDate()
+        } else {
+            orderElementsAlph()
+        }
+        
+        elementTable.reloadData()
+        
+    }
+    
+    func orderElementsByDate() {
+        
+    }
+    
+    func orderElementsAlph() {
+        elementArray.sort { $0 < $1 }
+    }
+    
+    func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        let longPress = gestureRecognizer as! UILongPressGestureRecognizer
+        let state = longPress.state
+        let locationInView = longPress.location(in: productTable)
+        let indexPath = productTable.indexPathForRow(at: locationInView)
+        
+        struct My {
+            static var cellSnapshot : UIView? = nil
+            static var cellIsAnimating : Bool = false
+            static var cellNeedToShow : Bool = false
+        }
+        struct Path {
+            static var initialIndexPath : NSIndexPath? = nil
+        }
+        
+        switch state {
+        case UIGestureRecognizerState.began:
+            if indexPath != nil {
+                initialIndexPath = indexPath
+                let cell = productTable.cellForRow(at: indexPath!) as UITableViewCell!
+                My.cellSnapshot  = snapshopOfCell(inputView: cell!)
+                
+                var center = cell?.center
+                My.cellSnapshot!.center = center!
+                My.cellSnapshot!.alpha = 0.0
+                productTable
+                    .addSubview(My.cellSnapshot!)
+                
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    center?.y = locationInView.y
+                    My.cellIsAnimating = true
+                    My.cellSnapshot!.center = center!
+                    My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    My.cellSnapshot!.alpha = 0.98
+                    cell?.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        My.cellIsAnimating = false
+                        if My.cellNeedToShow {
+                            My.cellNeedToShow = false
+                            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                                cell?.alpha = 1
+                            })
+                        } else {
+                            cell?.isHidden = true
+                        }
+                    }
+                })
+            }
+            
+        case UIGestureRecognizerState.changed:
+            if My.cellSnapshot != nil {
+                var center = My.cellSnapshot!.center
+                center.y = locationInView.y
+                My.cellSnapshot!.center = center
+                
+                if ((indexPath != nil) && (indexPath != initialIndexPath)) {
+                    productArray.insert(productArray.remove(at: initialIndexPath!.row), at: indexPath!.row)
+                    productTable.moveRow(at: initialIndexPath! as IndexPath, to: indexPath!)
+                    initialIndexPath = indexPath
+                }
+            }
+        default:
+            if initialIndexPath != nil {
+                let cell = productTable.cellForRow(at: initialIndexPath! as IndexPath) as UITableViewCell!
+                if My.cellIsAnimating {
+                    My.cellNeedToShow = true
+                } else {
+                    cell?.isHidden = false
+                    cell?.alpha = 0.0
+                }
+                
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    My.cellSnapshot!.center = (cell?.center)!
+                    My.cellSnapshot!.transform = CGAffineTransform.identity
+                    My.cellSnapshot!.alpha = 0.0
+                    cell?.alpha = 1.0
+                    
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        self.initialIndexPath = nil
+                        My.cellSnapshot!.removeFromSuperview()
+                        My.cellSnapshot = nil
+                    }
+                })
+            }
+        }
+    }
+    
+    func snapshopOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
+        UIGraphicsEndImageContext()
+        let cellSnapshot : UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+        return cellSnapshot
+    }
+    
 }
     
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -23,6 +23,7 @@ class ProductItem {
     var title : String = String()
     var type : String = String()
     var minutes : Int? = Int()
+    var seconds: Int? = Int()
     var host : Member? = Member()
     var PBdescription : String = String()
     var parentSegment : String = String()
@@ -33,6 +34,7 @@ class ProductItem {
         self.title = ""
         self.type = "element"
         self.minutes = 0
+        self.seconds = 0
         self.host = nil
         self.PBdescription = ""
         self.parentSegment = ""

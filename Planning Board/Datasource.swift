@@ -155,6 +155,18 @@ class Datasource {
         }
     }
     
+    func mockData(email: String, username: String) {
+        
+        //let post : [String : AnyObject] = ["element\(row)" : newElement as AnyObject]
+        //databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segment.name).updateChildValues(post)
+        
+        //var post : [String : AnyObject] = ["Email" : email as AnyObject]
+        databaseReference.child(GlobalVariables.userName)
+        
+        
+        
+    }
+    
 }
 
 

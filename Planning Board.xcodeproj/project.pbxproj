@@ -27,6 +27,7 @@
 		2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC71EF1A4C500801415 /* FinalService.swift */; };
 		2E3E1ACA1EF1A6CF00801415 /* ServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */; };
 		2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E44E1E01E97222400C70049 /* SignInViewController.swift */; };
+		2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServiceView.swift */; };
 		2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E943D541E26C5150059C689 /* TableViewCell1.swift */; };
@@ -110,6 +111,7 @@
 		2E3E1AC71EF1A4C500801415 /* FinalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalService.swift; sourceTree = "<group>"; };
 		2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceObject.swift; sourceTree = "<group>"; };
 		2E44E1E01E97222400C70049 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementObject.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E943D541E26C5150059C689 /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				2E0FCD981E163CD700C8F1E3 /* Planning Board.entitlements */,
 				2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */,
 				2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */,
+				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
 				2E1F75AD1E4CFD7800DEE534 /* ViewControllers */,
 				2E7EA1DD1E4FE1F200911AD7 /* Helpers */,
 				2E0FCD6F1E16367400C8F1E3 /* Assets.xcassets */,
@@ -298,12 +301,12 @@
 		2E7EA1DD1E4FE1F200911AD7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
 				2EAA78771EC1849C00E4102D /* PBViewController.swift */,
 				2E99BB821E873D3C0039B0EE /* PBAnimations.swift */,
 				2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */,
 				2EB88CF81E858639001F85C2 /* MemberObject.swift */,
 				2E99BB861E875CF00039B0EE /* SegmentObject.swift */,
+				2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */,
 				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
 				2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */,
 			);
@@ -736,6 +739,7 @@
 				2EAA78741EC17B9E00E4102D /* SegmentsView.swift in Sources */,
 				2E1D7E6A1E4FF7EB00A648C3 /* memberCell1.swift in Sources */,
 				2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */,
+				2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */,
 				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,
 				2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */,
@@ -951,6 +955,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WC4V23B6MJ;
 				INFOPLIST_FILE = "Planning Board/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

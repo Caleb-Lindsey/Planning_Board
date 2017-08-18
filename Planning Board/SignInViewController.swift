@@ -124,11 +124,6 @@ class SignInViewController : UIViewController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func signInPressed(_ sender: Any) {
         signInButton.isUserInteractionEnabled = false
         self.view.endEditing(true)
@@ -139,8 +134,35 @@ class SignInViewController : UIViewController {
         self.view.endEditing(true)
     }
     
+    func verifyUserName() {
+        print("verifying username")
+        let databaseRef = FIRDatabase.database().reference()
+        
+        if self.userName.text != "" {
+            print("here")
+            databaseRef.child(self.userName.text!).observeSingleEvent(of: .childAdded, with: {
+                snapshot in
+                print("here")
+                let dictionary = snapshot.value! as! [String : String]
+                
+                self.userEmail = dictionary["Email"]!
+                GlobalVariables.userName = self.userName.text!
+                UserDefaults.standard.set(GlobalVariables.userName, forKey: "username")
+                UserDefaults.standard.synchronize()
+                self.login()
+                
+                
+            })
+            
+        } else {
+            self.signInWarning.text = "- username or password is incorrect."
+            signInButton.isUserInteractionEnabled = true
+        }
+        print("done verifying username")
+    }
     
     func login() {
+        print("login")
         FIRAuth.auth()?.signIn(withEmail: userEmail, password: userPassword.text!, completion: {
             user, error in
             
@@ -152,45 +174,18 @@ class SignInViewController : UIViewController {
                 UserDefaults.standard.set(true, forKey: "logged_in")
                 UserDefaults.standard.synchronize()
                 
-                let landingView : UIViewController = CustomTabBar()
-                self.navigationController?.pushViewController(landingView, animated: true)
+                self.navigationController?.pushViewController(CustomTabBar(), animated: true)
 
-                
             }
             
         })
         
-        
+        print("done login")
+
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-    
-    func verifyUserName() {
-        
-        let databaseRef = FIRDatabase.database().reference()
-    
-        if self.userName.text != "" {
-    
-            databaseRef.child(self.userName.text!).observeSingleEvent(of: .childAdded, with: {
-                snapshot in
-                
-                let dictionary = snapshot.value! as! [String : String]
-                
-                self.userEmail = dictionary["Email"]!
-                GlobalVariables.userName = self.userName.text!
-                UserDefaults.standard.set(GlobalVariables.userName, forKey: "username")
-                UserDefaults.standard.synchronize()
-                self.login()
-                
-            })
-            
-        } else {
-            self.signInWarning.text = "- username or password is incorrect."
-            signInButton.isUserInteractionEnabled = true
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -204,28 +199,6 @@ class SignInViewController : UIViewController {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

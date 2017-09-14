@@ -40,6 +40,7 @@
 		2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78751EC17DEE00E4102D /* PeopleView.swift */; };
 		2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78771EC1849C00E4102D /* PBViewController.swift */; };
 		2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB88CF81E858639001F85C2 /* MemberObject.swift */; };
+		2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC255281F579007009BBA4C /* CustomTextField.swift */; };
 		2EF0E1991F1D13AD00CAF50E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */; };
 		572E1D44CA0E9B25516951D9 /* Pods_Planning_BoardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0256DE4A0B13673A21383A4 /* Pods_Planning_BoardUITests.framework */; };
 		DA880E049AE65C95B512E00D /* Pods_Planning_BoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FB31C9AA363BC2650B9B39 /* Pods_Planning_BoardTests.framework */; };
@@ -124,6 +125,7 @@
 		2EAA78751EC17DEE00E4102D /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		2EAA78771EC1849C00E4102D /* PBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBViewController.swift; sourceTree = "<group>"; };
 		2EB88CF81E858639001F85C2 /* MemberObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberObject.swift; sourceTree = "<group>"; };
+		2EC255281F579007009BBA4C /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		9EA070E1F2732D36227515AE /* Pods-Planning BoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning BoardUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planning BoardUITests/Pods-Planning BoardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D43A91E7D6E17061396F6826 /* Pods-Planning BoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning BoardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Planning BoardTests/Pods-Planning BoardTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */,
 				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
 				2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */,
+				2EC255281F579007009BBA4C /* CustomTextField.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -742,6 +745,7 @@
 				2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */,
 				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,
+				2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */,
 				2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */,
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
 				2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */,

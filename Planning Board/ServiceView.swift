@@ -34,7 +34,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }()
     
     let segmentControl : UISegmentedControl = {
-        let controller = UISegmentedControl(items: ["Most Recent","Type" ,"ABC"])
+        let controller = UISegmentedControl(items: ["Most Recent","ABC"])
         controller.selectedSegmentIndex = 0
         controller.tintColor = GlobalVariables.greenColor
         controller.backgroundColor = GlobalVariables.grayColor
@@ -241,7 +241,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         
         if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
             orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
-        } else if segmentControl.selectedSegmentIndex == 2 && GlobalVariables.arrayOfServices.count > 2 {
+        } else if segmentControl.selectedSegmentIndex == 1 && GlobalVariables.arrayOfServices.count > 2 {
             orderServiceArrayAlphabetically()
         }
         
@@ -253,15 +253,15 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         
         let arrayCount = array.count
         
-        for index in 0...arrayCount {
-            for value in 1...arrayCount - 1 {
-                if array[value - 1].date > array[value].date {
-                    let largerValue = array[value - 1]
-                    array[value - 1] = array[value]
-                    array[value] = largerValue
-                }
+        
+        for value in 1...arrayCount - 1 {
+            if array[value - 1].date > array[value].date {
+                let largerValue = array[value - 1]
+                array[value - 1] = array[value]
+                array[value] = largerValue
             }
         }
+        
         
         
         

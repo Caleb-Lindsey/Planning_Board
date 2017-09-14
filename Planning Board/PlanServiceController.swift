@@ -58,6 +58,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         button.titleLabel?.textColor = UIColor.white
         button.backgroundColor = GlobalVariables.greenColor
         button.addTarget(self, action: #selector(continueToFinal), for: .touchUpInside)
+        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -127,6 +128,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         controller.selectedSegmentIndex = 0
         controller.tintColor = GlobalVariables.greenColor
         controller.backgroundColor = GlobalVariables.grayColor
+        controller.layer.opacity = 0
         return controller
     }()
     
@@ -155,9 +157,13 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
                 arrayOfCellData.append(cellData(cell: 1, text: GlobalVariables.segObjArr[count].name, image: GlobalVariables.segObjArr[count].iconImage))
                 
+                
                 count += 1
             
             }
+            
+    
+            
         }
         
         if let window = UIApplication.shared.keyWindow {
@@ -325,7 +331,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 let cell = Bundle.main.loadNibNamed("TableViewCell1", owner: self, options: nil)?.first as! TableViewCell1
                 
-                cell.mainImageView.image = arrayOfCellData[indexPath.row].image
+                cell.mainImageView.image = #imageLiteral(resourceName: "fire_icon")
                 cell.mainLabel.text = arrayOfCellData[indexPath.row].text
                 return cell
                 
@@ -333,7 +339,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 let cell = Bundle.main.loadNibNamed("TableViewCell1", owner: self, options: nil)?.first as! TableViewCell1
                 
-                cell.mainImageView.image = arrayOfCellData[indexPath.row].image
+                cell.mainImageView.image = #imageLiteral(resourceName: "fire_icon")
                 cell.mainLabel.text = arrayOfCellData[indexPath.row].text
                 return cell
                 
@@ -372,11 +378,26 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 cell?.textLabel?.text = title
             }
             
-            if productArray[indexPath.row].minutes != 0 {
+            if productArray[indexPath.row].minutes != 0 || productArray[indexPath.row].seconds != 0 {
                 
-                let title = "[\((productArray[indexPath.row].minutes)!):00] | " + (cell?.textLabel?.text)!
+                var minutesLabel = ""
+                var secondsLabel = ""
+                
+                minutesLabel = "\(productArray[indexPath.row].minutes!)"
+                
+                if productArray[indexPath.row].seconds! < 10 {
+                    secondsLabel = "0\(productArray[indexPath.row].seconds!)"
+                } else {
+                    secondsLabel = "\(productArray[indexPath.row].seconds!)"
+                }
+                
+                let title = "[\(minutesLabel):\(secondsLabel)] | " + (cell?.textLabel?.text)!
+                //productArray[indexPath.row].title = title
         
                 cell?.textLabel?.text = title
+                
+                minutesLabel = ""
+                secondsLabel = ""
                 
             } else {
                 

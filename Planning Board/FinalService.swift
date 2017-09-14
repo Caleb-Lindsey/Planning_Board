@@ -8,22 +8,17 @@
 
 import UIKit
 
-class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
+class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, UITextFieldDelegate {
     
     //Variables
-    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     var interactionController: UIDocumentInteractionController?
     let dataHandle = Datasource()
     let checkMark = PBAnimations()
     
-    let serviceTitle : UITextField = {
-        let textfield = UITextField()
-        textfield.backgroundColor = UIColor.white
+    let serviceTitle : CustomTextField = {
+        let textfield = CustomTextField()
         textfield.placeholder = "Service Title"
-        textfield.layer.cornerRadius = 5
-        textfield.layer.borderColor = GlobalVariables.greenColor.cgColor
-        textfield.layer.borderWidth = 0.4
         return textfield
     }()
     
@@ -47,13 +42,9 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         return picker
     }()
     
-    let serviceType : UITextField = {
-        let textfield = UITextField()
-        textfield.backgroundColor = UIColor.white
+    let serviceType : CustomTextField = {
+        let textfield = CustomTextField()
         textfield.placeholder = "Service Type"
-        textfield.layer.cornerRadius = 5
-        textfield.layer.borderColor = GlobalVariables.greenColor.cgColor
-        textfield.layer.borderWidth = 0.4
         return textfield
     }()
     
@@ -125,18 +116,17 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
             
             //Place service title
             serviceTitle.frame = CGRect(x: datePicker.frame.origin.x, y: datePicker.frame.maxY + 25 , width: datePicker.frame.width, height: 35)
-            serviceTitle.leftView = paddingView
-            serviceTitle.leftViewMode = .always
+            serviceTitle.delegate = self
+
             view.addSubview(serviceTitle)
             
             //Place service type
             serviceType.frame = CGRect(x: serviceTitle.frame.origin.x, y: serviceTitle.frame.maxY + 25, width: serviceTitle.frame.width, height: serviceTitle.frame.height)
-            serviceType.leftView = paddingView2
-            serviceType.leftViewMode = .always
-            view.addSubview(serviceType)
+            serviceType.delegate = self
+            //view.addSubview(serviceType)
             
             //Place save to app button
-            saveToApp.frame = CGRect(x: serviceType.frame.origin.x, y: serviceType.frame.maxY + 25, width: serviceType.frame.width, height: serviceType.frame.height * 1.5)
+            saveToApp.frame = CGRect(x: serviceType.frame.origin.x, y: serviceTitle.frame.maxY + 25, width: serviceType.frame.width, height: serviceType.frame.height * 1.5)
             view.addSubview(saveToApp)
             
             //Place export button
@@ -161,48 +151,69 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
             
             line = serviceArray[item].title
             
-           if serviceArray[item].type == "Segment" {
-            
+            if serviceArray[item].type == "Segment" {
+                
                 //Add Host
                 if serviceArray[item].host != nil {
                     line = "\(line)  (\((serviceArray[item].host?.fullName())!))"
                 }
-            
+                
                 //Add Time
-                if serviceArray[item].minutes != 0 {
+                if serviceArray[item].minutes != 0 || serviceArray[item].seconds != 0 {
                     
-                    if serviceArray[item].minutes! >= 10 {
-                        line = "  \((serviceArray[item].minutes)!):00 | \(line)"
-                    } else {
-                        line = "  \((serviceArray[item].minutes)!):00   | \(line)"
+                    let minutesLabel = "\(serviceArray[item].minutes!)"
+                    var secondsLabel = "\(serviceArray[item].seconds!)"
+                    var tab = "   |   "
+                    
+                    if serviceArray[item].minutes! < 10 {
+                        tab = "     |   "
                     }
+                    
+                    if serviceArray[item].seconds! < 10 {
+                        secondsLabel = "0\(secondsLabel)"
+                    }
+                    
+                    line = "[\(minutesLabel):\(secondsLabel)]\(tab)\(line)"
                     
                 } else {
                     
                     line = "           |  \(line)"
                     
                 }
-            
-           } else {
-            
-                line = "                      - \(line)"
-            
+                
+            } else {
+                
                 //Add Host
                 if serviceArray[item].host != nil {
                     line = "\(line)  (\((serviceArray[item].host?.fullName())!))"
                 }
-            
+                
                 //Add Time
-                if serviceArray[item].minutes != 0 {
+                if serviceArray[item].minutes != 0 || serviceArray[item].seconds != 0 {
                     
-                    line = "\(line) [\((serviceArray[item].minutes)!):00]"
+                    let minutesLabel = "\(serviceArray[item].minutes!)"
+                    var secondsLabel = "\(serviceArray[item].seconds!)"
                     
+                    if serviceArray[item].seconds! < 10 {
+                        secondsLabel = "0\(secondsLabel)"
+                    }
+                    
+                    if serviceArray[item].minutes! < 10 {
+                        line = "            - \(line)"
+                    } else {
+                        line = "           - \(line)"
+                    }
+                    
+                    line = "[\(minutesLabel):\(secondsLabel)]\(line)"
+                    
+                } else {
+                    line = "                      - \(line)"
                 }
-            
+                
             }
             
             summary += "\(line)\n\n"
-        
+            
         }
         
         return summary
@@ -210,7 +221,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
     
     func writeToFile() {
         
-        let file = "\((serviceTitle.text)!).txt" //this is the file. we will write to and read from it
+        let file = "\((serviceTitle.text)!).pages" //this is the file. we will write to and read from it
         
         let text = serviceView.text! //just a text
         
@@ -294,6 +305,10 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate {
         
         self.navigationController?.pushViewController(ServiceView(), animated: true)
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }

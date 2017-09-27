@@ -16,30 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        //Firebase
-        FIRApp.configure()
         
         // Ignore the Storyboard
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
         // Override point for customization after application launch.
-        var userLogginStatus = Bool()
-        let homeController : UIViewController!
+        // var userLogginStatus = Bool()
+        let homeController : UIViewController = CustomTabBar()
         
-        if UserDefaults.standard.value(forKey: "logged_in") != nil {
-            userLogginStatus = UserDefaults.standard.value(forKey: "logged_in") as! Bool
-        }
-
-        if (userLogginStatus) {
-
-            homeController = CustomTabBar()
-            print("Logged in as \(UserDefaults.standard.value(forKey: "username")!)")
-            
-        } else {
-            homeController = SignInViewController()
-            print("Not Logged In")
-        }
         window?.rootViewController = UINavigationController(rootViewController: homeController)
         homeController.navigationController?.isNavigationBarHidden = true
         

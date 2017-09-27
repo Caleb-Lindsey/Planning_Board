@@ -12,8 +12,6 @@ import Firebase
 class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource {
     
     //Variables
-    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
-    var dimmerView : UIView = UIView()
     let myIndexPath = IndexPath(row: 0, section: 0)
     let dataHandle = Datasource()
     let formatter = DateFormatter()
@@ -148,35 +146,8 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             
         }
         
-        if GlobalVariables.initialLoadComplete == false {
-            
-            dimmerView.backgroundColor = UIColor.black
-            dimmerView.layer.opacity = 0.5
-            dimmerView.frame = view.frame
-            view.addSubview(dimmerView)
-            
-            activityIndicator.center = self.view.center
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.activityIndicatorViewStyle = .whiteLarge
-            view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            UIApplication.shared.beginIgnoringInteractionEvents()
-            
-            // Pull from Firebase to fill Variables
-            dataHandle.fillData {
-                
-                self.dataHandle.fillMemberData {
-                    self.dimmerView.removeFromSuperview()
-                    self.activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                    GlobalVariables.initialLoadComplete = true
-                    self.loadServices()
-                    
-                }
-                
-            }
+        loadServices()
         
-        }
         
     }
     
@@ -220,6 +191,9 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     func loadServices() {
         
         dataHandle.fillServiceData()
+        dataHandle.fillSegmentData()
+        dataHandle.fillMemberData()
+        
         leftTableView.reloadData()
         leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
         
@@ -271,6 +245,23 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         
         GlobalVariables.arrayOfServices.sort { $0.title < $1.title }
         
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if tableView == leftTableView {
+            if editingStyle == .delete {
+                
+                GlobalVariables.arrayOfServices.remove(at: indexPath.row)
+                leftTableView.reloadData()
+                dataHandle.uploadService()
+                
+            }
+        }
         
     }
     

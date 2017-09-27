@@ -16,7 +16,7 @@ import UIKit
     - Array of hostable segments
 */
 
-class Member {
+class Member : NSObject, NSCoding {
     
     //Variables
     var firstName = String()
@@ -32,7 +32,7 @@ class Member {
         self.profilePic = ProfilePic
         
     }
-    init() {
+    override init() {
         self.firstName = ""
         self.lastName = ""
         self.canHost = [String]()
@@ -41,6 +41,33 @@ class Member {
     
     func fullName() -> String {
         return firstName + " " + lastName
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        
+        self.firstName = aDecoder.decodeObject(forKey: "FirstName") as! String
+        self.lastName = aDecoder.decodeObject(forKey: "LastName") as! String
+        self.canHost = aDecoder.decodeObject(forKey: "canHost") as! [String]
+        self.profilePic = aDecoder.decodeObject(forKey: "ProfilePic") as! UIImage
+        
+    }
+    
+    func initWithCoder(aDecoder: NSCoder) -> Member {
+        
+        self.firstName = aDecoder.decodeObject(forKey: "FirstName") as! String
+        self.lastName = aDecoder.decodeObject(forKey: "LastName") as! String
+        self.canHost = aDecoder.decodeObject(forKey: "canHost") as! [String]
+        self.profilePic = aDecoder.decodeObject(forKey: "ProfilePic") as! UIImage
+        
+        return self
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(firstName, forKey: "FirstName")
+        aCoder.encode(lastName, forKey: "LastName")
+        aCoder.encode(canHost, forKey: "canHost")
+        aCoder.encode(profilePic, forKey: "ProfilePic")
+        
     }
     
 }

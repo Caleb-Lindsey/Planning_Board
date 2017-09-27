@@ -192,7 +192,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 tempArray.append(newElementField.text!)
             } else {
                 segmentObject.elements.append(newElementField.text!)
-                dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
+                // dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
             }
             newElementField.text = ""
             rightTableView.reloadData()
@@ -290,7 +290,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func doneCreate() {
 
         if newSegmentField.text != "" && tempArray != [] {
-            dataHandle.uploadSegment(segmentName: newSegmentField.text!, elementArray: tempArray)
+            let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: #imageLiteral(resourceName: "gear"))
+            GlobalVariables.segObjArr.append(newSegment)
+            dataHandle.uploadSegment()
             leftTableView.reloadData()
             cancelCreate()
         } else {
@@ -385,7 +387,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                     tempArray.remove(at: indexPath.row)
                 } else {
                     segmentObject.elements.remove(at: indexPath.row)
-                    dataHandle.removeElement(segmentObject: segmentObject)
+                    dataHandle.uploadSegment()
                     tempArray.removeAll()
                     rightTableView.reloadData()
                 
@@ -393,8 +395,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 rightTableView.reloadData()
             }
         } else {
-            dataHandle.removeSegment(segmentObject: GlobalVariables.segObjArr[indexPath.row])
+        
             GlobalVariables.segObjArr.remove(at: indexPath.row)
+            dataHandle.uploadSegment()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
             

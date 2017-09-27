@@ -147,22 +147,19 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
-        if GlobalVariables.segmentArray != [] {
+        if GlobalVariables.segObjArr != [] {
             
             currentLoaded = GlobalVariables.segObjArr[0].name
             currentSeg = GlobalVariables.segObjArr[0]
             fillTable(segment: GlobalVariables.segObjArr[0])
             
-            while count < GlobalVariables.segmentArray.count {
+            while count < GlobalVariables.segObjArr.count {
             
                 arrayOfCellData.append(cellData(cell: 1, text: GlobalVariables.segObjArr[count].name, image: GlobalVariables.segObjArr[count].iconImage))
-                
                 
                 count += 1
             
             }
-            
-    
             
         }
         
@@ -331,8 +328,34 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
                 let cell = Bundle.main.loadNibNamed("TableViewCell1", owner: self, options: nil)?.first as! TableViewCell1
                 
-                cell.mainImageView.image = #imageLiteral(resourceName: "fire_icon")
+                cell.mainImageView.image = #imageLiteral(resourceName: "meeting_icon")
                 cell.mainLabel.text = arrayOfCellData[indexPath.row].text
+                
+                if cell.mainLabel.text == "Altar Call" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "prayer_hands")
+                }
+                if cell.mainLabel.text == "Locker Room" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "fire_icon")
+                }
+                if cell.mainLabel.text == "Message" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "speaking_icon")
+                }
+                if cell.mainLabel.text == "Offering" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "giving")
+                }
+                if cell.mainLabel.text == "Sermon" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "mike_icon")
+                }
+                if cell.mainLabel.text == "Transition" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "segments")
+                }
+                if cell.mainLabel.text == "Walk-In" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "door_icon")
+                }
+                if cell.mainLabel.text == "Worship" {
+                    cell.mainImageView.image = #imageLiteral(resourceName: "worshiping_hands")
+                }
+                
                 return cell
                 
             } else {
@@ -437,11 +460,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == segmentTable {
-            if GlobalVariables.segmentArray != [] {
+            if GlobalVariables.segObjArr != [] {
                 
                 segmentPath = indexPath.row
                 
-                if currentLoaded != GlobalVariables.segmentArray[indexPath.row] {
+                if currentLoaded != GlobalVariables.segObjArr[indexPath.row].name {
                     
                     //Load the tableview using the element array
                     fillTable(segment: GlobalVariables.segObjArr[indexPath.row])
@@ -523,7 +546,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == segmentTable {
             return "Segments"
         } else if tableView == elementTable {
-            if GlobalVariables.segmentArray != [] {
+            if GlobalVariables.segObjArr != [] {
                 if currentLoaded.characters.count > 25 {
                     return currentLoaded
                 } else {

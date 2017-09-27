@@ -112,7 +112,9 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        memberObject = GlobalVariables.memberArr[0]
+        if GlobalVariables.memberArr.count != 0 {
+            memberObject = GlobalVariables.memberArr[0]
+        }
         
         if let window = UIApplication.shared.keyWindow {
             
@@ -274,7 +276,9 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         
         if tempArray != [] && newFirstName.text != "" && newLastName.text != "" {
             
-            dataHandle.uploadMember(firstName: newFirstName.text!, lastName: newLastName.text!, hostables: tempArray)
+            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
+            GlobalVariables.memberArr.append(newMember)
+            dataHandle.uploadMember()
             leftTableView.reloadData()
             cancelCreate()
             
@@ -395,15 +399,14 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
                     tempArray.remove(at: indexPath.row)
                 } else {
                     memberObject.canHost.remove(at: indexPath.row)
-                    dataHandle.removeHostable(member: memberObject)
+                   dataHandle.uploadMember()
                 }
                 rightTableView.reloadData()
             }
         } else {
             
-            dataHandle.removeMember(member: GlobalVariables.memberArr[indexPath.row])
             GlobalVariables.memberArr.remove(at: indexPath.row)
-            memberObject = GlobalVariables.memberArr[0]
+            dataHandle.uploadMember()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
             

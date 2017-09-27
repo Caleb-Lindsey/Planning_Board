@@ -18,125 +18,44 @@ struct GlobalVariables {
     static var grayColor = UIColor(colorLiteralRed: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var segObjArr = [SegmentObject]()
     static var memberArr = [Member]()
-    static var initialLoadComplete : Bool = false
     static var serviceDetailArray : [ProductItem] = [ProductItem]()
     static var arrayOfServices : [ServiceObject] = [ServiceObject]()
 }
 
 class Datasource {
     
-    //Variables
-    let databaseReference = FIRDatabase.database().reference()
-    
-    func fillData(completion : @escaping () -> ()) {
-        
-        databaseReference.child(GlobalVariables.userName).child("Service Parts").observe(.childAdded, with: {
-            snapshot in
-            let dataDict = snapshot.value as! [String : String]
-            let dataKey : String = snapshot.key
-            
-            let newSegObj = SegmentObject(Name: dataKey, Elements: Array(dataDict.values), IconImage: #imageLiteral(resourceName: "fire_icon"))
-            GlobalVariables.segObjArr.append(newSegObj)
-            
-            GlobalVariables.segmentArray.append(newSegObj.name)
-            
-            
-        })
-        
-        completion()
+    func fillServiceData()
+    {
+        print("Filling Services")
+        if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
+            GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [ServiceObject]
+        }
     }
     
-    func fillMemberData(completion : @escaping () -> ()) {
+    func fillSegmentData() {
         
-            databaseReference.child(GlobalVariables.userName).child("Members").observe(.childAdded, with: {
-                snapshot in
-                if GlobalVariables.initialLoadComplete == false {
-                    var dataDict = snapshot.value as! [String : String]
-                    let first : String = dataDict["firstName"]!
-                    dataDict.removeValue(forKey: "firstName")
-                    let last : String = dataDict["lastName"]!
-                    dataDict.removeValue(forKey: "lastName")
-                    
-                    let newMember = Member(FirstName: first, LastName: last, CanHost: Array(dataDict.values), ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
-                    GlobalVariables.memberArr.append(newMember)
-                    
-                    DispatchQueue.main.async {
-                        completion()
-                    }
-                    
-                }
-            })
-        
-        
-        
-    }
-    
-    func uploadSegment(segmentName : String, elementArray : [String]) {
-        
-        var elementCount : Int = 1
-        
-        for index in 0..<elementArray.count {
-            let post : [String : AnyObject] = ["element\(elementCount)" : elementArray[index] as AnyObject]
-            databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentName).updateChildValues(post)
-            elementCount += 1
+        print("Filling Segments")
+        if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
+            GlobalVariables.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [SegmentObject]
+            
+            
+            
         }
         
-        let newSegObj = SegmentObject(Name: segmentName, Elements: elementArray, IconImage: #imageLiteral(resourceName: "fire_icon"))
-        GlobalVariables.segObjArr.append(newSegObj)
+    }
+    
+    func fillElementData() {
+        
+        
         
     }
     
-    func addElement(row : Int,segment : SegmentObject ,newElement : String) {
+    func fillMemberData() {
         
-        let post : [String : AnyObject] = ["element\(row)" : newElement as AnyObject]
-        databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segment.name).updateChildValues(post)
-        
-    }
-    
-    func removeElement(segmentObject : SegmentObject) {
-        
-        removeSegment(segmentObject: segmentObject)
-        uploadSegment(segmentName: segmentObject.name , elementArray: segmentObject.elements)
-        
-    }
-    
-    func removeSegment(segmentObject : SegmentObject) {
-        
-        databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segmentObject.name).removeValue()
-        
-    }
-    
-    
-    func uploadMember(firstName : String, lastName : String, hostables : [String]) {
-        
-        let firstPost : [String : AnyObject] = ["firstName" : firstName as AnyObject]
-        let lastPost : [String : AnyObject] = ["lastName" : lastName as AnyObject]
-        var hostCount : Int = 1
-        
-        databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(firstPost)
-        databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(lastPost)
-
-        for index in 0..<hostables.count {
-            let post : [String : AnyObject] = ["segment\(hostCount)" : hostables[index] as AnyObject]
-            databaseReference.child(GlobalVariables.userName).child("Members").child("\(firstName) \(lastName)").updateChildValues(post)
-            hostCount += 1
+        print("Filling Members")
+        if let data = UserDefaults.standard.object(forKey: "MemberList") as? NSData {
+            GlobalVariables.memberArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
         }
-        
-        let newMemberObject = Member(FirstName: firstName, LastName: lastName, CanHost: hostables, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
-        GlobalVariables.memberArr.append(newMemberObject)
-        
-    }
-    
-    func removeMember(member : Member) {
-        
-        databaseReference.child(GlobalVariables.userName).child("Members").child("\(member.firstName) \(member.lastName)").removeValue()
-        
-    }
-    
-    func removeHostable(member : Member) {
-        
-        removeMember(member: member)
-        uploadMember(firstName: member.firstName, lastName: member.lastName, hostables: member.canHost)
         
     }
     
@@ -144,26 +63,28 @@ class Datasource {
         
         let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.arrayOfServices)
         UserDefaults.standard.set(data, forKey: "ServiceList")
-        print("Service Saved")
+        print("Services Saved")
     }
     
-    func fillServiceData()
-    {
-        print("Filling")
-        if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
-            GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [ServiceObject]
-        }
+    func uploadSegment() {
+        
+        let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.segObjArr)
+        UserDefaults.standard.set(data, forKey: "SegmentList")
+        print("Segments Saved")
+        
     }
     
-    func mockData(email: String, username: String) {
-        
-        //let post : [String : AnyObject] = ["element\(row)" : newElement as AnyObject]
-        //databaseReference.child(GlobalVariables.userName).child("Service Parts").child(segment.name).updateChildValues(post)
-        
-        //var post : [String : AnyObject] = ["Email" : email as AnyObject]
-        databaseReference.child(GlobalVariables.userName)
+    func uploadElement() {
         
         
+        
+    }
+    
+    func uploadMember() {
+        
+        let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.memberArr)
+        UserDefaults.standard.set(data, forKey: "MemberList")
+        print("Members Saved")
         
     }
     

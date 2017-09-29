@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource {
+class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
@@ -72,8 +72,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return label
     }()
     
-    let newElementField : UITextField = {
-        let textField = UITextField()
+    let newElementField : CustomTextField = {
+        let textField = CustomTextField()
         textField.placeholder = "Add new element"
         textField.backgroundColor = UIColor.white
         return textField
@@ -93,8 +93,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return tableView
     }()
     
-    let newSegmentField : UITextField = {
-        let textField = UITextField()
+    let newSegmentField : CustomTextField = {
+        let textField = CustomTextField()
         textField.placeholder = "Segment name"
         textField.backgroundColor = UIColor.white
         return textField
@@ -122,8 +122,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         if let window = UIApplication.shared.keyWindow {
             
             let statusBarHeight = statusBar.frame.height
-            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
-            let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
             
             //Place left top label
             leftTopLabel.frame = CGRect(x: 0, y: statusBarHeight, width: window.frame.width * (4/10), height: 75)
@@ -159,10 +157,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             
             //Place new element field
             newElementField.frame = CGRect(x: segmentImage.frame.origin.x, y: segmentImage.frame.maxY + 45, width: window.frame.width * (6/10) - 75, height: 35)
-            newElementField.leftView = paddingView
             newElementField.rightView = addElementButton
-            newElementField.leftViewMode = UITextFieldViewMode.always
             newElementField.rightViewMode = UITextFieldViewMode.always
+            newElementField.delegate = self
             view.addSubview(newElementField)
             
             //Place right table view
@@ -175,8 +172,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             
             //New segment field
             newSegmentField.frame = newElementField.frame
-            newSegmentField.leftView = paddingView2
-            newSegmentField.leftViewMode = UITextFieldViewMode.always
+            newSegmentField.delegate = self
             
             //Additional
             newElementField.frame.origin.x = rightTableView.frame.origin.x
@@ -192,7 +188,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 tempArray.append(newElementField.text!)
             } else {
                 segmentObject.elements.append(newElementField.text!)
-                // dataHandle.addElement(row: segmentObject.elements.count, segment: segmentObject, newElement: newElementField.text!)
             }
             newElementField.text = ""
             rightTableView.reloadData()
@@ -412,7 +407,12 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

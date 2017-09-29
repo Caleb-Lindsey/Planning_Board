@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource {
+class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
@@ -95,18 +95,29 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         return button
     }()
     
-    let newFirstName : UITextField = {
-        let textField = UITextField()
+    let newFirstName : CustomTextField = {
+        let textField = CustomTextField()
         textField.backgroundColor = UIColor.white
         textField.placeholder = "first name"
         return textField
     }()
     
-    let newLastName : UITextField = {
-        let textField = UITextField()
+    let newLastName : CustomTextField = {
+        let textField = CustomTextField()
         textField.backgroundColor = UIColor.white
         textField.placeholder = "last name"
         return textField
+    }()
+    
+    let editButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
+        button.titleLabel?.textColor = UIColor.white
+        button.backgroundColor = UIColor.gray
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(editMember), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -146,7 +157,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             profileImage.layer.cornerRadius = profileImage.frame.width / 2
             view.addSubview(profileImage)
             
-            //Place segment label
+            //Place member label
             memberLabel.frame = CGRect(x: profileImage.frame.maxX + 20, y: 0, width: 200, height: 100)
             memberLabel.center.y = profileImage.center.y
             memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
@@ -160,15 +171,17 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             rightTableView.delegate = self
             view.addSubview(rightTableView)
             
+            //Place edit button
+            editButton.frame = CGRect(x: view.frame.width - 50 - 15, y: statusBarHeight, width: 50, height: 35)
+            editButton.center.y = rightTopLabel.center.y
+            view.addSubview(editButton)
+            
         }
     }
     
     
     func newMember() {
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
-        let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
-
         newMemberButton.isUserInteractionEnabled = false
         newMemberMode = true
         leftTableView.isUserInteractionEnabled = false
@@ -195,14 +208,12 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         
         //First name field
         newFirstName.frame = CGRect(x: rightTableView.frame.origin.x, y: profileImage.frame.maxY + 25, width: rightTableView.frame.width, height: 35)
-        newFirstName.leftView = paddingView
-        newFirstName.leftViewMode = UITextFieldViewMode.always
+        newFirstName.delegate = self
         view.addSubview(newFirstName)
         
         //Last name field
         newLastName.frame = CGRect(x: rightTableView.frame.origin.x, y: newFirstName.frame.maxY + 15, width: rightTableView.frame.width, height: 35)
-        newLastName.leftView = paddingView2
-        newLastName.leftViewMode = UITextFieldViewMode.always
+        newLastName.delegate = self
         view.addSubview(newLastName)
         
         
@@ -409,6 +420,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
             dataHandle.uploadMember()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
+            rightTableView.reloadData()
             
         }
         
@@ -437,8 +449,19 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+    func editMember() {
+        
+        print("tap")
+        
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

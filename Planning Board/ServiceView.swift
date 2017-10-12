@@ -99,7 +99,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         statusBar.backgroundColor = UIColor.clear
         formatter.dateFormat = "MM-dd-yyyy"
         
-        GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
+        //GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
         
         if let window = UIApplication.shared.keyWindow {
         

@@ -65,6 +65,8 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(writeToFile), for: .touchUpInside)
+        button.isEnabled = false
+        button.layer.opacity = 0.5
         return button
     }()
     
@@ -86,6 +88,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         button.addTarget(self, action: #selector(returnToMain), for: .touchUpInside)
         button.isUserInteractionEnabled = false
         button.layer.opacity = 0.5
+        button.isEnabled = false
         return button
     }()
     
@@ -293,7 +296,10 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
                 
                 self.checkMark.playCheckGif()
                 self.doneButton.isUserInteractionEnabled = true
+                self.doneButton.isEnabled = true
+                self.exportButton.isEnabled = true
                 self.doneButton.layer.opacity = 1
+                self.exportButton.layer.opacity = 1
                 
             })
             

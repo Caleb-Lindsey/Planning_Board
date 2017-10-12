@@ -15,6 +15,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     var memberObject = Member()
     var dataHandle = Datasource()
     var newMemberMode : Bool = false
+    var editMemberMode : Bool = false
     var tempArray = [String]()
     
     //Left Side
@@ -183,15 +184,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func newMember() {
         
         newMemberButton.isUserInteractionEnabled = false
-        newMemberMode = true
         leftTableView.isUserInteractionEnabled = false
-        
-        //Profile image
-        profileImage.setImage(nil, for: .normal)
-        profileImage.setTitle("Add Image", for: .normal)
-        
-        //Member label
-        memberLabel.text = "New Member"
+        editButton.isEnabled = false
         
         //Element table view
         rightTableView.reloadData()
@@ -216,6 +210,40 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         newLastName.delegate = self
         view.addSubview(newLastName)
         
+        if editMemberMode == false {
+            newMemberMode = true
+            
+            //Profile image
+            profileImage.setImage(nil, for: .normal)
+            profileImage.setTitle("Add Image", for: .normal)
+            
+            //Member label
+            memberLabel.text = "New Member"
+            
+            //Element Table View
+            rightTableView.reloadData()
+        
+            
+            
+        } else {
+            
+            //Profile image
+            profileImage.setImage(nil, for: .normal)
+            profileImage.setTitle("Change Image", for: .normal)
+            
+            //Member label
+            memberLabel.text = "Edit \(memberObject.fullName())"
+            
+            // First name field
+            newFirstName.text = memberObject.firstName
+            
+            // Last name field
+            newLastName.text = memberObject.lastName
+            
+            // Right table view
+            rightTableView.reloadData()
+            
+        }
         
         //Animations
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
@@ -224,6 +252,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             self.newMemberButton.layer.opacity = 0.3
             self.leftTableView.layer.opacity = 0.3
             self.leftTopLabel.layer.opacity = 0.3
+            self.editButton.layer.opacity = 0
             
         }, completion: {(finished: Bool) in
             
@@ -236,10 +265,12 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func cancelCreate() {
         
         newMemberMode = false
+        editMemberMode = false
+        
         cancelButton.removeFromSuperview()
         doneButton.removeFromSuperview()
         self.profileImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
-        self.memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
+        self.memberLabel.text = "\(memberObject.fullName())"
         tempArray.removeAll()
         newFirstName.text = ""
         newLastName.text = ""
@@ -260,6 +291,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             self.leftTableView.layer.opacity = 1
             self.leftTopLabel.layer.opacity = 1
             self.newMemberButton.layer.opacity = 1
+            self.editButton.layer.opacity = 1
             
         }, completion: {(finished: Bool) in
             
@@ -268,6 +300,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             self.leftTableView.isUserInteractionEnabled = true
             self.newLastName.removeFromSuperview()
             self.newFirstName.removeFromSuperview()
+            self.editButton.isEnabled = true
             
             
         })
@@ -288,7 +321,14 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         if tempArray != [] && newFirstName.text != "" && newLastName.text != "" {
             
             let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
-            GlobalVariables.memberArr.append(newMember)
+            
+            if newMemberMode {
+                GlobalVariables.memberArr.append(newMember)
+
+            } else if editMemberMode {
+                GlobalVariables.memberArr[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
+            }
+            
             dataHandle.uploadMember()
             leftTableView.reloadData()
             cancelCreate()
@@ -335,7 +375,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         if tableView == leftTableView {
             return GlobalVariables.memberArr.count
         } else {
-            if newMemberMode {
+            if newMemberMode || editMemberMode {
                 return GlobalVariables.segObjArr.count
             } else {
                 return memberObject.canHost.count
@@ -352,13 +392,27 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
+            
             if newMemberMode {
                 cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
                 cell.accessoryType = (cell.isSelected) ? .checkmark : .none
+            } else if editMemberMode {
+                cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
+        
+                for segment in memberObject.canHost {
+                    if segment == GlobalVariables.segObjArr[indexPath.row].name {
+
+                        cell.accessoryType = .checkmark
+                        cell.isSelected = true
+                    
+                    }
+                }
+                
             } else {
                 cell.textLabel?.text = memberObject.canHost[indexPath.row]
                 cell.accessoryType = .none
             }
+            
             cell.selectionStyle = .none
             return cell
         }
@@ -372,11 +426,13 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             rightTableView.reloadData()
             
         } else {
-            if newMemberMode {
+            if newMemberMode || editMemberMode {
                 rightTableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             } else {
                 rightTableView.cellForRow(at: indexPath)?.accessoryType = .none
             }
+            
+            
         }
     }
     
@@ -396,7 +452,6 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             return 50
         }
     }
-    
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
@@ -451,7 +506,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func editMember() {
         
-        print("tap")
+        editMemberMode = true
+        newMember()
         
     }
     

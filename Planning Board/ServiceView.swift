@@ -227,7 +227,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         
         let arrayCount = array.count
         
-        
         for value in 1...arrayCount - 1 {
             if array[value - 1].date > array[value].date {
                 let largerValue = array[value - 1]

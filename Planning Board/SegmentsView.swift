@@ -188,6 +188,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 tempArray.append(newElementField.text!)
             } else {
                 segmentObject.elements.append(newElementField.text!)
+                GlobalVariables.segObjArr[(leftTableView.indexPathForSelectedRow?.row)!] = segmentObject
+                dataHandle.uploadSegment()
             }
             newElementField.text = ""
             rightTableView.reloadData()

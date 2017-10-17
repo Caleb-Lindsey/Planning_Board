@@ -240,6 +240,10 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             elementTable.frame.origin.y = productTable.frame.origin.y
             durationLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 80 , y: timePicker.frame.midY - 15, width: 80, height: 30)
         }
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        segmentTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -252,9 +256,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.navigationItem.hidesBackButton = false
         statusBar.backgroundColor = GlobalVariables.grayColor
         
-        let indexPath = IndexPath(row: 0, section: 0)
-        segmentTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        
     }
     
     func fillTable(segment : SegmentObject) {
@@ -263,7 +264,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         currentSeg = segment
         elementArray = [currentSeg.name] + segment.elements
         elementTable.reloadData()
-        
         
     }
     
@@ -297,8 +297,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 0)]
         selectedItem.seconds = seconds[timePicker.selectedRow(inComponent: 1)]
         
-        //Sync Host
-        selectedItem.host = selectedHost
+        //Sync Host     
+        if hostTable.indexPathForSelectedRow != nil {
+            selectedItem.host = hostArray[(hostTable.indexPathForSelectedRow?.row)!]
+        }
+        
         
         //Sync Description
         selectedItem.PBdescription = detailDescription.text
@@ -415,7 +418,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 }
                 
                 let title = "[\(minutesLabel):\(secondsLabel)] | " + (cell?.textLabel?.text)!
-                //productArray[indexPath.row].title = title
         
                 cell?.textLabel?.text = title
                 
@@ -514,13 +516,16 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             timePicker.selectRow(productArray[indexPath.row].minutes!, inComponent: 0, animated: false)
             timePicker.selectRow(productArray[indexPath.row].seconds!, inComponent: 1, animated: false)
             
+            var itemCount = 0
             for item in hostArray {
                 
                 if item.fullName() == productArray[indexPath.row].host?.fullName() {
-                    hostTable.selectRow(at: indexPath, animated: false, scrollPosition: .top)
+                    hostTable.selectRow(at: IndexPath(row: itemCount, section: 0), animated: true, scrollPosition: .none)
                 }
-                
+                itemCount += 1
             }
+            
+            self.detailsView.frame.origin.y = self.productTable.contentOffset.y
             
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 

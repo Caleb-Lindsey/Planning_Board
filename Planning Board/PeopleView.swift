@@ -283,7 +283,6 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         rightTableView.layer.borderWidth = 0
         rightTableView.layer.borderColor = UIColor.clear.cgColor
         
-        
         UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
             
             self.rightTableView.frame.origin.y = self.rightTableView.frame.origin.y - 125

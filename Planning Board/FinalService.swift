@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, UITextFieldDelegate {
+class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
     
     //Variables
     let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
@@ -64,7 +65,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         button.setTitle("Export", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(writeToFile), for: .touchUpInside)
+        button.addTarget(self, action: #selector(emailService), for: .touchUpInside)
         button.isEnabled = false
         button.layer.opacity = 0.5
         return button
@@ -222,45 +223,45 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         return summary
     }
     
-    func writeToFile() {
-        
-        let file = "\((serviceTitle.text)!).pages" //this is the file. we will write to and read from it
-        
-        let text = serviceView.text! //just a text
-        
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            
-            let path = dir.appendingPathComponent(file)
-            
-            //writing
-            do {
-                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-                try openInPages(body: serviceView.text, title: file)
-                doneButton.isUserInteractionEnabled = true
-                doneButton.layer.opacity = 1
-            }
-            catch {
-                print("nope")
-            }
-            
-        }
-        
-    }
-    
-    func openInPages(body: String, title: String) throws {
-        // create a file path in a temporary directory
-        let fileName = "\(title)"
-        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(fileName)
-        
-        // save the body to the file
-        try body.write(toFile: filePath, atomically: true, encoding: String.Encoding.utf8)
-        
-        interactionController?.delegate = self
-        
-        // present Open In menu
-        interactionController = UIDocumentInteractionController(url: NSURL(fileURLWithPath: filePath) as URL)
-        interactionController?.presentOptionsMenu(from: exportButton.frame, in: self.view, animated: true)
-    }
+//    func writeToFile() {
+//        
+//        let file = "\((serviceTitle.text)!).pages" //this is the file. we will write to and read from it
+//        
+//        let text = serviceView.text! //just a text
+//        
+//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+//            
+//            let path = dir.appendingPathComponent(file)
+//            
+//            //writing
+//            do {
+//                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
+//                try openInPages(body: serviceView.text, title: file)
+//                doneButton.isUserInteractionEnabled = true
+//                doneButton.layer.opacity = 1
+//            }
+//            catch {
+//                print("nope")
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    func openInPages(body: String, title: String) throws {
+//        // create a file path in a temporary directory
+//        let fileName = "\(title)"
+//        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(fileName)
+//        
+//        // save the body to the file
+//        try body.write(toFile: filePath, atomically: true, encoding: String.Encoding.utf8)
+//        
+//        interactionController?.delegate = self
+//        
+//        // present Open In menu
+//        interactionController = UIDocumentInteractionController(url: NSURL(fileURLWithPath: filePath) as URL)
+//        interactionController?.presentOptionsMenu(from: exportButton.frame, in: self.view, animated: true)
+//    }
     
     
     func saveService() {
@@ -322,7 +323,64 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         return false
     }
     
+    func emailService() {
+        
+        if serviceTitle.text != "" && serviceView.text != "" {
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM-dd-yyyy"
+            let dateString = formatter.string(from: datePicker.date)
+            
+            let mailController : MFMailComposeViewController = MFMailComposeViewController()
+            mailController.mailComposeDelegate = self
+            mailController.setSubject("\(serviceTitle.text!)  (\(dateString))")
+            mailController.setMessageBody(serviceView.text!, isHTML: false)
+            
+            self.present(mailController, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        if result == .sent {
+            controller.dismiss(animated: true, completion: {
+                self.returnToMain()
+            })
+        } else {
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
+        
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

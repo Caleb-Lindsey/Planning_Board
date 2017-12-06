@@ -62,6 +62,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         let image = UIButton()
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
+        image.clipsToBounds = true
         return image
     }()
     
@@ -181,7 +182,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     
-    func newMember() {
+    @objc func newMember() {
         
         newMemberButton.isUserInteractionEnabled = false
         leftTableView.isUserInteractionEnabled = false
@@ -262,7 +263,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         
     }
     
-    func cancelCreate() {
+    @objc func cancelCreate() {
         
         newMemberMode = false
         editMemberMode = false
@@ -307,7 +308,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         
     }
     
-    func doneCreate() {
+    @objc func doneCreate() {
         
         //Add selected cells to tempArray
         for cell in rightTableView.visibleCells {
@@ -386,8 +387,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell = leftTableView.dequeueReusableCell(withIdentifier: "leftCell", for: indexPath)
-            cell.textLabel?.text = "\(GlobalVariables.memberArr[indexPath.row].firstName) \(GlobalVariables.memberArr[indexPath.row].lastName)"
+            let cell : MemberCell = MemberCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", member: GlobalVariables.memberArr[indexPath.row])
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
@@ -422,6 +422,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         if tableView == leftTableView {
             memberObject = GlobalVariables.memberArr[indexPath.row]
             memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
+            profileImage.setImage(GlobalVariables.memberArr[indexPath.row].profilePic, for: .normal)
             rightTableView.reloadData()
             
         } else {
@@ -503,7 +504,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         }
     }
     
-    func editMember() {
+    @objc func editMember() {
         
         editMemberMode = true
         newMember()

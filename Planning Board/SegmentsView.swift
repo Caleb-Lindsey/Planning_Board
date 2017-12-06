@@ -61,6 +61,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         let image = UIButton()
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
+        image.addTarget(self, action: #selector(segmentImagePressed), for: .touchUpInside)
         return image
     }()
     
@@ -182,7 +183,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     
-    func addElement() {
+    @objc func addElement() {
         if newElementField.text != "" {
             if newSegmentMode {
                 tempArray.append(newElementField.text!)
@@ -196,7 +197,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func newSegment() {
+    @objc func newSegment() {
         
         newSegmentButton.isUserInteractionEnabled = false
         newSegmentMode = true
@@ -246,7 +247,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    func cancelCreate() {
+    @objc func cancelCreate() {
         
         newSegmentMode = false
         cancelButton.removeFromSuperview()
@@ -284,7 +285,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    func doneCreate() {
+    @objc func doneCreate() {
 
         if newSegmentField.text != "" && tempArray != [] {
             let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: #imageLiteral(resourceName: "gear"))
@@ -337,8 +338,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell = leftTableView.dequeueReusableCell(withIdentifier: "leftCell", for: indexPath)
-            cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
+            let cell : SegmentCell = SegmentCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", segment: GlobalVariables.segObjArr[indexPath.row])
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
@@ -402,9 +402,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    func segmentImagePressed() {
+    @objc func segmentImagePressed() {
     
-        
+        print("hi")
         
     }
     
@@ -416,6 +416,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         self.view.endEditing(true)
         return false
     }
+    
+
     
 }
 

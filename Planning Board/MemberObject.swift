@@ -40,7 +40,7 @@ class Member : NSObject, NSCoding {
     }
     
     func fullName() -> String {
-        return firstName + " " + lastName
+        return "\(firstName) \(lastName)"
     }
     
     required init(coder aDecoder: NSCoder) {

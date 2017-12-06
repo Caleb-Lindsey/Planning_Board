@@ -145,7 +145,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.title = "Create Service"
         self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
         self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
         if GlobalVariables.segObjArr != [] {
             
@@ -267,7 +267,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    func dismissDetails() {
+    @objc func dismissDetails() {
         
         productTable.separatorStyle = .singleLine
         detailsViewIsVisible = false
@@ -291,7 +291,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    func syncDetails() {
+    @objc func syncDetails() {
         
         //Sync Time
         selectedItem.minutes = minutes[timePicker.selectedRow(inComponent: 0)]
@@ -552,7 +552,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return "Segments"
         } else if tableView == elementTable {
             if GlobalVariables.segObjArr != [] {
-                if currentLoaded.characters.count > 25 {
+                if currentLoaded.count > 25 {
                     return currentLoaded
                 } else {
                     return "\(currentLoaded) Elements"
@@ -692,7 +692,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         return label
     }
     
-    func continueToFinal() {
+    @objc func continueToFinal() {
         
         for line in 0..<productArray.count {
             GlobalVariables.serviceDetailArray.append(productArray[line])
@@ -722,7 +722,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         elementArray.sort { $0 < $1 }
     }
     
-    func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+    @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
         let longPress = gestureRecognizer as! UILongPressGestureRecognizer
         let state = longPress.state
         let locationInView = longPress.location(in: productTable)

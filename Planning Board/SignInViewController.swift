@@ -124,7 +124,7 @@ class SignInViewController : UIViewController {
         
     }
     
-    func signInPressed(_ sender: Any) {
+    @objc func signInPressed(_ sender: Any) {
         signInButton.isUserInteractionEnabled = false
         self.view.endEditing(true)
         verifyUserName()
@@ -192,7 +192,7 @@ class SignInViewController : UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    func signUpPressed() {
+    @objc func signUpPressed() {
         
         self.present(SignUpView(), animated: true, completion: nil)
         

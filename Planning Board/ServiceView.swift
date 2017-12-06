@@ -151,7 +151,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-    func newService() {
+    @objc func newService() {
         
         let planServiceView : UIViewController = PlanServiceController()
         self.navigationController?.pushViewController(planServiceView, animated: true)
@@ -211,7 +211,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-    func orderServiceArray() {
+    @objc func orderServiceArray() {
         
         if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
             orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)

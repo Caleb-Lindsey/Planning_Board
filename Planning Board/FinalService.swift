@@ -101,7 +101,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         self.navigationItem.title = "Finalize Service"
         self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
         self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
         serviceView.text = formatSummary(serviceArray: GlobalVariables.serviceDetailArray)
         
@@ -264,7 +264,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
 //    }
     
     
-    func saveService() {
+    @objc func saveService() {
         
         if serviceTitle.text == "" {
             serviceTitle.layer.borderWidth = 3
@@ -308,7 +308,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         
     }
     
-    func returnToMain() {
+    @objc func returnToMain() {
         
         self.navigationController?.pushViewController(ServiceView(), animated: true)
         
@@ -323,7 +323,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         return false
     }
     
-    func emailService() {
+    @objc func emailService() {
         
         if serviceTitle.text != "" && serviceView.text != "" {
             

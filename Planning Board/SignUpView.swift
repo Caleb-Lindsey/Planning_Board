@@ -78,7 +78,7 @@ class SignUpView : PBViewController {
         
     }
     
-    func submitData() {
+    @objc func submitData() {
         
         var alertMessage : String = ""
         var valid : Bool = true
@@ -88,7 +88,7 @@ class SignUpView : PBViewController {
         churchField.layer.borderWidth = 0
         
         if userNameField.text != "" {
-            if (userNameField.text?.characters.count)! < 8 {
+            if (userNameField.text?.count)! < 8 {
                 alertMessage += "• Username must be atleast 8 characters long.\n"
                 userNameField.layer.borderColor = UIColor.red.cgColor
                 userNameField.layer.borderWidth = 3
@@ -103,7 +103,7 @@ class SignUpView : PBViewController {
         }
         
         if passwordField.text != "" {
-            if (passwordField.text?.characters.count)! < 8 {
+            if (passwordField.text?.count)! < 8 {
                 alertMessage += "• Password must be atleast 8 characters long.\n"
                 passwordField.layer.borderColor = UIColor.red.cgColor
                 passwordField.layer.borderWidth = 3

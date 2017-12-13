@@ -41,6 +41,7 @@
 		2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78771EC1849C00E4102D /* PBViewController.swift */; };
 		2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB88CF81E858639001F85C2 /* MemberObject.swift */; };
 		2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC255281F579007009BBA4C /* CustomTextField.swift */; };
+		2EC6F3291FE1B3DC0082F02A /* IconImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */; };
 		2EF0E1991F1D13AD00CAF50E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */; };
 		572E1D44CA0E9B25516951D9 /* Pods_Planning_BoardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0256DE4A0B13673A21383A4 /* Pods_Planning_BoardUITests.framework */; };
 		DA880E049AE65C95B512E00D /* Pods_Planning_BoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FB31C9AA363BC2650B9B39 /* Pods_Planning_BoardTests.framework */; };
@@ -126,6 +127,7 @@
 		2EAA78771EC1849C00E4102D /* PBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBViewController.swift; sourceTree = "<group>"; };
 		2EB88CF81E858639001F85C2 /* MemberObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberObject.swift; sourceTree = "<group>"; };
 		2EC255281F579007009BBA4C /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImagePicker.swift; sourceTree = "<group>"; };
 		2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		9EA070E1F2732D36227515AE /* Pods-Planning BoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning BoardUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planning BoardUITests/Pods-Planning BoardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D43A91E7D6E17061396F6826 /* Pods-Planning BoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning BoardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Planning BoardTests/Pods-Planning BoardTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				2EC255281F579007009BBA4C /* CustomTextField.swift */,
 				2E59A6401FD87392004539E4 /* MemberCell.swift */,
 				2E59A6421FD8845B004539E4 /* SegmentCell.swift */,
+				2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				2E0FCD6E1E16367400C8F1E3 /* Planning_Board.xcdatamodeld in Sources */,
 				2E943D561E26C5150059C689 /* TableViewCell1.swift in Sources */,
 				2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */,
+				2EC6F3291FE1B3DC0082F02A /* IconImagePicker.swift in Sources */,
 				2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */,
 				2E3E1ACA1EF1A6CF00801415 /* ServiceObject.swift in Sources */,
 				2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */,

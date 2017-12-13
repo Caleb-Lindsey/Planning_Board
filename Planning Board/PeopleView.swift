@@ -63,6 +63,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
         image.clipsToBounds = true
+        image.layer.borderColor = GlobalVariables.greenColor.cgColor
+        image.layer.borderWidth = 2
         return image
     }()
     
@@ -126,7 +128,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         super.viewDidLoad()
         
         if GlobalVariables.memberArr.count != 0 {
-            memberObject = GlobalVariables.memberArr[0]
+            setupView()
+            
         }
         
         if let window = UIApplication.shared.keyWindow {
@@ -138,7 +141,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             view.addSubview(leftTopLabel)
             
             //Place left table view
-            leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)!)
+            leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)! - leftTopLabel.frame.height)
             leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
             leftTableView.dataSource = self
             leftTableView.delegate = self
@@ -518,6 +521,22 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    
+    func setupView() {
+        
+        if GlobalVariables.memberArr != [] {
+            
+            leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
+            leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+            profileImage.setImage(GlobalVariables.memberArr[0].profilePic, for: .normal)
+            memberLabel.text = GlobalVariables.memberArr[0].fullName()
+            memberObject = GlobalVariables.memberArr[0]
+            rightTableView.reloadData()
+            
+        }
+        
     }
     
 }

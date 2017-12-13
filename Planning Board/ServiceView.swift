@@ -114,7 +114,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             view.addSubview(segmentControl)
             
             //Place left table view
-            leftTableView.frame = CGRect(x: 0, y: segmentControl.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)!)
+            leftTableView.frame = CGRect(x: 0, y: segmentControl.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)! - leftTopLabel.frame.height)
             leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
             leftTableView.dataSource = self
             leftTableView.delegate = self
@@ -186,6 +186,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         leftTableView.reloadData()
+        setupView()
     }
     
     func loadServices() {
@@ -263,6 +264,19 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         }
         
     }
+    
+    func setupView() {
+        
+        if GlobalVariables.arrayOfServices != [] {
+            
+            leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
+            leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+            
+        }
+        
+    }
+    
+    
     
 }
 

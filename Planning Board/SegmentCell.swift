@@ -47,7 +47,6 @@ class SegmentCell : UITableViewCell {
         // Profile Image View
         iconImageView.frame = CGRect(x: 15, y: 15, width: 50, height: contentView.frame.height - 15 - 15)
         iconImageView.image = segment.iconImage
-        iconImageView.layer.cornerRadius = iconImageView.frame.width / 2
         self.contentView.addSubview(iconImageView)
         
         // Name Label

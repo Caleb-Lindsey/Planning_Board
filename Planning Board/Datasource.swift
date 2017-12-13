@@ -20,6 +20,26 @@ struct GlobalVariables {
     static var memberArr = [Member]()
     static var serviceDetailArray : [ProductItem] = [ProductItem]()
     static var arrayOfServices : [ServiceObject] = [ServiceObject]()
+    static var arrayOfIcons : [UIImage] = [
+        UIImage(named:"bible_icon")!,
+        UIImage(named:"clock")!,
+        UIImage(named:"door_icon")!,
+        UIImage(named:"fire_icon")!,
+        UIImage(named:"giving")!,
+        UIImage(named:"meeting_icon")!,
+        UIImage(named:"mike_icon")!,
+        UIImage(named:"movie_icon")!,
+        UIImage(named:"plan_icon")!,
+        UIImage(named:"prayer_hands")!,
+        UIImage(named:"speaking_icon")!,
+        UIImage(named:"party")!,
+        UIImage(named:"unload")!,
+        UIImage(named:"groceries")!,
+        UIImage(named:"dedications")!,
+        UIImage(named:"clapperBoard")!,
+        UIImage(named:"candy")!,
+        UIImage(named:"baptisms")!,
+        UIImage(named:"balloons")!]
 }
 
 class Datasource {

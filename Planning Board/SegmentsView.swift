@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
@@ -57,12 +57,15 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return label
     }()
     
-    var segmentImage : UIButton = {
-        let image = UIButton()
-        image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
-        image.backgroundColor = UIColor.lightGray
-        image.addTarget(self, action: #selector(segmentImagePressed), for: .touchUpInside)
-        return image
+    var segmentImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "fire_icon")
+        imageView.backgroundColor = UIColor.lightGray
+        imageView.layer.borderColor = GlobalVariables.greenColor.cgColor
+        imageView.layer.borderWidth = 2
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     let segmentLabel : UILabel = {
@@ -117,6 +120,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return button
     }()
     
+    let iconImagePickerView = IconImagePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -129,7 +134,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             view.addSubview(leftTopLabel)
             
             //Place left table view
-            leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)!)
+            leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)! - leftTopLabel.frame.height)
             leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
             leftTableView.dataSource = self
             leftTableView.delegate = self
@@ -179,7 +184,20 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             newElementField.frame.origin.x = rightTableView.frame.origin.x
             
             
+            iconImagePickerView.frame = CGRect(x: segmentImage.frame.origin.x, y: 25, width: segmentImage.frame.width, height: segmentImage.frame.height)
+            iconImagePickerView.frame.size.height = segmentImage.frame.height * 3
+            iconImagePickerView.layer.opacity = 0
+            iconImagePickerView.isUserInteractionEnabled = false
+            iconImagePickerView.layer.cornerRadius = segmentImage.frame.width / 2
+            iconImagePickerView.transform = CGAffineTransform.init(rotationAngle: -(CGFloat.pi / 2))
+            
+            setupView()
+            
         }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
     
     
@@ -202,10 +220,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         newSegmentButton.isUserInteractionEnabled = false
         newSegmentMode = true
         leftTableView.isUserInteractionEnabled = false
-        
-        //Segment image
-        segmentImage.setImage(nil, for: .normal)
-        segmentImage.setTitle("Add Image", for: .normal)
         
         //Segment label
         segmentLabel.text = "New Segment"
@@ -230,6 +244,10 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         doneButton.center.y = rightTopLabel.frame.height / 2
         rightTopLabel.addSubview(doneButton)
         
+        // Icon Picker
+        iconImagePickerView.isUserInteractionEnabled = true
+        view.addSubview(iconImagePickerView)
+        
         //Animations
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             
@@ -238,6 +256,11 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.newSegmentButton.layer.opacity = 0.3
             self.leftTableView.layer.opacity = 0.3
             self.leftTopLabel.layer.opacity = 0.3
+            self.iconImagePickerView.layer.opacity = 1
+            self.segmentImage.image = nil
+            self.segmentImage.center.x = self.rightTableView.center.x
+            self.segmentLabel.layer.opacity = 0
+            self.iconImagePickerView.frame.origin.x += self.iconImagePickerView.frame.width / 3
             
         }, completion: {(finished: Bool) in
             
@@ -252,7 +275,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         newSegmentMode = false
         cancelButton.removeFromSuperview()
         doneButton.removeFromSuperview()
-        self.segmentImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         self.segmentLabel.text = self.segmentObject.name
         tempArray.removeAll()
         newSegmentField.text = ""
@@ -262,7 +284,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         newSegmentField.layer.borderWidth = 0
         newSegmentField.layer.borderColor = UIColor.clear.cgColor
         
-        
         UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
             
             self.newElementField.frame.origin.y = self.newElementField.frame.origin.y - 50
@@ -271,6 +292,11 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.leftTableView.layer.opacity = 1
             self.leftTopLabel.layer.opacity = 1
             self.newSegmentButton.layer.opacity = 1
+            self.iconImagePickerView.layer.opacity = 0
+            self.segmentImage.image = GlobalVariables.segObjArr[GlobalVariables.segObjArr.count - 1].iconImage
+            self.segmentImage.frame.origin.x = self.leftTableView.frame.maxX + 50
+            self.segmentLabel.layer.opacity = 1
+            self.iconImagePickerView.frame.origin.x -= self.iconImagePickerView.frame.width / 3
             
         }, completion: {(finished: Bool) in
             
@@ -278,6 +304,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.rightTableView.reloadData()
             self.newSegmentButton.isUserInteractionEnabled = true
             self.leftTableView.isUserInteractionEnabled = true
+            self.iconImagePickerView.removeFromSuperview()
+
             
             
         })
@@ -288,7 +316,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     @objc func doneCreate() {
 
         if newSegmentField.text != "" && tempArray != [] {
-            let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: #imageLiteral(resourceName: "gear"))
+            let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: GlobalVariables.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
             GlobalVariables.segObjArr.append(newSegment)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
@@ -357,6 +385,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         if tableView == leftTableView {
             segmentObject = GlobalVariables.segObjArr[indexPath.row]
             segmentLabel.text = segmentObject.name
+            segmentImage.image = GlobalVariables.segObjArr[indexPath.row].iconImage
             rightTableView.reloadData()
         } else {
             
@@ -403,8 +432,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @objc func segmentImagePressed() {
-    
-        print("hi")
+        
+        
         
     }
     
@@ -417,7 +446,22 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return false
     }
     
-
+    func setupView() {
+        
+        if GlobalVariables.segObjArr != [] {
+            
+            leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
+            leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+            segmentLabel.text = GlobalVariables.segObjArr[0].name
+            segmentObject = GlobalVariables.segObjArr[0]
+            rightTableView.reloadData()
+            
+        }
+        
+    }
+    
+    
+    
     
 }
 

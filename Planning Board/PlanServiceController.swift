@@ -346,7 +346,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
                 
             }
         } else if tableView == elementTable {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell") as UITableViewCell!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell")
             
             cell?.accessoryType = (cell?.isSelected)! ? .checkmark : .none
             cell?.selectionStyle = .none
@@ -360,7 +360,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return cell!
         } else if tableView == productTable {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as UITableViewCell!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "productCell")
             
             if productArray[indexPath.row].type == "Segment" {
                 cell?.indentationWidth = 5
@@ -416,7 +416,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
             return cell!
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "hostCell") as UITableViewCell!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "hostCell")
             cell?.textLabel?.text = hostArray[indexPath.row].fullName()
             return cell!
         }
@@ -716,7 +716,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         case UIGestureRecognizerState.began:
             if indexPath != nil {
                 initialIndexPath = indexPath
-                let cell = productTable.cellForRow(at: indexPath!) as UITableViewCell!
+                let cell = productTable.cellForRow(at: indexPath!) as UITableViewCell?
                 My.cellSnapshot  = snapshopOfCell(inputView: cell!)
                 
                 var center = cell?.center
@@ -761,7 +761,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             }
         default:
             if initialIndexPath != nil {
-                let cell = productTable.cellForRow(at: initialIndexPath! as IndexPath) as UITableViewCell!
+                let cell = productTable.cellForRow(at: initialIndexPath! as IndexPath) as UITableViewCell?
                 if My.cellIsAnimating {
                     My.cellNeedToShow = true
                 } else {

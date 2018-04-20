@@ -25,13 +25,12 @@ class SegmentObject : NSObject, NSCoding {
     var lastUsed = Date()
     
     init(Name: String, Elements: [String], IconImage: UIImage) {
-        
         self.name = Name
         self.elements = Elements
         self.iconImage = IconImage
         self.lastUsed = Date()
-        
     }
+    
     override init() {
         self.name = ""
         self.elements = [String]()
@@ -40,21 +39,17 @@ class SegmentObject : NSObject, NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
-        
         self.name = aDecoder.decodeObject(forKey: "Name") as! String
         self.elements = aDecoder.decodeObject(forKey: "Elements") as! [String]
         self.iconImage = aDecoder.decodeObject(forKey: "IconImage") as! UIImage
         self.lastUsed = aDecoder.decodeObject(forKey: "LastUsed") as! Date
-        
     }
     
     func initWithCoder(aDecoder: NSCoder) -> SegmentObject {
-        
         self.name = aDecoder.decodeObject(forKey: "Title") as! String
         self.elements = aDecoder.decodeObject(forKey: "Elements") as! [String]
         self.iconImage = aDecoder.decodeObject(forKey: "IconImage") as! UIImage
         self.lastUsed = aDecoder.decodeObject(forKey: "LastUsed") as! Date
-        
         return self
     }
     
@@ -63,9 +58,6 @@ class SegmentObject : NSObject, NSCoding {
         aCoder.encode(elements, forKey: "Elements")
         aCoder.encode(iconImage, forKey: "IconImage")
         aCoder.encode(lastUsed, forKey: "LastUsed")
-        
     }
     
 }
-
-

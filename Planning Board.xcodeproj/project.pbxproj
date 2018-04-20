@@ -24,9 +24,9 @@
 		2E3D15FE1E96DDEF003AD783 /* Planning_Board_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */; };
 		2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC71EF1A4C500801415 /* FinalService.swift */; };
 		2E3E1ACA1EF1A6CF00801415 /* ServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */; };
-		2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E44E1E01E97222400C70049 /* SignInViewController.swift */; };
 		2E59A6411FD87392004539E4 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A6401FD87392004539E4 /* MemberCell.swift */; };
 		2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A6421FD8845B004539E4 /* SegmentCell.swift */; };
+		2E62F895208949390052AA68 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62F894208949390052AA68 /* ServiceCell.swift */; };
 		2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServiceView.swift */; };
@@ -42,7 +42,7 @@
 		2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB88CF81E858639001F85C2 /* MemberObject.swift */; };
 		2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC255281F579007009BBA4C /* CustomTextField.swift */; };
 		2EC6F3291FE1B3DC0082F02A /* IconImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */; };
-		2EF0E1991F1D13AD00CAF50E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */; };
+		2EFA7C7C2017904700BA6044 /* FieldCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFA7C7B2017904700BA6044 /* FieldCover.swift */; };
 		572E1D44CA0E9B25516951D9 /* Pods_Planning_BoardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0256DE4A0B13673A21383A4 /* Pods_Planning_BoardUITests.framework */; };
 		DA880E049AE65C95B512E00D /* Pods_Planning_BoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FB31C9AA363BC2650B9B39 /* Pods_Planning_BoardTests.framework */; };
 /* End PBXBuildFile section */
@@ -110,9 +110,9 @@
 		2E3D15FF1E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E3E1AC71EF1A4C500801415 /* FinalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalService.swift; sourceTree = "<group>"; };
 		2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceObject.swift; sourceTree = "<group>"; };
-		2E44E1E01E97222400C70049 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2E59A6401FD87392004539E4 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		2E59A6421FD8845B004539E4 /* SegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
+		2E62F894208949390052AA68 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementObject.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		2EB88CF81E858639001F85C2 /* MemberObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberObject.swift; sourceTree = "<group>"; };
 		2EC255281F579007009BBA4C /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImagePicker.swift; sourceTree = "<group>"; };
-		2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		2EFA7C7B2017904700BA6044 /* FieldCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldCover.swift; sourceTree = "<group>"; };
 		9EA070E1F2732D36227515AE /* Pods-Planning BoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning BoardUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planning BoardUITests/Pods-Planning BoardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D43A91E7D6E17061396F6826 /* Pods-Planning BoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planning BoardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Planning BoardTests/Pods-Planning BoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4FB31C9AA363BC2650B9B39 /* Pods_Planning_BoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Planning_BoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,7 +235,7 @@
 				2E0FCD6F1E16367400C8F1E3 /* Assets.xcassets */,
 				2E1F75AD1E4CFD7800DEE534 /* ViewControllers */,
 				2E7EA1DD1E4FE1F200911AD7 /* Custom */,
-				2E59A63F1FD87333004539E4 /* Objects */,
+				2E59A63F1FD87333004539E4 /* Models */,
 				2E0FCD711E16367400C8F1E3 /* LaunchScreen.storyboard */,
 				2E943D541E26C5150059C689 /* TableViewCell1.swift */,
 				2E943D551E26C5150059C689 /* TableViewCell1.xib */,
@@ -301,7 +301,7 @@
 			path = "Planning Board MacUITests";
 			sourceTree = "<group>";
 		};
-		2E59A63F1FD87333004539E4 /* Objects */ = {
+		2E59A63F1FD87333004539E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2E3E1AC91EF1A6CF00801415 /* ServiceObject.swift */,
@@ -310,19 +310,29 @@
 				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
 				2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */,
 			);
-			name = Objects;
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2E62F893208949130052AA68 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2E62F894208949390052AA68 /* ServiceCell.swift */,
+				2E59A6421FD8845B004539E4 /* SegmentCell.swift */,
+				2E59A6401FD87392004539E4 /* MemberCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		2E7EA1DD1E4FE1F200911AD7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				2E62F893208949130052AA68 /* Cells */,
 				2EAA78771EC1849C00E4102D /* PBViewController.swift */,
 				2E99BB821E873D3C0039B0EE /* PBAnimations.swift */,
 				2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */,
 				2EC255281F579007009BBA4C /* CustomTextField.swift */,
-				2E59A6401FD87392004539E4 /* MemberCell.swift */,
-				2E59A6421FD8845B004539E4 /* SegmentCell.swift */,
 				2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */,
+				2EFA7C7B2017904700BA6044 /* FieldCover.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -330,8 +340,6 @@
 		2EAA78701EC018E300E4102D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2E44E1E01E97222400C70049 /* SignInViewController.swift */,
-				2EF0E1981F1D13AD00CAF50E /* SignUpView.swift */,
 				2E889BC01EBEE46300F2C85E /* ServiceView.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
@@ -479,7 +487,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = KlubCo;
 				TargetAttributes = {
 					2E0FCD611E16367400C8F1E3 = {
@@ -667,13 +675,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Planning BoardTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D5B4EEE771D8043CDB28DC2 /* [CP] Check Pods Manifest.lock */ = {
@@ -682,13 +693,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Planning BoardUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CAF6773E9236F632992D6D06 /* [CP] Check Pods Manifest.lock */ = {
@@ -697,13 +711,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Planning Board-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E70C4A9375878F05F7090A32 /* [CP] Copy Pods Resources */ = {
@@ -749,6 +766,7 @@
 				2EC6F3291FE1B3DC0082F02A /* IconImagePicker.swift in Sources */,
 				2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */,
 				2E3E1ACA1EF1A6CF00801415 /* ServiceObject.swift in Sources */,
+				2EFA7C7C2017904700BA6044 /* FieldCover.swift in Sources */,
 				2E99BB871E875CF00039B0EE /* SegmentObject.swift in Sources */,
 				2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */,
 				2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */,
@@ -757,12 +775,11 @@
 				2E59A6411FD87392004539E4 /* MemberCell.swift in Sources */,
 				2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */,
 				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,
+				2E62F895208949390052AA68 /* ServiceCell.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,
 				2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */,
-				2E44E1E11E97222400C70049 /* SignInViewController.swift in Sources */,
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
 				2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */,
-				2EF0E1991F1D13AD00CAF50E /* SignUpView.swift in Sources */,
 				2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */,
 				2EB88CF91E858639001F85C2 /* MemberObject.swift in Sources */,
 				2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */,
@@ -868,6 +885,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -875,6 +893,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -924,6 +943,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -931,6 +951,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

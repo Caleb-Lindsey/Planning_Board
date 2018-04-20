@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 struct GlobalVariables {
     static var userName = String()
@@ -46,7 +45,6 @@ class Datasource {
     
     func fillServiceData()
     {
-        print("Filling Services")
         if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
             GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [ServiceObject]
         }
@@ -54,7 +52,6 @@ class Datasource {
     
     func fillSegmentData() {
         
-        print("Filling Segments")
         if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
             GlobalVariables.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [SegmentObject]
             

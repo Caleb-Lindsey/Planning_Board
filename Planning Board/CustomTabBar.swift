@@ -36,7 +36,6 @@ class CustomTabBar : UITabBarController {
         
         //Array of viewcontrollers
         viewControllers = [serviceNavController, segmentsNavController, peopleNavController]
-        
     }
     
 }

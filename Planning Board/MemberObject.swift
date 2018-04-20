@@ -25,13 +25,12 @@ class Member : NSObject, NSCoding {
     var profilePic = UIImage()
     
     init(FirstName: String, LastName: String, CanHost: [String], ProfilePic: UIImage) {
-    
         self.firstName = FirstName
         self.lastName = LastName
         self.canHost = CanHost
         self.profilePic = ProfilePic
-        
     }
+    
     override init() {
         self.firstName = ""
         self.lastName = ""
@@ -44,21 +43,17 @@ class Member : NSObject, NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
-        
         self.firstName = aDecoder.decodeObject(forKey: "FirstName") as! String
         self.lastName = aDecoder.decodeObject(forKey: "LastName") as! String
         self.canHost = aDecoder.decodeObject(forKey: "canHost") as! [String]
         self.profilePic = aDecoder.decodeObject(forKey: "ProfilePic") as! UIImage
-        
     }
     
     func initWithCoder(aDecoder: NSCoder) -> Member {
-        
         self.firstName = aDecoder.decodeObject(forKey: "FirstName") as! String
         self.lastName = aDecoder.decodeObject(forKey: "LastName") as! String
         self.canHost = aDecoder.decodeObject(forKey: "canHost") as! [String]
         self.profilePic = aDecoder.decodeObject(forKey: "ProfilePic") as! UIImage
-        
         return self
     }
     
@@ -67,31 +62,6 @@ class Member : NSObject, NSCoding {
         aCoder.encode(lastName, forKey: "LastName")
         aCoder.encode(canHost, forKey: "canHost")
         aCoder.encode(profilePic, forKey: "ProfilePic")
-        
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

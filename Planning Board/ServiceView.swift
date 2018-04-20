@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,13 +20,10 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         let label = UILabel()
         label.text = "Services"
         label.textAlignment = .center
-        label.layer.borderWidth = 0.25
-        label.layer.borderColor = UIColor.black.cgColor
-        label.font = UIFont(name: "Helvetica", size: 30)
+        label.font = label.font.withSize(30)
         label.textColor = UIColor.white
         label.layer.borderColor = UIColor.white.cgColor
         label.layer.borderWidth = 0.3
-        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -115,7 +111,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             
             //Place left table view
             leftTableView.frame = CGRect(x: 0, y: segmentControl.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)! - leftTopLabel.frame.height)
-            leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
+            leftTableView.register(ServiceCell.self, forCellReuseIdentifier: "leftCell")
             leftTableView.dataSource = self
             leftTableView.delegate = self
             view.addSubview(leftTableView)
@@ -163,10 +159,9 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = leftTableView.dequeueReusableCell(withIdentifier: "leftCell", for: indexPath)
-        cell.textLabel?.text = GlobalVariables.arrayOfServices[indexPath.row].title
-        cell.textLabel?.textAlignment = .center
-        cell.textLabel?.numberOfLines = 2
+        let thisService : ServiceObject = GlobalVariables.arrayOfServices[indexPath.row]
+        let cell : ServiceCell = ServiceCell(service: thisService, reuseIdentifier: "leftCell")
+        cell.titleLabel.text = thisService.title
         return cell
     }
     
@@ -235,9 +230,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
                 array[value] = largerValue
             }
         }
-        
-        
-        
         
     }
     

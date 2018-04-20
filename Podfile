@@ -6,9 +6,6 @@ target 'Planning Board' do
   use_frameworks!
 
   # Pods for Planning Board
-	pod ‘Firebase/Core’
-	pod ‘Firebase/Database’
-	pod ‘Firebase/Auth’
 
   target 'Planning BoardTests' do
     inherit! :search_paths

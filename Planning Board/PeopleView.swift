@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
@@ -65,6 +65,9 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         image.clipsToBounds = true
         image.layer.borderColor = GlobalVariables.greenColor.cgColor
         image.layer.borderWidth = 2
+        image.isUserInteractionEnabled = false
+        image.imageView?.contentMode = .scaleAspectFill
+        image.addTarget(self, action: #selector(profileImagePressed), for: .touchUpInside)
         return image
     }()
     
@@ -124,6 +127,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return button
     }()
     
+    var fieldCover = FieldCover()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -181,6 +186,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             editButton.center.y = rightTopLabel.center.y
             view.addSubview(editButton)
             
+            shouldFieldCoverDisplay()
+            
         }
     }
     
@@ -190,6 +197,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         newMemberButton.isUserInteractionEnabled = false
         leftTableView.isUserInteractionEnabled = false
         editButton.isEnabled = false
+        profileImage.isUserInteractionEnabled = true
         
         //Element table view
         rightTableView.reloadData()
@@ -249,6 +257,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             
         }
         
+        shouldFieldCoverDisplay()
+        
         //Animations
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             
@@ -270,10 +280,10 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         
         newMemberMode = false
         editMemberMode = false
+        profileImage.isUserInteractionEnabled = false
         
         cancelButton.removeFromSuperview()
         doneButton.removeFromSuperview()
-        self.profileImage.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         self.memberLabel.text = "\(memberObject.fullName())"
         tempArray.removeAll()
         newFirstName.text = ""
@@ -295,6 +305,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             self.leftTopLabel.layer.opacity = 1
             self.newMemberButton.layer.opacity = 1
             self.editButton.layer.opacity = 1
+            
+            self.shouldFieldCoverDisplay()
             
         }, completion: {(finished: Bool) in
             
@@ -323,7 +335,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         
         if tempArray != [] && newFirstName.text != "" && newLastName.text != "" {
             
-            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: #imageLiteral(resourceName: "Ryan_Young"))
+            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: (profileImage.imageView?.image)!)
             
             if newMemberMode {
                 GlobalVariables.memberArr.append(newMember)
@@ -479,6 +491,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
             rightTableView.reloadData()
+            shouldFieldCoverDisplay()
             
         }
         
@@ -534,6 +547,70 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             memberLabel.text = GlobalVariables.memberArr[0].fullName()
             memberObject = GlobalVariables.memberArr[0]
             rightTableView.reloadData()
+            
+        }
+        
+    }
+    
+    @objc func profileImagePressed() {
+        
+
+            
+        print("Adding a picture")
+        
+        let image = UIImagePickerController()
+        image.delegate = self
+        
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        
+        image.allowsEditing = false
+        
+        self.present(image, animated: true)
+        {
+            // After it is complete
+        }
+            
+        
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImage.setImage(image, for: .normal)
+        } else {
+            // Display Error
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func shouldFieldCoverDisplay() {
+        
+        if GlobalVariables.memberArr == [] {
+            
+            if newMemberMode {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.fieldCover.frame.origin.x = self.view.frame.width
+                })
+                rightTableView.layer.opacity = 1
+                fieldCover.removeFromSuperview()
+            } else {
+                fieldCover = FieldCover(displayMessage: "Add a new Member to begin.", frame: CGRect(x: leftTopLabel.frame.maxX, y: leftTopLabel.frame.origin.y, width: view.frame.width - leftTopLabel.frame.width, height: leftTopLabel.frame.height + leftTableView.frame.height))
+                
+                rightTableView.layer.opacity = 0
+                view.addSubview(fieldCover)
+
+            }
+        } else {
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.fieldCover.frame.origin.x = self.view.frame.width
+            })
+            
+            rightTableView.layer.opacity = 1
+            fieldCover.removeFromSuperview()
             
         }
         

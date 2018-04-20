@@ -28,9 +28,7 @@ class ProductItem {
     var PBdescription : String = String()
     var parentSegment : String = String()
     
-    
     init() {
-        
         self.title = ""
         self.type = "element"
         self.minutes = 0
@@ -38,18 +36,6 @@ class ProductItem {
         self.host = nil
         self.PBdescription = ""
         self.parentSegment = ""
-        
     }
     
-    
-    
 }
-
-
-
-
-
-
-
-
-

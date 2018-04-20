@@ -121,6 +121,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     }()
     
     let iconImagePickerView = IconImagePicker()
+    var fieldCover = FieldCover()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,6 +192,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             iconImagePickerView.layer.cornerRadius = segmentImage.frame.width / 2
             iconImagePickerView.transform = CGAffineTransform.init(rotationAngle: -(CGFloat.pi / 2))
             
+            shouldFieldCoverDisplay()
+            
             setupView()
             
         }
@@ -221,6 +224,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         newSegmentMode = true
         leftTableView.isUserInteractionEnabled = false
         
+        
+        
         //Segment label
         segmentLabel.text = "New Segment"
         
@@ -247,6 +252,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         // Icon Picker
         iconImagePickerView.isUserInteractionEnabled = true
         view.addSubview(iconImagePickerView)
+        
+        shouldFieldCoverDisplay()
         
         //Animations
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
@@ -293,10 +300,15 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.leftTopLabel.layer.opacity = 1
             self.newSegmentButton.layer.opacity = 1
             self.iconImagePickerView.layer.opacity = 0
-            self.segmentImage.image = GlobalVariables.segObjArr[GlobalVariables.segObjArr.count - 1].iconImage
             self.segmentImage.frame.origin.x = self.leftTableView.frame.maxX + 50
             self.segmentLabel.layer.opacity = 1
             self.iconImagePickerView.frame.origin.x -= self.iconImagePickerView.frame.width / 3
+            
+            if GlobalVariables.segObjArr != [] {
+                self.segmentImage.image = GlobalVariables.segObjArr[GlobalVariables.segObjArr.count - 1].iconImage
+            }
+            
+            self.shouldFieldCoverDisplay()
             
         }, completion: {(finished: Bool) in
             
@@ -305,7 +317,6 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.newSegmentButton.isUserInteractionEnabled = true
             self.leftTableView.isUserInteractionEnabled = true
             self.iconImagePickerView.removeFromSuperview()
-
             
             
         })
@@ -426,6 +437,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             dataHandle.uploadSegment()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
+            shouldFieldCoverDisplay()
             
         }
         
@@ -460,7 +472,32 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     
+    func shouldFieldCoverDisplay() {
+        
+        if GlobalVariables.segObjArr == [] {
+            
+            if newSegmentMode {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.fieldCover.frame.origin.x = self.view.frame.width
+                })
+                
+                fieldCover.removeFromSuperview()
+            } else {
+                fieldCover = FieldCover(displayMessage: "Create a new Segment to begin.", frame: CGRect(x: leftTopLabel.frame.maxX, y: leftTopLabel.frame.origin.y, width: view.frame.width - leftTopLabel.frame.width, height: leftTopLabel.frame.height + leftTableView.frame.height))
+                
+                view.addSubview(fieldCover)
+            }
+        } else {
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.fieldCover.frame.origin.x = self.view.frame.width
+                })
     
+            fieldCover.removeFromSuperview()
+            
+        }
+        
+    }
     
     
 }

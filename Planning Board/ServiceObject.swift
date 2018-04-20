@@ -26,34 +26,27 @@ class ServiceObject : NSObject, NSCoding {
     var fullDetail : String = String()
     
     init(title: String, type: String, date: Date, summary: String, fullDetail: String) {
-        
         self.title = title
         self.type = type
         self.date = date
         self.summary = summary
         self.fullDetail = fullDetail
-        
     }
     
     required init(coder aDecoder: NSCoder) {
-        
         self.title = aDecoder.decodeObject(forKey: "Title") as! String
         self.type = aDecoder.decodeObject(forKey: "Type") as! String
         self.date = (aDecoder.decodeObject(forKey: "Date") as! NSDate) as Date
         self.summary = aDecoder.decodeObject(forKey: "Summary") as! String
         self.fullDetail = aDecoder.decodeObject(forKey: "FullDetail") as! String
-        
     }
     
     func initWithCoder(aDecoder: NSCoder) -> ServiceObject {
-        
         self.title = aDecoder.decodeObject(forKey: "Title") as! String
         self.type = aDecoder.decodeObject(forKey: "Type") as! String
         self.date = (aDecoder.decodeObject(forKey: "Date") as! NSDate) as Date
         self.summary = aDecoder.decodeObject(forKey: "Summary") as! String
         self.fullDetail = aDecoder.decodeObject(forKey: "FullDetail") as! String
-        
-        
         return self
     }
     
@@ -63,27 +56,6 @@ class ServiceObject : NSObject, NSCoding {
         aCoder.encode(date, forKey: "Date")
         aCoder.encode(summary, forKey: "Summary")
         aCoder.encode(fullDetail, forKey: "FullDetail")
-        
     }
     
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

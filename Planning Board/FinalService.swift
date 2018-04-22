@@ -274,7 +274,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
             serviceTitle.layer.borderWidth = 0
             serviceTitle.layer.borderColor = UIColor.red.cgColor
             
-            let service : ServiceObject = ServiceObject(title: serviceTitle.text!, type: serviceType.text!, date: datePicker.date, summary: serviceView.text!, fullDetail: "")
+            let service : Service = Service(title: serviceTitle.text!, type: serviceType.text!, date: datePicker.date, summary: serviceView.text!, fullDetail: "")
             GlobalVariables.arrayOfServices.append(service)
             
             dataHandle.uploadService()

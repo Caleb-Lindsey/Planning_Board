@@ -10,7 +10,7 @@ import UIKit
 
 class ServiceCell : UITableViewCell {
     
-    var service : ServiceObject!
+    var service : Service!
     
     let titleLabel : UILabel = {
         let label = UILabel()
@@ -34,7 +34,7 @@ class ServiceCell : UITableViewCell {
         return label
     }()
     
-    init(service: ServiceObject, reuseIdentifier: String) {
+    init(service: Service, reuseIdentifier: String) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.service = service
     }
@@ -58,6 +58,7 @@ class ServiceCell : UITableViewCell {
         
         // Place Title Label
         titleLabel.frame = CGRect(x: 5, y: dateLabel.frame.maxY, width: dateLabel.frame.width, height: cellHeight - dateLabel.frame.height)
+        titleLabel.text = self.service.title
         self.contentView.addSubview(titleLabel)
         
     }

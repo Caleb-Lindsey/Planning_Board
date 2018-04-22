@@ -9,16 +9,16 @@
 import UIKit
 
 struct GlobalVariables {
-    static var userName = String()
     static var segmentArray = [String]()
-    static var popoverChoice = String()
-    static var greenColor = UIColor(red: 75/255.0, green: 108/255.0, blue: 35/255.0, alpha: 1)
-    static var lighterGreenColor = UIColor(red: 85/255.0, green: 142/255.0, blue: 25/255.0, alpha: 1)
-    static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var segObjArr = [SegmentObject]()
     static var memberArr = [Member]()
     static var serviceDetailArray : [ProductItem] = [ProductItem]()
-    static var arrayOfServices : [ServiceObject] = [ServiceObject]()
+    static var arrayOfServices : [Service] = [Service]()
+    
+    static var greenColor = UIColor(red: 75/255.0, green: 108/255.0, blue: 35/255.0, alpha: 1)
+    static var lighterGreenColor = UIColor(red: 85/255.0, green: 142/255.0, blue: 25/255.0, alpha: 1)
+    static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
+    
     static var arrayOfIcons : [UIImage] = [
         UIImage(named:"bible_icon")!,
         UIImage(named:"clock")!,
@@ -46,7 +46,7 @@ class Datasource {
     func fillServiceData()
     {
         if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
-            GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [ServiceObject]
+            GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Service]
         }
     }
     

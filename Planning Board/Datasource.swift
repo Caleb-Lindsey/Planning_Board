@@ -9,16 +9,20 @@
 import UIKit
 
 struct GlobalVariables {
+    // Data
     static var segmentArray = [String]()
     static var segObjArr = [SegmentObject]()
     static var memberArr = [Member]()
     static var serviceDetailArray : [ProductItem] = [ProductItem]()
     static var arrayOfServices : [Service] = [Service]()
+    static var serviceFilePath : String = "PlanningBoardServices.json"
     
+    // Theme
     static var greenColor = UIColor(red: 75/255.0, green: 108/255.0, blue: 35/255.0, alpha: 1)
     static var lighterGreenColor = UIColor(red: 85/255.0, green: 142/255.0, blue: 25/255.0, alpha: 1)
     static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     
+    // Icons
     static var arrayOfIcons : [UIImage] = [
         UIImage(named:"bible_icon")!,
         UIImage(named:"clock")!,
@@ -54,8 +58,6 @@ class Datasource {
         
         if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
             GlobalVariables.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [SegmentObject]
-            
-            
             
         }
         
@@ -103,6 +105,33 @@ class Datasource {
         UserDefaults.standard.set(data, forKey: "MemberList")
         print("Members Saved")
         
+    }
+    
+    
+    // REDone
+    func getServiceData() -> [Service] {
+        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = DocumentDirURL.appendingPathComponent(GlobalVariables.serviceFilePath)
+        
+        do {
+            let readString : String = try String(contentsOf: fileURL)
+            let readStringData = readString.data(using: .utf8)
+            
+            var services = try JSONDecoder().decode([Service].self, from: readStringData!)
+            services = orderServiceArrayByDate(array: &services)
+            
+            return services
+        } catch let error as NSError {
+            print("Failed to read from file...", error)
+            return []
+        }
+    }
+    
+    func orderServiceArrayByDate(array:inout [Service]) -> [Service] {
+        array = array.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending
+        })
+        return array
     }
     
 }

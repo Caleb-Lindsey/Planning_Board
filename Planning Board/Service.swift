@@ -17,7 +17,7 @@ import UIKit
     - Full Detail
 */
 
-class Service : NSObject, NSCoding {
+class Service : NSObject, NSCoding, Codable {
     
     var title : String = String()
     var type : String = String()

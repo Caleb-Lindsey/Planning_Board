@@ -47,18 +47,3 @@ class IconImagePicker : UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -34,7 +34,6 @@ class FieldCover : UIView {
         backgroundColor = GlobalVariables.grayColor
         layer.borderColor = GlobalVariables.greenColor.cgColor
         layer.borderWidth = 3
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,11 +41,9 @@ class FieldCover : UIView {
     }
     
     override func layoutSubviews() {
-        
         displayLabel.frame = CGRect(x: 15, y: self.frame.height / 5, width: self.frame.width - 15 - 15, height: 100)
         displayLabel.text = self.displayMessage
         self.addSubview(displayLabel)
-        
     }
     
 }

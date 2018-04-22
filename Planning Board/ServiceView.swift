@@ -96,8 +96,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         statusBar.backgroundColor = UIColor.clear
         formatter.dateFormat = "E, M-dd-yy"
         
-        //GlobalVariables.userName = UserDefaults.standard.value(forKey: "username") as! String
-        
         let statusBarHeight = statusBar.frame.height
 
         //Place left top label
@@ -166,17 +164,13 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         if tableView == leftTableView {
             if editingStyle == .delete {
-                
                 GlobalVariables.arrayOfServices.remove(at: indexPath.row)
                 leftTableView.reloadData()
                 dataHandle.uploadService()
-                
             }
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -199,49 +193,24 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
         
         if GlobalVariables.arrayOfServices != [] {
-            
             summaryView.text = GlobalVariables.arrayOfServices[0].summary
             let dateString = formatter.string(from: GlobalVariables.arrayOfServices[0].date)
             dateLabel.text = dateString
             rightTopLabel.text = GlobalVariables.arrayOfServices[0].title
             if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
-                orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
+                //orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
             }
-            
         }
         
     }
     
     @objc func orderServiceArray() {
-        
         if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
-            orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
+            //orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
         } else if segmentControl.selectedSegmentIndex == 1 && GlobalVariables.arrayOfServices.count > 2 {
-            orderServiceArrayAlphabetically()
+            //orderServiceArrayAlphabetically()
         }
-        
         leftTableView.reloadData()
-        
-    }
-    
-    func orderServiceArrayByDate(array:inout [Service]) {
-        
-        let arrayCount = array.count
-        
-        for value in 1...arrayCount - 1 {
-            if array[value - 1].date > array[value].date {
-                let largerValue = array[value - 1]
-                array[value - 1] = array[value]
-                array[value] = largerValue
-            }
-        }
-        
-    }
-    
-    func orderServiceArrayAlphabetically() {
-        
-        GlobalVariables.arrayOfServices.sort { $0.title < $1.title }
-        
     }
     
     func setupView() {

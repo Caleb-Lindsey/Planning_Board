@@ -27,7 +27,7 @@ class IconImagePicker : UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return GlobalVariables.arrayOfIcons.count
+        return Global.arrayOfIcons.count
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -39,7 +39,7 @@ class IconImagePicker : UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
         pickerView.frame.size.width /= 3
         pickerView.layer.borderWidth = 1
         pickerView.layer.cornerRadius = pickerView.frame.width / 2
-        let pickerImageView : UIImageView = UIImageView(image: GlobalVariables.arrayOfIcons[row])
+        let pickerImageView : UIImageView = UIImageView(image: Global.arrayOfIcons[row])
         pickerImageView.frame = CGRect(x: pickerView.frame.width / 4, y: pickerView.frame.height / 4, width: pickerView.frame.width / 2, height: pickerView.frame.height / 2)
         pickerImageView.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 2)
         pickerView.addSubview(pickerImageView)

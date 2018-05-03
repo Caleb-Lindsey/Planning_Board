@@ -31,8 +31,8 @@ class FieldCover : UIView {
         self.displayMessage = displayMessage
         
         // Appearance
-        backgroundColor = GlobalVariables.grayColor
-        layer.borderColor = GlobalVariables.greenColor.cgColor
+        backgroundColor = Global.grayColor
+        layer.borderColor = Global.greenColor.cgColor
         layer.borderWidth = 3
     }
     

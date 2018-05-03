@@ -56,7 +56,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.titleLabel?.textColor = UIColor.white
-        button.backgroundColor = GlobalVariables.greenColor
+        button.backgroundColor = Global.greenColor
         button.addTarget(self, action: #selector(continueToFinal), for: .touchUpInside)
         button.layer.cornerRadius = 8
         return button
@@ -65,7 +65,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     let detailsView : UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
-        view.layer.borderColor = GlobalVariables.greenColor.cgColor
+        view.layer.borderColor = Global.greenColor.cgColor
         view.layer.borderWidth = 0.5
         return view
     }()
@@ -126,8 +126,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     let ElementSegmentControl : UISegmentedControl = {
         let controller = UISegmentedControl(items: ["Most Recent","ABC"])
         controller.selectedSegmentIndex = 0
-        controller.tintColor = GlobalVariables.greenColor
-        controller.backgroundColor = GlobalVariables.grayColor
+        controller.tintColor = Global.greenColor
+        controller.backgroundColor = Global.grayColor
         controller.layer.opacity = 0
         return controller
     }()
@@ -141,21 +141,21 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.automaticallyAdjustsScrollViewInsets = false
         
         //Setup View
-        view.backgroundColor = GlobalVariables.grayColor
+        view.backgroundColor = Global.grayColor
         self.navigationItem.title = "Create Service"
-        self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
-        self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
+        self.navigationController?.navigationBar.barTintColor = Global.grayColor
+        self.navigationController?.navigationBar.tintColor = Global.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
-        if GlobalVariables.segObjArr != [] {
+        if Global.segObjArr != [] {
             
-            currentLoaded = GlobalVariables.segObjArr[0].name
-            currentSeg = GlobalVariables.segObjArr[0]
-            fillTable(segment: GlobalVariables.segObjArr[0])
+            currentLoaded = Global.segObjArr[0].name
+            currentSeg = Global.segObjArr[0]
+            fillTable(segment: Global.segObjArr[0])
             
-            while count < GlobalVariables.segObjArr.count {
+            while count < Global.segObjArr.count {
             
-                arrayOfCellData.append(cellData(cell: 1, text: GlobalVariables.segObjArr[count].name, image: GlobalVariables.segObjArr[count].iconImage))
+                arrayOfCellData.append(cellData(cell: 1, text: Global.segObjArr[count].name, image: Global.segObjArr[count].iconImage))
                 
                 count += 1
             
@@ -250,11 +250,11 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         super.viewWillAppear(true)
         
         elementTable.reloadData()
-        GlobalVariables.serviceDetailArray.removeAll()
+        Global.serviceDetailArray.removeAll()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationItem.hidesBackButton = false
-        statusBar.backgroundColor = GlobalVariables.grayColor
+        statusBar.backgroundColor = Global.grayColor
         
     }
     
@@ -437,14 +437,14 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == segmentTable {
-            if GlobalVariables.segObjArr != [] {
+            if Global.segObjArr != [] {
                 
                 segmentPath = indexPath.row
                 
-                if currentLoaded != GlobalVariables.segObjArr[indexPath.row].name {
+                if currentLoaded != Global.segObjArr[indexPath.row].name {
                     
                     //Load the tableview using the element array
-                    fillTable(segment: GlobalVariables.segObjArr[indexPath.row])
+                    fillTable(segment: Global.segObjArr[indexPath.row])
                     
                 }
                 
@@ -474,7 +474,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             detailsViewIsVisible = true
             
             //Find Hosts
-            for host in GlobalVariables.memberArr {
+            for host in Global.memberArr {
                 
                 for segment in host.canHost {
                     if segment == selectedItem.parentSegment {
@@ -526,7 +526,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         if tableView == segmentTable {
             return "Segments"
         } else if tableView == elementTable {
-            if GlobalVariables.segObjArr != [] {
+            if Global.segObjArr != [] {
                 if currentLoaded.count > 25 {
                     return currentLoaded
                 } else {
@@ -670,7 +670,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     @objc func continueToFinal() {
         
         for line in 0..<productArray.count {
-            GlobalVariables.serviceDetailArray.append(productArray[line])
+            Global.serviceDetailArray.append(productArray[line])
         }
         
         self.navigationController?.pushViewController(FinalService(), animated: true)

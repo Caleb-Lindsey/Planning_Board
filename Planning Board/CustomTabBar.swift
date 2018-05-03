@@ -13,7 +13,7 @@ class CustomTabBar : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBar.barTintColor = GlobalVariables.greenColor
+        self.tabBar.barTintColor = Global.greenColor
         self.tabBar.unselectedItemTintColor = UIColor.black
         self.tabBar.tintColor = UIColor.white
         self.tabBar.itemSpacing = 100

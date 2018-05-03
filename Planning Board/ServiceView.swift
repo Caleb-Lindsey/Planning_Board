@@ -31,8 +31,8 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     let segmentControl : UISegmentedControl = {
         let controller = UISegmentedControl(items: ["Most Recent","A-Z"])
         controller.selectedSegmentIndex = 0
-        controller.tintColor = GlobalVariables.greenColor
-        controller.backgroundColor = GlobalVariables.grayColor
+        controller.tintColor = Global.greenColor
+        controller.backgroundColor = Global.grayColor
         controller.addTarget(self, action: #selector(orderServiceArray), for: .valueChanged)
         return controller
     }()
@@ -52,7 +52,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     let detailButton : UIButton = {
         let button = UIButton()
         button.setTitle("View Service Detail", for: .normal)
-        button.backgroundColor = GlobalVariables.greenColor
+        button.backgroundColor = Global.greenColor
         button.titleLabel?.textColor = UIColor.white
         button.layer.cornerRadius = 10
         return button
@@ -140,11 +140,11 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GlobalVariables.arrayOfServices.count
+        return Global.arrayOfServices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let thisService : Service = GlobalVariables.arrayOfServices[indexPath.row]
+        let thisService : Service = Global.arrayOfServices[indexPath.row]
         let cell : ServiceCell = ServiceCell(service: thisService, reuseIdentifier: "leftCell")
         return cell
     }
@@ -154,9 +154,9 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        summaryView.text = GlobalVariables.arrayOfServices[indexPath.row].summary
-        rightTopLabel.text = GlobalVariables.arrayOfServices[indexPath.row].title
-        dateLabel.text = formatter.string(from: GlobalVariables.arrayOfServices[indexPath.row].date)
+        summaryView.text = Global.arrayOfServices[indexPath.row].summary
+        rightTopLabel.text = Global.arrayOfServices[indexPath.row].title
+        dateLabel.text = formatter.string(from: Global.arrayOfServices[indexPath.row].date)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -166,7 +166,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
             if editingStyle == .delete {
-                GlobalVariables.arrayOfServices.remove(at: indexPath.row)
+                Global.arrayOfServices.remove(at: indexPath.row)
                 leftTableView.reloadData()
                 dataHandle.uploadService()
             }
@@ -192,12 +192,12 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         leftTableView.reloadData()
         leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
         
-        if GlobalVariables.arrayOfServices != [] {
-            summaryView.text = GlobalVariables.arrayOfServices[0].summary
-            let dateString = formatter.string(from: GlobalVariables.arrayOfServices[0].date)
+        if !Global.arrayOfServices.isEmpty {
+            summaryView.text = Global.arrayOfServices[0].summary
+            let dateString = formatter.string(from: Global.arrayOfServices[0].date)
             dateLabel.text = dateString
-            rightTopLabel.text = GlobalVariables.arrayOfServices[0].title
-            if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
+            rightTopLabel.text = Global.arrayOfServices[0].title
+            if segmentControl.selectedSegmentIndex == 0 && Global.arrayOfServices.count > 2 {
                 //orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
             }
         }
@@ -205,32 +205,19 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func orderServiceArray() {
-        if segmentControl.selectedSegmentIndex == 0 && GlobalVariables.arrayOfServices.count > 2 {
+        if segmentControl.selectedSegmentIndex == 0 && Global.arrayOfServices.count > 2 {
             //orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
-        } else if segmentControl.selectedSegmentIndex == 1 && GlobalVariables.arrayOfServices.count > 2 {
+        } else if segmentControl.selectedSegmentIndex == 1 && Global.arrayOfServices.count > 2 {
             //orderServiceArrayAlphabetically()
         }
         leftTableView.reloadData()
     }
     
     func setupView() {
-        if GlobalVariables.arrayOfServices != [] {
+        if !Global.arrayOfServices.isEmpty {
             leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
             leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
         }
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

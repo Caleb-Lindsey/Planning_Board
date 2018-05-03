@@ -51,7 +51,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
     
     let saveToApp : UIButton = {
         let button = UIButton()
-        button.backgroundColor = GlobalVariables.greenColor
+        button.backgroundColor = Global.greenColor
         button.setTitle("Save to Planning Board", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
@@ -61,7 +61,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
     
     let exportButton : UIButton = {
         let button = UIButton()
-        button.backgroundColor = GlobalVariables.greenColor
+        button.backgroundColor = Global.greenColor
         button.setTitle("Export", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
@@ -83,7 +83,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
     let doneButton : UIButton = {
         let button = UIButton()
         button.setTitle("Done", for: .normal)
-        button.backgroundColor = GlobalVariables.greenColor
+        button.backgroundColor = Global.greenColor
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(returnToMain), for: .touchUpInside)
@@ -97,13 +97,13 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         super.viewDidLoad()
         
         //Setup View
-        view.backgroundColor = GlobalVariables.grayColor
+        view.backgroundColor = Global.grayColor
         self.navigationItem.title = "Finalize Service"
-        self.navigationController?.navigationBar.barTintColor = GlobalVariables.grayColor
-        self.navigationController?.navigationBar.tintColor = GlobalVariables.lighterGreenColor
+        self.navigationController?.navigationBar.barTintColor = Global.grayColor
+        self.navigationController?.navigationBar.tintColor = Global.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
-        serviceView.text = formatSummary(serviceArray: GlobalVariables.serviceDetailArray)
+        serviceView.text = formatSummary(serviceArray: Global.serviceDetailArray)
         
         if let window = UIApplication.shared.keyWindow {
             
@@ -275,7 +275,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
             serviceTitle.layer.borderColor = UIColor.red.cgColor
             
             let service : Service = Service(title: serviceTitle.text!, type: serviceType.text!, date: datePicker.date, summary: serviceView.text!, fullDetail: "")
-            GlobalVariables.arrayOfServices.append(service)
+            Global.arrayOfServices.append(service)
             
             dataHandle.uploadService()
         

@@ -61,7 +61,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         let imageView = UIImageView()
         imageView.image = UIImage(named: "fire_icon")
         imageView.backgroundColor = UIColor.lightGray
-        imageView.layer.borderColor = GlobalVariables.greenColor.cgColor
+        imageView.layer.borderColor = Global.greenColor.cgColor
         imageView.layer.borderWidth = 2
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
@@ -210,7 +210,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 tempArray.append(newElementField.text!)
             } else {
                 segmentObject.elements.append(newElementField.text!)
-                GlobalVariables.segObjArr[(leftTableView.indexPathForSelectedRow?.row)!] = segmentObject
+                Global.segObjArr[(leftTableView.indexPathForSelectedRow?.row)!] = segmentObject
                 dataHandle.uploadSegment()
             }
             newElementField.text = ""
@@ -304,8 +304,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.segmentLabel.layer.opacity = 1
             self.iconImagePickerView.frame.origin.x -= self.iconImagePickerView.frame.width / 3
             
-            if GlobalVariables.segObjArr != [] {
-                self.segmentImage.image = GlobalVariables.segObjArr[GlobalVariables.segObjArr.count - 1].iconImage
+            if Global.segObjArr != [] {
+                self.segmentImage.image = Global.segObjArr[Global.segObjArr.count - 1].iconImage
             }
             
             self.shouldFieldCoverDisplay()
@@ -327,8 +327,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     @objc func doneCreate() {
 
         if newSegmentField.text != "" && tempArray != [] {
-            let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: GlobalVariables.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
-            GlobalVariables.segObjArr.append(newSegment)
+            let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: Global.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
+            Global.segObjArr.append(newSegment)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
             cancelCreate()
@@ -364,7 +364,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == leftTableView {
-            return GlobalVariables.segObjArr.count
+            return Global.segObjArr.count
         } else {
             if newSegmentMode {
                 return tempArray.count
@@ -377,7 +377,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : SegmentCell = SegmentCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", segment: GlobalVariables.segObjArr[indexPath.row])
+            let cell : SegmentCell = SegmentCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", segment: Global.segObjArr[indexPath.row])
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
@@ -394,9 +394,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
-            segmentObject = GlobalVariables.segObjArr[indexPath.row]
+            segmentObject = Global.segObjArr[indexPath.row]
             segmentLabel.text = segmentObject.name
-            segmentImage.image = GlobalVariables.segObjArr[indexPath.row].iconImage
+            segmentImage.image = Global.segObjArr[indexPath.row].iconImage
             rightTableView.reloadData()
         } else {
             
@@ -433,7 +433,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             }
         } else {
         
-            GlobalVariables.segObjArr.remove(at: indexPath.row)
+            Global.segObjArr.remove(at: indexPath.row)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
@@ -460,12 +460,12 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func setupView() {
         
-        if GlobalVariables.segObjArr != [] {
+        if Global.segObjArr != [] {
             
             leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
             leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-            segmentLabel.text = GlobalVariables.segObjArr[0].name
-            segmentObject = GlobalVariables.segObjArr[0]
+            segmentLabel.text = Global.segObjArr[0].name
+            segmentObject = Global.segObjArr[0]
             rightTableView.reloadData()
             
         }
@@ -474,7 +474,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func shouldFieldCoverDisplay() {
         
-        if GlobalVariables.segObjArr == [] {
+        if Global.segObjArr == [] {
             
             if newSegmentMode {
                 UIView.animate(withDuration: 0.5, animations: {

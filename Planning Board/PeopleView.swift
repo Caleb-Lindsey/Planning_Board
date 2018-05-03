@@ -63,7 +63,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
         image.clipsToBounds = true
-        image.layer.borderColor = GlobalVariables.greenColor.cgColor
+        image.layer.borderColor = Global.greenColor.cgColor
         image.layer.borderWidth = 2
         image.isUserInteractionEnabled = false
         image.imageView?.contentMode = .scaleAspectFill
@@ -132,7 +132,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if GlobalVariables.memberArr.count != 0 {
+        if Global.memberArr.count != 0 {
             setupView()
             
         }
@@ -338,10 +338,10 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: (profileImage.imageView?.image)!)
             
             if newMemberMode {
-                GlobalVariables.memberArr.append(newMember)
+                Global.memberArr.append(newMember)
 
             } else if editMemberMode {
-                GlobalVariables.memberArr[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
+                Global.memberArr[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
             }
             
             dataHandle.uploadMember()
@@ -388,10 +388,10 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView == leftTableView {
-            return GlobalVariables.memberArr.count
+            return Global.memberArr.count
         } else {
             if newMemberMode || editMemberMode {
-                return GlobalVariables.segObjArr.count
+                return Global.segObjArr.count
             } else {
                 return memberObject.canHost.count
             }
@@ -402,19 +402,19 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : MemberCell = MemberCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", member: GlobalVariables.memberArr[indexPath.row])
+            let cell : MemberCell = MemberCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", member: Global.memberArr[indexPath.row])
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
             
             if newMemberMode {
-                cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
+                cell.textLabel?.text = Global.segObjArr[indexPath.row].name
                 cell.accessoryType = (cell.isSelected) ? .checkmark : .none
             } else if editMemberMode {
-                cell.textLabel?.text = GlobalVariables.segObjArr[indexPath.row].name
+                cell.textLabel?.text = Global.segObjArr[indexPath.row].name
         
                 for segment in memberObject.canHost {
-                    if segment == GlobalVariables.segObjArr[indexPath.row].name {
+                    if segment == Global.segObjArr[indexPath.row].name {
 
                         cell.accessoryType = .checkmark
                         cell.isSelected = true
@@ -435,9 +435,9 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
-            memberObject = GlobalVariables.memberArr[indexPath.row]
+            memberObject = Global.memberArr[indexPath.row]
             memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
-            profileImage.setImage(GlobalVariables.memberArr[indexPath.row].profilePic, for: .normal)
+            profileImage.setImage(Global.memberArr[indexPath.row].profilePic, for: .normal)
             rightTableView.reloadData()
             
         } else {
@@ -486,7 +486,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             }
         } else {
             
-            GlobalVariables.memberArr.remove(at: indexPath.row)
+            Global.memberArr.remove(at: indexPath.row)
             dataHandle.uploadMember()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
@@ -539,13 +539,13 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func setupView() {
         
-        if GlobalVariables.memberArr != [] {
+        if Global.memberArr != [] {
             
             leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
             leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-            profileImage.setImage(GlobalVariables.memberArr[0].profilePic, for: .normal)
-            memberLabel.text = GlobalVariables.memberArr[0].fullName()
-            memberObject = GlobalVariables.memberArr[0]
+            profileImage.setImage(Global.memberArr[0].profilePic, for: .normal)
+            memberLabel.text = Global.memberArr[0].fullName()
+            memberObject = Global.memberArr[0]
             rightTableView.reloadData()
             
         }
@@ -588,7 +588,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func shouldFieldCoverDisplay() {
         
-        if GlobalVariables.memberArr == [] {
+        if Global.memberArr == [] {
             
             if newMemberMode {
                 UIView.animate(withDuration: 0.5, animations: {

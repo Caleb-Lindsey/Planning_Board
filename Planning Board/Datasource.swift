@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct GlobalVariables {
+struct Global {
     // Data
     static var segmentArray = [String]()
     static var segObjArr = [SegmentObject]()
@@ -50,14 +50,14 @@ class Datasource {
     func fillServiceData()
     {
         if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
-            GlobalVariables.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Service]
+            Global.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Service]
         }
     }
     
     func fillSegmentData() {
         
         if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
-            GlobalVariables.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [SegmentObject]
+            Global.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [SegmentObject]
             
         }
         
@@ -73,21 +73,21 @@ class Datasource {
         
         print("Filling Members")
         if let data = UserDefaults.standard.object(forKey: "MemberList") as? NSData {
-            GlobalVariables.memberArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
+            Global.memberArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
         }
         
     }
     
     func uploadService() {
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.arrayOfServices)
+        let data = NSKeyedArchiver.archivedData(withRootObject: Global.arrayOfServices)
         UserDefaults.standard.set(data, forKey: "ServiceList")
         print("Services Saved")
     }
     
     func uploadSegment() {
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.segObjArr)
+        let data = NSKeyedArchiver.archivedData(withRootObject: Global.segObjArr)
         UserDefaults.standard.set(data, forKey: "SegmentList")
         print("Segments Saved")
         
@@ -101,7 +101,7 @@ class Datasource {
     
     func uploadMember() {
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: GlobalVariables.memberArr)
+        let data = NSKeyedArchiver.archivedData(withRootObject: Global.memberArr)
         UserDefaults.standard.set(data, forKey: "MemberList")
         print("Members Saved")
         
@@ -111,7 +111,7 @@ class Datasource {
     // REDone
     func getServiceData() -> [Service] {
         let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let fileURL = DocumentDirURL.appendingPathComponent(GlobalVariables.serviceFilePath)
+        let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
         
         do {
             let readString : String = try String(contentsOf: fileURL)
@@ -124,6 +124,20 @@ class Datasource {
         } catch let error as NSError {
             print("Failed to read from file...", error)
             return []
+        }
+    }
+    
+    func saveServicesToFile(services: [Service]) {
+        
+        // Encode the array into a json string, and write it to a file
+        let dataToWrite = try? JSONEncoder().encode(services)
+        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
+        
+        do {
+            try dataToWrite?.write(to: fileURL)
+        } catch let error as NSError {
+            print("Failed to write to the file....", error)
         }
     }
     

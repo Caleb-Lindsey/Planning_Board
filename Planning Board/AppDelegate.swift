@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Data
         let dataHandle : Datasource = Datasource()
-        Global.arrayOfServices =  dataHandle.getServiceData()
+        dataHandle.getServiceData()
+        dataHandle.fillSegmentData()
+        dataHandle.fillMemberData()
         
         // Ignore the Storyboard
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -11,7 +11,7 @@ import UIKit
 class SegmentCell : UITableViewCell {
     
     // Variables
-    var segment : SegmentObject!
+    var segment : Segment!
     
     let iconImageView : UIImageView = {
         let imageView = UIImageView()
@@ -33,8 +33,8 @@ class SegmentCell : UITableViewCell {
         return label
     }()
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, segment: SegmentObject) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init(segment: Segment, reuseIdentifier: String?) {
+        super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.segment = segment
     }
     

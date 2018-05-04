@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ElementObject {
+class Element {
     
     var title : String = String()
     var lastUsed : Date = Date()
-    var parentSegment : SegmentObject!
+    var parentSegment : Segment!
     
 }

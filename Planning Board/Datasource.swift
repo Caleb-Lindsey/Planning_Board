@@ -11,7 +11,7 @@ import UIKit
 struct Global {
     // Data
     static var segmentArray = [String]()
-    static var segObjArr = [SegmentObject]()
+    static var segObjArr = [Segment]()
     static var memberArr = [Member]()
     static var serviceDetailArray : [ProductItem] = [ProductItem]()
     static var arrayOfServices : [Service] = [Service]()
@@ -47,17 +47,10 @@ struct Global {
 
 class Datasource {
     
-    func fillServiceData()
-    {
-        if let data = UserDefaults.standard.object(forKey: "ServiceList") as? NSData {
-            Global.arrayOfServices = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Service]
-        }
-    }
-    
     func fillSegmentData() {
         
         if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
-            Global.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [SegmentObject]
+            Global.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Segment]
             
         }
         
@@ -76,13 +69,6 @@ class Datasource {
             Global.memberArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
         }
         
-    }
-    
-    func uploadService() {
-        
-        let data = NSKeyedArchiver.archivedData(withRootObject: Global.arrayOfServices)
-        UserDefaults.standard.set(data, forKey: "ServiceList")
-        print("Services Saved")
     }
     
     func uploadSegment() {
@@ -108,8 +94,8 @@ class Datasource {
     }
     
     
-    // REDone
-    func getServiceData() -> [Service] {
+    // REDone **************************************************************************************************************************************************************************************************************************************************************************
+    func getServiceData() {
         let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
         
@@ -120,10 +106,10 @@ class Datasource {
             var services = try JSONDecoder().decode([Service].self, from: readStringData!)
             services = orderServiceArrayByDate(array: &services)
             
-            return services
+            Global.arrayOfServices = services
         } catch let error as NSError {
-            print("Failed to read from file...", error)
-            return []
+            print("Failed to read from services file...", error)
+            Global.arrayOfServices = []
         }
     }
     

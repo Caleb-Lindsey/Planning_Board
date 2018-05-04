@@ -25,7 +25,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     var productArray = [ProductItem]()
     var count : Int = 0
     var currentLoaded = String()
-    var currentSeg = SegmentObject()
+    var currentSeg = Segment()
     var segmentPath : Int = Int()
     let minutes = Array(0...90)
     let seconds = Array(0...59)
@@ -147,7 +147,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.navigationBar.tintColor = Global.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
-        if Global.segObjArr != [] {
+        if !Global.segObjArr.isEmpty {
             
             currentLoaded = Global.segObjArr[0].name
             currentSeg = Global.segObjArr[0]
@@ -258,7 +258,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    func fillTable(segment : SegmentObject) {
+    func fillTable(segment : Segment) {
         
         currentLoaded = segment.name
         currentSeg = segment
@@ -327,24 +327,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == segmentTable {
-            if arrayOfCellData[indexPath.row].cell == 1 {
-                
-                let cell = Bundle.main.loadNibNamed("TableViewCell1", owner: self, options: nil)?.first as! TableViewCell1
-                
-                cell.mainImageView.image = arrayOfCellData[indexPath.row].image
-                cell.mainLabel.text = arrayOfCellData[indexPath.row].text
-                
-                return cell
-                
-            } else {
-                
-                let cell = Bundle.main.loadNibNamed("TableViewCell1", owner: self, options: nil)?.first as! TableViewCell1
-                
-                cell.mainImageView.image = #imageLiteral(resourceName: "fire_icon")
-                cell.mainLabel.text = arrayOfCellData[indexPath.row].text
-                return cell
-                
-            }
+            let cell = PlannerSegmentCell(segment: Global.segObjArr[indexPath.row], reuseIdentifier: "plannerSegmentCell")
+            return cell
         } else if tableView == elementTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell")
             

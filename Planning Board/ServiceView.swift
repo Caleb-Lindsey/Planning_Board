@@ -33,7 +33,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         controller.selectedSegmentIndex = 0
         controller.tintColor = Global.greenColor
         controller.backgroundColor = Global.grayColor
-        controller.addTarget(self, action: #selector(orderServiceArray), for: .valueChanged)
         return controller
     }()
     
@@ -168,7 +167,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             if editingStyle == .delete {
                 Global.arrayOfServices.remove(at: indexPath.row)
                 leftTableView.reloadData()
-                dataHandle.uploadService()
+                dataHandle.saveServicesToFile(services: Global.arrayOfServices)
             }
         }
     }
@@ -185,11 +184,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func loadServices() {
-        dataHandle.fillServiceData()
-        dataHandle.fillSegmentData()
-        dataHandle.fillMemberData()
         
-        leftTableView.reloadData()
         leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
         
         if !Global.arrayOfServices.isEmpty {
@@ -202,15 +197,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             }
         }
         
-    }
-    
-    @objc func orderServiceArray() {
-        if segmentControl.selectedSegmentIndex == 0 && Global.arrayOfServices.count > 2 {
-            //orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
-        } else if segmentControl.selectedSegmentIndex == 1 && Global.arrayOfServices.count > 2 {
-            //orderServiceArrayAlphabetically()
-        }
-        leftTableView.reloadData()
     }
     
     func setupView() {

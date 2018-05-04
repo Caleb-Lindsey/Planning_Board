@@ -277,7 +277,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
             let service : Service = Service(title: serviceTitle.text!, type: serviceType.text!, date: datePicker.date, summary: serviceView.text!, fullDetail: "")
             Global.arrayOfServices.append(service)
             
-            dataHandle.uploadService()
+            dataHandle.saveServicesToFile(services: Global.arrayOfServices)
         
             saveToApp.isUserInteractionEnabled = false
             saveToApp.layer.opacity = 0.8

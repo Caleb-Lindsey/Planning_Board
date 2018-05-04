@@ -402,7 +402,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : MemberCell = MemberCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", member: Global.memberArr[indexPath.row])
+            let cell : MemberCell = MemberCell(member: Global.memberArr[indexPath.row], reuseIdentifier: "leftCell")
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)

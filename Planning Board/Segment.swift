@@ -17,7 +17,7 @@ import UIKit
     - Last Used Date
 */
 
-class SegmentObject : NSObject, NSCoding {
+class Segment : NSObject, NSCoding {
     
     var name = String()
     var elements = [String]()
@@ -45,7 +45,7 @@ class SegmentObject : NSObject, NSCoding {
         self.lastUsed = aDecoder.decodeObject(forKey: "LastUsed") as! Date
     }
     
-    func initWithCoder(aDecoder: NSCoder) -> SegmentObject {
+    func initWithCoder(aDecoder: NSCoder) -> Segment {
         self.name = aDecoder.decodeObject(forKey: "Title") as! String
         self.elements = aDecoder.decodeObject(forKey: "Elements") as! [String]
         self.iconImage = aDecoder.decodeObject(forKey: "IconImage") as! UIImage

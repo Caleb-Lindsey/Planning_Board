@@ -33,8 +33,8 @@ class MemberCell : UITableViewCell {
         return label
     }()
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, member: Member) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init(member: Member, reuseIdentifier: String?) {
+        super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.member = member
     }
     

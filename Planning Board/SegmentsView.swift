@@ -12,7 +12,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
-    var segmentObject = SegmentObject()
+    var segmentObject = Segment()
     var dataHandle = Datasource()
     var newSegmentMode : Bool = false
     var tempArray = [String]()
@@ -126,77 +126,74 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let window = UIApplication.shared.keyWindow {
-            
-            let statusBarHeight = statusBar.frame.height
-            
-            //Place left top label
-            leftTopLabel.frame = CGRect(x: 0, y: statusBarHeight, width: window.frame.width * (4/10), height: 75)
-            view.addSubview(leftTopLabel)
-            
-            //Place left table view
-            leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: window.frame.width * (4/10), height: window.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)! - leftTopLabel.frame.height)
-            leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
-            leftTableView.dataSource = self
-            leftTableView.delegate = self
-            view.addSubview(leftTableView)
-            leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
-            
-            //Place new segment button
-            newSegmentButton.frame = CGRect(x: leftTopLabel.frame.width - 35 - 20, y: 0, width: 35, height: 35)
-            newSegmentButton.center.y = leftTopLabel.frame.height / 2
-            leftTopLabel.addSubview(newSegmentButton)
-            
-            //Place right top label
-            rightTopLabel.frame = CGRect(x: leftTopLabel.frame.maxX, y: statusBarHeight, width: window.frame.width * (6/10), height: 75)
-            view.addSubview(rightTopLabel)
-            
-            //Place image
-            segmentImage.frame = CGRect(x: leftTableView.frame.maxX + 50, y: rightTopLabel.frame.maxY + 50, width: 120, height: 120)
-            segmentImage.layer.cornerRadius = segmentImage.frame.width / 2
-            view.addSubview(segmentImage)
-            
-            //Place segment label
-            segmentLabel.frame = CGRect(x: segmentImage.frame.maxX + 20, y: 0, width: 200, height: 100)
-            segmentLabel.center.y = segmentImage.center.y
-            segmentLabel.text = segmentObject.name
-            view.addSubview(segmentLabel)
-            
-            //Place new element field
-            newElementField.frame = CGRect(x: segmentImage.frame.origin.x, y: segmentImage.frame.maxY + 45, width: window.frame.width * (6/10) - 75, height: 35)
-            newElementField.rightView = addElementButton
-            newElementField.rightViewMode = UITextFieldViewMode.always
-            newElementField.delegate = self
-            view.addSubview(newElementField)
-            
-            //Place right table view
-            rightTableView.frame = CGRect(x: 0, y: newElementField.frame.maxY + 15, width: window.frame.width * (6/10) - 75, height: window.frame.height / 2)
-            rightTableView.center.x = rightTopLabel.center.x
-            rightTableView.register(UITableViewCell.self, forCellReuseIdentifier: "rightCell")
-            rightTableView.dataSource = self
-            rightTableView.delegate = self
-            view.addSubview(rightTableView)
-            
-            //New segment field
-            newSegmentField.frame = newElementField.frame
-            newSegmentField.delegate = self
-            
-            //Additional
-            newElementField.frame.origin.x = rightTableView.frame.origin.x
-            
-            
-            iconImagePickerView.frame = CGRect(x: segmentImage.frame.origin.x, y: 25, width: segmentImage.frame.width, height: segmentImage.frame.height)
-            iconImagePickerView.frame.size.height = segmentImage.frame.height * 3
-            iconImagePickerView.layer.opacity = 0
-            iconImagePickerView.isUserInteractionEnabled = false
-            iconImagePickerView.layer.cornerRadius = segmentImage.frame.width / 2
-            iconImagePickerView.transform = CGAffineTransform.init(rotationAngle: -(CGFloat.pi / 2))
-            
-            shouldFieldCoverDisplay()
-            
-            setupView()
-            
-        }
+        let statusBarHeight = statusBar.frame.height
+        
+        //Place left top label
+        leftTopLabel.frame = CGRect(x: 0, y: statusBarHeight, width: view.frame.width * (4/10), height: 75)
+        view.addSubview(leftTopLabel)
+        
+        //Place left table view
+        leftTableView.frame = CGRect(x: 0, y: leftTopLabel.frame.maxY, width: view.frame.width * (4/10), height: view.frame.height - statusBarHeight - (tabBarController?.tabBar.frame.height)! - leftTopLabel.frame.height)
+        leftTableView.register(UITableViewCell.self, forCellReuseIdentifier: "leftCell")
+        leftTableView.dataSource = self
+        leftTableView.delegate = self
+        view.addSubview(leftTableView)
+        leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
+        
+        //Place new segment button
+        newSegmentButton.frame = CGRect(x: leftTopLabel.frame.width - 35 - 20, y: 0, width: 35, height: 35)
+        newSegmentButton.center.y = leftTopLabel.frame.height / 2
+        leftTopLabel.addSubview(newSegmentButton)
+        
+        //Place right top label
+        rightTopLabel.frame = CGRect(x: leftTopLabel.frame.maxX, y: statusBarHeight, width: view.frame.width * (6/10), height: 75)
+        view.addSubview(rightTopLabel)
+        
+        //Place image
+        segmentImage.frame = CGRect(x: leftTableView.frame.maxX + 50, y: rightTopLabel.frame.maxY + 50, width: 120, height: 120)
+        segmentImage.layer.cornerRadius = segmentImage.frame.width / 2
+        view.addSubview(segmentImage)
+        
+        //Place segment label
+        segmentLabel.frame = CGRect(x: segmentImage.frame.maxX + 20, y: 0, width: 200, height: 100)
+        segmentLabel.center.y = segmentImage.center.y
+        segmentLabel.text = segmentObject.name
+        view.addSubview(segmentLabel)
+        
+        //Place new element field
+        newElementField.frame = CGRect(x: segmentImage.frame.origin.x, y: segmentImage.frame.maxY + 45, width: view.frame.width * (6/10) - 75, height: 35)
+        newElementField.rightView = addElementButton
+        newElementField.rightViewMode = UITextFieldViewMode.always
+        newElementField.delegate = self
+        view.addSubview(newElementField)
+        
+        //Place right table view
+        rightTableView.frame = CGRect(x: 0, y: newElementField.frame.maxY + 15, width: view.frame.width * (6/10) - 75, height: view.frame.height / 2)
+        rightTableView.center.x = rightTopLabel.center.x
+        rightTableView.register(UITableViewCell.self, forCellReuseIdentifier: "rightCell")
+        rightTableView.dataSource = self
+        rightTableView.delegate = self
+        view.addSubview(rightTableView)
+        
+        //New segment field
+        newSegmentField.frame = newElementField.frame
+        newSegmentField.delegate = self
+        
+        //Additional
+        newElementField.frame.origin.x = rightTableView.frame.origin.x
+        
+        
+        iconImagePickerView.frame = CGRect(x: segmentImage.frame.origin.x, y: 25, width: segmentImage.frame.width, height: segmentImage.frame.height)
+        iconImagePickerView.frame.size.height = segmentImage.frame.height * 3
+        iconImagePickerView.layer.opacity = 0
+        iconImagePickerView.isUserInteractionEnabled = false
+        iconImagePickerView.layer.cornerRadius = segmentImage.frame.width / 2
+        iconImagePickerView.transform = CGAffineTransform.init(rotationAngle: -(CGFloat.pi / 2))
+        
+        shouldFieldCoverDisplay()
+        
+        setupView()
+        
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
@@ -304,7 +301,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             self.segmentLabel.layer.opacity = 1
             self.iconImagePickerView.frame.origin.x -= self.iconImagePickerView.frame.width / 3
             
-            if Global.segObjArr != [] {
+            if !Global.segObjArr.isEmpty {
                 self.segmentImage.image = Global.segObjArr[Global.segObjArr.count - 1].iconImage
             }
             
@@ -327,7 +324,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     @objc func doneCreate() {
 
         if newSegmentField.text != "" && tempArray != [] {
-            let newSegment = SegmentObject(Name: newSegmentField.text!, Elements: tempArray, IconImage: Global.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
+            let newSegment = Segment(Name: newSegmentField.text!, Elements: tempArray, IconImage: Global.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
             Global.segObjArr.append(newSegment)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
@@ -377,7 +374,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : SegmentCell = SegmentCell(style: UITableViewCellStyle.default, reuseIdentifier: "leftCell", segment: Global.segObjArr[indexPath.row])
+            let cell : SegmentCell = SegmentCell(segment: Global.segObjArr[indexPath.row], reuseIdentifier: "leftCell")
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
@@ -460,7 +457,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func setupView() {
         
-        if Global.segObjArr != [] {
+        if !Global.segObjArr.isEmpty {
             
             leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
             leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
@@ -474,7 +471,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     func shouldFieldCoverDisplay() {
         
-        if Global.segObjArr == [] {
+        if Global.segObjArr.isEmpty {
             
             if newSegmentMode {
                 UIView.animate(withDuration: 0.5, animations: {
@@ -501,29 +498,3 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

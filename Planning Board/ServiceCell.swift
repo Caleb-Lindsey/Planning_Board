@@ -12,6 +12,12 @@ class ServiceCell : UITableViewCell {
     
     var service : Service!
     
+    let sideView : UIView = {
+        let view = UIView()
+        view.backgroundColor = Global.grayColor
+        return view
+    }()
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         //label.layer.borderWidth = 0.5
@@ -37,6 +43,7 @@ class ServiceCell : UITableViewCell {
     init(service: Service, reuseIdentifier: String) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.service = service
+        self.selectionStyle = .none
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,29 +56,30 @@ class ServiceCell : UITableViewCell {
         let cellWidth : CGFloat = self.contentView.frame.width
         let cellHeight : CGFloat = self.contentView.frame.height
         
+        // Place Side View
+        sideView.frame = CGRect(x: 0, y: 5, width: 5, height: cellHeight - 10)
+        self.contentView.addSubview(sideView)
+        
         // Place Date Label
         dateLabel.frame = CGRect(x: 0, y: 0, width: cellWidth - 5 - 5, height: 20)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E, M-d-yy"
-        dateLabel.text = formatter.string(from: self.service.date)
+        dateLabel.text = service.getFormattedDate()
         self.contentView.addSubview(dateLabel)
         
         // Place Title Label
-        titleLabel.frame = CGRect(x: 5, y: dateLabel.frame.maxY, width: dateLabel.frame.width, height: cellHeight - dateLabel.frame.height)
+        titleLabel.frame = CGRect(x: sideView.frame.maxX, y: dateLabel.frame.maxY, width: cellWidth - 10, height: cellHeight - dateLabel.frame.height)
         titleLabel.text = self.service.title
         self.contentView.addSubview(titleLabel)
         
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            sideView.backgroundColor = Global.greenColor
+            titleLabel.textColor = Global.grayColor
+        } else {
+            sideView.backgroundColor = UIColor.lightGray
+            titleLabel.textColor = UIColor.lightGray
+        }
+    }
+    
 }
-
-
-
-
-
-
-
-
-
-
-

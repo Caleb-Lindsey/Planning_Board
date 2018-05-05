@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Data
         let dataHandle : Datasource = Datasource()
-        dataHandle.getServiceData()
+        dataHandle.fillMockData()
+        //dataHandle.getServiceData()
         dataHandle.fillSegmentData()
         dataHandle.fillMemberData()
         

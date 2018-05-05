@@ -163,83 +163,81 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             
         }
         
-        if let window = UIApplication.shared.keyWindow {
-            
-            let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
-            
-            //Place segment table
-            segmentTable.frame = CGRect(x: 0, y: topBorder + 65, width: 100, height: window.frame.height - topBorder - 65)
-            segmentTable.tableFooterView = UIImageView()
-            segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
-            segmentTable.delegate = self
-            segmentTable.dataSource = self
-            view.addSubview(segmentTable)
-            
-            //Place element table
-            elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: segmentTable.frame.origin.y, width: 250, height: segmentTable.frame.height)
-            elementTable.tableFooterView = UIImageView()
-            elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
-            elementTable.delegate = self
-            elementTable.dataSource = self
-            view.addSubview(elementTable)
-            
-            //Place product table
-            productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: segmentTable.frame.origin.y, width: window.frame.width * (4.5/10), height: window.frame.height * (7.5/10))
-            productTable.layer.cornerRadius = 10
-            productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
-            productTable.delegate = self
-            productTable.dataSource = self
-            view.addSubview(productTable)
-            
-            //Place complete button
-            continueButton.frame = CGRect(x: productTable.frame.origin.x, y: productTable.frame.maxY + 15, width: productTable.frame.width, height: 30)
-            view.addSubview(continueButton)
-            
-            //Place details view
-            detailsView.frame = CGRect(x: productTable.frame.width, y: 0, width: productTable.frame.width, height: productTable.frame.height)
-            productTable.addSubview(detailsView)
-            
-            //Place back button
-            backButton.frame = CGRect(x: 5, y: 25, width: 60, height: 35)
-            detailsView.addSubview(backButton)
-            
-            //Place time picker
-            timePicker.frame = CGRect(x: detailsView.frame.width - 85 - 25, y: backButton.frame.maxY + 15, width: 85, height: 50)
-            timePicker.delegate = self
-            timePicker.dataSource = self
-            detailsView.addSubview(timePicker)
-            
-            //Place detail host table
-            hostTable.frame = CGRect(x: 0, y: timePicker.frame.maxY + 15, width: detailsView.frame.width - 30, height: 200)
-            hostTable.center.x = detailsView.frame.width / 2
-            hostTable.register(UITableViewCell.self, forCellReuseIdentifier: "hostCell")
-            hostTable.delegate = self
-            hostTable.dataSource = self
-            detailsView.addSubview(hostTable)
-            
-            //Place notes label
-            notesLabel.frame = CGRect(x: hostTable.frame.origin.x, y: hostTable.frame.maxY + 15, width: hostTable.frame.width / 2, height: 15)
-            detailsView.addSubview(notesLabel)
-            
-            //Place detail description
-            detailDescription.frame = CGRect(x: 0, y: notesLabel.frame.maxY + 2, width: hostTable.frame.width, height: hostTable.frame.height)
-            detailDescription.textContainerInset = paddingView
-            detailDescription.center.x = hostTable.center.x
-            detailsView.addSubview(detailDescription)
-            
-            //Place sync button
-            syncButton.frame = CGRect(x: detailsView.frame.width - 10 - 75, y: detailsView.frame.height - 45 - 10, width: 75, height: 45)
-            detailsView.addSubview(syncButton)
-            
-            //Place element segment control
-            ElementSegmentControl.frame = CGRect(x: elementTable.frame.origin.x, y: elementTable.frame.origin.y - 30, width: elementTable.frame.width, height: 35)
-            ElementSegmentControl.layer.zPosition = elementTable.layer.zPosition - 1
-            view.addSubview(ElementSegmentControl)
-            
-            //Additional
-            elementTable.frame.origin.y = productTable.frame.origin.y
-            durationLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 80 , y: timePicker.frame.midY - 15, width: 80, height: 30)
-        }
+        let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
+        
+        //Place segment table
+        segmentTable.frame = CGRect(x: 0, y: topBorder + 65, width: 100, height: view.frame.height - topBorder - 65)
+        segmentTable.tableFooterView = UIImageView()
+        segmentTable.register(UITableViewCell.self, forCellReuseIdentifier: "segmentCell")
+        segmentTable.delegate = self
+        segmentTable.dataSource = self
+        view.addSubview(segmentTable)
+        
+        //Place element table
+        elementTable.frame = CGRect(x: segmentTable.frame.maxX + 15, y: segmentTable.frame.origin.y, width: 250, height: segmentTable.frame.height)
+        elementTable.tableFooterView = UIImageView()
+        elementTable.register(UITableViewCell.self, forCellReuseIdentifier: "elementCell")
+        elementTable.delegate = self
+        elementTable.dataSource = self
+        view.addSubview(elementTable)
+        
+        //Place product table
+        productTable.frame = CGRect(x: elementTable.frame.maxX + 25, y: segmentTable.frame.origin.y, width: view.frame.width * (4.5/10), height: view.frame.height * (7.5/10))
+        productTable.layer.cornerRadius = 10
+        productTable.register(UITableViewCell.self, forCellReuseIdentifier: "productCell")
+        productTable.delegate = self
+        productTable.dataSource = self
+        view.addSubview(productTable)
+        
+        //Place complete button
+        continueButton.frame = CGRect(x: productTable.frame.origin.x, y: productTable.frame.maxY + 15, width: productTable.frame.width, height: 30)
+        view.addSubview(continueButton)
+        
+        //Place details view
+        detailsView.frame = CGRect(x: productTable.frame.width, y: 0, width: productTable.frame.width, height: productTable.frame.height)
+        productTable.addSubview(detailsView)
+        
+        //Place back button
+        backButton.frame = CGRect(x: 5, y: 25, width: 60, height: 35)
+        detailsView.addSubview(backButton)
+        
+        //Place time picker
+        timePicker.frame = CGRect(x: detailsView.frame.width - 85 - 25, y: backButton.frame.maxY + 15, width: 85, height: 50)
+        timePicker.delegate = self
+        timePicker.dataSource = self
+        detailsView.addSubview(timePicker)
+        
+        //Place detail host table
+        hostTable.frame = CGRect(x: 0, y: timePicker.frame.maxY + 15, width: detailsView.frame.width - 30, height: 200)
+        hostTable.center.x = detailsView.frame.width / 2
+        hostTable.register(UITableViewCell.self, forCellReuseIdentifier: "hostCell")
+        hostTable.delegate = self
+        hostTable.dataSource = self
+        detailsView.addSubview(hostTable)
+        
+        //Place notes label
+        notesLabel.frame = CGRect(x: hostTable.frame.origin.x, y: hostTable.frame.maxY + 15, width: hostTable.frame.width / 2, height: 15)
+        detailsView.addSubview(notesLabel)
+        
+        //Place detail description
+        detailDescription.frame = CGRect(x: 0, y: notesLabel.frame.maxY + 2, width: hostTable.frame.width, height: hostTable.frame.height)
+        detailDescription.textContainerInset = paddingView
+        detailDescription.center.x = hostTable.center.x
+        detailsView.addSubview(detailDescription)
+        
+        //Place sync button
+        syncButton.frame = CGRect(x: detailsView.frame.width - 10 - 75, y: detailsView.frame.height - 45 - 10, width: 75, height: 45)
+        detailsView.addSubview(syncButton)
+        
+        //Place element segment control
+        ElementSegmentControl.frame = CGRect(x: elementTable.frame.origin.x, y: elementTable.frame.origin.y - 30, width: elementTable.frame.width, height: 35)
+        ElementSegmentControl.layer.zPosition = elementTable.layer.zPosition - 1
+        view.addSubview(ElementSegmentControl)
+        
+        //Additional
+        elementTable.frame.origin.y = productTable.frame.origin.y
+        durationLabel.frame = CGRect(x: timePicker.frame.origin.x - 5 - 80 , y: timePicker.frame.midY - 15, width: 80, height: 30)
+    
         
         let indexPath = IndexPath(row: 0, section: 0)
         segmentTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)

@@ -11,9 +11,7 @@ import UIKit
 class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource {
     
     //Variables
-    let myIndexPath = IndexPath(row: 0, section: 0)
     let dataHandle = Datasource()
-    let formatter = DateFormatter()
 
     //Left Side
     let leftTopLabel : UILabel = {
@@ -45,15 +43,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "plus4"), for: .normal)
         button.addTarget(self, action: #selector(newService), for: .touchUpInside)
-        return button
-    }()
-    
-    let detailButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("View Service Detail", for: .normal)
-        button.backgroundColor = Global.greenColor
-        button.titleLabel?.textColor = UIColor.white
-        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -93,8 +82,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         
         statusBar.backgroundColor = UIColor.clear
-        formatter.dateFormat = "E, M-dd-yy"
-        
         let statusBarHeight = statusBar.frame.height
 
         //Place left top label
@@ -131,11 +118,8 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         summaryView.center.x = rightTopLabel.center.x
         view.addSubview(summaryView)
         
-        //Place detail button
-        detailButton.frame = CGRect(x: summaryView.frame.maxX - summaryView.frame.width / 2, y: summaryView.frame.maxY + 25, width: summaryView.frame.width / 2, height: 35)
-        //view.addSubview(detailButton)
+        setupView(row: 0)
         
-        loadServices()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -153,9 +137,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        summaryView.text = Global.arrayOfServices[indexPath.row].summary
-        rightTopLabel.text = Global.arrayOfServices[indexPath.row].title
-        dateLabel.text = formatter.string(from: Global.arrayOfServices[indexPath.row].date)
+        setupView(row: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -163,46 +145,28 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if tableView == leftTableView {
-            if editingStyle == .delete {
-                Global.arrayOfServices.remove(at: indexPath.row)
-                leftTableView.reloadData()
-                dataHandle.saveServicesToFile(services: Global.arrayOfServices)
-            }
+        if editingStyle == .delete {
+            Global.arrayOfServices.remove(at: indexPath.row)
+            leftTableView.reloadData()
+            dataHandle.saveServicesToFile(services: Global.arrayOfServices)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         leftTableView.reloadData()
-        setupView()
     }
     
     @objc func newService() {
-        let planServiceView : UIViewController = PlanServiceController()
-        self.navigationController?.pushViewController(planServiceView, animated: true)
+        self.navigationController?.pushViewController(PlanServiceController(), animated: true)
     }
     
-    func loadServices() {
-        
-        leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
-        
+    func setupView(row: Int) {
         if !Global.arrayOfServices.isEmpty {
-            summaryView.text = Global.arrayOfServices[0].summary
-            let dateString = formatter.string(from: Global.arrayOfServices[0].date)
-            dateLabel.text = dateString
-            rightTopLabel.text = Global.arrayOfServices[0].title
-            if segmentControl.selectedSegmentIndex == 0 && Global.arrayOfServices.count > 2 {
-                //orderServiceArrayByDate(array: &GlobalVariables.arrayOfServices)
-            }
-        }
-        
-    }
-    
-    func setupView() {
-        if !Global.arrayOfServices.isEmpty {
-            leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
-            leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+            let thisService : Service = Global.arrayOfServices[row]
+            summaryView.text = thisService.summary
+            rightTopLabel.text = thisService.title
+            dateLabel.text = thisService.getFormattedDate()
         }
     }
     

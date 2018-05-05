@@ -33,4 +33,10 @@ class Service : Codable {
         self.fullDetail = fullDetail
     }
     
+    func getFormattedDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, M-dd-yyyy"
+        return formatter.string(from: self.date)
+    }
+    
 }

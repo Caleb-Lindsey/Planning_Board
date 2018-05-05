@@ -43,6 +43,7 @@ class MemberCell : UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         
         // Profile Image View
         profileImageView.frame = CGRect(x: 15, y: 15, width: 50, height: contentView.frame.height - 15 - 15)
@@ -65,9 +66,7 @@ class MemberCell : UITableViewCell {
     }
     
     private func getSubLabel() -> String {
-        
-        if member.canHost != [] {
-            
+        if !member.canHost.isEmpty {
             if member.canHost.count >= 3 {
                 return "\(member.canHost[0]), \(member.canHost[1]) + \(member.canHost.count - 2) more"
             } else if member.canHost.count == 2 {
@@ -75,29 +74,9 @@ class MemberCell : UITableViewCell {
             } else {
                 return "\(member.canHost[0])"
             }
-            
         } else {
-            return " "
+            return "Currently unable to host"
         }
-        
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

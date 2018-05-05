@@ -43,6 +43,7 @@ class SegmentCell : UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         
         // Profile Image View
         iconImageView.frame = CGRect(x: 15, y: 15, width: 50, height: contentView.frame.height - 15 - 15)
@@ -60,13 +61,10 @@ class SegmentCell : UITableViewCell {
         subLabel.text = getSubLabel()
         self.contentView.addSubview(subLabel)
         
-        
     }
     
     private func getSubLabel() -> String {
-        
         if segment.elements != [] {
-            
             if segment.elements.count >= 3 {
                 return "\(segment.elements[0]), \(segment.elements[1]) + \(segment.elements.count - 2) more"
             } else if segment.elements.count == 2 {
@@ -74,11 +72,9 @@ class SegmentCell : UITableViewCell {
             } else {
                 return "\(segment.elements[0])"
             }
-            
         } else {
             return " "
         }
-        
     }
     
 }

@@ -56,12 +56,6 @@ class Datasource {
         
     }
     
-    func fillElementData() {
-        
-        
-        
-    }
-    
     func fillMemberData() {
         
         print("Filling Members")
@@ -79,12 +73,6 @@ class Datasource {
         
     }
     
-    func uploadElement() {
-        
-        
-        
-    }
-    
     func uploadMember() {
         
         let data = NSKeyedArchiver.archivedData(withRootObject: Global.memberArr)
@@ -94,7 +82,6 @@ class Datasource {
     }
     
     
-    // REDone **************************************************************************************************************************************************************************************************************************************************************************
     func getServiceData() {
         let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
@@ -132,6 +119,18 @@ class Datasource {
             $0.date.compare($1.date) == .orderedDescending
         })
         return array
+    }
+    
+    func fillMockData() {
+        
+        let service1 : Service = Service(title: "Awakening Night", type: "Awakening", date: Date(), summary: "Lots of text goes here.", fullDetail: "")
+        
+        let service2 : Service = Service(title: "Sunday 11:30am", type: "Sunday", date: Date(), summary: "Way more text goes here.", fullDetail: "")
+        
+        let service3 : Service = Service(title: "Sunday 9:30am", type: "Sunday", date: Date(), summary: "Lots more text goes here.", fullDetail: "")
+        
+        Global.arrayOfServices = [service1, service2, service3]
+        
     }
     
 }

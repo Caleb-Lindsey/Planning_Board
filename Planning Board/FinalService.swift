@@ -105,49 +105,43 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         
         serviceView.text = formatSummary(serviceArray: Global.serviceDetailArray)
         
-        if let window = UIApplication.shared.keyWindow {
-            
-            let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-            let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
-            
-            //Place service view
-            serviceView.frame = CGRect(x: window.frame.width / 2 - 25, y: topBorder + 45, width: window.frame.width / 2, height: window.frame.height * (7/10))
-            view.addSubview(serviceView)
-            
-            //Place date picker
-            datePicker.frame = CGRect(x: 35, y: topBorder + 45, width: window.frame.width - serviceView.frame.width - 50 - 25, height: 100)
-            view.addSubview(datePicker)
-            
-            //Place service title
-            serviceTitle.frame = CGRect(x: datePicker.frame.origin.x, y: datePicker.frame.maxY + 25 , width: datePicker.frame.width, height: 35)
-            serviceTitle.delegate = self
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
+        
+        //Place service view
+        serviceView.frame = CGRect(x: view.frame.width / 2 - 25, y: topBorder + 45, width: view.frame.width / 2, height: view.frame.height * (7/10))
+        view.addSubview(serviceView)
+        
+        //Place date picker
+        datePicker.frame = CGRect(x: 35, y: topBorder + 45, width: view.frame.width - serviceView.frame.width - 50 - 25, height: 100)
+        view.addSubview(datePicker)
+        
+        //Place service title
+        serviceTitle.frame = CGRect(x: datePicker.frame.origin.x, y: datePicker.frame.maxY + 25 , width: datePicker.frame.width, height: 35)
+        serviceTitle.delegate = self
 
-            view.addSubview(serviceTitle)
-            
-            //Place service type
-            serviceType.frame = CGRect(x: serviceTitle.frame.origin.x, y: serviceTitle.frame.maxY + 25, width: serviceTitle.frame.width, height: serviceTitle.frame.height)
-            serviceType.delegate = self
-            //view.addSubview(serviceType)
-            
-            //Place save to app button
-            saveToApp.frame = CGRect(x: serviceType.frame.origin.x, y: serviceTitle.frame.maxY + 25, width: serviceType.frame.width, height: serviceType.frame.height * 1.5)
-            view.addSubview(saveToApp)
-            
-            //Place export button
-            exportButton.frame = CGRect(x: saveToApp.frame.origin.x, y: saveToApp.frame.maxY + 10, width: saveToApp.frame.width, height: saveToApp.frame.height)
-            view.addSubview(exportButton)
-            
-            //Place return button
-            doneButton.frame = CGRect(x: exportButton.frame.maxX - 150, y: exportButton.frame.maxY + 10, width: 150, height: 35)
-            view.addSubview(doneButton)
-            
-            
-        }
+        view.addSubview(serviceTitle)
+        
+        //Place service type
+        serviceType.frame = CGRect(x: serviceTitle.frame.origin.x, y: serviceTitle.frame.maxY + 25, width: serviceTitle.frame.width, height: serviceTitle.frame.height)
+        serviceType.delegate = self
+        //view.addSubview(serviceType)
+        
+        //Place save to app button
+        saveToApp.frame = CGRect(x: serviceType.frame.origin.x, y: serviceTitle.frame.maxY + 25, width: serviceType.frame.width, height: serviceType.frame.height * 1.5)
+        view.addSubview(saveToApp)
+        
+        //Place export button
+        exportButton.frame = CGRect(x: saveToApp.frame.origin.x, y: saveToApp.frame.maxY + 10, width: saveToApp.frame.width, height: saveToApp.frame.height)
+        view.addSubview(exportButton)
+        
+        //Place return button
+        doneButton.frame = CGRect(x: exportButton.frame.maxX - 150, y: exportButton.frame.maxY + 10, width: 150, height: 35)
+        view.addSubview(doneButton)
         
     }
     
     func formatSummary(serviceArray : [ProductItem]) -> String {
-        
         var summary = String()
         var line = String()
         
@@ -223,47 +217,6 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         return summary
     }
     
-//    func writeToFile() {
-//        
-//        let file = "\((serviceTitle.text)!).pages" //this is the file. we will write to and read from it
-//        
-//        let text = serviceView.text! //just a text
-//        
-//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            
-//            let path = dir.appendingPathComponent(file)
-//            
-//            //writing
-//            do {
-//                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-//                try openInPages(body: serviceView.text, title: file)
-//                doneButton.isUserInteractionEnabled = true
-//                doneButton.layer.opacity = 1
-//            }
-//            catch {
-//                print("nope")
-//            }
-//            
-//        }
-//        
-//    }
-//    
-//    func openInPages(body: String, title: String) throws {
-//        // create a file path in a temporary directory
-//        let fileName = "\(title)"
-//        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(fileName)
-//        
-//        // save the body to the file
-//        try body.write(toFile: filePath, atomically: true, encoding: String.Encoding.utf8)
-//        
-//        interactionController?.delegate = self
-//        
-//        // present Open In menu
-//        interactionController = UIDocumentInteractionController(url: NSURL(fileURLWithPath: filePath) as URL)
-//        interactionController?.presentOptionsMenu(from: exportButton.frame, in: self.view, animated: true)
-//    }
-    
-    
     @objc func saveService() {
         
         if serviceTitle.text == "" {
@@ -272,7 +225,6 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         } else {
             
             serviceTitle.layer.borderWidth = 0
-            serviceTitle.layer.borderColor = UIColor.red.cgColor
             
             let service : Service = Service(title: serviceTitle.text!, type: serviceType.text!, date: datePicker.date, summary: serviceView.text!, fullDetail: "")
             Global.arrayOfServices.append(service)
@@ -309,9 +261,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
     }
     
     @objc func returnToMain() {
-        
         self.navigationController?.pushViewController(ServiceView(), animated: true)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -324,9 +274,7 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
     }
     
     @objc func emailService() {
-        
         if serviceTitle.text != "" && serviceView.text != "" {
-            
             let formatter = DateFormatter()
             formatter.dateFormat = "MM-dd-yyyy"
             let dateString = formatter.string(from: datePicker.date)
@@ -337,13 +285,10 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
             mailController.setMessageBody(serviceView.text!, isHTML: false)
             
             self.present(mailController, animated: true, completion: nil)
-            
         }
-        
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
         if result == .sent {
             controller.dismiss(animated: true, completion: {
                 self.returnToMain()
@@ -351,63 +296,6 @@ class FinalService : UIViewController, UIDocumentInteractionControllerDelegate, 
         } else {
             controller.dismiss(animated: true, completion: nil)
         }
-        
-        
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

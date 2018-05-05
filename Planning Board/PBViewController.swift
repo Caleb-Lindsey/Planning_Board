@@ -17,7 +17,6 @@ class PBViewController : UIViewController {
         
         view.backgroundColor = Global.grayColor
         self.navigationController?.isNavigationBarHidden = true
-        
         statusBar.backgroundColor = UIColor.black
     }
     

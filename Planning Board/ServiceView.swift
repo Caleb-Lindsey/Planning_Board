@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource {
+class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
     //Variables
     let dataHandle = Datasource()
@@ -167,6 +168,30 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             summaryView.text = thisService.summary
             rightTopLabel.text = thisService.title
             dateLabel.text = thisService.getFormattedDate()
+        }
+    }
+    
+    @objc func emailService() {
+//        if serviceTitle.text != "" && serviceView.text != "" {
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "MM-dd-yyyy"
+//            let dateString = formatter.string(from: datePicker.date)
+//            
+//            let mailController : MFMailComposeViewController = MFMailComposeViewController()
+//            mailController.mailComposeDelegate = self
+//            mailController.setSubject("\(serviceTitle.text!)  (\(dateString))")
+//            mailController.setMessageBody(serviceView.text!, isHTML: false)
+//            
+//            self.present(mailController, animated: true, completion: nil)
+        }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if result == .sent {
+            controller.dismiss(animated: true, completion: {
+                
+            })
+        } else {
+            controller.dismiss(animated: true, completion: nil)
         }
     }
     

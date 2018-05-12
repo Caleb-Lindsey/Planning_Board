@@ -10,10 +10,8 @@ import UIKit
 
 struct Global {
     // Data
-    static var segmentArray = [String]()
-    static var segObjArr = [Segment]()
-    static var memberArr = [Member]()
-    static var serviceDetailArray : [ProductItem] = [ProductItem]()
+    static var segmentArray = [Segment]()
+    static var memberArray = [Member]()
     static var arrayOfServices : [Service] = [Service]()
     static var serviceFilePath : String = "PlanningBoardServices.json"
     
@@ -50,7 +48,7 @@ class Datasource {
     func fillSegmentData() {
         
         if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
-            Global.segObjArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Segment]
+            Global.segmentArray = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Segment]
             
         }
         
@@ -60,14 +58,14 @@ class Datasource {
         
         print("Filling Members")
         if let data = UserDefaults.standard.object(forKey: "MemberList") as? NSData {
-            Global.memberArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
+            Global.memberArray = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
         }
         
     }
     
     func uploadSegment() {
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: Global.segObjArr)
+        let data = NSKeyedArchiver.archivedData(withRootObject: Global.segmentArray)
         UserDefaults.standard.set(data, forKey: "SegmentList")
         print("Segments Saved")
         
@@ -75,7 +73,7 @@ class Datasource {
     
     func uploadMember() {
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: Global.memberArr)
+        let data = NSKeyedArchiver.archivedData(withRootObject: Global.memberArray)
         UserDefaults.standard.set(data, forKey: "MemberList")
         print("Members Saved")
         
@@ -124,13 +122,10 @@ class Datasource {
     func fillMockData() {
         
         let service1 : Service = Service(title: "Awakening Night", type: "Awakening", date: Date(), summary: "Lots of text goes here.", fullDetail: "")
-        
         let service2 : Service = Service(title: "Sunday 11:30am", type: "Sunday", date: Date(), summary: "Way more text goes here.", fullDetail: "")
-        
         let service3 : Service = Service(title: "Sunday 9:30am", type: "Sunday", date: Date(), summary: "Lots more text goes here.", fullDetail: "")
         
         Global.arrayOfServices = [service1, service2, service3]
-        
     }
     
 }

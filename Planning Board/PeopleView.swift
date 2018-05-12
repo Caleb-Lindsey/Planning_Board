@@ -132,7 +132,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if Global.memberArr.count != 0 {
+        if Global.memberArray.count != 0 {
             setupView()
             
         }
@@ -338,10 +338,10 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: (profileImage.imageView?.image)!)
             
             if newMemberMode {
-                Global.memberArr.append(newMember)
+                Global.memberArray.append(newMember)
 
             } else if editMemberMode {
-                Global.memberArr[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
+                Global.memberArray[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
             }
             
             dataHandle.uploadMember()
@@ -388,10 +388,10 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView == leftTableView {
-            return Global.memberArr.count
+            return Global.memberArray.count
         } else {
             if newMemberMode || editMemberMode {
-                return Global.segObjArr.count
+                return Global.segmentArray.count
             } else {
                 return memberObject.canHost.count
             }
@@ -402,19 +402,19 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : MemberCell = MemberCell(member: Global.memberArr[indexPath.row], reuseIdentifier: "leftCell")
+            let cell : MemberCell = MemberCell(member: Global.memberArray[indexPath.row], reuseIdentifier: "leftCell")
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
             
             if newMemberMode {
-                cell.textLabel?.text = Global.segObjArr[indexPath.row].name
+                cell.textLabel?.text = Global.segmentArray[indexPath.row].name
                 cell.accessoryType = (cell.isSelected) ? .checkmark : .none
             } else if editMemberMode {
-                cell.textLabel?.text = Global.segObjArr[indexPath.row].name
+                cell.textLabel?.text = Global.segmentArray[indexPath.row].name
         
                 for segment in memberObject.canHost {
-                    if segment == Global.segObjArr[indexPath.row].name {
+                    if segment == Global.segmentArray[indexPath.row].name {
 
                         cell.accessoryType = .checkmark
                         cell.isSelected = true
@@ -435,9 +435,9 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
-            memberObject = Global.memberArr[indexPath.row]
+            memberObject = Global.memberArray[indexPath.row]
             memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
-            profileImage.setImage(Global.memberArr[indexPath.row].profilePic, for: .normal)
+            profileImage.setImage(Global.memberArray[indexPath.row].profilePic, for: .normal)
             rightTableView.reloadData()
             
         } else {
@@ -486,7 +486,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             }
         } else {
             
-            Global.memberArr.remove(at: indexPath.row)
+            Global.memberArray.remove(at: indexPath.row)
             dataHandle.uploadMember()
             leftTableView.reloadData()
             leftTableView.selectRow(at: myIndexPath, animated: true, scrollPosition: .none)
@@ -539,13 +539,13 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func setupView() {
         
-        if Global.memberArr != [] {
+        if Global.memberArray != [] {
             
             leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
             leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-            profileImage.setImage(Global.memberArr[0].profilePic, for: .normal)
-            memberLabel.text = Global.memberArr[0].fullName()
-            memberObject = Global.memberArr[0]
+            profileImage.setImage(Global.memberArray[0].profilePic, for: .normal)
+            memberLabel.text = Global.memberArray[0].fullName()
+            memberObject = Global.memberArray[0]
             rightTableView.reloadData()
             
         }
@@ -588,7 +588,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     
     func shouldFieldCoverDisplay() {
         
-        if Global.memberArr == [] {
+        if Global.memberArray == [] {
             
             if newMemberMode {
                 UIView.animate(withDuration: 0.5, animations: {

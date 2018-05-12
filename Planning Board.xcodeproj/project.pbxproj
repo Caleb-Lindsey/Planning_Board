@@ -27,11 +27,10 @@
 		2E59A6411FD87392004539E4 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A6401FD87392004539E4 /* MemberCell.swift */; };
 		2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A6421FD8845B004539E4 /* SegmentCell.swift */; };
 		2E62F895208949390052AA68 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62F894208949390052AA68 /* ServiceCell.swift */; };
-		2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */; };
+		2E75EF4A20A266EE0041647E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75EF4920A266EE0041647E /* ProductCell.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServiceView.swift */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
-		2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB821E873D3C0039B0EE /* PBAnimations.swift */; };
 		2E99BB871E875CF00039B0EE /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB861E875CF00039B0EE /* Segment.swift */; };
 		2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */; };
 		2EAA78741EC17B9E00E4102D /* SegmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78731EC17B9E00E4102D /* SegmentsView.swift */; };
@@ -112,11 +111,10 @@
 		2E59A6401FD87392004539E4 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		2E59A6421FD8845B004539E4 /* SegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
 		2E62F894208949390052AA68 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
-		2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementObject.swift; sourceTree = "<group>"; };
+		2E75EF4920A266EE0041647E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
-		2E99BB821E873D3C0039B0EE /* PBAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBAnimations.swift; sourceTree = "<group>"; };
 		2E99BB861E875CF00039B0EE /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2EAA78731EC17B9E00E4102D /* SegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsView.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 				2EB88CF81E858639001F85C2 /* Member.swift */,
 				2E99BB861E875CF00039B0EE /* Segment.swift */,
 				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
-				2E7A1E721F290C2A00EF96A4 /* ElementObject.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -316,20 +313,28 @@
 				2E59A6421FD8845B004539E4 /* SegmentCell.swift */,
 				2E59A6401FD87392004539E4 /* MemberCell.swift */,
 				2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */,
+				2E75EF4920A266EE0041647E /* ProductCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		2E75EF4820A266810041647E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EAA78771EC1849C00E4102D /* PBViewController.swift */,
+				2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */,
+				2EC255281F579007009BBA4C /* CustomTextField.swift */,
+				2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */,
+				2EFA7C7B2017904700BA6044 /* FieldCover.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		2E7EA1DD1E4FE1F200911AD7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				2E62F893208949130052AA68 /* Cells */,
-				2EAA78771EC1849C00E4102D /* PBViewController.swift */,
-				2E99BB821E873D3C0039B0EE /* PBAnimations.swift */,
-				2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */,
-				2EC255281F579007009BBA4C /* CustomTextField.swift */,
-				2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */,
-				2EFA7C7B2017904700BA6044 /* FieldCover.swift */,
+				2E75EF4820A266810041647E /* Views */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -768,15 +773,14 @@
 				2EAA78741EC17B9E00E4102D /* SegmentsView.swift in Sources */,
 				2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */,
 				2E59A6411FD87392004539E4 /* MemberCell.swift in Sources */,
-				2E7A1E731F290C2A00EF96A4 /* ElementObject.swift in Sources */,
 				2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */,
 				2E62F895208949390052AA68 /* ServiceCell.swift in Sources */,
 				2E0FCD661E16367400C8F1E3 /* AppDelegate.swift in Sources */,
 				2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */,
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
-				2E99BB831E873D3C0039B0EE /* PBAnimations.swift in Sources */,
 				2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */,
 				2EB88CF91E858639001F85C2 /* Member.swift in Sources */,
+				2E75EF4A20A266EE0041647E /* ProductCell.swift in Sources */,
 				2EAD3C46209C133C0022F526 /* PlannerSegmentCell.swift in Sources */,
 				2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */,
 			);

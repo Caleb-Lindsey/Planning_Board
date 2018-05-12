@@ -8,34 +8,29 @@
 
 import UIKit
 
-/*
- A class to hold all information about a product item.
- - Title
- - Time
- - Host
- - Description
- - Song Key
- - Parent Segment
- */
-
 class ProductItem {
     
-    var title : String = String()
-    var type : String = String()
-    var minutes : Int? = Int()
-    var seconds: Int? = Int()
-    var host : Member? = Member()
-    var PBdescription : String = String()
-    var parentSegment : String = String()
+    var title: String!
+    var segment: Segment!
+    var host : Member?
+    var time : Int?
     
-    init() {
-        self.title = ""
-        self.type = "element"
-        self.minutes = 0
-        self.seconds = 0
-        self.host = nil
-        self.PBdescription = ""
-        self.parentSegment = ""
+    init(segment: Segment) {
+        self.title = segment.name
+        self.segment = segment
+    }
+    
+    init(element: String, segment: Segment) {
+        self.title = element
+        self.segment = segment
+    }
+    
+    func setHost(host: Member) {
+        self.host = host
+    }
+    
+    func setTime(time: Int) {
+        self.time = time
     }
     
 }

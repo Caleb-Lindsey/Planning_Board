@@ -8,14 +8,6 @@
 
 import UIKit
 
-struct cellData {
-    
-    var cell : Int!
-    var text : String!
-    var image : UIImage!
-    
-}
-
 class PlanServiceController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Variables
@@ -122,7 +114,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if tableView == segmentTable {
             let cell = PlannerSegmentCell(segment: Global.segmentArray[indexPath.row], reuseIdentifier: "plannerSegmentCell")
             return cell
@@ -134,7 +125,6 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             let cell : ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell")
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -160,7 +150,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             }
             productTable.reloadData()
         case productTable:
-            print("hello")
+            return
         default:
             print("error")
         }

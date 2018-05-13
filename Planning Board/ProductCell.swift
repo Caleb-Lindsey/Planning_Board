@@ -27,13 +27,14 @@ class ProductCell : UITableViewCell {
         return label
     }()
     
-    let hostImageView : UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.borderColor = Global.greenColor.cgColor
-        imageView.layer.borderWidth = 0.4
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    let hostButton : UIButton = {
+        let button = UIButton()
+        button.layer.borderColor = Global.greenColor.cgColor
+        button.layer.borderWidth = 0.4
+        button.clipsToBounds = true
+        button.contentMode = .scaleAspectFit
+        button.setImage(#imageLiteral(resourceName: "blank_profile"), for: .normal)
+        return button
     }()
     
     init(productItem: ProductItem, reuseIdentifier: String?) {
@@ -49,17 +50,19 @@ class ProductCell : UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        timeButton.frame = CGRect(x: 5, y: 5, width: contentView.frame.width * (1/4) - 10, height: contentView.frame.height - 10)
+        timeButton.frame = CGRect(x: 15, y: 5, width: contentView.frame.width * (1/4) - 20, height: contentView.frame.height - 10)
         timeButton.addTarget(self, action: #selector(timePressed), for: .touchUpInside)
+        productItem.time = 181
+        timeButton.setTitle(productItem.getTimeLabel(), for: .normal)
         contentView.addSubview(timeButton)
         
-        hostImageView.frame = CGRect(x: contentView.frame.width - timeButton.frame.height - 5, y: 5, width: timeButton.frame.height, height: timeButton.frame.height)
-        hostImageView.layer.cornerRadius = hostImageView.frame.width / 2
+        hostButton.frame = CGRect(x: contentView.frame.width - timeButton.frame.height - 15, y: 5, width: timeButton.frame.height, height: timeButton.frame.height)
+        hostButton.addTarget(self, action: #selector(hostPressed), for: .touchUpInside)
+        hostButton.layer.cornerRadius = hostButton.frame.width / 2
         //hostImageView.image = productItem.host?.profilePic
-        hostImageView.image = #imageLiteral(resourceName: "blank_profile")
-        contentView.addSubview(hostImageView)
+        contentView.addSubview(hostButton)
         
-        titleLabel.frame = CGRect(x: timeButton.frame.maxX + 5, y: 5, width: contentView.frame.width - timeButton.frame.width - hostImageView.frame.width - 20, height: timeButton.frame.height)
+        titleLabel.frame = CGRect(x: timeButton.frame.maxX + 5, y: 5, width: contentView.frame.width - timeButton.frame.width - hostButton.frame.width - 40, height: timeButton.frame.height)
         titleLabel.text = productItem.title
         contentView.addSubview(titleLabel)
     }
@@ -68,8 +71,8 @@ class ProductCell : UITableViewCell {
         print("Time Pressed.")
     }
     
-    func setTimeLabel() {
-        timeButton.setTitle("\(productItem.time ?? 0)", for: .normal)
+    @objc func hostPressed() {
+        print("Host Pressed.")
     }
     
 }

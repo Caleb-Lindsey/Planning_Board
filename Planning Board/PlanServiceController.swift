@@ -122,7 +122,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             cell?.textLabel?.text = elementArray[indexPath.row]
             return cell!
         } else {
-            let cell : ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell")
+            let cell : ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell", tableView: productTable)
             return cell
         }
     }
@@ -150,7 +150,10 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             }
             productTable.reloadData()
         case productTable:
-            return
+            let productItem : ProductItem = productArray[indexPath.row]
+            let productPanel : ProductPanel = ProductPanel(productItem: productItem, superView: self.productTable)
+            self.productTable.addSubview(productPanel)
+            productPanel.animateIntoView()
         default:
             print("error")
         }

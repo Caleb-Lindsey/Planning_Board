@@ -46,7 +46,7 @@ class MemberCell : UITableViewCell {
         super.layoutSubviews()
         
         // Profile Image View
-        profileImageView.frame = CGRect(x: 15, y: 15, width: 50, height: contentView.frame.height - 15 - 15)
+        profileImageView.frame = CGRect(x: 15, y: 15, width: contentView.frame.height - 30, height: contentView.frame.height - 30)
         profileImageView.image = member.profilePic
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         self.contentView.addSubview(profileImageView)

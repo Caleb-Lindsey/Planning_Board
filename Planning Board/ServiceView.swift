@@ -165,7 +165,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     func setupView(row: Int) {
         if !Global.arrayOfServices.isEmpty {
             let thisService : Service = Global.arrayOfServices[row]
-            summaryView.text = thisService.summary
+            //summaryView.text = thisService.summary
             rightTopLabel.text = thisService.title
             dateLabel.text = thisService.getFormattedDate()
         }

@@ -13,7 +13,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     //Variables
     let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
     var selectedSegment : Segment!
-    var elementArray = [String]()
+    var elementArray = [Element]()
     var productArray = [ProductItem]()
     var initialIndexPath : IndexPath!
     
@@ -119,7 +119,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             return cell
         } else if tableView == elementTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell")
-            cell?.textLabel?.text = elementArray[indexPath.row]
+            cell?.textLabel?.text = elementArray[indexPath.row].title
             return cell!
         } else {
             let cell : ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell", tableView: productTable)
@@ -142,7 +142,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             elementArray = selectedSegment.elements
             elementTable.reloadData()
         case elementTable:
-            let newProduct = ProductItem(element: elementArray[indexPath.row], segment: selectedSegment)
+            let newProduct = ProductItem(element: elementArray[indexPath.row])
             if productArray.isEmpty {
                 productArray = [newProduct]
             } else {

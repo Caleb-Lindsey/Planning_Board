@@ -62,7 +62,7 @@ class ProductCell : UITableViewCell {
         contentView.addSubview(hostImage)
         
         titleLabel.frame = CGRect(x: timeLabel.frame.maxX + 5, y: 5, width: contentView.frame.width - timeLabel.frame.width - hostImage.frame.width - 40, height: timeLabel.frame.height)
-        titleLabel.text = productItem.title
+        titleLabel.text = productItem.element?.title
         contentView.addSubview(titleLabel)
     }
     

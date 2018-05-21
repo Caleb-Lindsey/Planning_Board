@@ -408,13 +408,13 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
             
             if newMemberMode {
-                cell.textLabel?.text = Global.segmentArray[indexPath.row].name
+                cell.textLabel?.text = Global.segmentArray[indexPath.row].title
                 cell.accessoryType = (cell.isSelected) ? .checkmark : .none
             } else if editMemberMode {
-                cell.textLabel?.text = Global.segmentArray[indexPath.row].name
+                cell.textLabel?.text = Global.segmentArray[indexPath.row].title
         
                 for segment in memberObject.canHost {
-                    if segment == Global.segmentArray[indexPath.row].name {
+                    if segment == Global.segmentArray[indexPath.row].title {
 
                         cell.accessoryType = .checkmark
                         cell.isSelected = true

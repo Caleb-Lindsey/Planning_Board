@@ -155,7 +155,7 @@ class FinalService : UIViewController, UITextFieldDelegate {
         } else {
             serviceTitle.layer.borderWidth = 0
             
-            let service : Service = Service(title: serviceTitle.text!, type: "", date: datePicker.date, summary: serviceView.text!, fullDetail: "")
+            let service : Service = Service(title: serviceTitle.text!, type: "", date: datePicker.date)
             Global.arrayOfServices.append(service)
             dataHandle.saveServicesToFile(services: Global.arrayOfServices)
             returnToMain()

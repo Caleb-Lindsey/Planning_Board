@@ -8,14 +8,14 @@
 
 import UIKit
 
-class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
+class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
     var segmentObject = Segment()
     var dataHandle = Datasource()
     var newSegmentMode : Bool = false
-    var tempArray = [String]()
+    var tempArray = [Element]()
     
     //Left Side
     let leftTopLabel : UILabel = {
@@ -157,7 +157,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         //Place segment label
         segmentLabel.frame = CGRect(x: segmentImage.frame.maxX + 20, y: 0, width: 200, height: 100)
         segmentLabel.center.y = segmentImage.center.y
-        segmentLabel.text = segmentObject.name
+        segmentLabel.text = segmentObject.title
         view.addSubview(segmentLabel)
         
         //Place new element field
@@ -200,17 +200,19 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     @objc func addElement() {
-        if newElementField.text != "" {
-            if newSegmentMode {
-                tempArray.append(newElementField.text!)
-            } else {
-                segmentObject.elements.append(newElementField.text!)
-                Global.segmentArray[(leftTableView.indexPathForSelectedRow?.row)!] = segmentObject
-                dataHandle.uploadSegment()
-            }
-            newElementField.text = ""
-            rightTableView.reloadData()
-        }
+        // NEEDS RE-DESIGN
+        
+//        if newElementField.text != "" {
+//            if newSegmentMode {
+//                tempArray.append(newElementField.text!)
+//            } else {
+//                segmentObject.elements.append(newElementField.text!)
+//                Global.segmentArray[(leftTableView.indexPathForSelectedRow?.row)!] = segmentObject
+//                dataHandle.uploadSegment()
+//            }
+//            newElementField.text = ""
+//            rightTableView.reloadData()
+//        }
     }
     
     @objc func newSegment() {
@@ -275,7 +277,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         newSegmentMode = false
         cancelButton.removeFromSuperview()
         doneButton.removeFromSuperview()
-        self.segmentLabel.text = self.segmentObject.name
+        self.segmentLabel.text = self.segmentObject.title
         tempArray.removeAll()
         newSegmentField.text = ""
         newElementField.text = ""
@@ -319,8 +321,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     
     @objc func doneCreate() {
 
-        if newSegmentField.text != "" && tempArray != [] {
-            let newSegment = Segment(Name: newSegmentField.text!, Elements: tempArray, IconImage: Global.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
+        if newSegmentField.text != "" && !tempArray.isEmpty {
+            let newSegment = Segment(title: newSegmentField.text!, elements: tempArray, iconImage: Global.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
             Global.segmentArray.append(newSegment)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
@@ -338,7 +340,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
                 newSegmentField.layer.borderWidth = 0
                 newSegmentField.layer.borderColor = UIColor.clear.cgColor
             }
-            if tempArray == [] {
+            if tempArray.isEmpty {
                 rightTableView.layer.borderWidth = 3
                 rightTableView.layer.borderColor = UIColor.red.cgColor
                 alertMessage += "\n- Elements."
@@ -375,9 +377,9 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
             if newSegmentMode {
-                cell.textLabel?.text = tempArray[indexPath.row]
+                cell.textLabel?.text = tempArray[indexPath.row].title
             } else {
-                cell.textLabel?.text = segmentObject.elements[indexPath.row]
+                cell.textLabel?.text = segmentObject.elements[indexPath.row].title
             }
             cell.selectionStyle = .none
             return cell
@@ -388,7 +390,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
             segmentObject = Global.segmentArray[indexPath.row]
-            segmentLabel.text = segmentObject.name
+            segmentLabel.text = segmentObject.title
             segmentImage.image = Global.segmentArray[indexPath.row].iconImage
             rightTableView.reloadData()
         } else {
@@ -457,7 +459,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             
             leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
             leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-            segmentLabel.text = Global.segmentArray[0].name
+            segmentLabel.text = Global.segmentArray[0].title
             segmentObject = Global.segmentArray[0]
             rightTableView.reloadData()
             

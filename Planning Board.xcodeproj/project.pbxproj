@@ -38,6 +38,7 @@
 		2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78751EC17DEE00E4102D /* PeopleView.swift */; };
 		2EAA78781EC1849C00E4102D /* PBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78771EC1849C00E4102D /* PBViewController.swift */; };
 		2EAD3C46209C133C0022F526 /* PlannerSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */; };
+		2EAF66BD20B3434A00E8969F /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF66BC20B3434A00E8969F /* Element.swift */; };
 		2EB88CF91E858639001F85C2 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB88CF81E858639001F85C2 /* Member.swift */; };
 		2EC255291F579007009BBA4C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC255281F579007009BBA4C /* CustomTextField.swift */; };
 		2EC6F3291FE1B3DC0082F02A /* IconImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */; };
@@ -123,6 +124,7 @@
 		2EAA78751EC17DEE00E4102D /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		2EAA78771EC1849C00E4102D /* PBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBViewController.swift; sourceTree = "<group>"; };
 		2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerSegmentCell.swift; sourceTree = "<group>"; };
+		2EAF66BC20B3434A00E8969F /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		2EB88CF81E858639001F85C2 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		2EC255281F579007009BBA4C /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2EC6F3281FE1B3DC0082F02A /* IconImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImagePicker.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				2E3E1AC91EF1A6CF00801415 /* Service.swift */,
 				2EB88CF81E858639001F85C2 /* Member.swift */,
 				2E99BB861E875CF00039B0EE /* Segment.swift */,
+				2EAF66BC20B3434A00E8969F /* Element.swift */,
 				2E390D741EEA0CBC004C83CC /* ProductItem.swift */,
 			);
 			name = Models;
@@ -766,6 +769,7 @@
 			files = (
 				2E0FCD6E1E16367400C8F1E3 /* Planning_Board.xcdatamodeld in Sources */,
 				2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */,
+				2EAF66BD20B3434A00E8969F /* Element.swift in Sources */,
 				2EC6F3291FE1B3DC0082F02A /* IconImagePicker.swift in Sources */,
 				2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */,
 				2E3E1ACA1EF1A6CF00801415 /* Service.swift in Sources */,

@@ -22,15 +22,12 @@ class Service : Codable {
     var title : String = String()
     var type : String = String()
     var date : Date = Date()
-    var summary : String = String()
-    var fullDetail : String = String()
+    //var summary : [ProductItem] = []
     
-    init(title: String, type: String, date: Date, summary: String, fullDetail: String) {
+    init(title: String, type: String, date: Date) {
         self.title = title
         self.type = type
         self.date = date
-        self.summary = summary
-        self.fullDetail = fullDetail
     }
     
     func getFormattedDate() -> String {

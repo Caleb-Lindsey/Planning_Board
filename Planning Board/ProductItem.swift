@@ -10,19 +10,17 @@ import UIKit
 
 class ProductItem {
     
-    var title: String!
-    var segment: Segment!
+    var segment: Segment?
+    var element: Element?
     var host : Member?
     var time : Int = 0
     
     init(segment: Segment) {
-        self.title = segment.name
         self.segment = segment
     }
     
-    init(element: String, segment: Segment) {
-        self.title = element
-        self.segment = segment
+    init(element: Element) {
+        self.element = element
     }
     
     func getTimeLabel() -> String {

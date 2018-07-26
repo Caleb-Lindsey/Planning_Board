@@ -8,17 +8,17 @@
 
 import UIKit
 
-class PlannerSegmentCell : UITableViewCell {
+class PlannerSegmentCell: UITableViewCell {
     
-    var segment : Segment!
+    var segment: Segment!
     
-    let iconImageView : UIImageView = {
+    let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let titleLabel : UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         return label
@@ -43,7 +43,5 @@ class PlannerSegmentCell : UITableViewCell {
         titleLabel.frame = CGRect(x: iconImageView.frame.origin.x, y: iconImageView.frame.maxY, width: iconImageView.frame.width, height: self.contentView.frame.height * (1/4) - 5)
         titleLabel.text = self.segment.title
         self.contentView.addSubview(titleLabel)
-        
     }
-    
 }

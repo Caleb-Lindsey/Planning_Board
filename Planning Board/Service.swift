@@ -8,20 +8,11 @@
 
 import UIKit
 
-/*
- A class to hold all information about a service item.
-    - Title
-    - Type
-    - Date
-    - Summary
-    - Full Detail
-*/
-
-class Service : Codable {
+class Service: Codable {
     
-    var title : String = String()
-    var type : String = String()
-    var date : Date = Date()
+    var title: String = String()
+    var type: String = String()
+    var date: Date = Date()
     //var summary : [ProductItem] = []
     
     init(title: String, type: String, date: Date) {
@@ -35,5 +26,4 @@ class Service : Codable {
         formatter.dateFormat = "E, M-dd-yyyy"
         return formatter.string(from: self.date)
     }
-    
 }

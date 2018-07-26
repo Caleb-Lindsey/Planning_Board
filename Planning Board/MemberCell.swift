@@ -8,25 +8,25 @@
 
 import UIKit
 
-class MemberCell : UITableViewCell {
+class MemberCell: UITableViewCell {
     
     // Variables
-    var member : Member!
+    var member: Member!
     
-    let profileImageView : UIImageView = {
+    let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let nameLabel : UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Helvetica", size: 15)
         return label
     }()
     
-    let subLabel : UILabel = {
+    let subLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray
         label.font = UIFont(name: "Helvetica", size: 10)
@@ -61,8 +61,6 @@ class MemberCell : UITableViewCell {
         subLabel.frame = CGRect(x: nameLabel.frame.origin.x, y: nameLabel.frame.maxY, width: nameLabel.frame.width, height: nameLabel.frame.height)
         subLabel.text = getSubLabel()
         self.contentView.addSubview(subLabel)
-        
-        
     }
     
     private func getSubLabel() -> String {
@@ -78,5 +76,4 @@ class MemberCell : UITableViewCell {
             return "Currently unable to host"
         }
     }
-    
 }

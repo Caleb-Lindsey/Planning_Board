@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ProductPanel : UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
+class ProductPanel: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
-    var superView : UITableView!
-    var productItem : ProductItem!
+    var superView: UITableView!
+    var productItem: ProductItem!
     
-    let cancelButton : UIButton = {
+    let cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -22,7 +22,7 @@ class ProductPanel : UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITab
         return button
     }()
     
-    let segmentLabel : UILabel = {
+    let segmentLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.textAlignment = .center
@@ -31,7 +31,7 @@ class ProductPanel : UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITab
         return label
     }()
     
-    let doneButton : UIButton = {
+    let doneButton: UIButton = {
         let button = UIButton()
         button.setTitle("Done", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -40,18 +40,18 @@ class ProductPanel : UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITab
         return button
     }()
     
-    let timePicker : UIPickerView = {
+    let timePicker: UIPickerView = {
         let picker = UIPickerView()
         return picker
     }()
     
-    let hostTable : UITableView = {
+    let hostTable: UITableView = {
         let tableView = UITableView()
         tableView.layer.cornerRadius = 8
         return tableView
     }()
     
-    let linkButton : UIButton = {
+    let linkButton: UIButton = {
         let button = UIButton()
         button.setTitle("View Media", for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
@@ -94,7 +94,6 @@ class ProductPanel : UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITab
         
         linkButton.frame = CGRect(x: 15, y: hostTable.frame.maxY, width: hostTable.frame.width, height: 50)
         self.addSubview(linkButton)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -155,5 +154,4 @@ class ProductPanel : UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITab
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
-    
 }

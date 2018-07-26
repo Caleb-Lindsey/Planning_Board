@@ -8,25 +8,25 @@
 
 import UIKit
 
-class SegmentCell : UITableViewCell {
+class SegmentCell: UITableViewCell {
     
     // Variables
-    var segment : Segment!
+    var segment: Segment!
     
-    let iconImageView : UIImageView = {
+    let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let titleLabel : UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Helvetica", size: 15)
         return label
     }()
     
-    let subLabel : UILabel = {
+    let subLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray
         label.font = UIFont(name: "Helvetica", size: 10)
@@ -60,7 +60,6 @@ class SegmentCell : UITableViewCell {
         subLabel.frame = CGRect(x: titleLabel.frame.origin.x, y: titleLabel.frame.maxY, width: titleLabel.frame.width, height: titleLabel.frame.height)
         subLabel.text = getSubLabel()
         self.contentView.addSubview(subLabel)
-        
     }
     
     private func getSubLabel() -> String {
@@ -76,24 +75,4 @@ class SegmentCell : UITableViewCell {
             return " "
         }
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

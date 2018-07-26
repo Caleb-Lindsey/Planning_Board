@@ -8,19 +8,19 @@
 
 import UIKit
 
-class FinalService : UIViewController, UITextFieldDelegate {
+class FinalService: UIViewController, UITextFieldDelegate {
     
     //Variables
     let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     let dataHandle = Datasource()
     
-    let serviceTitle : CustomTextField = {
+    let serviceTitle: CustomTextField = {
         let textfield = CustomTextField()
         textfield.placeholder = "Service Title"
         return textfield
     }()
     
-    let serviceView : UITextView = {
+    let serviceView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = UIColor.clear
         textView.textColor = UIColor.white
@@ -32,7 +32,7 @@ class FinalService : UIViewController, UITextFieldDelegate {
         return textView
     }()
     
-    let datePicker : UIDatePicker = {
+    let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
         picker.setValue(UIColor.white, forKeyPath: "textColor")
@@ -68,7 +68,6 @@ class FinalService : UIViewController, UITextFieldDelegate {
         serviceTitle.delegate = self
 
         view.addSubview(serviceTitle)
-        
     }
     
 //    func formatSummary(serviceArray : [ProductItem]) -> String {
@@ -155,12 +154,11 @@ class FinalService : UIViewController, UITextFieldDelegate {
         } else {
             serviceTitle.layer.borderWidth = 0
             
-            let service : Service = Service(title: serviceTitle.text!, type: "", date: datePicker.date)
+            let service: Service = Service(title: serviceTitle.text!, type: "", date: datePicker.date)
             Global.arrayOfServices.append(service)
             dataHandle.saveServicesToFile(services: Global.arrayOfServices)
             returnToMain()
         }
-        
     }
     
     @objc func returnToMain() {
@@ -175,5 +173,4 @@ class FinalService : UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
-    
 }

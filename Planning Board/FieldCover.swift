@@ -8,11 +8,11 @@
 
 import UIKit
 
-class FieldCover : UIView {
+class FieldCover: UIView {
     
-    var displayMessage : String!
+    var displayMessage: String!
     
-    let displayLabel : UILabel = {
+    let displayLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.textAlignment = .center
@@ -26,11 +26,10 @@ class FieldCover : UIView {
         self.displayMessage = "Start Creating Data Above"
     }
     
-    init(displayMessage : String, frame : CGRect) {
+    init(displayMessage: String, frame: CGRect) {
         super.init(frame: frame)
         self.displayMessage = displayMessage
         
-        // Appearance
         backgroundColor = Global.grayColor
         layer.borderColor = Global.greenColor.cgColor
         layer.borderWidth = 3
@@ -42,10 +41,8 @@ class FieldCover : UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         displayLabel.frame = CGRect(x: 15, y: self.frame.height / 5, width: self.frame.width - 15 - 15, height: 100)
         displayLabel.text = self.displayMessage
         self.addSubview(displayLabel)
     }
-    
 }

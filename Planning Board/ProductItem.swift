@@ -12,8 +12,8 @@ class ProductItem {
     
     var segment: Segment?
     var element: Element?
-    var host : Member?
-    var time : Int = 0
+    var host: Member?
+    var time: Int = 0
     
     init(segment: Segment) {
         self.segment = segment
@@ -37,5 +37,4 @@ class ProductItem {
             return "0:00"
         }
     }
-    
 }

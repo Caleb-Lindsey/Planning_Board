@@ -18,5 +18,4 @@ class Element {
         self.title = title
         self.link = link
     }
-    
 }

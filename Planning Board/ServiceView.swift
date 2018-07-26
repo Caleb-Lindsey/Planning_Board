@@ -120,7 +120,6 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
         view.addSubview(summaryView)
         
         setupView(row: 0)
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -194,5 +193,4 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
             controller.dismiss(animated: true, completion: nil)
         }
     }
-    
 }

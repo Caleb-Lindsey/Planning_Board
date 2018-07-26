@@ -24,6 +24,7 @@
 		2E3D15FE1E96DDEF003AD783 /* Planning_Board_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D15FD1E96DDEF003AD783 /* Planning_Board_MacUITests.swift */; };
 		2E3E1AC81EF1A4C500801415 /* FinalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC71EF1A4C500801415 /* FinalService.swift */; };
 		2E3E1ACA1EF1A6CF00801415 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E1AC91EF1A6CF00801415 /* Service.swift */; };
+		2E59A24420DEE4E500363441 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A24320DEE4E500363441 /* Extentions.swift */; };
 		2E59A6411FD87392004539E4 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A6401FD87392004539E4 /* MemberCell.swift */; };
 		2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E59A6421FD8845B004539E4 /* SegmentCell.swift */; };
 		2E62F895208949390052AA68 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62F894208949390052AA68 /* ServiceCell.swift */; };
@@ -110,6 +111,7 @@
 		2E3D15FF1E96DDEF003AD783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E3E1AC71EF1A4C500801415 /* FinalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalService.swift; sourceTree = "<group>"; };
 		2E3E1AC91EF1A6CF00801415 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		2E59A24320DEE4E500363441 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		2E59A6401FD87392004539E4 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		2E59A6421FD8845B004539E4 /* SegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
 		2E62F894208949390052AA68 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		2E0FCD641E16367400C8F1E3 /* Planning Board */ = {
 			isa = PBXGroup;
 			children = (
+				2E25017D20DEE4C400B88EE2 /* Utility */,
 				2E0FCD981E163CD700C8F1E3 /* Planning Board.entitlements */,
 				2E0FCD961E1636DE00C8F1E3 /* GoogleService-Info.plist */,
 				2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */,
@@ -264,9 +267,21 @@
 		2E1F75AD1E4CFD7800DEE534 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2EAA78701EC018E300E4102D /* Views */,
+				2E889BC01EBEE46300F2C85E /* ServiceView.swift */,
+				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
+				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
+				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
+				2E3E1AC71EF1A4C500801415 /* FinalService.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2E25017D20DEE4C400B88EE2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2E59A24320DEE4E500363441 /* Extentions.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		2E3D15E11E96DDEF003AD783 /* Planning Board Mac */ = {
@@ -343,18 +358,6 @@
 				2E75EF4820A266810041647E /* Views */,
 			);
 			name = Custom;
-			sourceTree = "<group>";
-		};
-		2EAA78701EC018E300E4102D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2E889BC01EBEE46300F2C85E /* ServiceView.swift */,
-				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
-				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
-				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
-				2E3E1AC71EF1A4C500801415 /* FinalService.swift */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		F37976C29C02219586CEB06E /* Pods */ = {
@@ -789,6 +792,7 @@
 				2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */,
 				2EB88CF91E858639001F85C2 /* Member.swift in Sources */,
 				2E75EF4A20A266EE0041647E /* ProductCell.swift in Sources */,
+				2E59A24420DEE4E500363441 /* Extentions.swift in Sources */,
 				2EAD3C46209C133C0022F526 /* PlannerSegmentCell.swift in Sources */,
 				2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */,
 			);

@@ -8,17 +8,17 @@
 
 import UIKit
 
-class ServiceCell : UITableViewCell {
+class ServiceCell: UITableViewCell {
     
-    var service : Service!
+    var service: Service!
     
-    let sideView : UIView = {
+    let sideView: UIView = {
         let view = UIView()
         view.backgroundColor = Global.grayColor
         return view
     }()
     
-    let titleLabel : UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         //label.layer.borderWidth = 0.5
         label.font = label.font.withSize(25)
@@ -26,7 +26,7 @@ class ServiceCell : UITableViewCell {
         return label
     }()
     
-    let dateLabel : UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.font = label.font.withSize(11)
@@ -34,7 +34,7 @@ class ServiceCell : UITableViewCell {
         return label
     }()
     
-    let typeLabel : UILabel = {
+    let typeLabel: UILabel = {
         let label = UILabel()
         label.layer.borderWidth = 0.5
         return label
@@ -69,7 +69,6 @@ class ServiceCell : UITableViewCell {
         titleLabel.frame = CGRect(x: sideView.frame.maxX, y: dateLabel.frame.maxY, width: cellWidth - 10, height: cellHeight - dateLabel.frame.height)
         titleLabel.text = self.service.title
         self.contentView.addSubview(titleLabel)
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -81,5 +80,4 @@ class ServiceCell : UITableViewCell {
             titleLabel.textColor = UIColor.lightGray
         }
     }
-    
 }

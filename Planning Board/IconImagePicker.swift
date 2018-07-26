@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IconImagePicker : UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
+class IconImagePicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,5 +45,4 @@ class IconImagePicker : UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
         pickerView.addSubview(pickerImageView)
         return pickerView
     }
-    
 }

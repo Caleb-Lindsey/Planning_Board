@@ -46,39 +46,29 @@ struct Global {
 class Datasource {
     
     func fillSegmentData() {
-        
         if let data = UserDefaults.standard.object(forKey: "SegmentList") as? NSData {
             Global.segmentArray = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Segment]
-            
         }
-        
     }
     
     func fillMemberData() {
-        
         print("Filling Members")
         if let data = UserDefaults.standard.object(forKey: "MemberList") as? NSData {
             Global.memberArray = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Member]
         }
-        
     }
     
     func uploadSegment() {
-        
         let data = NSKeyedArchiver.archivedData(withRootObject: Global.segmentArray)
         UserDefaults.standard.set(data, forKey: "SegmentList")
         print("Segments Saved")
-        
     }
     
     func uploadMember() {
-        
         let data = NSKeyedArchiver.archivedData(withRootObject: Global.memberArray)
         UserDefaults.standard.set(data, forKey: "MemberList")
         print("Members Saved")
-        
     }
-    
     
     func getServiceData() {
         let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -99,8 +89,6 @@ class Datasource {
     }
     
     func saveServicesToFile(services: [Service]) {
-        
-        // Encode the array into a json string, and write it to a file
         let dataToWrite = try? JSONEncoder().encode(services)
         let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
@@ -120,7 +108,6 @@ class Datasource {
     }
     
     func fillMockData() {
-        
         let service1 : Service = Service(title: "Awakening Night", type: "Awakening", date: Date())
         let service2 : Service = Service(title: "Sunday 11:30am", type: "Sunday", date: Date())
         let service3 : Service = Service(title: "Sunday 9:30am", type: "Sunday", date: Date())
@@ -129,24 +116,5 @@ class Datasource {
         
         let Segment1 : Segment = Segment(title: "Walk-In", elements: [Element(title: "Playlist", link: ""), Element(title: "Game", link: "https://www.youtube.com/watch?v=5n2aQ3UQu9Y")], iconImage: #imageLiteral(resourceName: "door_icon"))
         Global.segmentArray = [Segment1]
-        
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

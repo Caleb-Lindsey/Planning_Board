@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ProductCell : UITableViewCell {
+class ProductCell: UITableViewCell {
     
-    var productItem : ProductItem!
-    var tableView : UITableView!
+    var productItem: ProductItem!
+    var tableView: UITableView!
     
-    let timeLabel : UILabel = {
+    let timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray
         label.layer.borderWidth = 0.4
@@ -28,7 +28,7 @@ class ProductCell : UITableViewCell {
         return label
     }()
     
-    let hostImage : UIImageView = {
+    let hostImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderColor = Global.greenColor.cgColor
         imageView.layer.borderWidth = 0.4
@@ -65,22 +65,4 @@ class ProductCell : UITableViewCell {
         titleLabel.text = productItem.element?.title
         contentView.addSubview(titleLabel)
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

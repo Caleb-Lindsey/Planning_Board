@@ -8,16 +8,7 @@
 
 import UIKit
 
-/*
- A class to hold all information about a segment.
-    - Name
-    - Element Array
-    - Icon Image
-    - Default Duration
-    - Last Used Date
-*/
-
-class Segment : NSObject, NSCoding {
+class Segment: NSObject, NSCoding {
     
     var title = String()
     var elements = [Element]()
@@ -59,5 +50,4 @@ class Segment : NSObject, NSCoding {
         aCoder.encode(iconImage, forKey: "IconImage")
         aCoder.encode(lastUsed, forKey: "LastUsed")
     }
-    
 }

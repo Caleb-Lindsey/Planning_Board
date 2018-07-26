@@ -8,15 +8,7 @@
 
 import UIKit
 
-/*
- A class to hold all information about a member.
-    - First Name
-    - Last Name
-    - Profile Picture
-    - Array of hostable segments
-*/
-
-class Member : NSObject, NSCoding {
+class Member: NSObject, NSCoding {
     
     //Variables
     var firstName = String()
@@ -63,5 +55,4 @@ class Member : NSObject, NSCoding {
         aCoder.encode(canHost, forKey: "canHost")
         aCoder.encode(profilePic, forKey: "ProfilePic")
     }
-    
 }

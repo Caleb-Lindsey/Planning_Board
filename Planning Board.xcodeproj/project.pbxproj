@@ -63,6 +63,8 @@
 		2E0FCD7F1E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E0FCD881E16367400C8F1E3 /* Planning_BoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_BoardUITests.swift; sourceTree = "<group>"; };
 		2E0FCD8A1E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E2EB9932110153700B913A6 /* Planning BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning BoardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E2EB9942110153700B913A6 /* Planning BoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning BoardUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E390D741EEA0CBC004C83CC /* ProductItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		2E3E1AC71EF1A4C500801415 /* FinalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalService.swift; sourceTree = "<group>"; };
 		2E3E1AC91EF1A6CF00801415 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -73,8 +75,6 @@
 		2E6D17DB20B11DD9006A9C40 /* ProductPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPanel.swift; sourceTree = "<group>"; };
 		2E75EF4920A266EE0041647E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
-		2E8823A5211011D7006CE944 /* Planning BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning BoardTests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug-iphoneos/Planning BoardTests.xctest"; sourceTree = "<absolute>"; };
-		2E8823A6211011D7006CE944 /* Planning BoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning BoardUITests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug-iphoneos/Planning BoardUITests.xctest"; sourceTree = "<absolute>"; };
 		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
 		2E99BB861E875CF00039B0EE /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
@@ -123,18 +123,20 @@
 				2E0FCD7C1E16367400C8F1E3 /* Planning BoardTests */,
 				2E0FCD871E16367400C8F1E3 /* Planning BoardUITests */,
 				2EDFACCD21100DF2000B9208 /* Planning Board.app */,
+				2E2EB9932110153700B913A6 /* Planning BoardTests.xctest */,
+				2E2EB9942110153700B913A6 /* Planning BoardUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
 		2E0FCD641E16367400C8F1E3 /* Planning Board */ = {
 			isa = PBXGroup;
 			children = (
-				2E25017D20DEE4C400B88EE2 /* Utility */,
 				2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */,
 				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
 				2E1F75AD1E4CFD7800DEE534 /* ViewControllers */,
 				2E7EA1DD1E4FE1F200911AD7 /* Custom */,
 				2E59A63F1FD87333004539E4 /* Models */,
+				2E25017D20DEE4C400B88EE2 /* Utility */,
 				2E0FCD711E16367400C8F1E3 /* LaunchScreen.storyboard */,
 				2E0FCD741E16367400C8F1E3 /* Info.plist */,
 				2E0FCD6F1E16367400C8F1E3 /* Assets.xcassets */,
@@ -261,7 +263,7 @@
 			);
 			name = "Planning BoardTests";
 			productName = "Planning BoardTests";
-			productReference = 2E8823A5211011D7006CE944 /* Planning BoardTests.xctest */;
+			productReference = 2E2EB9932110153700B913A6 /* Planning BoardTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2E0FCD831E16367400C8F1E3 /* Planning BoardUITests */ = {
@@ -279,7 +281,7 @@
 			);
 			name = "Planning BoardUITests";
 			productName = "Planning BoardUITests";
-			productReference = 2E8823A6211011D7006CE944 /* Planning BoardUITests.xctest */;
+			productReference = 2E2EB9942110153700B913A6 /* Planning BoardUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */

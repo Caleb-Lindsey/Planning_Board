@@ -85,13 +85,15 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "car",
       "size" : "60x60",
+      "idiom" : "car",
+      "filename" : "photo120.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "car",
       "size" : "60x60",
+      "idiom" : "car",
+      "filename" : "photo180.png",
       "scale" : "3x"
     }
   ],

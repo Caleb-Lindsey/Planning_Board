@@ -52,20 +52,6 @@
 			remoteGlobalIDString = 2E0FCD611E16367400C8F1E3;
 			remoteInfo = "Planning Board";
 		};
-		2E3D15EF1E96DDEF003AD783 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E0FCD5A1E16367400C8F1E3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E3D15DF1E96DDEF003AD783;
-			remoteInfo = "Planning Board Mac";
-		};
-		2E3D15FA1E96DDEF003AD783 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E0FCD5A1E16367400C8F1E3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E3D15DF1E96DDEF003AD783;
-			remoteInfo = "Planning Board Mac";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -73,16 +59,11 @@
 		2E0FCD6F1E16367400C8F1E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E0FCD721E16367400C8F1E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E0FCD741E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E0FCD791E16367400C8F1E3 /* Planning BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning BoardTests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug-iphoneos/Planning BoardTests.xctest"; sourceTree = "<absolute>"; };
 		2E0FCD7D1E16367400C8F1E3 /* Planning_BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_BoardTests.swift; sourceTree = "<group>"; };
 		2E0FCD7F1E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E0FCD841E16367400C8F1E3 /* Planning BoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning BoardUITests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug-iphoneos/Planning BoardUITests.xctest"; sourceTree = "<absolute>"; };
 		2E0FCD881E16367400C8F1E3 /* Planning_BoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_BoardUITests.swift; sourceTree = "<group>"; };
 		2E0FCD8A1E16367400C8F1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E390D741EEA0CBC004C83CC /* ProductItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
-		2E3D15E01E96DDEF003AD783 /* Planning Board Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Planning Board Mac.app"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug/Planning Board Mac.app"; sourceTree = "<absolute>"; };
-		2E3D15EE1E96DDEF003AD783 /* Planning Board MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning Board MacTests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug/Planning Board MacTests.xctest"; sourceTree = "<absolute>"; };
-		2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning Board MacUITests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug/Planning Board MacUITests.xctest"; sourceTree = "<absolute>"; };
 		2E3E1AC71EF1A4C500801415 /* FinalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalService.swift; sourceTree = "<group>"; };
 		2E3E1AC91EF1A6CF00801415 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E59A24320DEE4E500363441 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
@@ -92,6 +73,8 @@
 		2E6D17DB20B11DD9006A9C40 /* ProductPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPanel.swift; sourceTree = "<group>"; };
 		2E75EF4920A266EE0041647E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		2E8823A5211011D7006CE944 /* Planning BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning BoardTests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug-iphoneos/Planning BoardTests.xctest"; sourceTree = "<absolute>"; };
+		2E8823A6211011D7006CE944 /* Planning BoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Planning BoardUITests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Planning Board/build/Debug-iphoneos/Planning BoardUITests.xctest"; sourceTree = "<absolute>"; };
 		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
 		2E99BB861E875CF00039B0EE /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
@@ -124,27 +107,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2E0FCD811E16367400C8F1E3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15DD1E96DDEF003AD783 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15EB1E96DDEF003AD783 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15F61E96DDEF003AD783 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -274,8 +236,6 @@
 				2E0FCD5E1E16367400C8F1E3 /* Sources */,
 				2E0FCD5F1E16367400C8F1E3 /* Frameworks */,
 				2E0FCD601E16367400C8F1E3 /* Resources */,
-				E9FB19F1965FE7824980D0A0 /* [CP] Embed Pods Frameworks */,
-				E70C4A9375878F05F7090A32 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -290,12 +250,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E0FCD901E16367400C8F1E3 /* Build configuration list for PBXNativeTarget "Planning BoardTests" */;
 			buildPhases = (
-				48C1B76D7054E87F821B2262 /* [CP] Check Pods Manifest.lock */,
 				2E0FCD751E16367400C8F1E3 /* Sources */,
 				2E0FCD761E16367400C8F1E3 /* Frameworks */,
 				2E0FCD771E16367400C8F1E3 /* Resources */,
-				2E844D1AA8448FB03FF9FB77 /* [CP] Embed Pods Frameworks */,
-				009C89E4E164B400138B1F9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,19 +261,16 @@
 			);
 			name = "Planning BoardTests";
 			productName = "Planning BoardTests";
-			productReference = 2E0FCD791E16367400C8F1E3 /* Planning BoardTests.xctest */;
+			productReference = 2E8823A5211011D7006CE944 /* Planning BoardTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2E0FCD831E16367400C8F1E3 /* Planning BoardUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E0FCD931E16367400C8F1E3 /* Build configuration list for PBXNativeTarget "Planning BoardUITests" */;
 			buildPhases = (
-				8D5B4EEE771D8043CDB28DC2 /* [CP] Check Pods Manifest.lock */,
 				2E0FCD801E16367400C8F1E3 /* Sources */,
 				2E0FCD811E16367400C8F1E3 /* Frameworks */,
 				2E0FCD821E16367400C8F1E3 /* Resources */,
-				1A0A4AE10955776837266FA1 /* [CP] Embed Pods Frameworks */,
-				168AE3E89F9A9DC647547FC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -325,60 +279,7 @@
 			);
 			name = "Planning BoardUITests";
 			productName = "Planning BoardUITests";
-			productReference = 2E0FCD841E16367400C8F1E3 /* Planning BoardUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2E3D16061E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board Mac" */;
-			buildPhases = (
-				2E3D15DC1E96DDEF003AD783 /* Sources */,
-				2E3D15DD1E96DDEF003AD783 /* Frameworks */,
-				2E3D15DE1E96DDEF003AD783 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Planning Board Mac";
-			productName = "Planning Board Mac";
-			productReference = 2E3D15E01E96DDEF003AD783 /* Planning Board Mac.app */;
-			productType = "com.apple.product-type.application";
-		};
-		2E3D15ED1E96DDEF003AD783 /* Planning Board MacTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2E3D16071E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacTests" */;
-			buildPhases = (
-				2E3D15EA1E96DDEF003AD783 /* Sources */,
-				2E3D15EB1E96DDEF003AD783 /* Frameworks */,
-				2E3D15EC1E96DDEF003AD783 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2E3D15F01E96DDEF003AD783 /* PBXTargetDependency */,
-			);
-			name = "Planning Board MacTests";
-			productName = "Planning Board MacTests";
-			productReference = 2E3D15EE1E96DDEF003AD783 /* Planning Board MacTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2E3D15F81E96DDEF003AD783 /* Planning Board MacUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2E3D16081E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacUITests" */;
-			buildPhases = (
-				2E3D15F51E96DDEF003AD783 /* Sources */,
-				2E3D15F61E96DDEF003AD783 /* Frameworks */,
-				2E3D15F71E96DDEF003AD783 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2E3D15FB1E96DDEF003AD783 /* PBXTargetDependency */,
-			);
-			name = "Planning Board MacUITests";
-			productName = "Planning Board MacUITests";
-			productReference = 2E3D15F91E96DDEF003AD783 /* Planning Board MacUITests.xctest */;
+			productReference = 2E8823A6211011D7006CE944 /* Planning BoardUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -416,23 +317,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2E0FCD611E16367400C8F1E3;
 					};
-					2E3D15DF1E96DDEF003AD783 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WC4V23B6MJ;
-						ProvisioningStyle = Automatic;
-					};
-					2E3D15ED1E96DDEF003AD783 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WC4V23B6MJ;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2E3D15DF1E96DDEF003AD783;
-					};
-					2E3D15F81E96DDEF003AD783 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WC4V23B6MJ;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2E3D15DF1E96DDEF003AD783;
-					};
 				};
 			};
 			buildConfigurationList = 2E0FCD5D1E16367400C8F1E3 /* Build configuration list for PBXProject "Planning Board" */;
@@ -451,9 +335,6 @@
 				2E0FCD611E16367400C8F1E3 /* Planning Board */,
 				2E0FCD781E16367400C8F1E3 /* Planning BoardTests */,
 				2E0FCD831E16367400C8F1E3 /* Planning BoardUITests */,
-				2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */,
-				2E3D15ED1E96DDEF003AD783 /* Planning Board MacTests */,
-				2E3D15F81E96DDEF003AD783 /* Planning Board MacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -482,157 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E3D15DE1E96DDEF003AD783 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15EC1E96DDEF003AD783 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15F71E96DDEF003AD783 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		009C89E4E164B400138B1F9F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Planning BoardTests/Pods-Planning BoardTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		168AE3E89F9A9DC647547FC1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Planning BoardUITests/Pods-Planning BoardUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1A0A4AE10955776837266FA1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Planning BoardUITests/Pods-Planning BoardUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E844D1AA8448FB03FF9FB77 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Planning BoardTests/Pods-Planning BoardTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48C1B76D7054E87F821B2262 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Planning BoardTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8D5B4EEE771D8043CDB28DC2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Planning BoardUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E70C4A9375878F05F7090A32 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Planning Board/Pods-Planning Board-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E9FB19F1965FE7824980D0A0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Planning Board/Pods-Planning Board-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E0FCD5E1E16367400C8F1E3 /* Sources */ = {
@@ -682,27 +413,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E3D15DC1E96DDEF003AD783 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15EA1E96DDEF003AD783 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E3D15F51E96DDEF003AD783 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -715,16 +425,6 @@
 			isa = PBXTargetDependency;
 			target = 2E0FCD611E16367400C8F1E3 /* Planning Board */;
 			targetProxy = 2E0FCD851E16367400C8F1E3 /* PBXContainerItemProxy */;
-		};
-		2E3D15F01E96DDEF003AD783 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */;
-			targetProxy = 2E3D15EF1E96DDEF003AD783 /* PBXContainerItemProxy */;
-		};
-		2E3D15FB1E96DDEF003AD783 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2E3D15DF1E96DDEF003AD783 /* Planning Board Mac */;
-			targetProxy = 2E3D15FA1E96DDEF003AD783 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -953,110 +653,6 @@
 			};
 			name = Release;
 		};
-		2E3D16001E96DDEF003AD783 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WC4V23B6MJ;
-				INFOPLIST_FILE = "Planning Board Mac/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		2E3D16011E96DDEF003AD783 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WC4V23B6MJ;
-				INFOPLIST_FILE = "Planning Board Mac/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		2E3D16021E96DDEF003AD783 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WC4V23B6MJ;
-				INFOPLIST_FILE = "Planning Board MacTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planning Board Mac.app/Contents/MacOS/Planning Board Mac";
-			};
-			name = Debug;
-		};
-		2E3D16031E96DDEF003AD783 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WC4V23B6MJ;
-				INFOPLIST_FILE = "Planning Board MacTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planning Board Mac.app/Contents/MacOS/Planning Board Mac";
-			};
-			name = Release;
-		};
-		2E3D16041E96DDEF003AD783 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WC4V23B6MJ;
-				INFOPLIST_FILE = "Planning Board MacUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "Planning Board Mac";
-			};
-			name = Debug;
-		};
-		2E3D16051E96DDEF003AD783 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WC4V23B6MJ;
-				INFOPLIST_FILE = "Planning Board MacUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Planning-Board-MacUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "Planning Board Mac";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1092,33 +688,6 @@
 			buildConfigurations = (
 				2E0FCD941E16367400C8F1E3 /* Debug */,
 				2E0FCD951E16367400C8F1E3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2E3D16061E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board Mac" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2E3D16001E96DDEF003AD783 /* Debug */,
-				2E3D16011E96DDEF003AD783 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2E3D16071E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2E3D16021E96DDEF003AD783 /* Debug */,
-				2E3D16031E96DDEF003AD783 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2E3D16081E96DDEF003AD783 /* Build configuration list for PBXNativeTarget "Planning Board MacUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2E3D16041E96DDEF003AD783 /* Debug */,
-				2E3D16051E96DDEF003AD783 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

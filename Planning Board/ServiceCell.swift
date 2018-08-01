@@ -12,17 +12,17 @@ class ServiceCell: UITableViewCell {
     
     var service: Service!
     
-    let sideView: UIView = {
+    let cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = Colors.grayColor
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 5
         return view
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        //label.layer.borderWidth = 0.5
+        label.textColor = Colors.grayColor
         label.font = label.font.withSize(25)
-        label.textAlignment = .center
         return label
     }()
     
@@ -30,13 +30,11 @@ class ServiceCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = label.font.withSize(11)
-        //label.layer.borderWidth = 0.5
         return label
     }()
     
     let typeLabel: UILabel = {
         let label = UILabel()
-        label.layer.borderWidth = 0.5
         return label
     }()
     
@@ -44,6 +42,8 @@ class ServiceCell: UITableViewCell {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.service = service
         self.selectionStyle = .none
+        self.backgroundColor = UIColor.clear
+        self.contentView.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,32 +52,12 @@ class ServiceCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.contentView.addSubview(cardView)
+        cardView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
         
-        let cellWidth : CGFloat = self.contentView.frame.width
-        let cellHeight : CGFloat = self.contentView.frame.height
-        
-        // Place Side View
-        sideView.frame = CGRect(x: 0, y: 5, width: 5, height: cellHeight - 10)
-        self.contentView.addSubview(sideView)
-        
-        // Place Date Label
-        dateLabel.frame = CGRect(x: 0, y: 0, width: cellWidth - 5 - 5, height: 20)
-        dateLabel.text = service.getFormattedDate()
-        self.contentView.addSubview(dateLabel)
-        
-        // Place Title Label
-        titleLabel.frame = CGRect(x: sideView.frame.maxX, y: dateLabel.frame.maxY, width: cellWidth - 10, height: cellHeight - dateLabel.frame.height)
+        [titleLabel, dateLabel, typeLabel].forEach { self.cardView.addSubview($0) }
+        titleLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5))
+        titleLabel.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.3).isActive = true
         titleLabel.text = self.service.title
-        self.contentView.addSubview(titleLabel)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected {
-            sideView.backgroundColor = Colors.greenColor
-            titleLabel.textColor = Colors.grayColor
-        } else {
-            sideView.backgroundColor = UIColor.lightGray
-            titleLabel.textColor = UIColor.lightGray
-        }
     }
 }

@@ -15,6 +15,8 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     
     let serviceTableView: UITableView = {
         let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
         return tableView
     }()
     

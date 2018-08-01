@@ -44,10 +44,10 @@ class FinalService: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //Setup View
-        view.backgroundColor = Global.grayColor
+        view.backgroundColor = Colors.grayColor
         self.navigationItem.title = "Finalize Service"
-        self.navigationController?.navigationBar.barTintColor = Global.grayColor
-        self.navigationController?.navigationBar.tintColor = Global.lighterGreenColor
+        self.navigationController?.navigationBar.barTintColor = Colors.grayColor
+        self.navigationController?.navigationBar.tintColor = Colors.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
         //serviceView.text = formatSummary(serviceArray: Global.serviceDetailArray)

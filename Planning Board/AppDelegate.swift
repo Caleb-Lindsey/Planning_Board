@@ -26,8 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let homeController : UIViewController = CustomTabBar()
-        window?.rootViewController = UINavigationController(rootViewController: homeController)
-        homeController.navigationController?.isNavigationBarHidden = true
+        window?.rootViewController = homeController
         return true
     }
 

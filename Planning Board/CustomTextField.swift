@@ -15,7 +15,7 @@ class CustomTextField: UITextField {
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 35))
         self.backgroundColor = UIColor.white
-        self.layer.borderColor = Global.greenColor.cgColor
+        self.layer.borderColor = Colors.greenColor.cgColor
         self.layer.borderWidth = 0.4
         self.leftView = self.paddingView
         self.returnKeyType = UIReturnKeyType.done

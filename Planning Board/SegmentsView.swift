@@ -61,7 +61,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         let imageView = UIImageView()
         imageView.image = UIImage(named: "fire_icon")
         imageView.backgroundColor = UIColor.lightGray
-        imageView.layer.borderColor = Global.greenColor.cgColor
+        imageView.layer.borderColor = Colors.greenColor.cgColor
         imageView.layer.borderWidth = 2
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit

@@ -12,10 +12,11 @@ class CustomTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.barTintColor = Global.greenColor
+        self.tabBar.barTintColor = Colors.greenColor
         self.tabBar.unselectedItemTintColor = UIColor.black
         self.tabBar.tintColor = UIColor.white
         self.tabBar.itemSpacing = 100
+        self.tabBar.isTranslucent = false
         
         //Setup view controllers
         let serviceController = ServiceView()

@@ -14,9 +14,12 @@ class PBViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Global.grayColor
-        self.navigationController?.isNavigationBarHidden = true
-        statusBar.backgroundColor = UIColor.black
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = Colors.greenColor
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        view.backgroundColor = Colors.grayColor
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

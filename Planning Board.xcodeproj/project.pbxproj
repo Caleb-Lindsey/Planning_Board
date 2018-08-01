@@ -22,6 +22,7 @@
 		2E6D17DC20B11DD9006A9C40 /* ProductPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6D17DB20B11DD9006A9C40 /* ProductPanel.swift */; };
 		2E75EF4A20A266EE0041647E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75EF4920A266EE0041647E /* ProductCell.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
+		2E861B22211169E400624CFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E861B21211169E400624CFD /* Colors.swift */; };
 		2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServiceView.swift */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
 		2E99BB871E875CF00039B0EE /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB861E875CF00039B0EE /* Segment.swift */; };
@@ -75,6 +76,7 @@
 		2E6D17DB20B11DD9006A9C40 /* ProductPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPanel.swift; sourceTree = "<group>"; };
 		2E75EF4920A266EE0041647E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		2E861B21211169E400624CFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
 		2E99BB861E875CF00039B0EE /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				2E59A24320DEE4E500363441 /* Extentions.swift */,
+				2E861B21211169E400624CFD /* Colors.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				2E390D751EEA0CBC004C83CC /* ProductItem.swift in Sources */,
 				2E3E1ACA1EF1A6CF00801415 /* Service.swift in Sources */,
 				2EFA7C7C2017904700BA6044 /* FieldCover.swift in Sources */,
+				2E861B22211169E400624CFD /* Colors.swift in Sources */,
 				2E99BB871E875CF00039B0EE /* Segment.swift in Sources */,
 				2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */,
 				2EAA78761EC17DEE00E4102D /* PeopleView.swift in Sources */,

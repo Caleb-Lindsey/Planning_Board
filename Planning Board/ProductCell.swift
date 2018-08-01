@@ -30,7 +30,7 @@ class ProductCell: UITableViewCell {
     
     let hostImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.borderColor = Global.greenColor.cgColor
+        imageView.layer.borderColor = Colors.greenColor.cgColor
         imageView.layer.borderWidth = 0.4
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit

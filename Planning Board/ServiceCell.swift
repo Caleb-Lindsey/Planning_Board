@@ -14,7 +14,7 @@ class ServiceCell: UITableViewCell {
     
     let sideView: UIView = {
         let view = UIView()
-        view.backgroundColor = Global.grayColor
+        view.backgroundColor = Colors.grayColor
         return view
     }()
     
@@ -73,8 +73,8 @@ class ServiceCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         if selected {
-            sideView.backgroundColor = Global.greenColor
-            titleLabel.textColor = Global.grayColor
+            sideView.backgroundColor = Colors.greenColor
+            titleLabel.textColor = Colors.grayColor
         } else {
             sideView.backgroundColor = UIColor.lightGray
             titleLabel.textColor = UIColor.lightGray

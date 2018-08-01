@@ -37,7 +37,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.titleLabel?.textColor = UIColor.white
-        button.backgroundColor = Global.greenColor
+        button.backgroundColor = Colors.greenColor
         button.addTarget(self, action: #selector(continueToFinal), for: .touchUpInside)
         button.layer.cornerRadius = 8
         return button
@@ -52,10 +52,10 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.automaticallyAdjustsScrollViewInsets = false
         
         //Setup View
-        view.backgroundColor = Global.grayColor
+        view.backgroundColor = Colors.grayColor
         self.navigationItem.title = "Create Service"
-        self.navigationController?.navigationBar.barTintColor = Global.grayColor
-        self.navigationController?.navigationBar.tintColor = Global.lighterGreenColor
+        self.navigationController?.navigationBar.barTintColor = Colors.grayColor
+        self.navigationController?.navigationBar.tintColor = Colors.lighterGreenColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
         setupTables()
@@ -100,7 +100,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationItem.hidesBackButton = false
-        statusBar.backgroundColor = Global.grayColor
+        statusBar.backgroundColor = Colors.grayColor
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -63,7 +63,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
         image.clipsToBounds = true
-        image.layer.borderColor = Global.greenColor.cgColor
+        image.layer.borderColor = Colors.greenColor.cgColor
         image.layer.borderWidth = 2
         image.isUserInteractionEnabled = false
         image.imageView?.contentMode = .scaleAspectFill

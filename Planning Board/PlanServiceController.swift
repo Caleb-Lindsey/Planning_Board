@@ -8,31 +8,31 @@
 
 import UIKit
 
-class PlanServiceController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PlanServiceController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Variables
     let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-    var selectedSegment : Segment!
+    var selectedSegment: Segment!
     var elementArray = [Element]()
     var productArray = [ProductItem]()
-    var initialIndexPath : IndexPath!
+    var initialIndexPath: IndexPath!
     
-    let segmentTable : UITableView = {
+    let segmentTable: UITableView = {
         let table = UITableView()
         return table
     }()
     
-    let elementTable : UITableView = {
+    let elementTable: UITableView = {
         let table = UITableView()
         return table
     }()
     
-    let productTable : UITableView = {
+    let productTable: UITableView = {
         let table = UITableView()
         return table
     }()
     
-    let continueButton : UIButton = {
+    let continueButton: UIButton = {
         let button = UIButton()
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
@@ -56,7 +56,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.title = "Create Service"
         self.navigationController?.navigationBar.barTintColor = Colors.grayColor
         self.navigationController?.navigationBar.tintColor = Colors.lighterGreenColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         let topBorder = (self.navigationController?.navigationBar.frame.height)! + (statusBar.frame.height)
         setupTables()
         
@@ -122,7 +122,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             cell?.textLabel?.text = elementArray[indexPath.row].title
             return cell!
         } else {
-            let cell : ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell", tableView: productTable)
+            let cell: ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell", tableView: productTable)
             return cell
         }
     }
@@ -150,8 +150,8 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
             }
             productTable.reloadData()
         case productTable:
-            let productItem : ProductItem = productArray[indexPath.row]
-            let productPanel : ProductPanel = ProductPanel(productItem: productItem, superView: self.productTable)
+            let productItem: ProductItem = productArray[indexPath.row]
+            let productPanel: ProductPanel = ProductPanel(productItem: productItem, superView: self.productTable)
             self.productTable.addSubview(productPanel)
             productPanel.animateIntoView()
         default:
@@ -178,7 +178,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove : ProductItem = productArray.remove(at: sourceIndexPath.row)
+        let itemToMove: ProductItem = productArray.remove(at: sourceIndexPath.row)
         productArray.insert(itemToMove, at: destinationIndexPath.row)
     }
     
@@ -205,12 +205,12 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         let indexPath = productTable.indexPathForRow(at: locationInView)
         
         struct My {
-            static var cellSnapshot : UIView? = nil
-            static var cellIsAnimating : Bool = false
-            static var cellNeedToShow : Bool = false
+            static var cellSnapshot: UIView? = nil
+            static var cellIsAnimating: Bool = false
+            static var cellNeedToShow: Bool = false
         }
         struct Path {
-            static var initialIndexPath : NSIndexPath? = nil
+            static var initialIndexPath: NSIndexPath? = nil
         }
         
         switch state {
@@ -292,7 +292,7 @@ class PlanServiceController : UIViewController, UITableViewDataSource, UITableVi
         inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
         UIGraphicsEndImageContext()
-        let cellSnapshot : UIView = UIImageView(image: image)
+        let cellSnapshot: UIView = UIImageView(image: image)
         cellSnapshot.layer.masksToBounds = false
         cellSnapshot.layer.cornerRadius = 0.0
         cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)

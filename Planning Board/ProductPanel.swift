@@ -147,7 +147,7 @@ class ProductPanel: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MemberCell = MemberCell(member: Member(FirstName: "Julius", LastName: "Hoff", CanHost: [], ProfilePic: #imageLiteral(resourceName: "Ryan_Young")), reuseIdentifier: "panelHostCell")
+        let cell: MemberCell = MemberCell(member: Member(FirstName: "Julius", LastName: "Hoff", CanHost: [], ProfilePic: #imageLiteral(resourceName: "Ryan_Young")), reuseIdentifier: "panelHostCell")
         return cell
     }
     

@@ -118,6 +118,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E0778C82140AADB004A888E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */,
+				2E62F894208949390052AA68 /* ServiceCell.swift */,
+				2E75EF4920A266EE0041647E /* ProductCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2E0778C92140AAFA004A888E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E59A6421FD8845B004539E4 /* SegmentCell.swift */,
+				2E59A6401FD87392004539E4 /* MemberCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		2E0FCD591E16367400C8F1E3 = {
 			isa = PBXGroup;
 			children = (
@@ -135,8 +154,9 @@
 			children = (
 				2E0FCD651E16367400C8F1E3 /* AppDelegate.swift */,
 				2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */,
-				2E1F75AD1E4CFD7800DEE534 /* ViewControllers */,
-				2E7EA1DD1E4FE1F200911AD7 /* Custom */,
+				2E1E33F02140A9C1002D0BA3 /* Services */,
+				2ECFC1B72140AA1E00AB08B6 /* Resources */,
+				2E75EF4820A266810041647E /* Views */,
 				2E59A63F1FD87333004539E4 /* Models */,
 				2E25017D20DEE4C400B88EE2 /* Utility */,
 				2E0FCD711E16367400C8F1E3 /* LaunchScreen.storyboard */,
@@ -164,16 +184,15 @@
 			path = "Planning BoardUITests";
 			sourceTree = "<group>";
 		};
-		2E1F75AD1E4CFD7800DEE534 /* ViewControllers */ = {
+		2E1E33F02140A9C1002D0BA3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				2E889BC01EBEE46300F2C85E /* ServiceView.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
-				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
-				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
 				2E3E1AC71EF1A4C500801415 /* FinalService.swift */,
+				2E0778C82140AADB004A888E /* Views */,
 			);
-			name = ViewControllers;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		2E25017D20DEE4C400B88EE2 /* Utility */ = {
@@ -197,18 +216,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		2E62F893208949130052AA68 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				2E62F894208949390052AA68 /* ServiceCell.swift */,
-				2E59A6421FD8845B004539E4 /* SegmentCell.swift */,
-				2E59A6401FD87392004539E4 /* MemberCell.swift */,
-				2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */,
-				2E75EF4920A266EE0041647E /* ProductCell.swift */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		2E75EF4820A266810041647E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,13 +229,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		2E7EA1DD1E4FE1F200911AD7 /* Custom */ = {
+		2ECFC1B72140AA1E00AB08B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2E62F893208949130052AA68 /* Cells */,
-				2E75EF4820A266810041647E /* Views */,
+				2E0778C92140AAFA004A888E /* Views */,
+				2EAA78731EC17B9E00E4102D /* SegmentsView.swift */,
+				2EAA78751EC17DEE00E4102D /* PeopleView.swift */,
 			);
-			name = Custom;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

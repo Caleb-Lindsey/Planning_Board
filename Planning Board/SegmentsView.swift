@@ -8,17 +8,17 @@
 
 import UIKit
 
-class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
     var segmentObject = Segment()
     var dataHandle = Datasource()
-    var newSegmentMode : Bool = false
+    var newSegmentMode: Bool = false
     var tempArray = [Element]()
     
     //Left Side
-    let leftTopLabel : UILabel = {
+    let leftTopLabel: UILabel = {
         let label = UILabel()
         label.text = "Segments"
         label.textAlignment = .center
@@ -32,12 +32,12 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return label
     }()
     
-    let leftTableView : UITableView = {
+    let leftTableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
     
-    let newSegmentButton : UIButton = {
+    let newSegmentButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "plus4"), for: .normal)
         button.addTarget(self, action: #selector(newSegment), for: .touchUpInside)
@@ -45,7 +45,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     }()
     
     //Right side
-    let rightTopLabel : UILabel = {
+    let rightTopLabel: UILabel = {
         let label = UILabel()
         label.text = "Elements"
         label.font = UIFont(name: "Helvetica", size: 22)
@@ -57,7 +57,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return label
     }()
     
-    var segmentImage : UIImageView = {
+    var segmentImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "fire_icon")
         imageView.backgroundColor = UIColor.lightGray
@@ -68,7 +68,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return imageView
     }()
     
-    let segmentLabel : UILabel = {
+    let segmentLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 20)
@@ -76,14 +76,14 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return label
     }()
     
-    let newElementField : CustomTextField = {
+    let newElementField: CustomTextField = {
         let textField = CustomTextField()
         textField.placeholder = "Add new element"
         textField.backgroundColor = UIColor.white
         return textField
     }()
     
-    let addElementButton : UIButton = {
+    let addElementButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "Plus Icon"), for: .normal)
         button.frame.size = CGSize(width: 35, height: 35)
@@ -92,19 +92,19 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return button
     }()
     
-    let rightTableView : UITableView = {
+    let rightTableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
     
-    let newSegmentField : CustomTextField = {
+    let newSegmentField: CustomTextField = {
         let textField = CustomTextField()
         textField.placeholder = "Segment name"
         textField.backgroundColor = UIColor.white
         return textField
     }()
     
-    let cancelButton : UIButton = {
+    let cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "RedX"), for: .normal)
         button.frame.size = CGSize(width: 35, height: 35)
@@ -112,7 +112,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
         return button
     }()
     
-    let doneButton : UIButton = {
+    let doneButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "Check_00040"), for: .normal)
         button.frame.size = CGSize(width: 35, height: 35)
@@ -329,8 +329,8 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
             cancelCreate()
         } else {
             
-            let alertTitle : String = "Missing Requiered Fields"
-            var alertMessage : String = ""
+            let alertTitle: String = "Missing Requiered Fields"
+            var alertMessage: String = ""
             
             if newSegmentField.text == "" {
                 newSegmentField.layer.borderWidth = 3
@@ -372,7 +372,7 @@ class SegmentsView : PBViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : SegmentCell = SegmentCell(segment: Global.segmentArray[indexPath.row], reuseIdentifier: "leftCell")
+            let cell: SegmentCell = SegmentCell(segment: Global.segmentArray[indexPath.row], reuseIdentifier: "leftCell")
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)

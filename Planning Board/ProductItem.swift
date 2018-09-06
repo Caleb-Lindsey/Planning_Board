@@ -25,9 +25,9 @@ class ProductItem {
     
     func getTimeLabel() -> String {
         if self.time > 0 {
-            //let hours : Int = time / 3600
-            let minutes : Int = (time % 3600) / 60
-            let seconds : Int = (time % 3600) % 60
+            //let hours: Int = time / 3600
+            let minutes: Int = (time % 3600) / 60
+            let seconds: Int = (time % 3600) % 60
             if seconds < 10 {
                 return "\(minutes):0\(seconds)"
             } else {

@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+class ServiceView: PBViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
     private let cellId: String = "serviceCell"
     
@@ -36,7 +36,7 @@ class ServiceView : PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let thisService : Service = Global.arrayOfServices[indexPath.row]
+        let thisService: Service = Global.arrayOfServices[indexPath.row]
         let cell: ServiceCell = ServiceCell(service: thisService, reuseIdentifier: cellId)
         return cell
     }

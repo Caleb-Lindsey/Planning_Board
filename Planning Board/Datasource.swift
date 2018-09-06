@@ -12,11 +12,11 @@ struct Global {
     // Data
     static var segmentArray = [Segment]()
     static var memberArray = [Member]()
-    static var arrayOfServices : [Service] = [Service]()
-    static var serviceFilePath : String = "PlanningBoardServices.json"
+    static var arrayOfServices: [Service] = [Service]()
+    static var serviceFilePath: String = "PlanningBoardServices.json"
     
     // Icons
-    static var arrayOfIcons : [UIImage] = [
+    static var arrayOfIcons: [UIImage] = [
         UIImage(named:"bible_icon")!,
         UIImage(named:"clock")!,
         UIImage(named:"door_icon")!,
@@ -70,7 +70,7 @@ class Datasource {
         let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
         
         do {
-            let readString : String = try String(contentsOf: fileURL)
+            let readString: String = try String(contentsOf: fileURL)
             let readStringData = readString.data(using: .utf8)
             
             var services = try JSONDecoder().decode([Service].self, from: readStringData!)
@@ -103,13 +103,13 @@ class Datasource {
     }
     
     func fillMockData() {
-        let service1 : Service = Service(title: "Awakening Night", type: "Awakening", date: Date())
-        let service2 : Service = Service(title: "Sunday 11:30am", type: "Sunday", date: Date())
-        let service3 : Service = Service(title: "Sunday 9:30am", type: "Sunday", date: Date())
+        let service1: Service = Service(title: "Awakening Night", type: "Awakening", date: Date())
+        let service2: Service = Service(title: "Sunday 11:30am", type: "Sunday", date: Date())
+        let service3: Service = Service(title: "Sunday 9:30am", type: "Sunday", date: Date())
         
         Global.arrayOfServices = [service1, service2, service3]
         
-        let Segment1 : Segment = Segment(title: "Walk-In", elements: [Element(title: "Playlist", link: ""), Element(title: "Game", link: "https://www.youtube.com/watch?v=5n2aQ3UQu9Y")], iconImage: #imageLiteral(resourceName: "door_icon"))
+        let Segment1: Segment = Segment(title: "Walk-In", elements: [Element(title: "Playlist", link: ""), Element(title: "Game", link: "https://www.youtube.com/watch?v=5n2aQ3UQu9Y")], iconImage: #imageLiteral(resourceName: "door_icon"))
         Global.segmentArray = [Segment1]
     }
 }

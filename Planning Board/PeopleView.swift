@@ -8,18 +8,18 @@
 
 import UIKit
 
-class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
     var memberObject = Member()
     var dataHandle = Datasource()
-    var newMemberMode : Bool = false
-    var editMemberMode : Bool = false
+    var newMemberMode: Bool = false
+    var editMemberMode: Bool = false
     var tempArray = [String]()
     
     //Left Side
-    let leftTopLabel : UILabel = {
+    let leftTopLabel: UILabel = {
         let label = UILabel()
         label.text = "Members"
         label.textAlignment = .center
@@ -33,12 +33,12 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return label
     }()
     
-    let leftTableView : UITableView = {
+    let leftTableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
     
-    let newMemberButton : UIButton = {
+    let newMemberButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "plus4"), for: .normal)
         button.addTarget(self, action: #selector(newMember), for: .touchUpInside)
@@ -46,7 +46,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     }()
     
     //Right side
-    let rightTopLabel : UILabel = {
+    let rightTopLabel: UILabel = {
         let label = UILabel()
         label.text = "Information"
         label.font = UIFont(name: "Helvetica", size: 22)
@@ -58,7 +58,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return label
     }()
     
-    var profileImage : UIButton = {
+    var profileImage: UIButton = {
         let image = UIButton()
         image.setImage(#imageLiteral(resourceName: "fire_icon"), for: .normal)
         image.backgroundColor = UIColor.lightGray
@@ -71,7 +71,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return image
     }()
     
-    let memberLabel : UILabel = {
+    let memberLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 20)
@@ -79,14 +79,14 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return label
     }()
     
-    let rightTableView : UITableView = {
+    let rightTableView: UITableView = {
         let tableView = UITableView()
         tableView.layer.zPosition = 10
         tableView.allowsMultipleSelection = true
         return tableView
     }()
     
-    let cancelButton : UIButton = {
+    let cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "RedX"), for: .normal)
         button.frame.size = CGSize(width: 35, height: 35)
@@ -94,7 +94,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return button
     }()
     
-    let doneButton : UIButton = {
+    let doneButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "Check_00040"), for: .normal)
         button.frame.size = CGSize(width: 35, height: 35)
@@ -102,21 +102,21 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         return button
     }()
     
-    let newFirstName : CustomTextField = {
+    let newFirstName: CustomTextField = {
         let textField = CustomTextField()
         textField.backgroundColor = UIColor.white
         textField.placeholder = "first name"
         return textField
     }()
     
-    let newLastName : CustomTextField = {
+    let newLastName: CustomTextField = {
         let textField = CustomTextField()
         textField.backgroundColor = UIColor.white
         textField.placeholder = "last name"
         return textField
     }()
     
-    let editButton : UIButton = {
+    let editButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit", for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
@@ -350,8 +350,8 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
             
         } else {
             
-            let alertTitle : String = "Missing Required Fields"
-            var alertMessage : String = ""
+            let alertTitle: String = "Missing Required Fields"
+            var alertMessage: String = ""
             
             if newFirstName.text == "" {
                 newFirstName.layer.borderWidth = 3
@@ -402,14 +402,14 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == leftTableView {
-            let cell : MemberCell = MemberCell(member: Global.memberArray[indexPath.row], reuseIdentifier: "leftCell")
+            let cell: MemberCell = MemberCell(member: Global.memberArray[indexPath.row], reuseIdentifier: "leftCell")
             return cell
         } else {
             let cell = rightTableView.dequeueReusableCell(withIdentifier: "rightCell", for: indexPath)
             
             if newMemberMode {
                 cell.textLabel?.text = Global.segmentArray[indexPath.row].title
-                cell.accessoryType = (cell.isSelected) ? .checkmark : .none
+                cell.accessoryType = (cell.isSelected) ? .checkmark: .none
             } else if editMemberMode {
                 cell.textLabel?.text = Global.segmentArray[indexPath.row].title
         
@@ -574,7 +574,7 @@ class PeopleView : PBViewController, UITableViewDelegate, UITableViewDataSource,
         
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImage.setImage(image, for: .normal)

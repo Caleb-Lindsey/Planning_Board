@@ -14,28 +14,42 @@ class ServiceCell: UITableViewCell {
     
     let cardView: UIView = {
         let view = UIView()
+        view.layer.cornerRadius = 3
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.4
+        view.layer.shadowOffset = CGSize(width: 0, height: 1)
+        view.layer.shadowRadius = 2
         view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 5
         return view
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.grayColor
+        label.textColor = UIColor.lightGray
         label.font = label.font.withSize(25)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = label.font.withSize(11)
+        label.font = label.font.withSize(13)
+        label.textColor = Colors.clearBlack
         return label
     }()
     
     let typeLabel: UILabel = {
         let label = UILabel()
+        label.text = "Sunday Service"
         return label
+    }()
+    
+    let chevronImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "chevron_right")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     init(service: Service, reuseIdentifier: String) {
@@ -55,9 +69,18 @@ class ServiceCell: UITableViewCell {
         self.contentView.addSubview(cardView)
         cardView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
         
-        [titleLabel, dateLabel, typeLabel].forEach { self.cardView.addSubview($0) }
-        titleLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5))
-        titleLabel.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.3).isActive = true
+        [titleLabel, dateLabel, typeLabel, chevronImageView].forEach { self.cardView.addSubview($0) }
+        titleLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: cardView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 5, bottom: 5, right: 5))
+        titleLabel.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.75).isActive = true
         titleLabel.text = self.service.title
+        
+        dateLabel.anchor(top: cardView.topAnchor, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 0, left: 5, bottom: 5, right: 5))
+        dateLabel.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.25).isActive = true
+        dateLabel.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.25).isActive = true
+        dateLabel.text = "9/26/18"
+        
+        chevronImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 10), size: .init(width: 30, height: 30))
+        chevronImageView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
+        
     }
 }

@@ -121,8 +121,8 @@
 		2E0778C82140AADB004A888E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */,
 				2E62F894208949390052AA68 /* ServiceCell.swift */,
+				2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */,
 				2E75EF4920A266EE0041647E /* ProductCell.swift */,
 			);
 			name = Views;

@@ -13,7 +13,7 @@ class Service: Codable {
     var title: String = String()
     var type: String = String()
     var date: Date = Date()
-    //var summary: [ProductItem] = []
+    //var summary
     
     init(title: String, type: String, date: Date) {
         self.title = title

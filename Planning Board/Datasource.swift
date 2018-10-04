@@ -103,9 +103,9 @@ class Datasource {
     }
     
     func fillMockData() {
-        let service1: Service = Service(title: "Awakening Night", type: "Awakening", date: Date())
-        let service2: Service = Service(title: "Sunday 11:30am", type: "Sunday", date: Date())
-        let service3: Service = Service(title: "Sunday 9:30am", type: "Sunday", date: Date())
+        let service1: Service = Service(title: "Awakening Night", type: "Awakening", date: "2018-10-19T19:05:00")
+        let service2: Service = Service(title: "Sunday Second", type: "Sunday", date: "2018-10-07T11:30:00")
+        let service3: Service = Service(title: "Sunday First", type: "Sunday", date: "2018-10-07T09:30:00")
         
         Global.arrayOfServices = [service1, service2, service3]
         

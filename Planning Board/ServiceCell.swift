@@ -77,10 +77,9 @@ class ServiceCell: UITableViewCell {
         dateLabel.anchor(top: cardView.topAnchor, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 0, left: 5, bottom: 5, right: 5))
         dateLabel.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.25).isActive = true
         dateLabel.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.25).isActive = true
-        dateLabel.text = "9/26/18"
+        dateLabel.text = self.service.getFormattedDate()
         
         chevronImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 10), size: .init(width: 30, height: 30))
         chevronImageView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
-        
     }
 }

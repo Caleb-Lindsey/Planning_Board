@@ -45,13 +45,6 @@ class ServiceCell: UITableViewCell {
         return label
     }()
     
-    let chevronImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "chevron_right")
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
     init(service: Service, reuseIdentifier: String) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.service = service
@@ -69,7 +62,7 @@ class ServiceCell: UITableViewCell {
         self.contentView.addSubview(cardView)
         cardView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
         
-        [titleLabel, dateLabel, typeLabel, chevronImageView].forEach { self.cardView.addSubview($0) }
+        [titleLabel, dateLabel, typeLabel].forEach { self.cardView.addSubview($0) }
         titleLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: cardView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 5, bottom: 5, right: 5))
         titleLabel.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.75).isActive = true
         titleLabel.text = self.service.title
@@ -78,8 +71,5 @@ class ServiceCell: UITableViewCell {
         dateLabel.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.25).isActive = true
         dateLabel.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.25).isActive = true
         dateLabel.text = self.service.getFormattedDate()
-        
-        chevronImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 10), size: .init(width: 30, height: 30))
-        chevronImageView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
     }
 }

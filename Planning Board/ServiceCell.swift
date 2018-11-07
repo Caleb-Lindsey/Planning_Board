@@ -63,7 +63,8 @@ class ServiceCell: UITableViewCell {
         cardView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
         
         [titleLabel, dateLabel, typeLabel].forEach { self.cardView.addSubview($0) }
-        titleLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: cardView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 5, bottom: 5, right: 5))
+        titleLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 5, bottom: 5, right: 5))
+        titleLabel.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.5).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.75).isActive = true
         titleLabel.text = self.service.title
         

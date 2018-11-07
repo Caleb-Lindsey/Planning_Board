@@ -19,6 +19,10 @@ class PBViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.greenColor
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        }
         view.backgroundColor = Colors.grayColor
     }
     

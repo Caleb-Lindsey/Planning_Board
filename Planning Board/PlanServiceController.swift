@@ -139,7 +139,7 @@ class PlanServiceController: UIViewController, UITableViewDataSource, UITableVie
         switch tableView {
         case segmentTable:
             selectedSegment = Global.segmentArray[indexPath.row]
-            elementArray = selectedSegment.elements
+            //elementArray = selectedSegment.elements
             elementTable.reloadData()
         case elementTable:
 //            let newProduct = ServiceComponent(type: elementArray[indexPath.row])
@@ -189,7 +189,7 @@ class PlanServiceController: UIViewController, UITableViewDataSource, UITableVie
     func setupTables() {
         if let segment = Global.segmentArray.first {
             selectedSegment = segment
-            elementArray = selectedSegment.elements
+            //elementArray = selectedSegment.elements
             elementTable.reloadData()
         }
     }

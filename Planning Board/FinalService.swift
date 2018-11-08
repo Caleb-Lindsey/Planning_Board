@@ -154,10 +154,10 @@ class FinalService: UIViewController, UITextFieldDelegate {
         } else {
             serviceTitle.layer.borderWidth = 0
             
-            let service: Service = Service(title: serviceTitle.text!, type: "", date: "2018-10-03T23:54:05+0000")
-            Global.arrayOfServices.append(service)
-            dataHandle.saveServicesToFile(services: Global.arrayOfServices)
-            returnToMain()
+//            let service: Service = Service(title: serviceTitle.text!, type: "", date: "2018-10-03T23:54:05+0000")
+//            Global.arrayOfServices.append(service)
+//            dataHandle.saveServicesToFile(services: Global.arrayOfServices)
+//            returnToMain()
         }
     }
     

@@ -37,7 +37,7 @@ class PlannerSegmentCell: UITableViewCell {
         super.layoutSubviews()
         
         iconImageView.frame = CGRect(x: 5, y: 5, width: self.contentView.frame.width - 10, height: self.contentView.frame.height * (3/4) - 5)
-        iconImageView.image = self.segment.iconImage
+        //iconImageView.image = self.segment.iconImage
         self.contentView.addSubview(iconImageView)
         
         titleLabel.frame = CGRect(x: iconImageView.frame.origin.x, y: iconImageView.frame.maxY, width: iconImageView.frame.width, height: self.contentView.frame.height * (1/4) - 5)

@@ -12,7 +12,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
-    var memberObject = Member()
+    var memberObject: Member!
     var dataHandle = Datasource()
     var newMemberMode: Bool = false
     var editMemberMode: Bool = false
@@ -170,7 +170,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
             //Place member label
             memberLabel.frame = CGRect(x: profileImage.frame.maxX + 20, y: 0, width: 200, height: 100)
             memberLabel.center.y = profileImage.center.y
-            memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
+            memberLabel.text = "\(memberObject.firstName!) \(memberObject.lastName!)"
             view.addSubview(memberLabel)
             
             //Place right table view
@@ -335,7 +335,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
         
         if tempArray != [] && newFirstName.text != "" && newLastName.text != "" {
             
-            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!, CanHost: tempArray, ProfilePic: (profileImage.imageView?.image)!)
+            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!)
             
             if newMemberMode {
                 Global.memberArray.append(newMember)
@@ -393,7 +393,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
             if newMemberMode || editMemberMode {
                 return Global.segmentArray.count
             } else {
-                return memberObject.canHost.count
+                return memberObject.canHost?.count ?? 0
             }
         }
         
@@ -413,17 +413,17 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
             } else if editMemberMode {
                 cell.textLabel?.text = Global.segmentArray[indexPath.row].title
         
-                for segment in memberObject.canHost {
-                    if segment == Global.segmentArray[indexPath.row].title {
-
-                        cell.accessoryType = .checkmark
-                        cell.isSelected = true
-                    
-                    }
-                }
+//                for segment in memberObject.canHost {
+//                    if segment == Global.segmentArray[indexPath.row].title {
+//
+//                        cell.accessoryType = .checkmark
+//                        cell.isSelected = true
+//
+//                    }
+//                }
                 
             } else {
-                cell.textLabel?.text = memberObject.canHost[indexPath.row]
+                //cell.textLabel?.text = memberObject.canHost[indexPath.row]
                 cell.accessoryType = .none
             }
             
@@ -436,8 +436,8 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
             memberObject = Global.memberArray[indexPath.row]
-            memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
-            profileImage.setImage(Global.memberArray[indexPath.row].profilePic, for: .normal)
+            memberLabel.text = "\(memberObject.firstName!) \(memberObject.lastName!)"
+            //profileImage.setImage(Global.memberArray[indexPath.row].profilePic, for: .normal)
             rightTableView.reloadData()
             
         } else {
@@ -479,7 +479,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
                 if newMemberMode {
                     tempArray.remove(at: indexPath.row)
                 } else {
-                    memberObject.canHost.remove(at: indexPath.row)
+                    //memberObject.canHost.remove(at: indexPath.row)
                    dataHandle.uploadMember()
                 }
                 rightTableView.reloadData()
@@ -539,16 +539,16 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func setupView() {
         
-        if Global.memberArray != [] {
-            
-            leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
-            leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-            profileImage.setImage(Global.memberArray[0].profilePic, for: .normal)
-            memberLabel.text = Global.memberArray[0].fullName()
-            memberObject = Global.memberArray[0]
-            rightTableView.reloadData()
-            
-        }
+//        if Global.memberArray != [] {
+//
+//            leftTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = true
+//            leftTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+//            profileImage.setImage(Global.memberArray[0].profilePic, for: .normal)
+//            memberLabel.text = Global.memberArray[0].fullName()
+//            memberObject = Global.memberArray[0]
+//            rightTableView.reloadData()
+//
+//        }
         
     }
     
@@ -588,7 +588,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func shouldFieldCoverDisplay() {
         
-        if Global.memberArray == [] {
+        if Global.memberArray.isEmpty {
             
             if newMemberMode {
                 UIView.animate(withDuration: 0.5, animations: {

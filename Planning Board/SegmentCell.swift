@@ -47,7 +47,7 @@ class SegmentCell: UITableViewCell {
         
         // Profile Image View
         iconImageView.frame = CGRect(x: 15, y: 15, width: 50, height: contentView.frame.height - 15 - 15)
-        iconImageView.image = segment.iconImage
+        //iconImageView.image = segment.iconImage
         self.contentView.addSubview(iconImageView)
         
         // Name Label
@@ -63,16 +63,17 @@ class SegmentCell: UITableViewCell {
     }
     
     private func getSubLabel() -> String {
-        if !segment.elements.isEmpty {
-            if segment.elements.count >= 3 {
-                return "\(segment.elements[0].title), \(segment.elements[1].title) + \(segment.elements.count - 2) more"
-            } else if segment.elements.count == 2 {
-                return "\(segment.elements[0].title) and \(segment.elements[1].title)"
-            } else {
-                return "\(segment.elements[0].title)"
-            }
-        } else {
-            return " "
-        }
+//        if !segment.elements.isEmpty {
+//            if segment.elements.count >= 3 {
+//                return "\(segment.elements[0].title), \(segment.elements[1].title) + \(segment.elements.count - 2) more"
+//            } else if segment.elements.count == 2 {
+//                return "\(segment.elements[0].title) and \(segment.elements[1].title)"
+//            } else {
+//                return "\(segment.elements[0].title)"
+//            }
+//        } else {
+//            return " "
+//        }
+        return "Fix me"
     }
 }

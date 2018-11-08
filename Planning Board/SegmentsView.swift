@@ -12,7 +12,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
     
     //Variables
     let myIndexPath = IndexPath(row: 0, section: 0)
-    var segmentObject = Segment()
+    var segmentObject: Segment!
     var dataHandle = Datasource()
     var newSegmentMode: Bool = false
     var tempArray = [Element]()
@@ -300,7 +300,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
             self.iconImagePickerView.frame.origin.x -= self.iconImagePickerView.frame.width / 3
             
             if !Global.segmentArray.isEmpty {
-                self.segmentImage.image = Global.segmentArray[Global.segmentArray.count - 1].iconImage
+                //self.segmentImage.image = Global.segmentArray[Global.segmentArray.count - 1].iconImage
             }
             
             self.shouldFieldCoverDisplay()
@@ -322,7 +322,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
     @objc func doneCreate() {
 
         if newSegmentField.text != "" && !tempArray.isEmpty {
-            let newSegment = Segment(title: newSegmentField.text!, elements: tempArray, iconImage: Global.arrayOfIcons[iconImagePickerView.selectedRow(inComponent: 0)])
+            let newSegment = Segment(title: newSegmentField.text!)
             Global.segmentArray.append(newSegment)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
@@ -364,7 +364,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
             if newSegmentMode {
                 return tempArray.count
             } else {
-                return segmentObject.elements.count
+                return (segmentObject.elements?.count)!
             }
         }
     }
@@ -379,7 +379,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
             if newSegmentMode {
                 cell.textLabel?.text = tempArray[indexPath.row].title
             } else {
-                cell.textLabel?.text = segmentObject.elements[indexPath.row].title
+                //cell.textLabel?.text = segmentObject.elements[indexPath.row].title
             }
             cell.selectionStyle = .none
             return cell
@@ -391,7 +391,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
         if tableView == leftTableView {
             segmentObject = Global.segmentArray[indexPath.row]
             segmentLabel.text = segmentObject.title
-            segmentImage.image = Global.segmentArray[indexPath.row].iconImage
+            //segmentImage.image = Global.segmentArray[indexPath.row].iconImage
             rightTableView.reloadData()
         } else {
             
@@ -418,7 +418,7 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
                 if newSegmentMode {
                     tempArray.remove(at: indexPath.row)
                 } else {
-                    segmentObject.elements.remove(at: indexPath.row)
+                    //segmentObject.elements.remove(at: indexPath.row)
                     dataHandle.uploadSegment()
                     tempArray.removeAll()
                     rightTableView.reloadData()

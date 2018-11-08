@@ -11,7 +11,7 @@ import UIKit
 class ProductPanel: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
     var superView: UITableView!
-    var productItem: ProductItem!
+    var productItem: ServiceComponent!
     
     let cancelButton: UIButton = {
         let button = UIButton()
@@ -59,7 +59,7 @@ class ProductPanel: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITabl
         return button
     }()
     
-    init(productItem: ProductItem, superView: UITableView) {
+    init(productItem: ServiceComponent, superView: UITableView) {
         super.init(frame: CGRect(x: superView.frame.width, y: 0, width: superView.frame.width, height: superView.frame.height))
         self.productItem = productItem
         self.superView = superView
@@ -75,7 +75,7 @@ class ProductPanel: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITabl
         self.addSubview(cancelButton)
         
         segmentLabel.frame = CGRect(x: 0, y: cancelButton.frame.maxY, width: self.frame.width, height: 75)
-        segmentLabel.text = self.productItem.element?.title
+        //segmentLabel.text = self.productItem.element?.title
         self.addSubview(segmentLabel)
         
         doneButton.frame = CGRect(x: self.frame.width - 100 - 5, y: 5, width: 100, height: 44)

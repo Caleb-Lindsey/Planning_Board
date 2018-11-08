@@ -8,14 +8,20 @@
 
 import UIKit
 
-class Element {
+class Element: Codable {
     
-    var title = String()
-    var link = String()
-    var lastUsed = Date()
+    var title: String!
+    var link: String?
+    var lastUsed: String?
     
-    init(title: String, link: String) {
+    init(title: String) {
         self.title = title
-        self.link = link
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.link = try container.decodeIfPresent(String.self, forKey: .link)
+        self.lastUsed = try container.decodeIfPresent(String.self, forKey: .lastUsed)
     }
 }

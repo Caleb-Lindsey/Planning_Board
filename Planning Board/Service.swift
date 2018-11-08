@@ -10,21 +10,21 @@ import UIKit
 
 class Service: Codable {
     
-    var title: String
-    var type: String
-    var date: String
+    var title: String!
+    var date: String?
+    var type: String?
+    var components: [ServiceComponent]?
     
-    init(title: String, type: String, date: String) {
+    init(title: String) {
         self.title = title
-        self.type = type
-        self.date = date
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.title = try container.decode(String.self, forKey: .title)
-        self.type = try container.decode(String.self, forKey: .type)
-        self.date = try container.decode(String.self, forKey: .date)
+        self.date = try container.decodeIfPresent(String.self, forKey: .date)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.components = try container.decodeIfPresent([ServiceComponent].self, forKey: .components)
     }
     
     func getFormattedDate() -> String {
@@ -34,7 +34,7 @@ class Service: Codable {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "h:mm a"
         
-        if let date = dateFormatterGet.date(from: self.date) {
+        if let date = dateFormatterGet.date(from: self.date ?? "") {
             return dateFormatterPrint.string(from: date)
         }
         return "---"

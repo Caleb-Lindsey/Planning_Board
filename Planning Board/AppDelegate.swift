@@ -16,16 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dataHandle: Datasource = Datasource()
-        dataHandle.fillMockData()
-        //dataHandle.getServiceData()
-        dataHandle.fillSegmentData()
-        dataHandle.fillMemberData()
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+        Datasource().fillMockData()
         
         let homeController: UIViewController = CustomTabBar()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
         window?.rootViewController = homeController
         return true
     }

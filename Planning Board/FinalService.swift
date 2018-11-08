@@ -70,7 +70,7 @@ class FinalService: UIViewController, UITextFieldDelegate {
         view.addSubview(serviceTitle)
     }
     
-//    func formatSummary(serviceArray: [ProductItem]) -> String {
+//    func formatSummary(serviceArray: [ServiceComponent]) -> String {
 //        var summary = String()
 //        var line = String()
 //

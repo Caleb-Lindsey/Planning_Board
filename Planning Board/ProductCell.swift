@@ -10,7 +10,7 @@ import UIKit
 
 class ProductCell: UITableViewCell {
     
-    var productItem: ProductItem!
+    var productItem: ServiceComponent!
     var tableView: UITableView!
     
     let timeLabel: UILabel = {
@@ -38,7 +38,7 @@ class ProductCell: UITableViewCell {
         return imageView
     }()
     
-    init(productItem: ProductItem, reuseIdentifier: String?, tableView: UITableView) {
+    init(productItem: ServiceComponent, reuseIdentifier: String?, tableView: UITableView) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
         self.productItem = productItem
         self.tableView = tableView
@@ -62,7 +62,7 @@ class ProductCell: UITableViewCell {
         contentView.addSubview(hostImage)
         
         titleLabel.frame = CGRect(x: timeLabel.frame.maxX + 5, y: 5, width: contentView.frame.width - timeLabel.frame.width - hostImage.frame.width - 40, height: timeLabel.frame.height)
-        titleLabel.text = productItem.element?.title
+        //titleLabel.text = productItem.type.title
         contentView.addSubview(titleLabel)
     }
 }

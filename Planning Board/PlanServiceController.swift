@@ -14,7 +14,7 @@ class PlanServiceController: UIViewController, UITableViewDataSource, UITableVie
     let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
     var selectedSegment: Segment!
     var elementArray = [Element]()
-    var productArray = [ProductItem]()
+    var productArray = [ServiceComponent]()
     var initialIndexPath: IndexPath!
     
     let segmentTable: UITableView = {
@@ -142,15 +142,15 @@ class PlanServiceController: UIViewController, UITableViewDataSource, UITableVie
             elementArray = selectedSegment.elements
             elementTable.reloadData()
         case elementTable:
-            let newProduct = ProductItem(element: elementArray[indexPath.row])
-            if productArray.isEmpty {
-                productArray = [newProduct]
-            } else {
-                productArray.append(newProduct)
-            }
+//            let newProduct = ServiceComponent(type: elementArray[indexPath.row])
+//            if productArray.isEmpty {
+//                productArray = [newProduct]
+//            } else {
+//                productArray.append(newProduct)
+//            }
             productTable.reloadData()
         case productTable:
-            let productItem: ProductItem = productArray[indexPath.row]
+            let productItem: ServiceComponent = productArray[indexPath.row]
             let productPanel: ProductPanel = ProductPanel(productItem: productItem, superView: self.productTable)
             self.productTable.addSubview(productPanel)
             productPanel.animateIntoView()
@@ -178,7 +178,7 @@ class PlanServiceController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove: ProductItem = productArray.remove(at: sourceIndexPath.row)
+        let itemToMove: ServiceComponent = productArray.remove(at: sourceIndexPath.row)
         productArray.insert(itemToMove, at: destinationIndexPath.row)
     }
     

@@ -35,3 +35,33 @@ extension UIView {
         self.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
+
+extension ServiceComponentType: Encodable {
+    enum CodingKeys: CodingKey {
+        case segment
+        case element
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .segment(let value):
+            try container.encode(value, forKey: .segment)
+        case .element(let value):
+            try container.encode(value, forKey: .element)
+        }
+    }
+}
+
+extension ServiceComponentType: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            let segmentValue =  try container.decode(Segment.self, forKey: .segment)
+            self = .segment(segmentValue)
+        } catch {
+            let elementValue =  try container.decode(Element.self, forKey: .element)
+            self = .element(elementValue)
+        }
+    }
+}

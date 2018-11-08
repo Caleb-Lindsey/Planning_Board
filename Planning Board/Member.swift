@@ -8,51 +8,27 @@
 
 import UIKit
 
-class Member: NSObject, NSCoding {
+class Member: Codable {
     
-    //Variables
-    var firstName = String()
-    var lastName = String()
-    var canHost = [String]()
-    var profilePic = UIImage()
+    var firstName: String!
+    var lastName: String!
+    var canHost: [String]?
+    var profilePic: String?
     
-    init(FirstName: String, LastName: String, CanHost: [String], ProfilePic: UIImage) {
+    init(FirstName: String, LastName: String) {
         self.firstName = FirstName
         self.lastName = LastName
-        self.canHost = CanHost
-        self.profilePic = ProfilePic
     }
     
-    override init() {
-        self.firstName = ""
-        self.lastName = ""
-        self.canHost = [String]()
-        self.profilePic = UIImage()
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.firstName = try container.decode(String.self, forKey: .firstName)
+        self.lastName = try container.decode(String.self, forKey: .lastName)
+        self.canHost = try container.decodeIfPresent([String].self, forKey: .canHost)
+        self.profilePic = try container.decodeIfPresent(String.self, forKey: .profilePic)
     }
     
     func fullName() -> String {
-        return "\(firstName) \(lastName)"
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        self.firstName = aDecoder.decodeObject(forKey: "FirstName") as! String
-        self.lastName = aDecoder.decodeObject(forKey: "LastName") as! String
-        self.canHost = aDecoder.decodeObject(forKey: "canHost") as! [String]
-        self.profilePic = aDecoder.decodeObject(forKey: "ProfilePic") as! UIImage
-    }
-    
-    func initWithCoder(aDecoder: NSCoder) -> Member {
-        self.firstName = aDecoder.decodeObject(forKey: "FirstName") as! String
-        self.lastName = aDecoder.decodeObject(forKey: "LastName") as! String
-        self.canHost = aDecoder.decodeObject(forKey: "canHost") as! [String]
-        self.profilePic = aDecoder.decodeObject(forKey: "ProfilePic") as! UIImage
-        return self
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(firstName, forKey: "FirstName")
-        aCoder.encode(lastName, forKey: "LastName")
-        aCoder.encode(canHost, forKey: "canHost")
-        aCoder.encode(profilePic, forKey: "ProfilePic")
+        return "\(firstName!) \(lastName!)"
     }
 }

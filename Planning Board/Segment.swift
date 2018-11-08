@@ -8,46 +8,22 @@
 
 import UIKit
 
-class Segment: NSObject, NSCoding {
+class Segment: Codable {
     
-    var title = String()
-    var elements = [Element]()
-    var iconImage = UIImage()
-    var lastUsed = Date()
+    var title: String!
+    var elements: [Element]?
+    var iconImage: String?
+    var lastUsed: String?
     
-    init(title: String, elements: [Element], iconImage: UIImage) {
+    init(title: String) {
         self.title = title
-        self.elements = elements
-        self.iconImage = iconImage
-        self.lastUsed = Date()
     }
     
-    override init() {
-        self.title = ""
-        self.elements = [Element]()
-        self.iconImage = UIImage()
-        self.lastUsed = Date()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        self.title = aDecoder.decodeObject(forKey: "Title") as! String
-        self.elements = aDecoder.decodeObject(forKey: "Elements") as! [Element]
-        self.iconImage = aDecoder.decodeObject(forKey: "IconImage") as! UIImage
-        self.lastUsed = aDecoder.decodeObject(forKey: "LastUsed") as! Date
-    }
-    
-    func initWithCoder(aDecoder: NSCoder) -> Segment {
-        self.title = aDecoder.decodeObject(forKey: "Title") as! String
-        self.elements = aDecoder.decodeObject(forKey: "Elements") as! [Element]
-        self.iconImage = aDecoder.decodeObject(forKey: "IconImage") as! UIImage
-        self.lastUsed = aDecoder.decodeObject(forKey: "LastUsed") as! Date
-        return self
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(title, forKey: "Title")
-        aCoder.encode(elements, forKey: "Elements")
-        aCoder.encode(iconImage, forKey: "IconImage")
-        aCoder.encode(lastUsed, forKey: "LastUsed")
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.elements = try container.decodeIfPresent([Element].self, forKey: .elements)
+        self.iconImage = try container.decodeIfPresent(String.self, forKey: .iconImage)
+        self.iconImage = try container.decodeIfPresent(String.self, forKey: .lastUsed)
     }
 }

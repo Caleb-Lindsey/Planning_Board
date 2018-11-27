@@ -32,11 +32,11 @@ class Service: Codable {
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "h:mm a"
+        dateFormatterPrint.dateFormat = "MM/dd/yy"
         
         if let date = dateFormatterGet.date(from: self.date ?? "") {
             return dateFormatterPrint.string(from: date)
         }
-        return "---"
+        return ""
     }
 }

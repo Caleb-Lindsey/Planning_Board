@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ServiceDetailViewController: PBViewController {
+class ServiceDetailViewController: PBViewController, UITableViewDelegate, UITableViewDataSource {
     
     var service: Service!
+    let cellID: String = "ComponentCell"
   
     let serviceType: UILabel = {
         let label = UILabel()
@@ -20,6 +21,11 @@ class ServiceDetailViewController: PBViewController {
     let serviceDate: UILabel = {
         let label = UILabel()
         return label
+    }()
+    
+    let componentTable: UITableView = {
+        let tableview = UITableView()
+        return tableview
     }()
     
     init(service: Service) {
@@ -34,6 +40,21 @@ class ServiceDetailViewController: PBViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = self.service.title
-        [serviceType, serviceDate].forEach { self.view.addSubview($0) }
+        [serviceType, serviceDate, componentTable].forEach { self.view.addSubview($0) }
+        serviceType.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil)
+        
+        componentTable.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        componentTable.delegate = self
+        componentTable.dataSource = self
+        componentTable.register(ComponentCell.self, forCellReuseIdentifier: cellID)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return service.components?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard service.components != nil else { return UITableViewCell() }
+        return ComponentCell(productItem: service.components![indexPath.row], reuseIdentifier: cellID)
     }
 }

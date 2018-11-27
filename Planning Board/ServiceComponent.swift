@@ -11,6 +11,15 @@ import UIKit
 enum ServiceComponentType {
     case segment(Segment)
     case element(Element)
+    
+    func getTitle() -> String {
+        switch self {
+        case .segment(let segment):
+            return segment.title
+        case .element(let element):
+            return element.title
+        }
+    }
 }
 
 class ServiceComponent: Codable {

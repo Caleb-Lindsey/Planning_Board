@@ -21,10 +21,10 @@
 		2E62F895208949390052AA68 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62F894208949390052AA68 /* ServiceCell.swift */; };
 		2E644DC6218A63EC00D9FD6F /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644DC5218A63EC00D9FD6F /* ServiceDetailViewController.swift */; };
 		2E6D17DC20B11DD9006A9C40 /* ProductPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6D17DB20B11DD9006A9C40 /* ProductPanel.swift */; };
-		2E75EF4A20A266EE0041647E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75EF4920A266EE0041647E /* ProductCell.swift */; };
+		2E75EF4A20A266EE0041647E /* ComponentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75EF4920A266EE0041647E /* ComponentCell.swift */; };
 		2E7EA1DF1E4FE26600911AD7 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */; };
 		2E861B22211169E400624CFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E861B21211169E400624CFD /* Colors.swift */; };
-		2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServiceView.swift */; };
+		2E889BC11EBEE46300F2C85E /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E889BC01EBEE46300F2C85E /* ServicesView.swift */; };
 		2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9833641E268CB100A48A56 /* PlanServiceController.swift */; };
 		2E99BB871E875CF00039B0EE /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99BB861E875CF00039B0EE /* Segment.swift */; };
 		2EAA78721EC15D2E00E4102D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */; };
@@ -76,10 +76,10 @@
 		2E62F894208949390052AA68 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		2E644DC5218A63EC00D9FD6F /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2E6D17DB20B11DD9006A9C40 /* ProductPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPanel.swift; sourceTree = "<group>"; };
-		2E75EF4920A266EE0041647E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		2E75EF4920A266EE0041647E /* ComponentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCell.swift; sourceTree = "<group>"; };
 		2E7EA1DE1E4FE26600911AD7 /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		2E861B21211169E400624CFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		2E889BC01EBEE46300F2C85E /* ServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		2E889BC01EBEE46300F2C85E /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		2E9833641E268CB100A48A56 /* PlanServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanServiceController.swift; sourceTree = "<group>"; };
 		2E99BB861E875CF00039B0EE /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		2EAA78711EC15D2E00E4102D /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 			children = (
 				2E62F894208949390052AA68 /* ServiceCell.swift */,
 				2EAD3C45209C133C0022F526 /* PlannerSegmentCell.swift */,
-				2E75EF4920A266EE0041647E /* ProductCell.swift */,
+				2E75EF4920A266EE0041647E /* ComponentCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 		2E1E33F02140A9C1002D0BA3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				2E889BC01EBEE46300F2C85E /* ServiceView.swift */,
+				2E889BC01EBEE46300F2C85E /* ServicesView.swift */,
 				2E644DC5218A63EC00D9FD6F /* ServiceDetailViewController.swift */,
 				2E9833641E268CB100A48A56 /* PlanServiceController.swift */,
 				2E3E1AC71EF1A4C500801415 /* FinalService.swift */,
@@ -408,10 +408,10 @@
 				2E9833651E268CB100A48A56 /* PlanServiceController.swift in Sources */,
 				2E59A6431FD8845B004539E4 /* SegmentCell.swift in Sources */,
 				2EB88CF91E858639001F85C2 /* Member.swift in Sources */,
-				2E75EF4A20A266EE0041647E /* ProductCell.swift in Sources */,
+				2E75EF4A20A266EE0041647E /* ComponentCell.swift in Sources */,
 				2E59A24420DEE4E500363441 /* Extentions.swift in Sources */,
 				2EAD3C46209C133C0022F526 /* PlannerSegmentCell.swift in Sources */,
-				2E889BC11EBEE46300F2C85E /* ServiceView.swift in Sources */,
+				2E889BC11EBEE46300F2C85E /* ServicesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

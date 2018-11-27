@@ -122,7 +122,7 @@ class PlanServiceController: UIViewController, UITableViewDataSource, UITableVie
             cell?.textLabel?.text = elementArray[indexPath.row].title
             return cell!
         } else {
-            let cell: ProductCell = ProductCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell", tableView: productTable)
+            let cell: ComponentCell = ComponentCell(productItem: productArray[indexPath.row], reuseIdentifier: "productCell")
             return cell
         }
     }

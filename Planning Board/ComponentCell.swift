@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ProductCell: UITableViewCell {
+class ComponentCell: UITableViewCell {
     
-    var productItem: ServiceComponent!
-    var tableView: UITableView!
+    var serviceComponent: ServiceComponent!
     
     let timeLabel: UILabel = {
         let label = UILabel()
@@ -38,10 +37,9 @@ class ProductCell: UITableViewCell {
         return imageView
     }()
     
-    init(productItem: ServiceComponent, reuseIdentifier: String?, tableView: UITableView) {
+    init(productItem: ServiceComponent, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
-        self.productItem = productItem
-        self.tableView = tableView
+        self.serviceComponent = productItem
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,17 +50,16 @@ class ProductCell: UITableViewCell {
         super.layoutSubviews()
         
         timeLabel.frame = CGRect(x: 15, y: 5, width: contentView.frame.width * (1/4) - 20, height: contentView.frame.height - 10)
-        productItem.time = 180
-        timeLabel.text = productItem.getTimeLabel()
+        serviceComponent.time = 180
+        timeLabel.text = serviceComponent.getTimeLabel()
         contentView.addSubview(timeLabel)
         
         hostImage.frame = CGRect(x: contentView.frame.width - timeLabel.frame.height - 15, y: 5, width: timeLabel.frame.height, height: timeLabel.frame.height)
         hostImage.layer.cornerRadius = hostImage.frame.width / 2
-        //hostImageView.image = productItem.host?.profilePic
         contentView.addSubview(hostImage)
         
         titleLabel.frame = CGRect(x: timeLabel.frame.maxX + 5, y: 5, width: contentView.frame.width - timeLabel.frame.width - hostImage.frame.width - 40, height: timeLabel.frame.height)
-        //titleLabel.text = productItem.type.title
+        titleLabel.text = serviceComponent.type.getTitle()
         contentView.addSubview(titleLabel)
     }
 }

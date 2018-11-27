@@ -104,12 +104,21 @@ class Datasource {
     
     func fillMockData() {
         let service1: Service = Service(title: "Awakening Night")
-        let service2: Service = Service(title: "Sunday Second")
-        let service3: Service = Service(title: "Sunday First")
+        service1.date = "2018-10-19T01:44:37"
+        service1.type = "Awakening"
+        
+        let service2: Service = Service(title: "Unstoppable Is Our Nature")
+        service2.date = "2018-11-28T01:44:37"
+        service2.type = "Sunday Morning"
+        let service3: Service = Service(title: "Expectation Is Our Approach")
+        service3.date = "2018-11-19T01:44:37"
+        service3.type = "Sunday Morning"
+        
+        
+        let segmentOne = Segment(title: "Worship")
+        let componentOne = ServiceComponent(type: .segment(segmentOne))
+        service1.components = [componentOne]
         
         Global.arrayOfServices = [service1, service2, service3]
-        
-        //let Segment1: Segment = Segment(title: "Walk-In", elements: [Element(title: "Playlist", link: ""), Element(title: "Game", link: "https://www.youtube.com/watch?v=5n2aQ3UQu9Y")], iconImage: #imageLiteral(resourceName: "door_icon"))
-        //Global.segmentArray = [Segment1]
     }
 }

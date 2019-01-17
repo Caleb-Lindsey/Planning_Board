@@ -2,6 +2,54 @@
   "images" : [
     {
       "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "photo40-2.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "photo60-1.jpg",
+      "scale" : "3x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "photo58-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "photo87-1.jpg",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "photo80-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "photo120-2.jpg",
+      "scale" : "3x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "photo120-1.jpg",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "photo180-1.jpg",
+      "scale" : "3x"
+    },
+    {
+      "size" : "20x20",
       "idiom" : "ipad",
       "filename" : "photo20.png",
       "scale" : "1x"
@@ -83,18 +131,6 @@
       "idiom" : "ios-marketing",
       "filename" : "photo1024.jpg",
       "scale" : "1x"
-    },
-    {
-      "size" : "60x60",
-      "idiom" : "car",
-      "filename" : "photo120.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "60x60",
-      "idiom" : "car",
-      "filename" : "photo180.png",
-      "scale" : "3x"
     }
   ],
   "info" : {

@@ -322,8 +322,8 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
     @objc func doneCreate() {
 
         if newSegmentField.text != "" && !tempArray.isEmpty {
-            let newSegment = Segment(title: newSegmentField.text!)
-            Global.segmentArray.append(newSegment)
+            //let newSegment = Segment(title: newSegmentField.text!)
+            //Global.segmentArray.append(newSegment)
             dataHandle.uploadSegment()
             leftTableView.reloadData()
             cancelCreate()
@@ -358,15 +358,16 @@ class SegmentsView: PBViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == leftTableView {
-            return Global.segmentArray.count
-        } else {
-            if newSegmentMode {
-                return tempArray.count
-            } else {
-                return (segmentObject.elements?.count)!
-            }
-        }
+//        if tableView == leftTableView {
+//            return Global.segmentArray.count
+//        } else {
+//            if newSegmentMode {
+//                return tempArray.count
+//            } else {
+//                return (segmentObject.elements?.count)!
+//            }
+//        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

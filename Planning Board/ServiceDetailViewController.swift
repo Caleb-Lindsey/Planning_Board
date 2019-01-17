@@ -50,11 +50,12 @@ class ServiceDetailViewController: PBViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return service.components?.count ?? 0
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard service.components != nil else { return UITableViewCell() }
-        return ComponentCell(productItem: service.components![indexPath.row], reuseIdentifier: cellID)
+        //guard service.components != nil else { return UITableViewCell() }
+        //return ComponentCell(productItem: service.components![indexPath.row], reuseIdentifier: cellID)
+        return UITableViewCell()
     }
 }

@@ -10,16 +10,14 @@ import UIKit
 
 class Element: Codable {
     
-    var title: String!
+    var id: Int
+    var title: String
     var link: String?
     var lastUsed: String?
     
-    init(title: String) {
-        self.title = title
-    }
-    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.title = try container.decode(String.self, forKey: .title)
         self.link = try container.decodeIfPresent(String.self, forKey: .link)
         self.lastUsed = try container.decodeIfPresent(String.self, forKey: .lastUsed)

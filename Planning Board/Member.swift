@@ -10,25 +10,22 @@ import UIKit
 
 class Member: Codable {
     
-    var firstName: String!
-    var lastName: String!
-    var canHost: [String]?
+    var id: Int
+    var firstName: String
+    var lastName: String
+    var username: String
     var profilePic: String?
-    
-    init(FirstName: String, LastName: String) {
-        self.firstName = FirstName
-        self.lastName = LastName
-    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.firstName = try container.decode(String.self, forKey: .firstName)
         self.lastName = try container.decode(String.self, forKey: .lastName)
-        self.canHost = try container.decodeIfPresent([String].self, forKey: .canHost)
+        self.username = try container.decode(String.self, forKey: .username)
         self.profilePic = try container.decodeIfPresent(String.self, forKey: .profilePic)
     }
     
     func fullName() -> String {
-        return "\(firstName!) \(lastName!)"
+        return "\(firstName) \(lastName)"
     }
 }

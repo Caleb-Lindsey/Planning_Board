@@ -170,7 +170,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
             //Place member label
             memberLabel.frame = CGRect(x: profileImage.frame.maxX + 20, y: 0, width: 200, height: 100)
             memberLabel.center.y = profileImage.center.y
-            memberLabel.text = "\(memberObject.firstName!) \(memberObject.lastName!)"
+            memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
             view.addSubview(memberLabel)
             
             //Place right table view
@@ -335,18 +335,18 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
         
         if tempArray != [] && newFirstName.text != "" && newLastName.text != "" {
             
-            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!)
-            
-            if newMemberMode {
-                Global.memberArray.append(newMember)
-
-            } else if editMemberMode {
-                Global.memberArray[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
-            }
-            
-            dataHandle.uploadMember()
-            leftTableView.reloadData()
-            cancelCreate()
+//            let newMember = Member(FirstName: newFirstName.text!, LastName: newLastName.text!)
+//            
+//            if newMemberMode {
+//                Global.memberArray.append(newMember)
+//
+//            } else if editMemberMode {
+//                Global.memberArray[(leftTableView.indexPathForSelectedRow?.row)!] = newMember
+//            }
+//            
+//            dataHandle.uploadMember()
+//            leftTableView.reloadData()
+//            cancelCreate()
             
         } else {
             
@@ -393,7 +393,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
             if newMemberMode || editMemberMode {
                 return Global.segmentArray.count
             } else {
-                return memberObject.canHost?.count ?? 0
+                return 0
             }
         }
         
@@ -436,7 +436,7 @@ class PeopleView: PBViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
             memberObject = Global.memberArray[indexPath.row]
-            memberLabel.text = "\(memberObject.firstName!) \(memberObject.lastName!)"
+            memberLabel.text = "\(memberObject.firstName) \(memberObject.lastName)"
             //profileImage.setImage(Global.memberArray[indexPath.row].profilePic, for: .normal)
             rightTableView.reloadData()
             

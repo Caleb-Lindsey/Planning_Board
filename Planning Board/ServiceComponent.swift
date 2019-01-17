@@ -24,18 +24,21 @@ enum ServiceComponentType {
 
 class ServiceComponent: Codable {
     
+    var id: Int
     var type: ServiceComponentType
-    var host: Member?
+    var host: Int?
     var time: Int = 0
     
     init(type: ServiceComponentType) {
+        self.id = 0
         self.type = type
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.type = try container.decode(ServiceComponentType.self, forKey: .type)
-        self.host = try container.decodeIfPresent(Member.self, forKey: .host)
+        self.host = try container.decodeIfPresent(Int.self, forKey: .host)
         self.time = try container.decode(Int.self, forKey: .time)
     }
     
